@@ -1,0 +1,3 @@
+SET SQL_SAFE_UPDATES=0;
+ALTER TABLE `coopmanagerdb`.`liquidacionespagos` ADD COLUMN `Comision` DECIMAL(10,2) NULL DEFAULT NULL  AFTER `Importe` ;
+Update `coopmanagerdb`.`liquidacionespagos` set comision = 0 where comision is null;

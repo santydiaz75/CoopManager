@@ -1,0 +1,49 @@
+ALTER TABLE `coopmanagerdb`.`facturascobros` ADD COLUMN `Concepto` VARCHAR(100) NULL DEFAULT NULL  AFTER `FechaCobro` , CHANGE COLUMN `IdFactura` `IdCliente` INT(11) NOT NULL  
+, DROP PRIMARY KEY 
+, ADD PRIMARY KEY (`Empresa`, `Ejercicio`, `IdCliente`, `Cobro`) ;
+
+ALTER TABLE `coopmanagerdb`.`facturascobros` RENAME TO  `coopmanagerdb`.`Cobros` ;
+
+ALTER TABLE `coopmanagerdb`.`facturaspagopagos` RENAME TO  `coopmanagerdb`.`Pagos` ;
+
+ALTER TABLE `coopmanagerdb`.`pagos` ADD COLUMN `Concepto` VARCHAR(100) NULL DEFAULT NULL  AFTER `FechaPago` , ADD COLUMN `Talon` INT(11) NULL DEFAULT NULL  AFTER `CuentaBancaria` , CHANGE COLUMN `IdFactura` `IdProveedor` INT(11) NOT NULL  
+, DROP PRIMARY KEY 
+, ADD PRIMARY KEY (`Empresa`, `Ejercicio`, `IdProveedor`, `Pago`) ;
+
+delimiter $$
+
+CREATE TABLE `liquidacionespagos` (
+  `Empresa` int(11) NOT NULL DEFAULT '1',
+  `Ejercicio` int(11) NOT NULL DEFAULT '2010',
+  `IdCosechero` int(11) NOT NULL,
+  `Pago` int(11) NOT NULL DEFAULT '0',
+  `FechaPago` datetime DEFAULT NULL,
+  `Concepto` varchar(100) DEFAULT NULL,
+  `CuentaBancaria` varchar(20) DEFAULT NULL,
+  `Talon` int(11) DEFAULT NULL,
+  `Importe` float DEFAULT NULL,
+  `SID` varchar(38) DEFAULT NULL,
+  `LMD` datetime DEFAULT NULL,
+  `Version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Empresa`,`Ejercicio`,`IdCosechero`,`Pago`),
+  KEY `FK_EjercicioLiquidacionPago` (`Ejercicio`),
+  KEY `FK_EmpresaLiquidacionPago` (`Empresa`),
+  CONSTRAINT `FK_EjercicioLiquidacionPago` FOREIGN KEY (`Ejercicio`) REFERENCES `ejercicios` (`Ejercicio`),
+  CONSTRAINT `FK_EmpresaLiquidacionPago` FOREIGN KEY (`Empresa`) REFERENCES `empresas` (`IdEmpresa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+ALTER TABLE `coopmanagerdb`.`pagos` ADD COLUMN `IdFactura` INT(11) NULL DEFAULT NULL  AFTER `FechaPago` ;
+
+ALTER TABLE `coopmanagerdb`.`pagos` ADD COLUMN `Comision` FLOAT NULL DEFAULT NULL  AFTER `Importe` ;
+
+ALTER TABLE `coopmanagerdb`.`pagos` ADD COLUMN `CuentaContable` varchar(10) NULL DEFAULT NULL  AFTER `Comision` ;
+
+Update Liquidaciones set TipoIrpf = 0 where TipoIrpf is null and  empresa = 1;
+
+Update Liquidaciones set TipoIgic = 0 where TipoIgic is null and  empresa = 1;
+
+USE `coopmanagerdb`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewcontapagos` AS select `p`.`Empresa` AS `empresa`,`p`.`Ejercicio` AS `ejercicio`,`p`.`FechaPago` AS `FechaPago`,coalesce(`p`.`IdFactura`,0) AS `IdFactura`,coalesce(`p`.`Concepto`,'') AS `Concepto`,coalesce(`p`.`IdProveedor`,0) AS `identidad`,coalesce(`i`.`NombreIdentidad`,'') AS `Nombre`,coalesce(`i`.`CuentaContable`,'') AS `CuentaContableProveedor`,coalesce(`p`.`CuentaBancaria`,'') AS `CuentaBancaria`,coalesce(`p`.`Talon`,0) AS `Talon`,coalesce(`b`.`NombreBanco`,'') AS `NombreBanco`,coalesce(`b`.`CuentaContable`,'') AS `CuentaContableBanco`,coalesce(`p`.`CuentaContable`,'') AS `CuentaContablePago`,coalesce(`p`.`Importe`,0) AS `ImportePago`,coalesce(`p`.`Comision`,0) AS `Comision`,coalesce(`f`.`TipoImpuesto`,0) AS `TipoImpuesto`,coalesce(`f`.`ImporteImpuesto`,0) AS `ImporteImpuesto`,coalesce(`f`.`TipoIRPF`,0) AS `TipoIRPF`,coalesce(`f`.`ImporteIRPF`,0) AS `ImporteIRPF`,coalesce(`f`.`BaseImponible`,0) AS `BaseImponible`,coalesce(`f`.`ImporteFactura`,0) AS `ImporteFactura` from (((`pagos` `p` join `empresascuentas` `b` on(((`p`.`CuentaBancaria` = `b`.`CuentaBancaria`) and (`p`.`Empresa` = `b`.`Empresa`)))) left join `facturaspagocabecera` `f` on(((`p`.`Empresa` = `f`.`Empresa`) and (`p`.`Ejercicio` = `f`.`Ejercicio`) and (`p`.`IdFactura` = `f`.`IdFactura`)))) left join `identidades` `i` on(((`p`.`Empresa` = `i`.`Empresa`) and (`p`.`Ejercicio` = `i`.`Ejercicio`) and (`p`.`IdProveedor` = `i`.`Identidad`))));
+
+USE `coopmanagerdb`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewcontacobros` AS select `c`.`Empresa` AS `empresa`,`c`.`Ejercicio` AS `ejercicio`,`c`.`FechaCobro` AS `FechaCobro`,coalesce(`c`.`Concepto`,'') AS `Concepto`, coalesce(`c`.`IdCliente`,0) AS `identidad`,coalesce(`i`.`NombreIdentidad`,'') AS `Nombre`,coalesce(`i`.`CuentaContable`,'') AS `CuentaContableCliente`, coalesce(`c`.`CuentaBancaria`,'') AS `CuentaBancaria`,coalesce(`b`.`NombreBanco`,'') AS `NombreBanco`,coalesce(`b`.`CuentaContable`,'') AS `CuentaContableBanco`,coalesce(`c`.`Importe`,0) AS `ImporteCobro` from ((`cobros` `c` join `empresascuentas` `b` on(((`c`.`CuentaBancaria` = `b`.`CuentaBancaria`) and (`c`.`Empresa` = `b`.`Empresa`)))) left join `identidades` `i` on(((`c`.`Empresa` = `i`.`Empresa`) and (`c`.`Ejercicio` = `i`.`Ejercicio`) and (`c`.`IdCliente` = `i`.`Identidad`))));

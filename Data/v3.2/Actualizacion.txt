@@ -1,0 +1,30 @@
+delimiter $$
+
+CREATE TABLE `controlcalidadconfiguracion` (
+  `NumCategoria` int(11) NOT NULL,
+  `Empresa` int(11) NOT NULL,
+  `Ejercicio` int(11) NOT NULL,
+  `Categoria` varchar(25) CHARACTER SET utf8 DEFAULT NULL,
+  `SID` varchar(38) DEFAULT NULL,
+  `LMD` datetime DEFAULT NULL,
+  `Version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`NumCategoria`,`Ejercicio`,`Empresa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewcontrolcalidad` AS select `e`.`Empresa` AS `Empresa`,`e`.`Ejercicio` AS `Ejercicio`,`e`.`Semana` AS `Semana`,`coopmanagerdb`.`EntradasGetFechaGrupoCosechero`(`e`.`Empresa`,`e`.`Ejercicio`,`e`.`Semana`,`c`.`IdGrupo`) AS `Fecha`,`c`.`IdGrupo` AS `IdCosechero`,`c`.`NIF` AS `NIF`,`coopmanagerdb`.`CosecheroGetNombreByNif`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`) AS `NombreApellidos`,`s`.`RefAutoControl` AS `RefAutoControl`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,1)) AS `NumKIlosExtraEmbolsado`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,2)) AS `NumKIlosExtraPlato`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,3)) AS `NumKIlosExtra10`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,4)) + `coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,5))) AS `NumKIlosExtra`,((`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,6)) + `coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,7))) + `coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,8))) AS `NumKIlosPrimera`, 0 AS `NumKIlosSegunda`, `coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,9)) AS `NumKIlosSegunda10`,
+`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,10)) AS `NumKIlosSegunda12`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,1)) / 16) AS `NumCajasExtraEmbolsado`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,2)) / 16) AS `NumCajasExtraPlato`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,3)) / 10) AS `NumCajasExtra10`,((`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,4)) / 9) + (`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,5)) / 10)) AS `NumCajasExtra`,(((`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,6)) / 16) + (`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,7)) / 16)) + (`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,8)) / 12)) AS `NumCajasPrimera`, 0 AS `NumCajasSegunda`, (`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,9)) / 10) AS `NumCajasSegunda10`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,`coopmanagerdb`.`ControlCalidadGetCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,10)) / 12) AS `NumCajasSegunda12` from ((`entradascabecera` `e` left join `cosecheros` `c` on(((`e`.`IdCosechero` = `c`.`IdCosechero`) and (`e`.`Empresa` = `c`.`Empresa`) and (`e`.`Ejercicio` = `c`.`Ejercicio`)))) left join `calendario` `s` on(((`s`.`Semana` = `e`.`Semana`) and (`s`.`Empresa` = `e`.`Empresa`) and (`s`.`Ejercicio` = `e`.`Ejercicio`))))
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ControlCalidadGetCategoria`(lempresa INT, lejercicio INT, lNumCategoria INT) RETURNS int(11)
+BEGIN
+
+DECLARE lcategoria int;
+
+Select Categoria into lcategoria from `coopmanagerdb`.`controlcalidadconfiguracion` c 
+where c.Empresa = lempresa and c.ejercicio = lejercicio and c.NumCategoria = lNumCategoria;
+RETURN lcategoria;
+
+END

@@ -1,0 +1,31 @@
+ALTER TABLE `coopmanagerdb`.`entradasimportacion` ADD COLUMN `Vale` INT(11) NULL DEFAULT NULL  AFTER `NumKilos` ;
+
+ALTER TABLE `coopmanagerdb`.`ventascabecera` ADD COLUMN `IdReceptor` INT(11) NULL DEFAULT NULL  AFTER `Fecha` 
+, DROP PRIMARY KEY 
+, ADD PRIMARY KEY (`Empresa`, `Ejercicio`, `IdVenta`) ;
+
+Update ventascabecera vc Set IdReceptor = (Select Max(IdReceptor) from ventaslineas vl where vl.Empresa = vc.Empresa and vl.Ejercicio = vc.Ejercicio and vl.IdVenta = vc.IdVenta) where vc.Empresa = 1;
+
+ALTER TABLE `coopmanagerdb`.`ventaslineas` DROP COLUMN `IdReceptor` 
+, DROP PRIMARY KEY 
+, ADD PRIMARY KEY (`IdVenta`, `IdCategoria`, `Empresa`, `Ejercicio`) ;
+
+ALTER TABLE `coopmanagerdb`.`ventascabecera` ADD COLUMN `IdZona` INT(11) NULL DEFAULT NULL  AFTER `IdConductor` ;
+
+Update ventascabecera vc Set IdZona = (Select Max(IdZona) from ventaslineas vl where vl.Empresa = vc.Empresa and vl.Ejercicio = vc.Ejercicio and vl.IdVenta = vc.IdVenta) where vc.Empresa = 1;
+
+ALTER TABLE `coopmanagerdb`.`ventaslineas` DROP COLUMN `IdZona` ;
+
+USE `coopmanagerdb`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewventas` AS select `v`.`IdVenta` AS `IdVenta`,`v`.`Empresa` AS `Empresa`,`v`.`Ejercicio` AS `Ejercicio`,`v`.`Semana` AS `Semana`,`v`.`Fecha` AS `Fecha`, coalesce(`r`.`Nombre`,'') AS `NombreReceptor`, coalesce(`b`.`NombreBarco`,'') AS `NombreBarco`,coalesce(`vh`.`Marca`,'') AS `Marca`,coalesce(`vh`.`Matricula`,'') AS `Matricula` from ((`ventascabecera` `v` left join `barcos` `b` on(((`v`.`IdBarco` = `b`.`IdBarco`) and (`v`.`Empresa` = `b`.`Empresa`) and (`v`.`Ejercicio` = `b`.`Ejercicio`))) left join `receptores` `r` on (((`v`.`IdReceptor` = `r`.`IdReceptor`) and (`v`.`Empresa` = `r`.`Empresa`) and (`v`.`Ejercicio` = `r`.`Ejercicio`))) left join `vehiculos` `vh` on(((`v`.`IdVehiculo` = `vh`.`IdVehiculo`) and (`v`.`Empresa` = `vh`.`Empresa`) and (`v`.`Ejercicio` = `vh`.`Ejercicio`)))));
+
+ALTER TABLE `coopmanagerdb`.`receptores` ADD COLUMN `MercadoLocal` SMALLINT(6) NOT NULL DEFAULT 0  AFTER `IdZona` ;
+
+delimiter $$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewventasquery` AS select `v`.`IdVenta` AS `IdVenta`,`v`.`Empresa` AS `Empresa`,`v`.`Ejercicio` AS `Ejercicio`,`v`.`Semana` AS `Semana`,`v`.`Fecha` AS `Fecha`,`v`.`IdReceptor` AS `IdReceptor`,`r`.`Nombre` AS `Nombre`, `r`.`MercadoLocal` AS `MercadoLocal`,sum(`vl`.`NumCajas`) AS `NumCajas`,sum(`vl`.`NumKilos`) AS `NumKIlos`,sum(`vl`.`Importe`) AS `Importe` from ((`ventascabecera` `v` left join `ventaslineas` `vl` on(((`v`.`IdVenta` = `vl`.`IdVenta`) and (`v`.`Empresa` = `vl`.`Empresa`) and (`v`.`Ejercicio` = `vl`.`Ejercicio`)))) left join `receptores` `r` on(((`v`.`IdReceptor` = `r`.`IdReceptor`) and (`vl`.`Empresa` = `r`.`Empresa`) and (`vl`.`Ejercicio` = `r`.`Ejercicio`)))) group by `v`.`IdVenta`,`v`.`Empresa`,`v`.`Ejercicio`,`v`.`Semana`,`v`.`Fecha`,`v`.`IdReceptor`,`r`.`Nombre`, `r`.`MercadoLocal` order by `v`.`IdVenta`$$
+
+delimiter $$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewventascategoriasreceptorquery` AS select `v`.`Empresa` AS `Empresa`,`v`.`Ejercicio` AS `Ejercicio`,`v`.`IdReceptor` AS `IdReceptor`, `r`.`MercadoLocal` AS `MercadoLocal`, `v`.`Semana` AS `Semana`,`vl`.`IdCategoria` AS `IdCategoria`,`c`.`NombreCategoria` AS `NombreCategoria`,sum(`vl`.`NumKilos`) AS `NumKIlos`,sum(`vl`.`NumCajas`) AS `NumCajas`,sum(`vl`.`Importe`) AS `Impore` from ((`ventascabecera` `v` join `ventaslineas` `vl` on(((`v`.`IdVenta` = `vl`.`IdVenta`) and (`v`.`Empresa` = `vl`.`Empresa`) and (`v`.`Ejercicio` = `vl`.`Ejercicio`)))) join `categorias` `c` on(((`vl`.`IdCategoria` = `c`.`IdCategoria`) and (`vl`.`Empresa` = `c`.`Empresa`) and (`vl`.`Ejercicio` = `c`.`Ejercicio`)))) join `receptores` `r` on(((`v`.`IdReceptor` = `r`.`IdReceptor`) and (`v`.`Empresa` = `r`.`Empresa`) and (`v`.`Ejercicio` = `r`.`Ejercicio`))) group by `v`.`Empresa`,`v`.`Ejercicio`,`v`.`IdReceptor`, `r`.`MercadoLocal`,`v`.`Semana`,`vl`.`IdCategoria`,`c`.`NombreCategoria` order by `vl`.`IdCategoria`
+

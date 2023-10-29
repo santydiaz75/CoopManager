@@ -1,0 +1,24 @@
+-classpath 'W:/Workspaces/EclipseEuropa/digester1/target/checkout/target/classes;C:/Documents and Settings/Administrator/.m2/repository/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.jar;C:/Documents and Settings/Administrator/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar;C:/Documents and Settings/Administrator/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar'
+ -encoding
+'iso-8859-1'
+-protected
+-source
+'1.2'
+-sourcepath
+'W:/Workspaces/EclipseEuropa/digester1/target/checkout/src/java'
+-author
+-bottom
+'Copyright &#169; 2001-2008 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All Rights Reserved.'
+-charset
+'ISO-8859-1'
+-d
+'W:/Workspaces/EclipseEuropa/digester1/target/checkout/target/site/apidocs'
+-doctitle
+'Commons Digester 1.8.1 API'
+-link
+'http://java.sun.com/javase/6/docs/api'
+-linksource
+-use
+-version
+-windowtitle
+'Commons Digester 1.8.1 API'

@@ -1,0 +1,6 @@
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `coopmanagerdb`.`viewentradas` AS select `e`.`IdEntrada` AS `IdEntrada`,`e`.`Empresa` AS `Empresa`,`e`.`Ejercicio` AS `Ejercicio`,`e`.`Semana` AS `Semana`,`e`.`Fecha` AS `Fecha`, `e`.`IdCosechero` AS `IdCosechero`, coalesce(`c`.`Nombre`,'') AS `Nombre`,coalesce(`c`.`Apellidos`,'') AS `Apellidos`,coalesce(`z`.`NombreZona`,'') AS `NombreZona` from ((`coopmanagerdb`.`entradascabecera` `e` left join `coopmanagerdb`.`cosecheros` `c` on(((`e`.`IdCosechero` = `c`.`IdCosechero`) and (`e`.`Empresa` = `c`.`Empresa`) and (`e`.`Ejercicio` = `c`.`Ejercicio`)))) left join `coopmanagerdb`.`zonas` `z` on(((`e`.`IdZona` = `z`.`IdZona`) and (`e`.`Empresa` = `z`.`Empresa`) and (`e`.`Ejercicio` = `z`.`Ejercicio`))))
+
+ALTER TABLE `coopmanagerdb`.`empleadosnominas` ADD COLUMN `CuentaBancariaPago` VARCHAR(20) NULL DEFAULT NULL  AFTER `ImporteBonificacion` ;
+
+ALTER TABLE `coopmanagerdb`.`empresas` ADD COLUMN `CuentaBancaria2` VARCHAR(20) NULL DEFAULT NULL  AFTER `CuentaBancaria` ;
+

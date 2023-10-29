@@ -1,0 +1,206 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteGastosByTipoCoste`(lempresa INT, lejercicio INT, ltipocoste INT, lfechadesde DATE, lfechahasta DATE) RETURNS float
+BEGIN
+
+DECLARE Importe float;
+
+Select coalesce(Sum(ImporteFactura),0) into Importe from `coopmanagerdb`.`facturaspagocabecera` fp
+where fp.ejercicio = lejercicio and fp.empresa = lempresa and fp.TipoCoste = ltipocoste and fp.fecha >= lfechadesde and fp.fecha <= lfechahasta;
+RETURN Importe;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteGastosTotal`(lempresa INT, lejercicio INT, lfechadesde DATE, lfechahasta DATE) RETURNS float
+BEGIN
+
+DECLARE Importe float;
+
+Select coalesce(Sum(ImporteFactura),0) into Importe from `coopmanagerdb`.`facturaspagocabecera` fp
+where fp.ejercicio = lejercicio and fp.empresa = lempresa and fp.fecha >= lfechadesde and fp.fecha <= lfechahasta;
+RETURN Importe;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `EntradaGetNumKilosTotal`(lempresa INT, lejercicio INT, lfechadesde DATE, lfechahasta DATE) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select coalesce(Sum(NumKilos),0) into Kilos from `coopmanagerdb`.`entradascabecera` ec inner join `coopmanagerdb`.`entradaslineas` el on ec.empresa = el.empresa and ec.ejercicio = el.ejercicio and ec.identrada = el.identrada  
+where el.ejercicio = lejercicio and el.empresa = lempresa  and ec.fecha >= lfechadesde and ec.fecha <= lfechahasta;
+RETURN Kilos;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteIngresosExplotacion`(lempresa INT, lejercicio INT, lfechadesde DATE, lfechahasta DATE) RETURNS float
+BEGIN
+
+DECLARE Importef float;
+DECLARE Importev float;
+
+Select coalesce(Sum(ImporteFactura),0) into Importef from `coopmanagerdb`.`facturascabecera` fc
+where fc.ejercicio = lejercicio and fc.empresa = lempresa and fc.fecha >= lfechadesde and fc.fecha <= lfechahasta;
+
+Select coalesce(Sum(Importe),0) into Importev from `coopmanagerdb`.`ventascabecera` vc inner join `coopmanagerdb`.`ventaslineas` vl on vc.empresa = vl.empresa and vc.ejercicio = vl.ejercicio and vc.idventa = vl.idventa  
+where vl.ejercicio = lejercicio and vl.empresa = lempresa and vc.fecha >= lfechadesde and vc.fecha <= lfechahasta;
+
+RETURN Importef + Importev;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteNominas`(lempresa INT, lejercicio INT, lfechadesde DATE, lfechahasta DATE) RETURNS float
+BEGIN
+
+DECLARE Importe float;
+
+Select coalesce(Sum(TotalDevengado),0) into Importe from `coopmanagerdb`.`empleadosnominas` n
+where n.ejercicio = lejercicio and n.empresa = lempresa and n.mes >= month(lfechadesde) and n.mes <= month(lfechahasta);
+RETURN Importe;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteIngresosExplotacion`(lempresa INT, lejercicio INT, lfechadesde DATE, lfechahasta DATE) RETURNS float
+BEGIN
+
+DECLARE Importef float;
+DECLARE Importev float;
+
+Select coalesce(Sum(ImporteFactura),0) into Importef from `coopmanagerdb`.`facturascabecera` fc
+where fc.ejercicio = lejercicio and fc.empresa = lempresa and fc.fecha >= lfechadesde and fc.fecha <= lfechahasta;
+
+Select coalesce(Sum(Importe),0) into Importev from `coopmanagerdb`.`ventascabecera` vc inner join `coopmanagerdb`.`ventaslineas` vl on vc.empresa = vl.empresa and vc.ejercicio = vl.ejercicio and vc.idventa = vl.idventa  
+where vl.ejercicio = lejercicio and vl.empresa = lempresa and vc.fecha >= lfechadesde and vc.fecha <= lfechahasta;
+
+RETURN Importef + Importev;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `LiquidacionKilosSemana1CategoriaFactura`(lempresa INT, lejercicio INT, lcategoria INT, lfactura INT) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select KilosSemana1 into Kilos from `coopmanagerdb`.`liquidacioneslineas` l 
+where  l.NumeroFactura = lfactura and l.IdCategoria = lCategoria and l.ejercicio = lejercicio and l.empresa = lempresa;
+RETURN Kilos;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `LiquidacionKilosSemana2CategoriaFactura`(lempresa INT, lejercicio INT, lcategoria INT, lfactura INT) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select KilosSemana2 into Kilos from `coopmanagerdb`.`liquidacioneslineas` l 
+where  l.NumeroFactura = lfactura and l.IdCategoria = lCategoria and l.ejercicio = lejercicio and l.empresa = lempresa;
+RETURN Kilos;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `LiquidacionKilosSemana3CategoriaFactura`(lempresa INT, lejercicio INT, lcategoria INT, lfactura INT) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select KilosSemana3 into Kilos from `coopmanagerdb`.`liquidacioneslineas` l 
+where  l.NumeroFactura = lfactura and l.IdCategoria = lCategoria and l.ejercicio = lejercicio and l.empresa = lempresa;
+RETURN Kilos;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `LiquidacionKilosSemana4CategoriaFactura`(lempresa INT, lejercicio INT, lcategoria INT, lfactura INT) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select KilosSemana4 into Kilos from `coopmanagerdb`.`liquidacioneslineas` l 
+where  l.NumeroFactura = lfactura and l.IdCategoria = lCategoria and l.ejercicio = lejercicio and l.empresa = lempresa;
+RETURN Kilos;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `LiquidacionKilosSemana5CategoriaFactura`(lempresa INT, lejercicio INT, lcategoria INT, lfactura INT) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select KilosSemana5 into Kilos from `coopmanagerdb`.`liquidacioneslineas` l 
+where  l.NumeroFactura = lfactura and l.IdCategoria = lCategoria and l.ejercicio = lejercicio and l.empresa = lempresa;
+RETURN Kilos;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `CosecheroGetNombreByNif`(lempresa INT, lejercicio INT, lnif varchar(12)) RETURNS varchar(100) CHARSET latin1
+BEGIN
+
+DECLARE lnombre varchar(100);
+
+Select concat(concat(co.Apellidos, ', '), co.Nombre) as NombreApellidos into lnombre from `coopmanagerdb`.`cosecheros` co 
+where co.ejercicio = lejercicio and co.empresa = lempresa and co.nif = lnif order by co.IdCosechero LIMIT 1;
+RETURN lnombre;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- View DDL
+-- --------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `coopmanagerdb`.`viewcontrolcalidad` AS select `e`.`Empresa` AS `Empresa`,`e`.`Ejercicio` AS `Ejercicio`,`e`.`Semana` AS `Semana`,`coopmanagerdb`.`EntradasGetFechaGrupoCosechero`(`e`.`Empresa`,`e`.`Ejercicio`,`e`.`Semana`,`c`.`IdGrupo`) AS `Fecha`,`c`.`IdGrupo` AS `IdCosechero`,`c`.`NIF` AS `NIF`,`coopmanagerdb`.`CosecheroGetNombreByNif`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`) AS `NombreApellidos`,`s`.`RefAutoControl` AS `RefAutoControl`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,1) AS `NumKIlosExtraEmbolsado`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,5) AS `NumKIlosExtraPlato`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,7) AS `NumKIlosExtra10`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,9) + `coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,10)) AS `NumKIlosExtra`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,25) AS `NumKIlosPrimera`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,30) + `coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,31)) AS `NumKIlosSegunda`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,34) AS `NumKIlosSegunda10`,`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,39) AS `NumKIlosSegunda12`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,1) / 16) AS `NumCajasExtraEmbolsado`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,5) / 16) AS `NumCajasExtraPlato`,((`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,9) / 9) + (`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,10) / 10)) AS `NumCajasExtra`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,7) / 10) AS `NumCajasExtra10`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,25) / 12) AS `NumCajasPrimera`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,30) / 16) AS `NumCajasSegunda`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,34) / 10) AS `NumCajasSegunda10`,(`coopmanagerdb`.`EntradasKilosGrupoCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`IdGrupo`,`e`.`Semana`,39) / 12) AS `NumCajasSegunda12` from ((`coopmanagerdb`.`entradascabecera` `e` left join `coopmanagerdb`.`cosecheros` `c` on(((`e`.`IdCosechero` = `c`.`IdCosechero`) and (`e`.`Empresa` = `c`.`Empresa`) and (`e`.`Ejercicio` = `c`.`Ejercicio`)))) left join `coopmanagerdb`.`calendario` `s` on(((`s`.`Semana` = `e`.`Semana`) and (`s`.`Empresa` = `e`.`Empresa`) and (`s`.`Ejercicio` = `e`.`Ejercicio`))))

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturaLiquidacionPrecios" language="groovy" pageWidth="394" pageHeight="802" columnWidth="394" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Empresa" class="java.lang.Integer"/>
+	<parameter name="Ejercicio" class="java.lang.Integer"/>
+	<parameter name="Mes" class="java.lang.Integer"/>
+	<parameter name="SemanaDesde" class="java.lang.Integer"/>
+	<parameter name="SemanaHasta" class="java.lang.Integer"/>
+	<parameter name="NumeroFactura" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ca.empresa, ca.ejercicio, ca.IdCategoria, ca.NombreCategoria,
+(case when `coopmanagerdb`.LiquidacionKilosSemana1CategoriaFactura($P{Empresa}, $P{Ejercicio}, ca.IdCategoria, $P{NumeroFactura}) <> 0 then `coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, ca.IdCategoria) else null end) as PrecioSemana1,
+(case when `coopmanagerdb`.LiquidacionKilosSemana2CategoriaFactura($P{Empresa}, $P{Ejercicio}, ca.IdCategoria, $P{NumeroFactura}) <> 0 then `coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 1, ca.IdCategoria) else null end) as PrecioSemana2,
+(case when `coopmanagerdb`.LiquidacionKilosSemana3CategoriaFactura($P{Empresa}, $P{Ejercicio}, ca.IdCategoria, $P{NumeroFactura}) <> 0 then `coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 2, ca.IdCategoria) else null end) as PrecioSemana3,
+(case when `coopmanagerdb`.LiquidacionKilosSemana4CategoriaFactura($P{Empresa}, $P{Ejercicio}, ca.IdCategoria, $P{NumeroFactura}) <> 0 then `coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 3, ca.IdCategoria) else null end) as PrecioSemana4,
+(case when `coopmanagerdb`.LiquidacionKilosSemana5CategoriaFactura($P{Empresa}, $P{Ejercicio}, ca.IdCategoria, $P{NumeroFactura}) <> 0 then `coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 4, ca.IdCategoria) else null end) as PrecioSemana5
+FROM `coopmanagerdb`.`categorias` ca inner join `coopmanagerdb`.`precios` p on ca.IdCategoria = p.IdCategoria and
+ca.Ejercicio = p.ejercicio and ca.empresa = p.empresa
+where  p.ejercicio = $P{Ejercicio} and p.empresa = $P{Empresa} and p.Semana >=  $P{SemanaDesde} and p.Semana <= $P{SemanaHasta}
+group by ca.empresa, ca.ejercicio, ca.IdCategoria, ca.NombreCategoria;]]>
+	</queryString>
+	<field name="empresa" class="java.lang.Integer"/>
+	<field name="ejercicio" class="java.lang.Integer"/>
+	<field name="IdCategoria" class="java.lang.Integer"/>
+	<field name="NombreCategoria" class="java.lang.String"/>
+	<field name="PrecioSemana1" class="java.lang.Float"/>
+	<field name="PrecioSemana2" class="java.lang.Float"/>
+	<field name="PrecioSemana3" class="java.lang.Float"/>
+	<field name="PrecioSemana4" class="java.lang.Float"/>
+	<field name="PrecioSemana5" class="java.lang.Float"/>
+	<variable name="PrecioSemana2_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+		<variableExpression><![CDATA[$F{PrecioSemana2}]]></variableExpression>
+	</variable>
+	<variable name="PrecioSemana1_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+		<variableExpression><![CDATA[$F{PrecioSemana1}]]></variableExpression>
+	</variable>
+	<variable name="PrecioSemana3_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+		<variableExpression><![CDATA[$F{PrecioSemana3}]]></variableExpression>
+	</variable>
+	<variable name="PrecioSemana4_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+		<variableExpression><![CDATA[$F{PrecioSemana4}]]></variableExpression>
+	</variable>
+	<variable name="PrecioSemana5_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+		<variableExpression><![CDATA[$F{PrecioSemana5}]]></variableExpression>
+	</variable>
+	<variable name="Semana1" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde}]]></variableExpression>
+	</variable>
+	<variable name="Semana2" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde} + 1]]></variableExpression>
+	</variable>
+	<variable name="Semana3" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde} + 2]]></variableExpression>
+	</variable>
+	<variable name="Semana5" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde} + 4]]></variableExpression>
+	</variable>
+	<variable name="Semana4" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde} + 3]]></variableExpression>
+	</variable>
+	<group name="GrupoEmpresa">
+		<groupExpression><![CDATA[$F{empresa}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="GrupoEjercicio">
+		<groupExpression><![CDATA[$F{ejercicio}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<staticText>
+					<reportElement x="221" y="4" width="33" height="15"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="335" y="4" width="33" height="15"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="5" width="94" height="15"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[CLASE DE FRUTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="278" y="4" width="33" height="15"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="163" y="4" width="33" height="15"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="105" y="4" width="33" height="15"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="GrupoEjercicio">
+					<reportElement x="312" y="4" width="20" height="12"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Semana4}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GrupoEjercicio">
+					<reportElement x="254" y="4" width="20" height="12"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Semana3}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GrupoEjercicio">
+					<reportElement x="196" y="4" width="20" height="12"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Semana2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GrupoEjercicio">
+					<reportElement x="369" y="4" width="20" height="12">
+						<printWhenExpression><![CDATA[$P{SemanaHasta}.equals($P{SemanaDesde} + 4)]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Semana5}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="GrupoEjercicio">
+					<reportElement x="138" y="4" width="20" height="12"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Semana1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="20" width="394" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="GrupoCategoria">
+		<groupExpression><![CDATA[$F{IdCategoria}]]></groupExpression>
+		<groupHeader>
+			<band height="12">
+				<textField>
+					<reportElement x="8" y="0" width="94" height="12"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{NombreCategoria}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="103" y="0" width="32" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{PrecioSemana1_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="162" y="0" width="32" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{PrecioSemana2_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="220" y="0" width="32" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{PrecioSemana3_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="278" y="0" width="32" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{PrecioSemana4_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="335" y="0" width="32" height="12">
+						<printWhenExpression><![CDATA[$P{SemanaHasta}.equals($P{SemanaDesde} + 4)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{PrecioSemana5_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,4 @@
+Eliminar campos de TiposGastos (Identidad, TipoIgic, TipoIrpf)
+
+ALTER TABLE `coopmanagerdb`.`empleadosnominas` ADD COLUMN `ImporteBonificacion` FLOAT NOT NULL DEFAULT 0  AFTER `TotalLiquido` ;
+

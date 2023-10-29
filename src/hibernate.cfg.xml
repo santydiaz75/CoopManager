@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+<session-factory>
+
+	<!-- Database connection settings -->
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+
+	<property name="connection.url">
+		jdbc:mysql://127.0.0.1:3306/coopmanagerdb
+	</property>
+
+	<property name="connection.username">coopuser</property>
+
+	<!--		<property name="connection.provider_class">-->
+	<!--      		org.jasypt.hibernate.connectionprovider.EncryptedPasswordDriverManagerConnectionProvider-->
+	<!--		</property>-->
+	<!--		-->
+	<!--		<property name="connection.encryptor_registered_name">-->
+	<!--      		hibernateEncryptor-->
+	<!--		</property>-->
+	<!---->
+	<!--		<property name="connection.password">ENC(lk8Ay3Lex6JXR3rcsUqxI2dQlRKmTq4N)</property>-->
+
+	<property name="connection.password">salmadh2010</property>
+
+	<!-- JDBC connection pool (use the built-in) -->
+	<property name="connection.pool_size">2</property>
+
+	<!-- SQL dialect -->
+	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+	<!-- Enable Hibernate's current session context -->
+	<property name="current_session_context_class">
+		org.hibernate.context.ManagedSessionContext
+	</property>
+
+	<!-- Disable the second-level cache  -->
+	<property name="cache.provider_class">
+		org.hibernate.cache.NoCacheProvider
+	</property>
+
+	<!-- Echo all executed SQL to stdout -->
+	<property name="show_sql">true</property>
+
+	<property name="myeclipse.connection.profile">CoopManager</property>
+	<mapping resource="entitiesPackage/Bancos.hbm.xml" />
+	<mapping resource="entitiesPackage/Barcos.hbm.xml" />
+	<mapping resource="entitiesPackage/Empresas.hbm.xml" />
+	<mapping resource="entitiesPackage/Precios.hbm.xml" />
+	<mapping resource="entitiesPackage/Entradaslineas.hbm.xml" />
+	<mapping resource="entitiesPackage/Zonas.hbm.xml" />
+	<mapping resource="entitiesPackage/Conductores.hbm.xml" />
+	<mapping resource="entitiesPackage/Receptores.hbm.xml" />
+	<mapping resource="entitiesPackage/Calendario.hbm.xml" />
+	<mapping resource="entitiesPackage/Cosecheros.hbm.xml" />
+	<mapping resource="entitiesPackage/Liquidaciones.hbm.xml" />
+	<mapping resource="entitiesPackage/Paises.hbm.xml" />
+	<mapping resource="entitiesPackage/Ventaslineas.hbm.xml" />
+	<mapping resource="entitiesPackage/Categorias.hbm.xml" />
+	<mapping resource="entitiesPackage/Puertos.hbm.xml" />
+	<mapping resource="entitiesPackage/Ventascabecera.hbm.xml" />
+	<mapping resource="entitiesPackage/Vehiculos.hbm.xml" />
+	<mapping resource="entitiesPackage/Vehiculosgastos.hbm.xml" />
+	<mapping resource="entitiesPackage/Tiposgasto.hbm.xml" />
+	<mapping resource="entitiesPackage/Identidades.hbm.xml" />
+	<mapping resource="entitiesPackage/Ejercicios.hbm.xml" />
+	<mapping resource="entitiesPackage/Bimestres.hbm.xml" />
+	<mapping resource="entitiesPackage/Empleadosvacaciones.hbm.xml" />
+	<mapping resource="entitiesPackage/Empleadoscontratos.hbm.xml" />
+	<mapping resource="entitiesPackage/Empleados.hbm.xml" />
+	<mapping resource="entitiesPackage/Empleadoshorasextras.hbm.xml" />
+	<mapping resource="entitiesPackage/Empleadosnominas.hbm.xml" />
+	<mapping resource="entitiesPackage/Facturascabecera.hbm.xml" />
+	<mapping resource="entitiesPackage/Facturaslineas.hbm.xml" />
+	<mapping resource="entitiesPackage/hibernateEncryptor.hbm.xml" />
+	<mapping resource="entitiesPackage/Viewliquidaciones.hbm.xml" />
+	<mapping resource="entitiesPackage/Facturaspagocabecera.hbm.xml" />
+	<mapping resource="entitiesPackage/Facturaspagolineas.hbm.xml" />
+	<mapping resource="entitiesPackage/Kilosinutilizados.hbm.xml" />
+	<mapping resource="entitiesPackage/Liquidacioneslineas.hbm.xml" />
+	<mapping resource="entitiesPackage/Entradasimportacion.hbm.xml" />
+	<mapping resource="entitiesPackage/Meses.hbm.xml" />
+	<mapping resource="entitiesPackage/Viewcontaliquidaciones.hbm.xml" />
+	<mapping resource="entitiesPackage/Ayudas.hbm.xml" />
+	<mapping resource="entitiesPackage/Conceptos.hbm.xml" />
+	<mapping resource="entitiesPackage/Conceptospago.hbm.xml" />
+	<mapping resource="entitiesPackage/Cosecherosparcelas.hbm.xml" />
+	<mapping resource="entitiesPackage/Viewentradasquery.hbm.xml" />
+	<mapping
+		resource="entitiesPackage/Viewentradascategoriasquery.hbm.xml" />
+	<mapping
+		resource="entitiesPackage/Viewentradascategoriascosecheroquery.hbm.xml" />
+	<mapping
+		resource="entitiesPackage/Viewventascategoriasquery.hbm.xml" />
+	<mapping
+		resource="entitiesPackage/Viewventascategoriasreceptorquery.hbm.xml" />
+	<mapping resource="entitiesPackage/Viewventasquery.hbm.xml" />
+	<mapping resource="entitiesPackage/Empresascuentas.hbm.xml" />
+	<mapping resource="entitiesPackage/Viewcontanominas.hbm.xml" />
+	<mapping
+		resource="entitiesPackage/Viewcontaindemnizaciones.hbm.xml" />
+	<mapping resource="entitiesPackage/Viewcontabonificaciones.hbm.xml" />
+	<mapping resource="entitiesPackage/Cobros.hbm.xml" />
+	<mapping resource="entitiesPackage/Pagos.hbm.xml" />
+	<mapping resource="entitiesPackage/Liquidacionespagos.hbm.xml" />
+	<mapping resource="entitiesPackage/Viewcontapagos.hbm.xml" />
+	<mapping resource="entitiesPackage/Viewcontacobros.hbm.xml" />
+	<mapping resource="entitiesPackage/Tiposcoste.hbm.xml" />
+	<mapping resource="entitiesPackage/Entradascabecera.hbm.xml" />
+
+</session-factory>
+
+</hibernate-configuration>
+

@@ -1,0 +1,1291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturaLiquidaciones" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="7" bottomMargin="7" uuid="cd36eb10-af74-4155-84b7-020a2a319436">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="Empresa" class="java.lang.Integer"/>
+	<parameter name="Ejercicio" class="java.lang.Integer"/>
+	<parameter name="Mes" class="java.lang.Integer"/>
+	<parameter name="SemanaDesde" class="java.lang.Integer"/>
+	<parameter name="SemanaHasta" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Program Files (x86)\\GestCoop\\reportsPackage\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FechaDesde" class="java.util.Date"/>
+	<parameter name="FechaHasta" class="java.util.Date"/>
+	<parameter name="LOGO_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NumeroFacturaDesde" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NumeroFacturaHasta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[999999]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT l.empresa, l.ejercicio, l.mes, m.NombreMes,  l.NumeroFactura, l.fecha, l.IdCosechero, concat(coalesce(concat(co.Apellidos, ', '),''), co.Nombre) as NombreApellidos, co.Nif,
+co.Direccion, co.CodigoPostal, co.Poblacion, coalesce(l.TipoIgic,0) as TipoIgic, coalesce(l.TipoIrpf, 0) as TipoIrpf, coalesce(l.ImporteIgic,0) as ImporteIgic, coalesce(l.ImporteIrpf, 0) as ImporteIrpf, coalesce(l.ImporteBonificacion, 0) as ImporteBonificacion, ca.orden, `CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria) as IdCategoria, ca.NombreCategoria,
+coalesce(ll.PinasSemana1, 0) as PinasSemana1,
+coalesce(ll.PinasSemana2, 0) as PinasSemana2,
+coalesce(ll.PinasSemana3, 0) as PinasSemana3,
+coalesce(ll.PinasSemana4, 0) as PinasSemana4,
+coalesce(ll.PinasSemana5, 0) as PinasSemana5,
+coalesce(ll.PrecioSemana1, 0) as PrecioSemana1,
+coalesce(ll.PrecioSemana2, 0) as PrecioSemana2,
+coalesce(ll.PrecioSemana3, 0) as PrecioSemana3,
+coalesce(ll.PrecioSemana4, 0) as PrecioSemana4,
+coalesce(ll.PrecioSemana5, 0) as PrecioSemana5,
+Sum(coalesce(ll.KilosSemana1, 0)) as KilosSemana1,
+Sum(coalesce(ll.KilosSemana2, 0)) as KilosSemana2,
+Sum(coalesce(ll.KilosSemana3, 0)) as KilosSemana3,
+Sum(coalesce(ll.KilosSemana4, 0)) as KilosSemana4,
+Sum(coalesce(ll.KilosSemana5, 0)) as KilosSemana5,
+coalesce(ll.KilosInutSemana1, 0) as KilosInutSemana1,
+coalesce(ll.KilosInutSemana2, 0) as KilosInutSemana2,
+coalesce(ll.KilosInutSemana3, 0) as KilosInutSemana3,
+coalesce(ll.KilosInutSemana4, 0) as KilosInutSemana4,
+coalesce(ll.KilosInutSemana5, 0) as KilosInutSemana5,
+`coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, l.IdCosechero) as KilosSemana1Total,
+`coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, l.IdCosechero) as KilosSemana2Total,
+`coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, l.IdCosechero) as KilosSemana3Total,
+`coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, l.IdCosechero) as KilosSemana4Total,
+`coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, l.IdCosechero) as KilosSemana5Total,
+`coopmanagerdb`.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero, 0) as KilosAcumuladosTotal,
+`coopmanagerdb`.LiquidacionPinasAcumuladas($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero) as PinasAcumuladasTotal,
+`coopmanagerdb`.LiquidacionImporteTotalAcumulado($P{Empresa}, $P{Ejercicio}, $P{Mes}, l.IdCosechero) as ImporteTotalAcumulado, empresas.Lopd
+FROM `coopmanagerdb`.`liquidaciones` l
+INNER JOIN `coopmanagerdb`.`empresas`  empresas On empresas.`IdEmpresa` = l.empresa
+left outer join `coopmanagerdb`.`liquidacioneslineas` ll on l.empresa = ll.empresa and l.ejercicio = ll.ejercicio
+and l.NumeroFactura = ll.NumeroFactura
+left outer join `coopmanagerdb`.`meses` m on l.mes = m.mes
+left outer join (Select * From `coopmanagerdb`.`cosecheros` where idgrupo = IdCosechero) co on l.IdCosechero = co.IdCosechero and l.ejercicio = co.ejercicio and l.empresa = co.empresa
+left outer join `coopmanagerdb`.`categorias` ca on `coopmanagerdb`.`CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria) = ca.IdCategoria and ll.ejercicio = ca.ejercicio and ll.empresa = ca.empresa
+where l.mes = $P{Mes} and l.ejercicio = $P{Ejercicio} and l.empresa = $P{Empresa} and l.NumeroFactura >= $P{NumeroFacturaDesde} and l.NumeroFactura <= $P{NumeroFacturaHasta}
+group by l.empresa, l.ejercicio, l.mes, l.NumeroFactura, l.fecha, l.IdCosechero, co.Nombre, co.Apellidos, co.Nif,
+co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, ca.orden, `coopmanagerdb`.`CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria), ca.NombreCategoria;]]>
+	</queryString>
+	<field name="empresa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ejercicio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mes" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NombreMes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NumeroFactura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IdCosechero" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NombreApellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NIF" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CodigoPostal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Poblacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TipoIgic" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TipoIrpf" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ImporteIgic" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ImporteIrpf" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ImporteBonificacion" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="orden" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IdCategoria" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NombreCategoria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PinasSemana1" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PinasSemana2" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PinasSemana3" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PinasSemana4" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PinasSemana5" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PrecioSemana1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PrecioSemana2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PrecioSemana3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PrecioSemana4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PrecioSemana5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosSemana1" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosSemana2" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosSemana3" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosSemana4" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosSemana5" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosInutSemana1" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosInutSemana2" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosInutSemana3" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosInutSemana4" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosInutSemana5" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosSemana1Total" class="java.lang.Float"/>
+	<field name="KilosSemana2Total" class="java.lang.Float"/>
+	<field name="KilosSemana3Total" class="java.lang.Float"/>
+	<field name="KilosSemana4Total" class="java.lang.Float"/>
+	<field name="KilosSemana5Total" class="java.lang.Float"/>
+	<field name="KilosAcumuladosTotal" class="java.lang.Float"/>
+	<field name="PinasAcumuladasTotal" class="java.lang.Float"/>
+	<field name="ImporteTotalAcumulado" class="java.lang.Float"/>
+	<field name="Lopd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<sortField name="NumeroFactura"/>
+	<sortField name="orden" order="Descending"/>
+	<variable name="KilosSemana1_1" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana1}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana2_1" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana2}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana3_1" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana3}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana4_1" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana4}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana5_1" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana5}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana1_2" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana1Total}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana2_2" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana2Total}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana3_2" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana3Total}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana4_2" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana4Total}]]></variableExpression>
+	</variable>
+	<variable name="KilosSemana5_2" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana5Total}]]></variableExpression>
+	</variable>
+	<variable name="TotalKilos_1" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana1}+$F{KilosSemana2}+$F{KilosSemana3}+$F{KilosSemana4}+$F{KilosSemana5}]]></variableExpression>
+	</variable>
+	<variable name="TotalKilos_2" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones_NumeroFactura" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana1}+$F{KilosSemana2}+$F{KilosSemana3}+$F{KilosSemana4}+$F{KilosSemana5}]]></variableExpression>
+	</variable>
+	<variable name="Importe" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana1}*$F{PrecioSemana1}+$F{KilosSemana2}*$F{PrecioSemana2}+$F{KilosSemana3}*$F{PrecioSemana3}+$F{KilosSemana4}*$F{PrecioSemana4}+$F{KilosSemana5}*$F{PrecioSemana5}]]></variableExpression>
+	</variable>
+	<variable name="ImporteTotal" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones_NumeroFactura" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana1}*$F{PrecioSemana1}+$F{KilosSemana2}*$F{PrecioSemana2}+$F{KilosSemana3}*$F{PrecioSemana3}+$F{KilosSemana4}*$F{PrecioSemana4}+$F{KilosSemana5}*$F{PrecioSemana5}]]></variableExpression>
+	</variable>
+	<variable name="PrecioMedio" class="java.lang.Double">
+		<variableExpression><![CDATA[($V{ImporteTotal})/$V{TotalKilos_2}]]></variableExpression>
+	</variable>
+	<variable name="ImporteIGIC" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{ImporteIgic}]]></variableExpression>
+	</variable>
+	<variable name="ImporteIRPF" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{ImporteIrpf}]]></variableExpression>
+	</variable>
+	<variable name="ImporteNeto" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{ImporteTotal}+$F{ImporteBonificacion}+$F{ImporteIgic}-$F{ImporteIrpf}]]></variableExpression>
+	</variable>
+	<variable name="TotalPinas" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{PinasSemana1}+$F{PinasSemana2}+$F{PinasSemana3}+$F{PinasSemana4}+$F{PinasSemana5}]]></variableExpression>
+	</variable>
+	<variable name="Semana1" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde}]]></variableExpression>
+	</variable>
+	<variable name="Semana2" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde} + 1]]></variableExpression>
+	</variable>
+	<variable name="Semana3" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde} + 2]]></variableExpression>
+	</variable>
+	<variable name="Semana4" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde} + 3]]></variableExpression>
+	</variable>
+	<variable name="Semana5" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{SemanaDesde} + 4]]></variableExpression>
+	</variable>
+	<variable name="KilosInutSemana1_1" class="java.lang.Float" resetType="Group" resetGroup="Liquidaciones_NumeroFactura" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosInutSemana1}]]></variableExpression>
+	</variable>
+	<variable name="KilosInutSemana2_1" class="java.lang.Float" resetType="Group" resetGroup="Liquidaciones_NumeroFactura" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosInutSemana2}]]></variableExpression>
+	</variable>
+	<variable name="KilosInutSemana3_1" class="java.lang.Float" resetType="Group" resetGroup="Liquidaciones_NumeroFactura" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosInutSemana3}]]></variableExpression>
+	</variable>
+	<variable name="KilosInutSemana4_1" class="java.lang.Float" resetType="Group" resetGroup="Liquidaciones_NumeroFactura" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosInutSemana4}]]></variableExpression>
+	</variable>
+	<variable name="KilosInutSemana5_1" class="java.lang.Float" resetType="Group" resetGroup="Liquidaciones_NumeroFactura" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosInutSemana5}]]></variableExpression>
+	</variable>
+	<variable name="TotalKilosInutilizados" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones_NumeroFactura" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosInutSemana1}+$F{KilosInutSemana2}+$F{KilosInutSemana3}+$F{KilosInutSemana4}+$F{KilosInutSemana5}]]></variableExpression>
+	</variable>
+	<variable name="PrecioMedioBonificado" class="java.lang.Double">
+		<variableExpression><![CDATA[($V{ImporteTotal}+$F{ImporteBonificacion})/$V{TotalKilos_2}]]></variableExpression>
+	</variable>
+	<variable name="KilosPinasAcumulados" class="java.lang.Number">
+		<variableExpression><![CDATA[$F{KilosAcumuladosTotal}/$F{PinasAcumuladasTotal}]]></variableExpression>
+	</variable>
+	<variable name="PrecioMedioAcumulado" class="java.lang.Number">
+		<variableExpression><![CDATA[$F{ImporteTotalAcumulado}/$F{KilosAcumuladosTotal}]]></variableExpression>
+	</variable>
+	<variable name="KilosPinas1" class="java.lang.Number">
+		<variableExpression><![CDATA[$V{KilosSemana1_2}/$F{PinasSemana1}]]></variableExpression>
+	</variable>
+	<variable name="KilosPinas2" class="java.lang.Number">
+		<variableExpression><![CDATA[$V{KilosSemana2_2}/$F{PinasSemana2}]]></variableExpression>
+	</variable>
+	<variable name="KilosPinas3" class="java.lang.Number">
+		<variableExpression><![CDATA[$V{KilosSemana3_2}/$F{PinasSemana3}]]></variableExpression>
+	</variable>
+	<variable name="KilosPinas4" class="java.lang.Number">
+		<variableExpression><![CDATA[$V{KilosSemana4_2}/$F{PinasSemana4}]]></variableExpression>
+	</variable>
+	<variable name="KilosPinas5" class="java.lang.Number">
+		<variableExpression><![CDATA[$V{KilosSemana5_2}/$F{PinasSemana5}]]></variableExpression>
+	</variable>
+	<variable name="KilosPinasTotal" class="java.lang.Number">
+		<variableExpression><![CDATA[$V{TotalKilos_2}/$V{TotalPinas}]]></variableExpression>
+	</variable>
+	<variable name="Porcentaje1" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana1}/$F{KilosSemana1Total}*100]]></variableExpression>
+	</variable>
+	<variable name="Porcentaje2" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana2}/$F{KilosSemana2Total}*100]]></variableExpression>
+	</variable>
+	<variable name="Porcentaje3" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana3}/$F{KilosSemana3Total}*100]]></variableExpression>
+	</variable>
+	<variable name="Porcentaje4" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana4}/$F{KilosSemana4Total}*100]]></variableExpression>
+	</variable>
+	<variable name="Porcentaje5" class="java.lang.Double" resetType="Group" resetGroup="Liquidaciones.categorias" calculation="Sum">
+		<variableExpression><![CDATA[$F{KilosSemana5}/$F{KilosSemana5Total}*100]]></variableExpression>
+	</variable>
+	<group name="liquidaciones_Empresa">
+		<groupExpression><![CDATA[$F{empresa}]]></groupExpression>
+	</group>
+	<group name="Liquidaciones_Ejercicio">
+		<groupExpression><![CDATA[$F{ejercicio}]]></groupExpression>
+	</group>
+	<group name="Liquidaciones_NumeroFactura" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{NumeroFactura}]]></groupExpression>
+		<groupHeader>
+			<band height="206">
+				<image>
+					<reportElement x="11" y="27" width="305" height="66" uuid="1dfab9d2-ba99-473d-8556-964efc1477c2"/>
+					<imageExpression><![CDATA[$P{LOGO_DIR}]]></imageExpression>
+				</image>
+				<rectangle>
+					<reportElement x="334" y="53" width="218" height="119" uuid="9e7a4eb0-b12c-4421-a5f4-df46ea242834"/>
+				</rectangle>
+				<staticText>
+					<reportElement style="Column header" x="334" y="103" width="155" height="15" uuid="085cbb5f-ee0d-444e-b20c-041f33c7df03"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<text><![CDATA[PERIODO DE LIQUIDACIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="334" y="130" width="73" height="15" uuid="ea67da63-c188-405c-8776-94c5af8fe77e"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<text><![CDATA[DESDE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="408" y="130" width="65" height="15" uuid="9254da6d-f108-49b0-8026-2a9b802b767e"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<text><![CDATA[HASTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="490" y="130" width="59" height="15" uuid="fa33490f-5895-4993-a859-cfce190dfd33"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<text><![CDATA[CÓDIGO]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="1" y="114" width="289" height="58" uuid="6daaceac-7b44-4e6b-866c-acf92324fc7b"/>
+				</rectangle>
+				<line>
+					<reportElement x="335" y="123" width="217" height="1" uuid="c374f57f-31a8-4b5b-a7dc-0f4854de010c"/>
+				</line>
+				<line>
+					<reportElement x="490" y="103" width="1" height="69" uuid="abd58cf0-82c7-45cb-95cb-f0ad626af9b1"/>
+				</line>
+				<line>
+					<reportElement x="408" y="124" width="1" height="48" uuid="6fc37c7a-ccea-452d-a762-940467ae04d3"/>
+				</line>
+				<line>
+					<reportElement x="335" y="148" width="217" height="1" uuid="9040246b-981f-484f-b574-ead7e0459aa6"/>
+				</line>
+				<textField>
+					<reportElement x="458" y="68" width="83" height="20" uuid="1312bfb1-420c-4bcf-b448-7e6808ad3656"/>
+					<textElement>
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NumeroFactura}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="407" y="53" width="100" height="20" uuid="785f74b8-3135-4e05-8739-49972103c421"/>
+					<textElement>
+						<font fontName="Tahoma" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NombreMes}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="422" y="83" width="100" height="20" uuid="4c3ff6f6-a6a4-4b67-a853-88c8dc1b0b6b"/>
+					<textElement>
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="127" width="267" height="15" uuid="bcb4448e-4aa8-4c50-8e4a-66b05cb0671e"/>
+					<textElement>
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Direccion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="142" width="67" height="15" uuid="8d5a1478-fe77-4fdc-82c3-fc638a92cabd"/>
+					<textElement>
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CodigoPostal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="78" y="142" width="200" height="15" uuid="cdf8f105-9a5b-4d45-8ecd-397782bc3f9a"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Poblacion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="157" width="168" height="15" uuid="90496d5b-a380-43b6-b2ef-0974348b0205"/>
+					<textElement>
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NIF}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="1" y="184" width="551" height="22" backcolor="#FFFFFF" uuid="d17410d4-7495-4599-bbb2-fa816adaeba6"/>
+				</rectangle>
+				<staticText>
+					<reportElement style="Column header" x="11" y="186" width="94" height="15" uuid="2563edef-5141-4875-8702-b925455a2ec0"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[CLASE DE FRUTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="105" y="186" width="33" height="15" uuid="24137306-2f30-4ead-8bc0-4b64e9bd120c"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="397" y="186" width="61" height="15" uuid="f0f164b0-3991-4502-8504-5cbadc6c9a23"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[TOTAL KILOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="221" y="186" width="33" height="15" uuid="18ed3d9f-ed51-447d-8e39-1dd4ee92ac7a"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="163" y="186" width="33" height="15" uuid="b76e6346-3087-47bd-ac1b-61ba7c4a32c2"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="279" y="186" width="33" height="15" uuid="28351dc0-01d7-4ecc-8e00-fed6ee6b5937"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="335" y="186" width="33" height="15" uuid="f81dbb95-7b00-4f9b-a531-e31ed0779ab0"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[SEM. Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="465" y="186" width="76" height="15" uuid="6f9d4513-485e-4b23-812d-b12dd5fd1cda"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[IMPORTE EUROS]]></text>
+				</staticText>
+				<line>
+					<reportElement x="334" y="101" width="218" height="1" uuid="54f25b3d-087c-4759-8d20-d6f046a6e983"/>
+				</line>
+				<textField>
+					<reportElement x="11" y="114" width="268" height="15" uuid="72a819ee-6074-4540-b5ad-df693e64ee87"/>
+					<textElement>
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NombreApellidos}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura">
+					<reportElement x="141" y="186" width="20" height="12" uuid="3ba4724b-cb55-46f3-92ac-fea85509f6f9"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Semana1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura">
+					<reportElement x="199" y="186" width="20" height="12" uuid="09712d38-c936-458a-8605-1600f9ac5198"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Semana2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura">
+					<reportElement x="257" y="186" width="20" height="12" uuid="032187b3-b24f-4c60-86d1-44aae23788f0"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Semana3}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura">
+					<reportElement x="315" y="186" width="20" height="12" uuid="c4068941-f859-4a9f-a97d-7f2f677f1de3"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Semana4}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura">
+					<reportElement x="372" y="186" width="20" height="12" uuid="34c98db8-01ac-4094-bed1-f07d7b2053ec">
+						<printWhenExpression><![CDATA[$P{SemanaHasta} == ($P{SemanaDesde} + 4)]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Semana5}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="372" y="83" width="50" height="15" uuid="0ecb1326-0606-4a84-8dfb-2c0ee53226b1"/>
+					<textElement>
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<text><![CDATA[FECHA:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="337" y="152" width="72" height="15" uuid="b7ed44ef-3f03-425d-a7de-1a10d1cba5c0"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{FechaDesde}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="410" y="152" width="81" height="15" uuid="5d147442-10d4-4f8d-892c-1857ed092bfa"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{FechaHasta}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="372" y="53" width="35" height="15" uuid="35c6616f-5158-4fe9-9266-c41be5a7f00d"/>
+					<textElement>
+						<font fontName="Tahoma" size="12"/>
+					</textElement>
+					<text><![CDATA[MES:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="372" y="68" width="86" height="15" uuid="2896e745-a102-424e-8e9f-497c698975da"/>
+					<textElement>
+						<font fontName="Tahoma" size="10"/>
+					</textElement>
+					<text><![CDATA[Nº FACTURA:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="492" y="152" width="61" height="15" uuid="707c7c14-5d53-4c52-b218-356a80c063e2"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{IdCosechero}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="120" y="195" width="14" height="11" uuid="21d8d014-a1ee-4190-b3ed-b9ae10f25ad1"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[KG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="237" y="195" width="14" height="11" uuid="8243dae3-d075-48a4-a749-311f9bfb01be"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[KG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="178" y="195" width="14" height="11" uuid="11c8dfd1-0f61-4670-b9b7-90ed1e46f1d6"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[KG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="294" y="195" width="14" height="11" uuid="442f5951-d3fe-44d7-a1bc-2dc74efc251e"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[KG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="350" y="195" width="14" height="11" uuid="3a1aa2c5-9dc8-46ff-af58-b4d1545c5454"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[KG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="148" y="195" width="14" height="11" uuid="c86ae0b3-e72f-4533-b6a6-586bbaf49aad"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="206" y="195" width="14" height="11" uuid="f9166c6e-f9f3-4cd5-bb8f-2882f8ee7aeb"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="265" y="195" width="14" height="11" uuid="5b96814b-c1ab-46d9-8a37-3004cc439ab6"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="322" y="195" width="14" height="11" uuid="ce4fc1bc-4abc-4a68-bc47-f84b51191ebe"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="378" y="195" width="14" height="11" uuid="36f9b454-4d82-4317-8159-d737c025c21c"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="54">
+				<line>
+					<reportElement x="1" y="0" width="1" height="54" uuid="38b197bf-8655-44d2-9dfd-34daed484dec"/>
+				</line>
+				<staticText>
+					<reportElement style="Column header" x="0" y="27" width="88" height="12" uuid="064df9a9-6552-48fb-be5b-99ddaee4753b"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[TOTAL RACIMOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="0" y="15" width="88" height="12" uuid="68ab04a8-5e31-4e8c-9ab3-d4252c4a76f5"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[TOTAL KILOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="0" y="3" width="102" height="12" uuid="771f3694-f059-4531-a18a-6403718920b8"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[KILOS INUTILIZADOS]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="105" y="27" width="37" height="12" uuid="39aac5e5-4129-4947-a342-89c8df3f9674"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PinasSemana1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="163" y="27" width="37" height="12" uuid="a4d879ec-1094-4f44-b4cf-6a062413fb11"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PinasSemana2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="105" y="15" width="37" height="12" uuid="3ddfbd89-f24d-423b-9fa6-c1d8cd531b74"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana1_2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="163" y="15" width="37" height="12" uuid="096c765a-0e59-4408-825c-f0fd2d2ab919"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana2_2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="221" y="15" width="37" height="12" uuid="9da04819-ac93-410a-add4-85cd8043d979"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana3_2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="279" y="15" width="37" height="12" uuid="4fdd5046-ac04-448a-ab2f-5ad3ee7d9f32"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana4_2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="335" y="15" width="37" height="12" uuid="9f51876f-9aa3-4b4a-a78b-aea9d0c1a428">
+						<printWhenExpression><![CDATA[$P{SemanaHasta} == ($P{SemanaDesde} + 4)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana5_2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0" isBlankWhenNull="false">
+					<reportElement x="394" y="15" width="64" height="12" uuid="f57107aa-b82f-4e05-ab0d-29b8780ee0a1"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalKilos_2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="221" y="27" width="37" height="12" uuid="30a64613-3ec0-4df5-9d31-6ec0d11f6371"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PinasSemana3}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="279" y="27" width="37" height="12" uuid="c820265d-0650-468a-92bb-c2ecb1cd5cb0"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PinasSemana4}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="335" y="27" width="37" height="12" uuid="221f664f-bebe-4f5d-b5fb-37f3cda5f4f8">
+						<printWhenExpression><![CDATA[$P{SemanaHasta} == ($P{SemanaDesde} + 4)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PinasSemana5}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0">
+					<reportElement x="406" y="27" width="52" height="12" uuid="2af52cc0-f8ab-4409-810b-4c711f8f0925"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalPinas}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="473" y="15" width="68" height="15" uuid="e2c920b0-3109-4e86-8328-80a811d9b43a"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ImporteTotal}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="552" y="0" width="1" height="54" uuid="3eca4f49-dffd-4aae-b375-12960c67b0dd"/>
+				</line>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="105" y="3" width="37" height="12" uuid="5a4c8ef8-0dcc-4a43-b3a7-2439314ec861"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosInutSemana1_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="163" y="3" width="37" height="12" uuid="346096cc-b501-477c-a358-7214dfd7fbc2"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosInutSemana2_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="221" y="3" width="37" height="12" uuid="2f7df2d3-b5d9-45d5-baa7-d1d8e88dbb2a"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosInutSemana3_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="279" y="3" width="37" height="12" uuid="48a1a962-877e-40b9-b16f-1597e69401f7"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosInutSemana4_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
+					<reportElement x="335" y="3" width="37" height="12" uuid="2f0f9a71-9d03-4e31-bac0-1d5b009d6a09">
+						<printWhenExpression><![CDATA[$P{SemanaHasta} == ($P{SemanaDesde} + 4)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosInutSemana5_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0">
+					<reportElement x="392" y="3" width="66" height="12" uuid="71303115-c59c-44e3-9aaf-4269e963c734"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalKilosInutilizados}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="396" y="0" width="1" height="54" uuid="5bb81b0a-6943-4eb4-9e96-fc80a6cd5b62"/>
+				</line>
+				<staticText>
+					<reportElement style="Column header" x="0" y="39" width="88" height="12" uuid="6a8140c9-9887-4373-a2ac-f07810d79755"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<text><![CDATA[PROMEDIO]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="105" y="39" width="37" height="12" uuid="a9c4c62c-ad18-4382-8401-f7a72738514b">
+						<printWhenExpression><![CDATA[$F{PinasSemana1} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosPinas1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="163" y="39" width="37" height="12" uuid="907519c7-a5ee-4fdf-91a4-46dd5ef193b3">
+						<printWhenExpression><![CDATA[$F{PinasSemana2} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosPinas2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="221" y="39" width="37" height="12" uuid="1b44d30e-847b-454e-b147-20b8e229bc52">
+						<printWhenExpression><![CDATA[$F{PinasSemana3} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosPinas3}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="279" y="39" width="37" height="12" uuid="6b14f49a-47c4-4aed-acd6-4ffbde6e936a">
+						<printWhenExpression><![CDATA[$F{PinasSemana4} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosPinas4}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="335" y="39" width="37" height="12" uuid="51329725-192b-46e5-bd7c-3f04ea491df6">
+						<printWhenExpression><![CDATA[$F{PinasSemana5} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosPinas5}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement x="406" y="39" width="52" height="12" uuid="3579d6bf-3336-445f-81d4-773615cc3a12">
+						<printWhenExpression><![CDATA[$V{TotalPinas} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosPinasTotal}]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="81">
+				<rectangle>
+					<reportElement stretchType="RelativeToBandHeight" x="1" y="0" width="396" height="81" backcolor="#FFFFFF" uuid="eba76f18-6a31-40ec-ad42-9da6dbf71c52"/>
+				</rectangle>
+				<rectangle>
+					<reportElement stretchType="RelativeToBandHeight" x="396" y="1" width="156" height="80" uuid="42fa1543-65c3-451c-ac20-9e96545b43ad"/>
+				</rectangle>
+				<subreport isUsingCache="false">
+					<reportElement stretchType="RelativeToBandHeight" x="1" y="0" width="396" height="81" uuid="98c71928-bd43-497a-bf69-d9d9d34e6330"/>
+					<subreportParameter name="SemanaDesde">
+						<subreportParameterExpression><![CDATA[$P{SemanaDesde}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Empresa">
+						<subreportParameterExpression><![CDATA[$P{Empresa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Mes">
+						<subreportParameterExpression><![CDATA[$P{Mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SemanaHasta">
+						<subreportParameterExpression><![CDATA[$P{SemanaHasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Ejercicio">
+						<subreportParameterExpression><![CDATA[$P{Ejercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="NumeroFactura">
+						<subreportParameterExpression><![CDATA[$F{NumeroFactura}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FacturaLiquidacionPrecios.jasper"]]></subreportExpression>
+				</subreport>
+				<line>
+					<reportElement x="1" y="0" width="551" height="1" uuid="cfb2df92-8236-41bc-8699-380ecbbc011b"/>
+				</line>
+				<staticText>
+					<reportElement style="Column header" x="407" y="44" width="83" height="15" uuid="3a93c0d0-47fd-4184-b4e3-ef9352c7a796"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[1% COMP. I.G.I.C]]></text>
+				</staticText>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="507" y="14" width="34" height="15" uuid="75f59eb0-951d-49eb-9cee-46ddba521a2f"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ImporteBonificacion}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="408" y="14" width="101" height="15" uuid="33ea69b6-b05b-4f1b-aafd-aec61917b81b"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[RECOGIDA PROPIA]]></text>
+				</staticText>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="491" y="44" width="50" height="15" uuid="0e975917-56e1-4ad1-a8f5-1a49b57279b0"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ImporteIgic}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="407" y="59" width="83" height="15" uuid="5bf06333-76d1-4307-968d-fcc30401a09f"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[2% I.R.P.F]]></text>
+				</staticText>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="492" y="59" width="49" height="15" uuid="cdc480f8-c4e3-43fd-aa4f-86dec590e680"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ImporteIrpf}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="490" y="29" width="51" height="15" uuid="20850d92-21d5-43d8-b142-b84c436376da"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PrecioMedioBonificado}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="408" y="29" width="83" height="15" uuid="a0bac09f-5216-484b-973e-d16d9d00bbf6"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PRECIO MEDIO]]></text>
+				</staticText>
+			</band>
+			<band height="67">
+				<subreport isUsingCache="false">
+					<reportElement stretchType="RelativeToBandHeight" x="1" y="0" width="396" height="55" uuid="43cb73fb-d041-4686-937b-bd68229b4cc4"/>
+					<subreportParameter name="SemanaDesde">
+						<subreportParameterExpression><![CDATA[$P{SemanaDesde}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Empresa">
+						<subreportParameterExpression><![CDATA[$P{Empresa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SemanaHasta">
+						<subreportParameterExpression><![CDATA[$P{SemanaHasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Mes">
+						<subreportParameterExpression><![CDATA[$P{Mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Ejercicio">
+						<subreportParameterExpression><![CDATA[$P{Ejercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Grupo">
+						<subreportParameterExpression><![CDATA[$F{IdCosechero}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FacturaLiquidacionBonificacion.jasper"]]></subreportExpression>
+				</subreport>
+				<rectangle>
+					<reportElement stretchType="RelativeToBandHeight" x="396" y="0" width="156" height="55" uuid="6d375ede-db07-4a3d-bc32-843227e22a7a"/>
+				</rectangle>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="466" y="20" width="76" height="15" uuid="057683ab-fd82-4afd-b489-87841397ad89"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ImporteNeto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="408" y="20" width="58" height="15" uuid="a721327f-c824-4cc6-a15e-2ed46e90a37d"/>
+					<textElement>
+						<font fontName="Tahoma" size="11"/>
+					</textElement>
+					<text><![CDATA[IMPORTE NETO]]></text>
+				</staticText>
+			</band>
+			<band height="105">
+				<rectangle>
+					<reportElement stretchType="RelativeToBandHeight" x="117" y="0" width="280" height="105" backcolor="#FFFFFF" uuid="ba8fce92-6da5-4afd-be23-c5c546f16b6d"/>
+				</rectangle>
+				<rectangle>
+					<reportElement stretchType="RelativeToBandHeight" x="397" y="32" width="155" height="73" uuid="9470d979-5baf-49cf-b461-72df10655c4c"/>
+				</rectangle>
+				<subreport isUsingCache="false">
+					<reportElement stretchType="RelativeToBandHeight" x="117" y="0" width="280" height="105" uuid="1e79caf9-997e-45d5-9a41-c80888da6cb9"/>
+					<subreportParameter name="Empresa">
+						<subreportParameterExpression><![CDATA[$P{Empresa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SemanaHasta">
+						<subreportParameterExpression><![CDATA[$P{SemanaHasta}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Ejercicio">
+						<subreportParameterExpression><![CDATA[$P{Ejercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Grupo">
+						<subreportParameterExpression><![CDATA[$F{IdCosechero}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FacturaLiquidacionAcumulado.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement style="Column header" x="407" y="85" width="83" height="15" uuid="ac978268-b323-42ca-8453-c1b57be3c0c2"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PROMEDIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="407" y="40" width="83" height="15" uuid="55f5f5ab-e7bb-4474-a516-ab632fe9c40d"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PRECIO MEDIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="407" y="70" width="83" height="15" uuid="67573e07-1326-4b1c-a88e-5858bd7b50d1"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[TOTAL RACIMOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="407" y="55" width="83" height="15" uuid="fa7e7981-b67e-4887-97c4-7de4e47c5342"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[TOTAL KILOS]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement x="492" y="55" width="35" height="15" uuid="dad7955e-ee85-4449-9a83-b3590ba71406"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{KilosAcumuladosTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0">
+					<reportElement x="492" y="70" width="35" height="15" uuid="d9e613cd-079c-4ada-b09d-da1622d04416"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PinasAcumuladasTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement x="492" y="85" width="35" height="15" uuid="6c450f4f-417c-4a30-bc76-da6ee5e6794a"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosPinasAcumulados}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement x="492" y="40" width="35" height="15" uuid="89427995-54c6-4a83-9190-d5f9eab59ea1"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PrecioMedioAcumulado}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="534" y="40" width="15" height="15" uuid="6cbe848f-bf45-4251-b149-13490148966a"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[€]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="534" y="55" width="15" height="15" uuid="78a45ab0-3068-4283-917f-0b47c5427750"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Kg]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="534" y="85" width="15" height="15" uuid="bd8bbfd1-84b8-48ff-8396-0cb3cc98f588"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Kg]]></text>
+				</staticText>
+			</band>
+			<band height="9"/>
+		</groupFooter>
+	</group>
+	<group name="Liquidaciones.categorias">
+		<groupExpression><![CDATA[$F{IdCategoria}]]></groupExpression>
+		<groupHeader>
+			<band height="12">
+				<textField isBlankWhenNull="true">
+					<reportElement x="5" y="0" width="100" height="12" uuid="433ea888-1279-4155-8338-5fd11932fd72"/>
+					<textElement>
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NombreCategoria}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="0" width="1" height="12" uuid="542053e5-771d-4a77-817e-555cdd5fb3a3"/>
+				</line>
+				<line>
+					<reportElement x="552" y="0" width="1" height="12" uuid="5b886d62-9ff1-429c-b80e-54dfb172188b"/>
+				</line>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0">
+					<reportElement x="103" y="0" width="30" height="12" uuid="64cd86d5-9b31-430f-b768-c97b1cd5643f"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana1_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0">
+					<reportElement x="161" y="0" width="30" height="12" uuid="ff32b24f-aa35-484a-81ba-e2dfaf65713a"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana2_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0">
+					<reportElement x="219" y="0" width="30" height="12" uuid="791ebdbb-d50b-43e2-a918-60a53a29fa75"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana3_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0">
+					<reportElement x="277" y="0" width="30" height="12" uuid="080f6cef-8b52-4614-9b40-fdf9c0443b75"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana4_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0">
+					<reportElement x="334" y="0" width="30" height="12" uuid="595d72e7-0cda-4473-8fee-64faf8ee0ec0">
+						<printWhenExpression><![CDATA[$P{SemanaHasta} == ($P{SemanaDesde} + 4)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosSemana5_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0">
+					<reportElement x="406" y="0" width="52" height="12" uuid="30feabff-73a3-4414-94cc-aca478b63671"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalKilos_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="473" y="0" width="68" height="12" uuid="dacdba79-6a47-4974-a9c7-97a03188922b"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Importe}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="396" y="-22" width="1" height="34" uuid="37db7d12-c5cc-4fbf-9e50-b86239e92de7"/>
+				</line>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="138" y="0" width="22" height="12" uuid="060eb4b2-1e20-4e45-adfa-29353c439a1b">
+						<printWhenExpression><![CDATA[$F{KilosSemana1Total} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Porcentaje1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="196" y="0" width="22" height="12" uuid="9c06e30a-8288-4e3e-b6bd-08cad62d1b6d">
+						<printWhenExpression><![CDATA[$F{KilosSemana2Total} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Porcentaje2}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="254" y="0" width="22" height="12" uuid="9a441bfb-c991-4f3c-b064-e8bd6f54f513">
+						<printWhenExpression><![CDATA[$F{KilosSemana3Total} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Porcentaje3}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="312" y="0" width="22" height="12" uuid="a8ea7d89-2352-4329-a52a-b29d11ca706d">
+						<printWhenExpression><![CDATA[$F{KilosSemana4Total} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Porcentaje4}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Liquidaciones.categorias" pattern="#,##0.00;-#,##0.00">
+					<reportElement x="369" y="0" width="22" height="12" uuid="ef56fd73-28a7-4ad7-a802-c0398f52e40f">
+						<printWhenExpression><![CDATA[$F{KilosSemana5Total} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Porcentaje5}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<detail>
+		<band/>
+	</detail>
+	<pageFooter>
+		<band height="106" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="0" y="0" width="553" height="94" uuid="259153c4-86e9-4944-ba98-7136d821d983">
+					<printWhenExpression><![CDATA[($P{Empresa}==1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Column header" x="0" y="0" width="553" height="94" uuid="e6d88a2a-c1cd-4417-bdf3-1fba9f4680ff">
+					<printWhenExpression><![CDATA[($P{Empresa}==2)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

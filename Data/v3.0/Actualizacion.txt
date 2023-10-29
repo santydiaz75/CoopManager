@@ -1,0 +1,127 @@
+ALTER TABLE `coopmanagerdb`.`categorias` ADD COLUMN `Activa` SMALLINT(6) NOT NULL DEFAULT 1  AFTER `CodCategoriaAgriten` ;
+
+delimiter $$
+
+CREATE TABLE `tiposcoste` (
+  `Empresa` int(11) NOT NULL DEFAULT '1',
+  `Ejercicio` int(11) NOT NULL DEFAULT '2010',
+  `IdTipoCoste` int(11) NOT NULL,
+  `DescTipoCoste` varchar(100) DEFAULT NULL,
+  `SID` varchar(38) DEFAULT NULL,
+  `LMD` datetime DEFAULT NULL,
+  `Version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`IdTipoCoste`,`Empresa`,`Ejercicio`),
+  KEY `FK_EmpresaTipoCoste` (`Empresa`),
+  KEY `FK_EjercicioTipoCoste` (`Ejercicio`),
+  CONSTRAINT `FK_EjercicioTipoCoste` FOREIGN KEY (`Ejercicio`) REFERENCES `ejercicios` (`Ejercicio`),
+  CONSTRAINT `FK_EmpresaTipoCoste` FOREIGN KEY (`Empresa`) REFERENCES `empresas` (`IdEmpresa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '1', 'ENVASES Y EMBALAJES');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '2', 'ARRENDAMIENTOS Y CÁNONES');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '3', 'REPARACIONES Y CONSERVACIONES');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '4', 'SERVICIOS PROFESIONALES INDEPENDIENTES');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '5', 'PRIMAS DE SEGURO');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '6', 'PUBLICIDAD, PROPAGANDA Y RELACIONES PÚBLICAS');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '7', 'SUMINISTROS');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '8', 'SERVICIOS BANCARIOS Y SIMILARES');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '9', 'TRIBUTOS');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '10', 'OTROS SERVICIOS');
+INSERT INTO `coopmanagerdb`.`tiposcoste` (`Empresa`, `Ejercicio`, `IdTipoCoste`, `DescTipoCoste`) VALUES ('1', '2011', '11', 'MATERIALES AUXILIARES');
+
+ALTER TABLE `coopmanagerdb`.`facturaspagocabecera` ADD COLUMN `TipoCoste` INT(11) NULL DEFAULT NULL  AFTER `ImporteFactura` ;
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteGastosByTipoCoste`(lempresa INT, lejercicio INT, ltipocoste INT) RETURNS float
+BEGIN
+
+DECLARE Importe float;
+
+Select coalesce(Sum(ImporteFactura),0) into Importe from `coopmanagerdb`.`facturaspagocabecera` fp
+where fp.ejercicio = lejercicio and fp.empresa = lempresa and fp.TipoCoste = ltipocoste;
+RETURN Importe;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteNominas`(lempresa INT, lejercicio INT) RETURNS float
+BEGIN
+
+DECLARE Importe float;
+
+Select coalesce(Sum(TotalDevengado),0) into Importe from `coopmanagerdb`.`empleadosnominas` n
+where n.ejercicio = lejercicio and n.empresa = lempresa;
+RETURN Importe;
+
+END
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `EntradaGetNumKilosTotal`(lempresa INT, lejercicio INT) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select coalesce(Sum(NumKilos),0) into Kilos from `coopmanagerdb`.`entradaslineas` el
+where el.ejercicio = lejercicio and el.empresa = lempresa;
+RETURN Kilos;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteIngresosExplotacion`(lempresa INT, lejercicio INT) RETURNS float
+BEGIN
+
+DECLARE Importef float;
+DECLARE Importev float;
+
+Select coalesce(Sum(ImporteFactura),0) into Importef from `coopmanagerdb`.`facturascabecera` fc
+where fc.ejercicio = lejercicio and fc.empresa = lempresa;
+
+Select coalesce(Sum(Importe),0) into Importev from `coopmanagerdb`.`ventaslineas` vl
+where vl.ejercicio = lejercicio and vl.empresa = lempresa;
+
+RETURN Importef + Importev;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ImporteLiquidaciones`(lempresa INT, lejercicio INT) RETURNS float
+BEGIN
+
+DECLARE Importel float;
+
+Select coalesce(Sum(BaseImponible + ImporteIGIC - ImporteIRPF),0) into Importel from `coopmanagerdb`.`Liquidaciones` l
+where l.ejercicio = lejercicio and l.empresa = lempresa;
+
+RETURN Importel;
+
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewcostes` AS select distinct `tc`.`Empresa` AS `Empresa`,`tc`.`Ejercicio` AS `Ejercicio`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,1) AS `Envases_y_Embalajes`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,2) AS `Arrendamientos_y_Canones`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,3) AS `Reparaciones_y_Conservaciones`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,4) AS `ServiciosProfesionales`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,5) AS `Seguros`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,6) AS `Publicidad_y_RelPublicas`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,7) AS `Suministros`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,8) AS `ServiciosBancarios`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,9) AS `Tributos`,`coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,10) AS `OtrosServicios`, `coopmanagerdb`.`ImporteGastosByTipoCoste`(`tc`.`Empresa`,`tc`.`Ejercicio`,11) AS `MaterialesAuxiliares`, `coopmanagerdb`.`ImporteNominas`(`tc`.`Empresa`,`tc`.`Ejercicio`) AS `TotalNominas`,(`coopmanagerdb`.`ImporteNominas`(`tc`.`Empresa`,`tc`.`Ejercicio`) + `coopmanagerdb`.`ImporteGastosTotal`(`tc`.`Empresa`,`tc`.`Ejercicio`)) AS `TotalGastos`,`coopmanagerdb`.`EntradaGetNumKilosTotal`(`tc`.`Empresa`,`tc`.`Ejercicio`) AS `TotalKilos`,`coopmanagerdb`.`ImporteIngresosExplotacion`(`tc`.`Empresa`,`tc`.`Ejercicio`) AS `ImporteIngresos`,`coopmanagerdb`.`ImporteLiquidaciones`(`tc`.`Empresa`,`tc`.`Ejercicio`) AS `ConsumosExplotacion`,(`coopmanagerdb`.`ImporteIngresosExplotacion`(`tc`.`Empresa`,`tc`.`Ejercicio`) / `coopmanagerdb`.`EntradaGetNumKilosTotal`(`tc`.`Empresa`,`tc`.`Ejercicio`)) AS `PrecioVenta`,(`coopmanagerdb`.`ImporteLiquidaciones`(`tc`.`Empresa`,`tc`.`Ejercicio`) / `coopmanagerdb`.`EntradaGetNumKilosTotal`(`tc`.`Empresa`,`tc`.`Ejercicio`)) AS `PrecioCompra` from `tiposcoste` `tc`;

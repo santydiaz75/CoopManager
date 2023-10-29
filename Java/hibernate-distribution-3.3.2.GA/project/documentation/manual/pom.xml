@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-parent</artifactId>
+        <version>3.3.2.GA</version>
+        <relativePath>../../parent/pom.xml</relativePath>
+    </parent>
+    
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-manual</artifactId>
+    <packaging>jdocbook</packaging>
+
+    <name>Hibernate Manual</name>
+    <description>The Hibernate reference manual</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Needed in order to load the proper 'artifact handler' for the 'jdocbook-style' packaging -->
+                <groupId>org.jboss.maven.plugins</groupId>
+                <artifactId>maven-jdocbook-style-plugin</artifactId>
+                <version>2.0.0</version>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.jboss.maven.plugins</groupId>
+                <artifactId>maven-jdocbook-plugin</artifactId>
+                <version>2.2.0</version>
+                <extensions>true</extensions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.docbook</groupId>
+                        <artifactId>docbook</artifactId>
+                        <version>1.72.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-jdocbook-style</artifactId>
+                        <version>2.0.0</version>
+                        <type>jdocbook-style</type>
+                    </dependency>
+                </dependencies>
+
+                <executions>
+                    <execution>
+                        <!--
+                            here we are attaching the translate goal so that the translations are processed
+                            before compilation so that the transated XML is also transformed during
+                            generation
+                        -->
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>translate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <sourceDocumentName>Hibernate_Reference.xml</sourceDocumentName>
+                    <masterTranslation>en-US</masterTranslation>
+                    <translations>
+                        <translation>es-ES</translation>
+                        <translation>fr-FR</translation>
+                        <translation>ja-JP</translation>
+                        <translation>ko-KR</translation>
+                        <translation>pt-BR</translation>
+                        <translation>zh-CN</translation>
+                    </translations>
+                    <imageResource>
+                        <directory>${basedir}/src/main/docbook/en-US</directory>
+                        <excludes>
+                            <exclude>*.xml</exclude>
+                            <exclude>**/*.xml</exclude>
+                            <exclude>*.zargo</exclude>
+                            <exclude>**/*.zargo</exclude>
+                        </excludes>
+                    </imageResource>
+                    <profiling>
+                        <enabled>true</enabled>
+                    </profiling>
+                    <formats>
+                        <format>
+                            <formatName>pdf</formatName>
+                            <stylesheetResource>classpath:/xslt/org/hibernate/jdocbook/xslt/pdf.xsl</stylesheetResource>
+                            <finalName>hibernate_reference.pdf</finalName>
+                        </format>
+                        <format>
+                            <formatName>html_single</formatName>
+                            <stylesheetResource>classpath:/xslt/org/hibernate/jdocbook/xslt/xhtml-single.xsl</stylesheetResource>
+                            <finalName>index.html</finalName>
+                        </format>
+                        <format>
+                            <formatName>html</formatName>
+                            <stylesheetResource>classpath:/xslt/org/hibernate/jdocbook/xslt/xhtml.xsl</stylesheetResource>
+                            <finalName>index.html</finalName>
+                        </format>
+                    </formats>
+                    <options>
+                        <xincludeSupported>true</xincludeSupported>
+                        <xmlTransformerType>saxon</xmlTransformerType>
+                        <!-- needed for uri-resolvers; can be ommitted if using 'current' uri scheme -->
+                        <!--     could also locate the docbook dependency and inspect its version... -->
+                        <docbookVersion>1.72.0</docbookVersion>
+                        <localeSeparator>-</localeSeparator>
+                    </options>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <properties>
+        <skipTranslations>true</skipTranslations>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>processTransations</id>
+            <activation>
+                <property>
+                    <name>processTransations</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <skipTranslations>false</skipTranslations>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

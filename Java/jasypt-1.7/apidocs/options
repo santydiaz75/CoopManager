@@ -1,0 +1,26 @@
+-classpath
+'C:/Documents and Settings/Daniel/workspace/release_jasypt/jasypt/target/classes;C:/Documents and Settings/Daniel/.m2/repository/org/springframework/spring-beans/3.0.0.RELEASE/spring-beans-3.0.0.RELEASE.jar;C:/Documents and Settings/Daniel/.m2/repository/org/springframework/spring-web/3.0.0.RELEASE/spring-web-3.0.0.RELEASE.jar;C:/Documents and Settings/Daniel/.m2/repository/org/springframework/spring-core/3.0.0.RELEASE/spring-core-3.0.0.RELEASE.jar;C:/Documents and Settings/Daniel/.m2/repository/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar;C:/Documents and Settings/Daniel/.m2/repository/org/springframework/security3/spring-security-core/3.0.0.RELEASE/spring-security-core-3.0.0.RELEASE.jar;C:/Documents and Settings/Daniel/.m2/repository/org/hibernate/hibernate-core/3.3.2.GA/hibernate-core-3.3.2.GA.jar;C:/Documents and Settings/Daniel/.m2/repository/org/acegisecurity/acegi-security/1.0.0/acegi-security-1.0.0.jar;C:/Documents and Settings/Daniel/.m2/repository/org/springframework/security/spring-security-core/2.0.0/spring-security-core-2.0.0.jar;C:/Documents and Settings/Daniel/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar;C:/Documents and Settings/Daniel/.m2/repository/org/springframework/security3/spring-security-web/3.0.0.RELEASE/spring-security-web-3.0.0.RELEASE.jar;C:/Documents and Settings/Daniel/.m2/repository/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4.jar;C:/Documents and Settings/Daniel/.m2/repository/org/hibernate/hibernate-c3p0/3.3.2.GA/hibernate-c3p0-3.3.2.GA.jar;C:/Documents and Settings/Daniel/.m2/repository/org/apache/wicket/wicket/1.4.5/wicket-1.4.5.jar;C:/Documents and Settings/Daniel/.m2/repository/org/springframework/spring-tx/3.0.0.RELEASE/spring-tx-3.0.0.RELEASE.jar'
+-encoding
+'Cp1252'
+-overview
+'C:/Documents and Settings/Daniel/workspace/release_jasypt/jasypt/src/main/javadoc/overview.html'
+-protected
+-sourcepath
+'C:/Documents and Settings/Daniel/workspace/release_jasypt/jasypt/src/main/java;C:/Documents and Settings/Daniel/workspace/release_jasypt/jasypt/src/main/javadoc'
+-author
+-bottom
+'Copyright &#169; 2010 <a href="http://www.jasypt.org">The JASYPT team</a>. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Documents and Settings/Daniel/workspace/release_jasypt/jasypt/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'JASYPT: Java Simplified Encryption 1.7 API'
+-noqualifier
+'java.lang'
+-use
+-version
+-windowtitle
+'JASYPT: Java Simplified Encryption 1.7 API'

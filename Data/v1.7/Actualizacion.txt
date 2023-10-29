@@ -1,0 +1,64 @@
+drop view `coopmanagerdb`.`viewentradas`
+
+drop view `coopmanagerdb`.`viewventas`
+
+
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `EntradaGetNumKilos`(lempresa INT, lejercicio INT, lentrada INT) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select coalesce(Sum(NumKilos),0) into Kilos from `coopmanagerdb`.`entradaslineas` el
+where el.ejercicio = lejercicio and el.empresa = lempresa and el.IdEntrada = lentrada;
+RETURN Kilos;
+
+END
+
+
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewentradasquery` AS select `e`.`IdEntrada` AS `IdEntrada`,`e`.`Empresa` AS `Empresa`,`e`.`Ejercicio` AS `Ejercicio`,`e`.`Semana` AS `Semana`,`e`.`Fecha` AS `Fecha`,`e`.`IdCosechero` AS `IdCosechero`,coalesce(`c`.`Nombre`,'') AS `Nombre`,coalesce(`c`.`Apellidos`,'') AS `Apellidos`,`e`.`NumPinas` AS `NumPinas`, `coopmanagerdb`.EntradaGetNumKilos(`e`.`Empresa`, `e`.`Ejercicio`, `e`.`IdEntrada`) AS `NumKIlos` from `entradascabecera` `e` left join `cosecheros` `c` on ((`e`.`IdCosechero` = `c`.`IdCosechero`) and (`e`.`Empresa` = `c`.`Empresa`) and (`e`.`Ejercicio` = `c`.`Ejercicio`))  order by `e`.`IdEntrada`
+
+delimiter $$
+
+CREATE TABLE `empresascuentas` (
+  `Empresa` int(11) NOT NULL DEFAULT '1',
+  `CuentaBancaria` varchar(20) NOT NULL DEFAULT '',
+  `NombreBanco` varchar(100) DEFAULT NULL,
+  `CuentaContable` varchar(10) DEFAULT NULL,
+  `SID` varchar(38) DEFAULT NULL,
+  `LMD` datetime DEFAULT NULL,
+  `Version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Empresa`,`CuentaBancaria`),
+  KEY `FK_EmpresaEmpresaCuenta` (`Empresa`),
+  CONSTRAINT `FK_EmpresaEmpresaCuenta` FOREIGN KEY (`Empresa`) REFERENCES `empresas` (`IdEmpresa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+Borrar columnas CuentaBancaria, CuentaBancaria2 y CuentaContable
+
+USE `coopmanagerdb`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewcontanominas` AS select `n`.`Empresa` AS `empresa`,`n`.`Ejercicio` AS `ejercicio`,`n`.`Mes` AS `mes`,`b`.`CuentaBancaria` AS `CuentaBancaria`,`b`.`NombreBanco` AS `NombreBanco`,`b`.`CuentaContable` AS `CuentaContable`, sum(`n`.`TotalDevengado`) AS `TotalDevengado`, sum(`n`.`ImporteIRPF`) AS `ImporteIrpf`, sum(`n`.`ImporteSegSoc`) AS `ImporteSegSoc`,sum(`n`.`TotalLiquido`) AS `TotalLiquido` from ((`empleadosnominas` `n` join `empresascuentas` `b` on(((`n`.`CuentaBancariaPago` = `b`.`CuentaBancaria`) and (`n`.`Empresa` = `b`.`Empresa`)))) join `meses` `m` on((`n`.`Mes` = `m`.`Mes`))) group by `n`.`Empresa`,`n`.`Ejercicio`,`n`.`Mes`,`b`.`CuentaBancaria`,`b`.`NombreBanco`,`b`.`CuentaContable`;
+
+Añadir RefAutoControl Varchar(45) a calendario
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `EntradasKilosNifCosecheroCategoria`(lempresa INT, lejercicio INT, lnif varchar(12), lsemana INT, lcategoria INT) RETURNS float
+BEGIN
+
+DECLARE Kilos float;
+
+Select coalesce(Sum(NumKilos),0) into Kilos from `coopmanagerdb`.`entradascabecera` ec1 inner join `coopmanagerdb`.`entradaslineas` el1
+on ec1.Empresa = el1.Empresa and ec1.Ejercicio = el1.Ejercicio and ec1.IdEntrada = el1.IdEntrada
+where ec1.Semana = lsemana and `coopmanagerdb`.CosecheroGetNif(lempresa, lejercicio, ec1.IdCosechero) = lnif and el1.IdCategoria = lcategoria and ec1.ejercicio = lejercicio and ec1.empresa = lempresa;
+RETURN Kilos;
+
+END
+
+delimiter $$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewcontrolcalidad` AS select `e`.`Empresa` AS `Empresa`,`e`.`Ejercicio` AS `Ejercicio`,`e`.`Semana` AS `Semana`,`e`.`Fecha` AS `Fecha`,`c`.`IdGrupo` AS `IdCosechero`,`c`.`NIF` AS `NIF`,concat(concat(coalesce(`c`.`Apellidos`,''),', '),coalesce(`c`.`Nombre`,'')) AS `NombreApellidos`,`s`.`RefAutoControl` AS `RefAutoControl`,`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,5) AS `NumKIlosExtraPlato`,(`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,9) + `coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,10)) AS `NumKIlosExtra`,`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,25) AS `NumKIlosPrimera`,`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,30) AS `NumKIlosSegunda`,(`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,5) / 16) AS `NumCajasExtraPlato`,((`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,9) / 9) + (`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,10) / 10)) AS `NumCajasExtra`,(`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,25) / 12) AS `NumCajasPrimera`,(`coopmanagerdb`.`EntradasKilosNifCosecheroCategoria`(`e`.`Empresa`,`e`.`Ejercicio`,`c`.`NIF`,`e`.`Semana`,30) / 16) AS `NumCajasSegunda` from ((`entradascabecera` `e` left join `cosecheros` `c` on(((`e`.`IdCosechero` = `c`.`IdCosechero`) and (`e`.`Empresa` = `c`.`Empresa`) and (`e`.`Ejercicio` = `c`.`Ejercicio`)))) left join `calendario` `s` on(((`s`.`Semana` = `e`.`Semana`) and (`s`.`Empresa` = `e`.`Empresa`) and (`s`.`Ejercicio` = `e`.`Ejercicio`)))) order by `e`.`IdEntrada`$$
+

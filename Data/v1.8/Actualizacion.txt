@@ -1,0 +1,57 @@
+delimiter $$
+
+CREATE TABLE `facturaspagopagos` (
+  `Empresa` int(11) NOT NULL DEFAULT '1',
+  `Ejercicio` int(11) NOT NULL DEFAULT '2010',
+  `IdFactura` int(11) NOT NULL,
+  `Pago` int(11) NOT NULL DEFAULT '0',
+  `FechaPago` datetime DEFAULT NULL,
+  `CuentaBancaria` varchar(20) DEFAULT NULL,
+  `Importe` float DEFAULT NULL,
+  `SID` varchar(38) DEFAULT NULL,
+  `LMD` datetime DEFAULT NULL,
+  `Version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Empresa`,`Ejercicio`,`IdFactura`,`Pago`),
+  KEY `FK_EjercicioFacturaPagoPago` (`Ejercicio`),
+  KEY `FK_EmpresaFacturaPagoPago` (`Empresa`),
+  CONSTRAINT `FK_EjercicioFacturaPagoPago` FOREIGN KEY (`Ejercicio`) REFERENCES `ejercicios` (`Ejercicio`),
+  CONSTRAINT `FK_EmpresaFacturaPagoPago` FOREIGN KEY (`Empresa`) REFERENCES `empresas` (`IdEmpresa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+delimiter $$
+
+CREATE TABLE `facturascobros` (
+  `Empresa` int(11) NOT NULL DEFAULT '1',
+  `Ejercicio` int(11) NOT NULL DEFAULT '2010',
+  `IdFactura` int(11) NOT NULL,
+  `Cobro` int(11) NOT NULL DEFAULT '0',
+  `FechaCobro` datetime DEFAULT NULL,
+  `CuentaBancaria` varchar(20) DEFAULT NULL,
+  `Importe` float DEFAULT NULL,
+  `SID` varchar(38) DEFAULT NULL,
+  `LMD` datetime DEFAULT NULL,
+  `Version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Empresa`,`Ejercicio`,`IdFactura`,`Cobro`),
+  KEY `FK_EjercicioFacturaCobro` (`Ejercicio`),
+  KEY `FK_EmpresaFacturaCobro` (`Empresa`),
+  CONSTRAINT `FK_EjercicioFacturaCobro` FOREIGN KEY (`Ejercicio`) REFERENCES `ejercicios` (`Ejercicio`),
+  CONSTRAINT `FK_EmpresaFacturaCobro` FOREIGN KEY (`Empresa`) REFERENCES `empresas` (`IdEmpresa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+ALTER TABLE `coopmanagerdb`.`cosecheros` ADD COLUMN `NumKilosReferencia` FLOAT NOT NULL DEFAULT 0  AFTER `CodigoAsesoria` ;
+
+ALTER TABLE `coopmanagerdb`.`cosecheros` ADD COLUMN `Email` VARCHAR(100) NULL DEFAULT NULL  AFTER `NumKilosReferencia` ;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `coopmanagerdb`.`viewentradasquery` AS select `e`.`IdEntrada` AS `IdEntrada`,`e`.`Empresa` AS `Empresa`,`e`.`Ejercicio` AS `Ejercicio`,`e`.`Semana` AS `Semana`,`e`.`Fecha` AS `Fecha`,`e`.`IdCosechero` AS `IdCosechero`,coalesce(`c`.`NIF`,'') AS `Nif`,coalesce(`c`.`Nombre`,'') AS `Nombre`,coalesce(`c`.`Apellidos`,'') AS `Apellidos`, `c`.`NumKilosReferencia` AS `NumKilosReferencia`, `e`.`NumPinas` AS `NumPinas`, `coopmanagerdb`.`EntradaGetNumKilos`(`e`.`Empresa`,`e`.`Ejercicio`,`e`.`IdEntrada`) AS `NumKIlos` from (`coopmanagerdb`.`entradascabecera` `e` left join `coopmanagerdb`.`cosecheros` `c` on(((`e`.`IdCosechero` = `c`.`IdCosechero`) and (`e`.`Empresa` = `c`.`Empresa`) and (`e`.`Ejercicio` = `c`.`Ejercicio`)))) order by `e`.`IdEntrada`
+
+ALTER TABLE `coopmanagerdb`.`empleadoscontratos` ADD COLUMN `CuentaBancariaPago` VARCHAR(20) NULL DEFAULT NULL  AFTER `ImporteLiquidacion` 
+, DROP PRIMARY KEY 
+, ADD PRIMARY KEY (`Empresa`, `Ejercicio`, `IdEmpleado`, `FechaAlta`) ;
+
+ALTER TABLE `coopmanagerdb`.`empleadoscontratos` ADD COLUMN `ImporteIrpf` FLOAT NOT NULL DEFAULT 0  AFTER `ImporteLiquidacion` ;
+
+USE `coopmanagerdb`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewcontaindemnizaciones` AS select `c`.`Empresa` AS `empresa`,`c`.`Ejercicio` AS `ejercicio`,month(`c`.`FechaBaja`) AS `mes`,`b`.`CuentaBancaria` AS `CuentaBancaria`,`b`.`NombreBanco` AS `NombreBanco`,`b`.`CuentaContable` AS `CuentaContable`,`c`.`ImporteLiquidacion` AS `ImporteLiquidacion`, `c`.`ImporteIrpf` AS `ImporteIrpf`, `e`.`Nombre` AS `Nombre` from (((`empleadoscontratos` `c` join `empresascuentas` `b` on(((`c`.`CuentaBancariaPago` = `b`.`CuentaBancaria`) and (`c`.`Empresa` = `b`.`Empresa`)))) join `meses` `m` on((month(`c`.`FechaBaja`) = `m`.`Mes`))) join `empleados` `e` on(((`e`.`Empresa` = `c`.`Empresa`) and (`e`.`Ejercicio` = `c`.`Ejercicio`) and (`e`.`IdEmpleado` = `c`.`IdEmpleado`))));
+
+USE `coopmanagerdb`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewcontabonificaciones` AS select `n`.`Empresa` AS `empresa`,`n`.`Ejercicio` AS `ejercicio`,`n`.`Mes` AS `mes`,`b`.`CuentaBancaria` AS `CuentaBancaria`,`b`.`NombreBanco` AS `NombreBanco`,`b`.`CuentaContable` AS `CuentaContable`,`n`.`ImporteBonificacion` AS `ImporteBonificacion`,`e`.`Nombre` AS `Nombre` from (((`empleadosnominas` `n` join `empresascuentas` `b` on(((`n`.`CuentaBancariaPago` = `b`.`CuentaBancaria`) and (`n`.`Empresa` = `b`.`Empresa`)))) join `meses` `m` on((`n`.`Mes` = `m`.`Mes`))) join `empleados` `e` on(((`e`.`Empresa` = `n`.`Empresa`) and (`e`.`Ejercicio` = `n`.`Ejercicio`) and (`e`.`IdEmpleado` = `n`.`IdEmpleado`)))) where `n`.`ImporteBonificacion` <> 0;

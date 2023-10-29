@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeValeVentas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9d4acd58-6773-4ee6-a0df-e71eb320d2a4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Empresa" class="java.lang.Integer"/>
+	<parameter name="Ejercicio" class="java.lang.Integer"/>
+	<parameter name="SemanaDesde" class="java.lang.Integer"/>
+	<parameter name="SemanaHasta" class="java.lang.Integer"/>
+	<parameter name="Receptor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TipoMercado" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT vc.Empresa, vc.Ejercicio, case when $P{Receptor} = 0 then 0 else re.IdReceptor end as IdReceptor, case when $P{Receptor} = 0 then 'Todos' else re.Nombre end as NombreApellidos,
+ ca.IdCategoria, ca.NombreCategoria, (SELECT sum(NumKilos) FROM `coopmanagerdb`.`ventascabecera` vc1 inner join `coopmanagerdb`.`ventaslineas` vl1 on
+vc1.Empresa = vl1.Empresa and vc1.Ejercicio = vl1.Ejercicio and vc1.IdVenta = vl1.IdVenta  inner join `coopmanagerdb`.`receptores` re1
+on vc1.Empresa = re1.Empresa and vc1.Ejercicio = re1.Ejercicio and vc1.IdReceptor = re1.IdReceptor where (vc1.IdReceptor = $P{Receptor}  or $P{Receptor} = 0) and vc1.Empresa = $P{Empresa} and vc1.Ejercicio = $P{Ejercicio} and vc1.Semana >= $P{SemanaDesde} and vc1.Semana <= $P{SemanaHasta} and ($P{TipoMercado} = -1 or re1.MercadoLocal = $P{TipoMercado})) as KilosTotal,
+sum(NumCajas) as NumCajas, sum(NumKilos) as NumKilos, sum(Importe) as Importe, e.Lopd
+FROM `coopmanagerdb`.`ventascabecera` vc inner join `coopmanagerdb`.`empresas` e on vc.Empresa = e.IdEmpresa inner join `coopmanagerdb`.`receptores` re
+on vc.Empresa = re.Empresa and vc.Ejercicio = re.Ejercicio and vc.IdReceptor = re.IdReceptor
+inner join `coopmanagerdb`.`ventaslineas` vl on vc.Empresa = vl.Empresa and vc.Ejercicio = vl.Ejercicio and vc.IdVenta = vl.IdVenta
+inner join `coopmanagerdb`.`categorias` ca on vl.Empresa = ca.Empresa and vl.Ejercicio = ca.Ejercicio and `coopmanagerdb`.`CategoriaGetGrupo`(vl.Empresa, vl.Ejercicio, vl.IdCategoria) = ca.IdCategoria
+where  (vc.IdReceptor = $P{Receptor} or $P{Receptor} = 0) and vc.Empresa = $P{Empresa} and vc.Ejercicio = $P{Ejercicio} and vc.Semana >= $P{SemanaDesde} and vc.Semana <= $P{SemanaHasta} and ($P{TipoMercado} = -1 or re.MercadoLocal = $P{TipoMercado})
+group by vc.Empresa, vc.Ejercicio, IdReceptor, NombreApellidos,
+ ca.IdCategoria, ca.NombreCategoria;]]>
+	</queryString>
+	<field name="Empresa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Ejercicio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IdReceptor" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NombreApellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IdCategoria" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NombreCategoria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KilosTotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NumCajas" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NumKilos" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Importe" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Lopd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="NumKilos_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{NumKilos}]]></variableExpression>
+	</variable>
+	<variable name="NumCajas_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{NumCajas}]]></variableExpression>
+	</variable>
+	<variable name="Importe_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Importe}]]></variableExpression>
+	</variable>
+	<variable name="PorcKilos" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{NumKilos}/$F{KilosTotal} * 100]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="129">
+			<frame>
+				<reportElement mode="Opaque" x="-19" y="-20" width="591" height="127" forecolor="#000000" backcolor="#FFFFFF" uuid="525144bd-4ea5-48bc-b1ea-289321328908"/>
+				<staticText>
+					<reportElement x="20" y="52" width="90" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="61cc2313-cb61-4165-b846-e704c29ec032"/>
+					<textElement>
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Receptor:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="92" width="71" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="05063480-6f1a-4a0f-958d-69681355a78f"/>
+					<textElement>
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Semanas:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="97" y="92" width="31" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="9ccb5ec0-e111-4917-a40a-8caf4c64bede"/>
+					<textElement>
+						<font fontName="Tahoma" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{SemanaDesde}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="128" y="92" width="26" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="401d60eb-6634-4583-95f5-0c272fe534f4"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[a]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="154" y="92" width="32" height="25" uuid="a50b6a1e-9598-4d5b-bb86-20bc58b76809"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{SemanaHasta}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="52" width="463" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="bc02fa7a-feaa-41c8-bf20-152ed4af455f"/>
+					<textElement>
+						<font fontName="Tahoma" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NombreApellidos}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="21" y="10" width="42" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="9f640a58-c2cf-4f46-803d-6c7382cb5cea"/>
+					<textElement>
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Año:]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement x="63" y="10" width="100" height="25" uuid="f8fc0e81-5422-458e-a5dd-4249318ee63a"/>
+					<textElement>
+						<font fontName="Tahoma" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Ejercicio}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="213" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="687abb1b-6ea9-4228-b99b-72549ae84f8a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CATEGORÍAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="229" y="1" width="60" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="aea27cac-ac33-439c-81a2-2112b0b6ce2b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAJAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="455" y="1" width="100" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="11aacc85-1dde-43ab-bf54-a21e8e8d3989"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PORCENTAJE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="30" width="555" height="1" forecolor="#666666" uuid="240e8fa7-2c59-4904-a5c6-3d138a9dc0ac"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="289" y="1" width="78" height="29" forecolor="#000000" backcolor="#FFFFFF" uuid="1a667a74-1f14-40ce-8f1c-5f1f0dfac617"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KILOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="367" y="1" width="88" height="29" forecolor="#000000" backcolor="#FFFFFF" uuid="d5656228-6e6e-41a3-9902-76c248bda930"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<textField>
+				<reportElement x="1" y="0" width="228" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="893678fa-3bda-4028-a60a-e5ef517bf2f2"/>
+				<textElement>
+					<font fontName="Tahoma" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NombreCategoria}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<reportElement x="289" y="0" width="78" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="9a4a519e-909d-4509-a549-544ad935a89c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NumKilos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<reportElement x="213" y="0" width="76" height="20" uuid="4d161ca6-8b82-4421-9e78-67abc24a1e95"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NumCajas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="367" y="0" width="88" height="20" uuid="128b93e0-b21e-4a85-a20e-90eff962e472"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Importe}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.000" isBlankWhenNull="true">
+				<reportElement x="455" y="0" width="100" height="20" uuid="ba1716ad-292c-40bf-966c-abc37c90c612"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PorcKilos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="288">
+			<textField pattern="dd/MM/yyyy HH.mm" isBlankWhenNull="false">
+				<reportElement x="455" y="272" width="101" height="13" uuid="9df8aac5-ec73-4981-a61c-25a442a1ac4b"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="213" y="20" width="342" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b6b3c160-83bd-4cb7-a558-7ae13efc089d"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[TOTALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="75" width="76" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="489c38b6-aa5c-413f-a672-eed5074e45b6"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KILOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="50" width="76" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="fe9d5500-9295-4b48-8a66-105f8adf960b"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAJAS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="100" width="143" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="e42f9704-32a6-4a48-a041-2106ea63e247"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE:]]></text>
+			</staticText>
+			<textField pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<reportElement x="289" y="75" width="266" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="fcba1af9-dc22-4392-971a-40851e8d847c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{NumKilos_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="271" width="554" height="1" uuid="6211beb7-7a4c-4bca-8c74-5d3b0541e97f"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="272" width="108" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8941eb3a-47cf-4761-927d-11519c693819"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.A.T. PLADIMSA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="213" y="40" width="342" height="1" uuid="30430dd9-38d6-4181-a434-68e9c8918bfe"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="121" y="272" width="108" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="c4e079b1-b54f-4541-a86a-661ed35d8d33"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F-38362042]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="237" y="272" width="108" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="cbd4bb66-5e33-4ceb-8b00-1efb89611b98"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AVDA. JOSE ANTONIO, 41]]></text>
+			</staticText>
+			<textField pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<reportElement x="289" y="50" width="266" height="20" uuid="99fc9b54-e85e-4be7-801b-2daafcde1b37"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{NumCajas_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="289" y="100" width="266" height="20" uuid="e83e69e7-c025-4c8d-ba81-c73cf85840e1"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Importe_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="186" width="555" height="84" uuid="8cddd675-1efb-4118-8c2b-d401bd41f2f1">
+					<printWhenExpression><![CDATA[($P{Empresa}==1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="186" width="555" height="84" uuid="e9c61d34-bc2c-44ce-bd70-4712d372b69a">
+					<printWhenExpression><![CDATA[($P{Empresa}==2)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
