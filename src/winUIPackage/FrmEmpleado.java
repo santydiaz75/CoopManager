@@ -1844,6 +1844,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			txtTelefono.setText("");
 			chkFijo.setText("");
 			txtCategoria.setText("");
+			txtCorreoElectronico.setText("");
 			txtFechaAntiguedad.setText("");
 			txtComentarios.setText("");
 			txtIdBanco.setText("");
@@ -1907,6 +1908,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			txtCodigoPostal.setText(entity.getCodigoPostal());
 			txtTelefono.setText(entity.getTelefono());
 			txtCategoria.setText(entity.getCategoria());
+			txtCorreoElectronico.setText(entity.getCorreoElectronico());
 			if (entity.getFechaAntiguedad() != null) {
 				String strFechaAntiguedad = df.format(entity
 						.getFechaAntiguedad());
@@ -2213,6 +2215,10 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					empleado.setCategoria(txtCategoria.getText());
 				else
 					empleado.setCategoria(null);
+				if (!txtCorreoElectronico.getText().equals(""))
+					empleado.setCorreoElectronico(txtCorreoElectronico.getText());
+				else
+					empleado.setCorreoElectronico(null);
 				if (!txtFechaAntiguedad.getText()
 						.equals(PreferencesUI.DateMask)) {
 					SimpleDateFormat df = new SimpleDateFormat(
@@ -3322,6 +3328,8 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtPoblacion = new javax.swing.JTextField();
         lblCategoria = new javax.swing.JLabel();
         txtCategoria = new javax.swing.JTextField();
+        lblCorreoElectronico = new javax.swing.JLabel();
+        txtCorreoElectronico = new javax.swing.JTextField();
         lblIdBanco = new javax.swing.JLabel();
         txtIdBanco = new javax.swing.JFormattedTextField();
         cboBancos = new javax.swing.JComboBox();
@@ -3539,6 +3547,22 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
+        lblCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCorreoElectronico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCorreoElectronico.setText("E-mail");
+        lblCorreoElectronico.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        txtCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCorreoElectronico.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtCorreoElectronico.setAutoscrolls(false);
+        txtCorreoElectronico.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        txtCorreoElectronico.setName("correoElectronico"); // NOI18N
+        txtCorreoElectronico.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+            	txtCorreoElectronicoKeyTyped(evt);
+            }
+        });
+        
         lblCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCategoria.setText("Categoria");
@@ -3548,7 +3572,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtCategoria.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCategoria.setAutoscrolls(false);
         txtCategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCategoria.setName("telefono2"); // NOI18N
+        txtCategoria.setName("categoria"); // NOI18N
         txtCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCategoriaKeyTyped(evt);
@@ -3754,7 +3778,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(pnlData1Layout.createSequentialGroup()
+                        		.addGroup(pnlData1Layout.createSequentialGroup()
+                                        .addComponent(lblCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(txtCorreoElectronico))
+                        		.addGroup(pnlData1Layout.createSequentialGroup()
                                     .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(10, 10, 10)
                                     .addComponent(txtCategoria))
@@ -3828,6 +3856,10 @@ public class FrmEmpleado extends javax.swing.JPanel {
                             .addComponent(chkFijo)
                             .addComponent(lblFijo))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCorreoElectronico)
+                    .addComponent(txtCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addGroup(pnlData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCategoria)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -5137,6 +5169,15 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					"FrmEmpleado.txtCategoriaKeyTyped()", he);
 		}
 	}
+	
+	private void txtCorreoElectronicoKeyTyped(java.awt.event.KeyEvent evt) {
+		try {
+			Util.keyTyped(txtCorreoElectronico, evt, 100);
+		} catch (RuntimeException he) {
+			Message.ShowRuntimeError(getParentFrame(),
+					"FrmEmpleado.txtCorreoElectronicoKeyTyped()", he);
+		}
+	}
 
 	private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {
 		try {
@@ -5229,6 +5270,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblCorreoElectronico;
     private javax.swing.JLabel lblCodigoPostal;
     private javax.swing.JLabel lblComentarios;
     private javax.swing.JLabel lblCuentaBancaria;
@@ -5269,6 +5311,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
     private javax.swing.JTextField txtApellidos;
     private static javax.swing.JFormattedTextField txtBonificacion;
     private javax.swing.JTextField txtCategoria;
+    private javax.swing.JTextField txtCorreoElectronico;
     private javax.swing.JTextField txtCodigoPostal;
     private javax.swing.JTextArea txtComentarios;
     private javax.swing.JTextField txtCuentaBancaria;

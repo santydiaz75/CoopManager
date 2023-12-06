@@ -68,6 +68,9 @@
         <property name="fijo" type="java.lang.Short">
             <column name="Fijo" not-null="true" />
         </property>
+        <property name="correoElectronico" type="java.lang.String">
+            <column name="CorreoElectronico" length="100" />
+        </property>
         <property name="sid" type="java.lang.String">
             <column name="SID" length="38" />
         </property>

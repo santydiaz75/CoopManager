@@ -363,7 +363,8 @@ public class FrmImportarVales extends javax.swing.JDialog {
 								entradaid.setEjercicios(session.getEjercicio());
 								entradaid.setEmpresas(session.getEmpresa());
 								entrada.setId(entradaid);
-								entrada.setSemana(importlinea.getId().getSemana());				
+								entrada.setSemana(importlinea.getId().getSemana());
+								entrada.setSemanaEntrada(importlinea.getId().getSemana());
 								entrada.setFecha(importlinea.getId().getFecha());			
 								entrada.setIdCosechero(importlinea.getId().getIdCosechero());
 								Integer idZona = entity.CosecheroGetZona(parent, importlinea.getId().getIdCosechero());

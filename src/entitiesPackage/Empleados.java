@@ -32,6 +32,7 @@ public class Empleados implements java.io.Serializable {
 	private Date fechaAntiguedad;
 	private String observaciones;
 	private Short fijo;
+	private String correoElectronico;
 	private String sid;
 	private Date lmd;
 	private Integer version;
@@ -54,7 +55,7 @@ public class Empleados implements java.io.Serializable {
 			String poblacion, String codigoPostal, String telefono, String nif,
 			String digitoControl, String idBanco, String idSucursal,
 			String cuentaBancaria, String iban, String categoria, Date fechaAntiguedad,
-			String observaciones, Short fijo, String sid, Date lmd,
+			String observaciones, Short fijo, String correoElectronico, String sid, Date lmd,
 			Integer version) {
 		this.id = id;
 		this.apellidos = apellidos;
@@ -74,6 +75,7 @@ public class Empleados implements java.io.Serializable {
 		this.fechaAntiguedad = fechaAntiguedad;
 		this.observaciones = observaciones;
 		this.fijo = fijo;
+		this.correoElectronico = correoElectronico;
 		this.sid = sid;
 		this.lmd = lmd;
 		this.version = version;
@@ -223,6 +225,14 @@ public class Empleados implements java.io.Serializable {
 
 	public void setFijo(Short fijo) {
 		this.fijo = fijo;
+	}
+	
+	public String getCorreoElectronico() {
+		return this.correoElectronico;
+	}
+
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
 	}
 
 	public String getSid() {
