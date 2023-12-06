@@ -499,6 +499,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 			txtIdEntrada.setValue(entity.getId().getIdEntrada());
 			txtAno.setValue(entity.getId().getEjercicios().getEjercicio());
 			txtSemana.setValue(entity.getSemana());
+			txtSemanaEntrada.setValue(entity.getSemanaEntrada());
 			SimpleDateFormat df = new SimpleDateFormat(PreferencesUI.DateFormat);
 			String strFecha = df.format(entity.getFecha());
 			txtFecha.setValue(strFecha);
@@ -580,6 +581,11 @@ public class FrmEntrada extends javax.swing.JPanel {
 							.intValue());
 				else
 					entrada.setSemana(null);
+				if (!txtSemanaEntrada.getText().equals(""))
+					entrada.setSemanaEntrada(((Number) txtSemanaEntrada.getValue())
+							.intValue());
+				else
+					entrada.setSemanaEntrada(null);
 				if (!txtFecha.getText().equals(PreferencesUI.DateMask)) {
 					SimpleDateFormat df = new SimpleDateFormat(
 							PreferencesUI.DateFormat);
@@ -703,6 +709,22 @@ public class FrmEntrada extends javax.swing.JPanel {
 					Message.ShowValidateMessage(pnlData,
 							"El tipo de datos indicado no es válido.");
 					txtSemana.requestFocus();
+					return (false);
+				}
+			}
+			if (txtSemanaEntrada.getText().equals("")) {
+				Message
+						.ShowValidateMessage(pnlData,
+								"Debe indicar una semana de entrada.");
+				txtSemanaEntrada.requestFocus();
+				return (false);
+			} else {
+				try {
+					txtSemanaEntrada.commitEdit();
+				} catch (ParseException e) {
+					Message.ShowValidateMessage(pnlData,
+							"El tipo de datos indicado no es válido.");
+					txtSemanaEntrada.requestFocus();
 					return (false);
 				}
 			}
@@ -916,6 +938,8 @@ public class FrmEntrada extends javax.swing.JPanel {
 
 					txtSemana
 							.setValue(entity.SemanaByFecha(parentFrame, fecha));
+					txtSemanaEntrada
+					.setValue(entity.SemanaByFecha(parentFrame, fecha));
 				} catch (ParseException e) {
 
 				}
@@ -1005,6 +1029,8 @@ public class FrmEntrada extends javax.swing.JPanel {
 		txtAno = new javax.swing.JFormattedTextField();
 		lblSemana = new javax.swing.JLabel();
 		txtSemana = new javax.swing.JFormattedTextField();
+		lblSemanaEntrada = new javax.swing.JLabel();
+		txtSemanaEntrada = new javax.swing.JFormattedTextField();
 		lblFecha = new javax.swing.JLabel();
 		txtFecha = new javax.swing.JFormattedTextField();
 		lblCosechero = new javax.swing.JLabel();
@@ -1171,14 +1197,30 @@ public class FrmEntrada extends javax.swing.JPanel {
 
 		txtSemana.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-		txtSemana.setEditable(false);
+		txtSemana.setEditable(true);
 		txtSemana
 				.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
 						new javax.swing.text.NumberFormatter(
 								new java.text.DecimalFormat("#0"))));
 		txtSemana.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-		txtSemana.setFocusable(false);
+		txtSemana.setFocusable(true);
 		txtSemana.setFont(new java.awt.Font("Segoe UI", 0, 14));
+		
+		lblSemanaEntrada.setFont(new java.awt.Font("Segoe UI", 1, 14));
+		lblSemanaEntrada.setForeground(new java.awt.Color(255, 0, 0));
+		lblSemanaEntrada.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+		lblSemanaEntrada.setText("Semana entrada");
+
+		txtSemanaEntrada.setBorder(javax.swing.BorderFactory
+				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+		txtSemanaEntrada.setEditable(false);
+		txtSemanaEntrada
+				.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
+						new javax.swing.text.NumberFormatter(
+								new java.text.DecimalFormat("#0"))));
+		txtSemanaEntrada.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+		txtSemanaEntrada.setFocusable(false);
+		txtSemanaEntrada.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
 		lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblFecha.setForeground(new java.awt.Color(255, 0, 0));
@@ -1657,6 +1699,22 @@ public class FrmEntrada extends javax.swing.JPanel {
 																												txtSemana,
 																												javax.swing.GroupLayout.PREFERRED_SIZE,
 																												60,
+																												javax.swing.GroupLayout.PREFERRED_SIZE)
+																										.addGap(
+																												18,
+																												18,
+																												18)
+																										.addComponent(
+																												lblSemanaEntrada,
+																												javax.swing.GroupLayout.PREFERRED_SIZE,
+																												120,
+																												javax.swing.GroupLayout.PREFERRED_SIZE)
+																										.addPreferredGap(
+																												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																										.addComponent(
+																												txtSemanaEntrada,
+																												javax.swing.GroupLayout.PREFERRED_SIZE,
+																												60,
 																												javax.swing.GroupLayout.PREFERRED_SIZE))
 																						.addComponent(
 																								txtNumPinas,
@@ -1715,7 +1773,13 @@ public class FrmEntrada extends javax.swing.JPanel {
 																javax.swing.GroupLayout.PREFERRED_SIZE,
 																25,
 																javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblSemana))
+														.addComponent(lblSemana)
+														.addComponent(
+																txtSemanaEntrada,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																25,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addComponent(lblSemanaEntrada))
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 										.addGroup(
@@ -2157,6 +2221,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 	private javax.swing.JLabel lblRacimosRPropia;
 	private javax.swing.JLabel lblRecogidaropia;
 	private javax.swing.JLabel lblSemana;
+	private javax.swing.JLabel lblSemanaEntrada;
 	public static javax.swing.JPanel pnlData;
 	private static javax.swing.JTable tblDetalle;
 	private javax.swing.JFormattedTextField txtAno;
@@ -2171,6 +2236,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 	private javax.swing.JFormattedTextField txtNumPinasBonificacion;
 	private static javax.swing.JFormattedTextField txtPrecio;
 	private javax.swing.JFormattedTextField txtSemana;
+	private javax.swing.JFormattedTextField txtSemanaEntrada;
 	private javax.swing.JFormattedTextField txtTotalNumKilos;
 	// End of variables declaration//GEN-END:variables
 

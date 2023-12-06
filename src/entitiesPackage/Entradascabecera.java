@@ -16,6 +16,7 @@ public class Entradascabecera implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private EntradascabeceraId id;
 	private Integer semana;
+	private Integer semanaEntrada;
 	private Date fecha;
 	private Integer idCosechero;
 	private Integer idZona;
@@ -40,11 +41,12 @@ public class Entradascabecera implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Entradascabecera(EntradascabeceraId id, Integer semana,
+	public Entradascabecera(EntradascabeceraId id, Integer semana, Integer semanaEntrada,
 			Date fecha, Integer idCosechero, Integer idZona,
 			Float numPinas, Short recogidaPropia, Float importeBonificacion, Float kilosBonificacion, Float numPinasBonificacion, String sid, Date lmd, Integer version) {
 		this.id = id;
 		this.semana = semana;
+		this.semanaEntrada = semanaEntrada;
 		this.fecha = fecha;
 		this.idCosechero = idCosechero;
 		this.idZona = idZona;
@@ -74,6 +76,14 @@ public class Entradascabecera implements java.io.Serializable {
 
 	public void setSemana(Integer semana) {
 		this.semana = semana;
+	}
+	
+	public Integer getSemanaEntrada() {
+		return this.semanaEntrada;
+	}
+
+	public void setSemanaEntrada(Integer semanaEntrada) {
+		this.semanaEntrada = semanaEntrada;
 	}
 
 	public Date getFecha() {

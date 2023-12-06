@@ -12,8 +12,8 @@
 	<parameter name="Mes" class="java.lang.Integer"/>
 	<parameter name="SemanaDesde" class="java.lang.Integer"/>
 	<parameter name="SemanaHasta" class="java.lang.Integer"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String">
-		<defaultValueExpression><![CDATA["C:\\Program Files (x86)\\GestCoop\\reportsPackage\\"]]></defaultValueExpression>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Development\\CoopManager\\GestCoop\\src\\reportsPackage\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="FechaDesde" class="java.util.Date"/>
 	<parameter name="FechaHasta" class="java.util.Date"/>
@@ -28,7 +28,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT l.empresa, l.ejercicio, l.mes, m.NombreMes,  l.NumeroFactura, l.fecha, l.IdCosechero, concat(coalesce(concat(co.Apellidos, ', '),''), co.Nombre) as NombreApellidos, co.Nif,
-co.Direccion, co.CodigoPostal, co.Poblacion, coalesce(l.TipoIgic,0) as TipoIgic, coalesce(l.TipoIrpf, 0) as TipoIrpf, coalesce(l.ImporteIgic,0) as ImporteIgic, coalesce(l.ImporteIrpf, 0) as ImporteIrpf, coalesce(l.ImporteBonificacion, 0) as ImporteBonificacion, ca.orden, `CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria) as IdCategoria, ca.NombreCategoria,
+co.Direccion, co.CodigoPostal, co.Poblacion, coalesce(l.TipoIgic,0) as TipoIgic, coalesce(l.TipoIrpf, 0) as TipoIrpf, coalesce(l.ImporteIgic,0) as ImporteIgic, coalesce(l.ImporteIrpf, 0) as ImporteIrpf, coalesce(l.ImporteBonificacion, 0) as ImporteBonificacion, cagrp.orden, `CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria) as IdCategoria, cagrp.NombreCategoria,
 coalesce(ll.PinasSemana1, 0) as PinasSemana1,
 coalesce(ll.PinasSemana2, 0) as PinasSemana2,
 coalesce(ll.PinasSemana3, 0) as PinasSemana3,
@@ -44,11 +44,11 @@ Sum(coalesce(ll.KilosSemana2, 0)) as KilosSemana2,
 Sum(coalesce(ll.KilosSemana3, 0)) as KilosSemana3,
 Sum(coalesce(ll.KilosSemana4, 0)) as KilosSemana4,
 Sum(coalesce(ll.KilosSemana5, 0)) as KilosSemana5,
-coalesce(ll.KilosInutSemana1, 0) as KilosInutSemana1,
-coalesce(ll.KilosInutSemana2, 0) as KilosInutSemana2,
-coalesce(ll.KilosInutSemana3, 0) as KilosInutSemana3,
-coalesce(ll.KilosInutSemana4, 0) as KilosInutSemana4,
-coalesce(ll.KilosInutSemana5, 0) as KilosInutSemana5,
+Sum(coalesce(ll.KilosInutSemana1, 0)) as KilosInutSemana1,
+Sum(coalesce(ll.KilosInutSemana2, 0)) as KilosInutSemana2,
+Sum(coalesce(ll.KilosInutSemana3, 0)) as KilosInutSemana3,
+Sum(coalesce(ll.KilosInutSemana4, 0)) as KilosInutSemana4,
+Sum(coalesce(ll.KilosInutSemana5, 0)) as KilosInutSemana5,
 `coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, l.IdCosechero) as KilosSemana1Total,
 `coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, l.IdCosechero) as KilosSemana2Total,
 `coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, l.IdCosechero) as KilosSemana3Total,
@@ -63,10 +63,11 @@ left outer join `coopmanagerdb`.`liquidacioneslineas` ll on l.empresa = ll.empre
 and l.NumeroFactura = ll.NumeroFactura
 left outer join `coopmanagerdb`.`meses` m on l.mes = m.mes
 left outer join (Select * From `coopmanagerdb`.`cosecheros` where idgrupo = IdCosechero) co on l.IdCosechero = co.IdCosechero and l.ejercicio = co.ejercicio and l.empresa = co.empresa
-left outer join `coopmanagerdb`.`categorias` ca on `coopmanagerdb`.`CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria) = ca.IdCategoria and ll.ejercicio = ca.ejercicio and ll.empresa = ca.empresa
+left outer join `coopmanagerdb`.`categorias` ca on ll.IdCategoria = ca.IdCategoria and ll.ejercicio = ca.ejercicio and ll.empresa = ca.empresa
+left outer join `coopmanagerdb`.`categorias` cagrp on ca.IdGrupo = cagrp.IdCategoria and ca.ejercicio = cagrp.ejercicio and ca.empresa = cagrp.empresa
 where l.mes = $P{Mes} and l.ejercicio = $P{Ejercicio} and l.empresa = $P{Empresa} and l.NumeroFactura >= $P{NumeroFacturaDesde} and l.NumeroFactura <= $P{NumeroFacturaHasta}
 group by l.empresa, l.ejercicio, l.mes, l.NumeroFactura, l.fecha, l.IdCosechero, co.Nombre, co.Apellidos, co.Nif,
-co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, ca.orden, `coopmanagerdb`.`CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria), ca.NombreCategoria;]]>
+co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, cagrp.orden, `coopmanagerdb`.`CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria), cagrp.NombreCategoria;]]>
 	</queryString>
 	<field name="empresa" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -173,19 +174,19 @@ co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, ca.orden,
 	<field name="KilosSemana5" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="KilosInutSemana1" class="java.lang.Float">
+	<field name="KilosInutSemana1" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="KilosInutSemana2" class="java.lang.Float">
+	<field name="KilosInutSemana2" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="KilosInutSemana3" class="java.lang.Float">
+	<field name="KilosInutSemana3" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="KilosInutSemana4" class="java.lang.Float">
+	<field name="KilosInutSemana4" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="KilosInutSemana5" class="java.lang.Float">
+	<field name="KilosInutSemana5" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="KilosSemana1Total" class="java.lang.Float"/>
