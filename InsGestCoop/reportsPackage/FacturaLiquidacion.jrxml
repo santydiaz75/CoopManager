@@ -55,6 +55,7 @@ Sum(coalesce(ll.KilosInutSemana5, 0)) as KilosInutSemana5,
 `coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, l.IdCosechero) as KilosSemana4Total,
 `coopmanagerdb`.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, l.IdCosechero) as KilosSemana5Total,
 `coopmanagerdb`.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero, 0) as KilosAcumuladosTotal,
+`coopmanagerdb`.LiquidacionKilosInutilizadosAcumulado($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero, 0) as KilosInutilizadosAcumuladoTotal,
 `coopmanagerdb`.LiquidacionPinasAcumuladas($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero) as PinasAcumuladasTotal,
 `coopmanagerdb`.LiquidacionImporteTotalAcumulado($P{Empresa}, $P{Ejercicio}, $P{Mes}, l.IdCosechero) as ImporteTotalAcumulado, empresas.Lopd
 FROM `coopmanagerdb`.`liquidaciones` l
@@ -195,6 +196,7 @@ co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, cagrp.ord
 	<field name="KilosSemana4Total" class="java.lang.Float"/>
 	<field name="KilosSemana5Total" class="java.lang.Float"/>
 	<field name="KilosAcumuladosTotal" class="java.lang.Float"/>
+	<field name="KilosInutilizadosAcumuladoTotal" class="java.lang.Float"/>
 	<field name="PinasAcumuladasTotal" class="java.lang.Float"/>
 	<field name="ImporteTotalAcumulado" class="java.lang.Float"/>
 	<field name="Lopd" class="java.lang.String">
@@ -745,7 +747,7 @@ co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, cagrp.ord
 					<textElement textAlignment="Right">
 						<font fontName="Tahoma" size="9"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$V{TotalKilos_2}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{TotalKilos_2}+$V{TotalKilosInutilizados}]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Group" evaluationGroup="Liquidaciones_NumeroFactura" pattern="#,##0">
 					<reportElement x="221" y="27" width="37" height="12" uuid="30a64613-3ec0-4df5-9d31-6ec0d11f6371"/>
