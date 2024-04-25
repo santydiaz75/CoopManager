@@ -22,7 +22,7 @@ FROM (Select co1.* From `coopmanagerdb`.`cosecheros` co1 WHERE
 co1.empresa = $P{Empresa} and co1.ejercicio = $P{Ejercicio}  and co1.idgrupo = co1.IdCosechero) co inner join `coopmanagerdb`.`empresas` e ON co.empresa = e.IdEmpresa
 where co.ejercicio = $P{Ejercicio} and co.empresa = $P{Empresa} and `coopmanagerdb`.EntradasKilosNifCosechero($P{Empresa}, $P{Ejercicio}, co.nif, $P{SemanaDesde}, $P{SemanaHasta}) > 0
 group by co.empresa, co.ejercicio, co.nif, `coopmanagerdb`.CosecheroGetNombreByNif($P{Empresa}, $P{Ejercicio}, co.nif)
-order by co.Nif]]>
+order by co.Apellidos]]>
 	</queryString>
 	<field name="empresa" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
