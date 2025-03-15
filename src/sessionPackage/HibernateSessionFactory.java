@@ -39,7 +39,7 @@ public class HibernateSessionFactory {
 	       dataBase = WindowsRegistry.readRegistry("HKLM\\Software\\Wow6432Node\\GestCoop", "DataBase");
 		if (dataBase == null)
 			dataBase = "coopmanagerdb";
-		return "jdbc:mysql://" + server + ":3306/" + dataBase;
+		return "jdbc:mysql://" + server + "/" + dataBase;
 	}
 	
 	static {
