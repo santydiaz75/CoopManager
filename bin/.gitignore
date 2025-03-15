@@ -1,11 +1,4 @@
-/.classpath
-/.project
-/.vscode/
-/bigimagesPackage/
 /entitiesPackage/
-/hibernate.cfg.xml
-/imagesPackage/
-/log4j.properties
 /reportsPackage/
 /sessionPackage/
 /winUIPackage/
