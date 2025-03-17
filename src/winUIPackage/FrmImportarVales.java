@@ -281,8 +281,8 @@ public class FrmImportarVales extends javax.swing.JDialog {
 				sVale = sCadena.substring(35, 50);
 				sNumPinas = sCadena.substring(51, 55);
 				sIdCosechero = sCadena.substring(75, 84);
-				sIdCategoria = sCadena.substring(228, 236);
-				sNumKilos = sCadena.substring(242, 249);
+				sIdCategoria = sCadena.substring(226, 237);
+				sNumKilos = sCadena.substring(244, 252);
 				
 				while (!finalizado) {
 					numregistros++;
@@ -338,8 +338,8 @@ public class FrmImportarVales extends javax.swing.JDialog {
 						sVale = sCadena.substring(35, 50);
 						sNumPinas = sCadena.substring(51, 55);
 						sIdCosechero = sCadena.substring(75, 84);
-						sIdCategoria = sCadena.substring(228, 236);
-						sNumKilos = sCadena.substring(242, 249);
+						sIdCategoria = sCadena.substring(226, 237);
+						sNumKilos = sCadena.substring(244, 252);
 					}
 				}
 				progressbar.setMaximum(numregistros);
