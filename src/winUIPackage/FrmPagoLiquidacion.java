@@ -137,7 +137,7 @@ public class FrmPagoLiquidacion extends javax.swing.JDialog {
 			columns.add(new ColumnData("Importe", "Importe",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporte, "#,##0.00"));
-			columns.add(new ColumnData("Comision", "Comisión",
+			columns.add(new ColumnData("Comision", "Comisiï¿½n",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtComision, "#,##0.00"));
 
@@ -639,7 +639,7 @@ public class FrmPagoLiquidacion extends javax.swing.JDialog {
 						session.getSession().flush();
 					}
 				}
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();

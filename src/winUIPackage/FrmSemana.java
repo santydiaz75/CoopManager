@@ -120,7 +120,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					.add(new ColumnData("IdCategoria", "Id. categoria",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("CategoriaDesc", "Descripción",
+			columns.add(new ColumnData("CategoriaDesc", "Descripciï¿½n",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboCategoriaDesc, null));
 			columns.add(new ColumnData("Precio", "Precio",
@@ -608,7 +608,7 @@ public class FrmSemana extends javax.swing.JPanel {
 						session.getSession().flush();
 					}
 				}
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -642,7 +642,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					txtSemana.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtSemana.requestFocus();
 					return (false);
 				}
@@ -652,7 +652,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					txtDesdeFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtDesdeFecha.requestFocus();
 					return (false);
 				}
@@ -663,7 +663,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					txtHastaFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtHastaFecha.requestFocus();
 					return (false);
 				}
@@ -673,7 +673,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					txtPorcKilosInutilizados.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtPorcKilosInutilizados.requestFocus();
 					return (false);
 				}
@@ -699,7 +699,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					if (tblPrecios.getValueAt(actualrow,
 							PreciosTableModel.columnIdCategoria).equals("")) {
 						Message.ShowValidateMessage(tblPrecios,
-								"Debe indicar un categoría.");
+								"Debe indicar un categorï¿½a.");
 						tblPrecios.changeSelection(tblPrecios.getSelectedRow(),
 								PreciosTableModel.columnIdCategoria, false,
 								false);

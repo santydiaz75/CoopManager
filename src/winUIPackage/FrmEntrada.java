@@ -119,13 +119,13 @@ public class FrmEntrada extends javax.swing.JPanel {
 			columns.add(new ColumnData("State", "",
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
-			columns.add(new ColumnData("IdCategoria", "Id. categoría",
+			columns.add(new ColumnData("IdCategoria", "Id. categorï¿½a",
 					EntityType.NumberWidth, SwingConstants.RIGHT, NormalType,
 					null, null));
-			columns.add(new ColumnData("CategoriaDesc", "Descripción",
+			columns.add(new ColumnData("CategoriaDesc", "Descripciï¿½n",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboCategoriaDesc, null));
-			columns.add(new ColumnData("NumKilos", "Número de Kilos",
+			columns.add(new ColumnData("NumKilos", "Nï¿½mero de Kilos",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtNumKilos, "#0"));
 
@@ -671,7 +671,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 						session.getSession().flush();
 					}
 				}
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -707,7 +707,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtSemana.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtSemana.requestFocus();
 					return (false);
 				}
@@ -723,7 +723,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtSemanaEntrada.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtSemanaEntrada.requestFocus();
 					return (false);
 				}
@@ -737,7 +737,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -752,14 +752,14 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtIdCosechero.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtIdCosechero.requestFocus();
 					return (false);
 				}
 			}
 			if (txtNumPinas.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un número de racimos.");
+						"Debe indicar un nï¿½mero de racimos.");
 				txtNumPinas.requestFocus();
 				return (false);
 			} else {
@@ -767,7 +767,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtNumPinas.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtNumPinas.requestFocus();
 					return (false);
 				}
@@ -777,7 +777,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtImporteBonificacion.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtImporteBonificacion.requestFocus();
 					return (false);
 				}
@@ -787,7 +787,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtKilosBonificacion.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtKilosBonificacion.requestFocus();
 					return (false);
 				}
@@ -797,7 +797,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtNumPinasBonificacion.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtNumPinasBonificacion.requestFocus();
 					return (false);
 				}
@@ -807,7 +807,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtIdCosechero.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtIdCosechero.requestFocus();
 					return (false);
 				}
@@ -822,7 +822,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					int respuestavalue = JOptionPane
 							.showOptionDialog(
 									null,
-									"Ya hay una entrada para el cosechero y semana seleccionados, ¿desea crear otra?",
+									"Ya hay una entrada para el cosechero y semana seleccionados, ï¿½desea crear otra?",
 									"", JOptionPane.DEFAULT_OPTION,
 									JOptionPane.WARNING_MESSAGE, null, botones,
 									botones[0]);
@@ -853,7 +853,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnIdCategoria).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un categoría.");
+								"Debe indicar un categorï¿½a.");
 						tblDetalle.changeSelection(actualrow,
 								DetalleTableModel.columnIdCategoria, false,
 								false);
@@ -866,7 +866,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnNumKilos).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un número de kilos.");
+								"Debe indicar un nï¿½mero de kilos.");
 						tblDetalle.changeSelection(actualrow,
 								DetalleTableModel.columnNumKilos, false, false);
 						tblDetalle.editCellAt(actualrow,

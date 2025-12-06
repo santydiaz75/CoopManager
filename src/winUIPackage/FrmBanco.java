@@ -155,7 +155,7 @@ public class FrmBanco extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(banco);
 
 				session.getSession().flush();
-				if (!transaction.wasCommitted()) {
+				if (!transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -179,13 +179,13 @@ public class FrmBanco extends javax.swing.JPanel {
 		try {
 			if (txtIdBanco.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un código para el banco.");
+						"Debe indicar un cï¿½digo para el banco.");
 				txtIdBanco.requestFocus();
 				return (false);
 			}
 			if (txtIdSucursal.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un código para la sucursal.");
+						"Debe indicar un cï¿½digo para la sucursal.");
 				txtIdSucursal.requestFocus();
 				return (false);
 			}

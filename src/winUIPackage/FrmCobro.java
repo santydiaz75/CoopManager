@@ -601,7 +601,7 @@ public class FrmCobro extends javax.swing.JDialog {
 						session.getSession().flush();
 					}
 				}
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();

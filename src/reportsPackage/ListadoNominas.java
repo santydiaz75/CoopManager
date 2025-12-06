@@ -67,7 +67,7 @@ public class ListadoNominas
         if(WORKING_DIRECTORY == null) {
         	
             try {
-                URL url = IRPF.class.getResource("ListadoNominas.jasper");  
+                URL url = ListadoNominas.class.getResource("ListadoNominas.jasper");  
                 if(url.getProtocol().equals("file")) {
                     File f = new File(url.toURI());
                     f = f.getParentFile().getParentFile();

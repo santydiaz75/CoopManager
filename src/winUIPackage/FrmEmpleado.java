@@ -144,10 +144,10 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			columns.add(new ColumnData("FechaBaja", "Fecha de baja",
 					EntityType.DateWidth, SwingConstants.RIGHT, DateType,
 					txtFechaBaja, null));
-			columns.add(new ColumnData("Duracion", "Duración",
+			columns.add(new ColumnData("Duracion", "Duraciï¿½n",
 					EntityType.TextWidth, SwingConstants.LEFT, NormalType,
 					null, null));
-			columns.add(new ColumnData("ImporteLiquidacion", "Liquidación",
+			columns.add(new ColumnData("ImporteLiquidacion", "Liquidaciï¿½n",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteLiquidacion, "#,##0.00"));
 			columns.add(new ColumnData("ImporteIrpf", "Irpf",
@@ -338,7 +338,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
 			columns
-					.add(new ColumnData("Ejercicio", "Año",
+					.add(new ColumnData("Ejercicio", "Aï¿½o",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
 			columns.add(new ColumnData("Mes", "Mes", EntityType.NumberWidth,
@@ -352,16 +352,16 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			columns.add(new ColumnData("ImporteSegSoc", "Seguridad social",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteSegSoc, "#,##0.00"));
-			columns.add(new ColumnData("ImporteSegAutonomo", "Autónomo",
+			columns.add(new ColumnData("ImporteSegAutonomo", "Autï¿½nomo",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteSegAutonomo, "#,##0.00"));
 			columns.add(new ColumnData("ImporteEmbargo", "Embargo",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteEmbargo, "#,##0.00"));
-			columns.add(new ColumnData("TotalLiquido", "Total líquido",
+			columns.add(new ColumnData("TotalLiquido", "Total lï¿½quido",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtTotalLiquido, "#,##0.00"));
-			columns.add(new ColumnData("ImporteBonificacion", "Bonificación",
+			columns.add(new ColumnData("ImporteBonificacion", "Bonificaciï¿½n",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtBonificacion, "#,##0.00"));
 			columns.add(new ColumnData("CuentaBancariaPago", "Cuenta bancaria",
@@ -634,7 +634,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
 			columns
-					.add(new ColumnData("Ejercicio", "Año",
+					.add(new ColumnData("Ejercicio", "Aï¿½o",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
 			columns
@@ -653,7 +653,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			columns.add(new ColumnData("Importe", "Importe",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImportehe, "#,##0.00"));
-			columns.add(new ColumnData("Sabado", "Sábado",
+			columns.add(new ColumnData("Sabado", "Sï¿½bado",
 					EntityType.NumberWidth, SwingConstants.CENTER, CheckType,
 					null, null));
 			columns.add(new ColumnData("Comentarios", "Comentarios",
@@ -855,10 +855,10 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
 			columns
-					.add(new ColumnData("Ejercicio", "Año",
+					.add(new ColumnData("Ejercicio", "Aï¿½o",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("NumDias", "Número de días",
+			columns.add(new ColumnData("NumDias", "Nï¿½mero de dï¿½as",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtNumDias, "#,##0.00"));
 			columns.add(new ColumnData("Comentarios", "Comentarios",
@@ -2688,7 +2688,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -2723,7 +2723,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					txtFechaNacimiento.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFechaNacimiento.requestFocus();
 					return (false);
 				}
@@ -2733,7 +2733,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					txtFechaAntiguedad.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFechaAntiguedad.requestFocus();
 					return (false);
 				}
@@ -2789,7 +2789,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 								.toString());
 					} catch (ParseException nfe) {
 						Message.ShowValidateMessage(tblContratos,
-								"La fecha de alta indicada no es válida.");
+								"La fecha de alta indicada no es vï¿½lida.");
 						tblContratos.changeSelection(tblContratos
 								.getSelectedRow(),
 								ContratosTableModel.columnFechaAlta, false,
@@ -2813,7 +2813,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 											.toString());
 						} catch (ParseException nfe) {
 							Message.ShowValidateMessage(tblContratos,
-									"La fecha de baja indicada no es válida.");
+									"La fecha de baja indicada no es vï¿½lida.");
 							tblContratos.changeSelection(tblContratos
 									.getSelectedRow(),
 									ContratosTableModel.columnFechaBaja, false,
@@ -2845,7 +2845,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblNominas.getValueAt(actualrow,
 							NominasTableModel.columnEjercicio).equals("")) {
 						Message.ShowValidateMessage(tblNominas,
-								"Debe indicar un año.");
+								"Debe indicar un aï¿½o.");
 						tblNominas
 								.changeSelection(tblNominas.getSelectedRow(),
 										NominasTableModel.columnEjercicio,
@@ -2888,7 +2888,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblHorasExtras.getValueAt(actualrow,
 							HorasExtrasTableModel.columnEjercicio).equals("")) {
 						Message.ShowValidateMessage(tblHorasExtras,
-								"Debe indicar un año.");
+								"Debe indicar un aï¿½o.");
 						tblHorasExtras.changeSelection(tblHorasExtras
 								.getSelectedRow(),
 								HorasExtrasTableModel.columnEjercicio, false,
@@ -2932,7 +2932,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblVacaciones.getValueAt(actualrow,
 							VacacionesTableModel.columnEjercicio).equals("")) {
 						Message.ShowValidateMessage(tblVacaciones,
-								"Debe indicar un año.");
+								"Debe indicar un aï¿½o.");
 						tblVacaciones.changeSelection(tblVacaciones
 								.getSelectedRow(),
 								VacacionesTableModel.columnEjercicio, false,
@@ -2945,7 +2945,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblVacaciones.getValueAt(actualrow,
 							VacacionesTableModel.columnNumDias).equals("")) {
 						Message.ShowValidateMessage(tblVacaciones,
-								"Debe indicar un número de días.");
+								"Debe indicar un nï¿½mero de dï¿½as.");
 						tblVacaciones.changeSelection(tblVacaciones
 								.getSelectedRow(),
 								VacacionesTableModel.columnNumDias, false,
@@ -3442,7 +3442,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDireccion.setText("Dirección");
+        lblDireccion.setText("Direcciï¿½n");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -3469,7 +3469,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPoblacion.setText("Población");
+        lblPoblacion.setText("Poblaciï¿½n");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -3485,7 +3485,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoPostal.setText("Código postal");
+        lblCodigoPostal.setText("Cï¿½digo postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -3501,7 +3501,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTelefono.setText("Teléfono");
+        lblTelefono.setText("Telï¿½fono");
         lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -3631,7 +3631,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblDigitoControl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDigitoControl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDigitoControl.setText("Dígito control");
+        lblDigitoControl.setText("Dï¿½gito control");
         lblDigitoControl.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDigitoControl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -3687,7 +3687,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblFechaAntiguedad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFechaAntiguedad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFechaAntiguedad.setText("F. antigüedad");
+        lblFechaAntiguedad.setText("F. antigï¿½edad");
 
         txtFechaAntiguedad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         try {
@@ -3957,7 +3957,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         });
 
         cmdDeselectContratosAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectContratosAll.setText("Quitar selección");
+        cmdDeselectContratosAll.setText("Quitar selecciï¿½n");
         cmdDeselectContratosAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectContratosAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectContratosAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4127,7 +4127,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         });
 
         cmdDeselectNominasAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectNominasAll.setText("Quitar selección");
+        cmdDeselectNominasAll.setText("Quitar selecciï¿½n");
         cmdDeselectNominasAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectNominasAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectNominasAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4374,7 +4374,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
                     .addGap(17, 17, 17)))
         );
 
-        TabEmpleado.addTab("4. Nóminas", pnlData4);
+        TabEmpleado.addTab("4. Nï¿½minas", pnlData4);
 
         jScrollPane4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -4408,7 +4408,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         });
 
         cmdDeselectHorasExtrasAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectHorasExtrasAll.setText("Quitar selección");
+        cmdDeselectHorasExtrasAll.setText("Quitar selecciï¿½n");
         cmdDeselectHorasExtrasAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectHorasExtrasAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectHorasExtrasAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4571,7 +4571,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         });
 
         cmdDeselectVacacionesAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectVacacionesAll.setText("Quitar selección");
+        cmdDeselectVacacionesAll.setText("Quitar selecciï¿½n");
         cmdDeselectVacacionesAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectVacacionesAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectVacacionesAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4595,7 +4595,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblTotalDias.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTotalDias.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalDias.setText("Total días");
+        lblTotalDias.setText("Total dï¿½as");
 
         txtTotalDiasVacaciones.setEditable(false);
         txtTotalDiasVacaciones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));

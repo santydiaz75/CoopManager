@@ -92,7 +92,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					txtMes.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtMes.requestFocus();
 					return (false);
 				}
@@ -107,7 +107,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					txtSemanaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtSemanaDesde.requestFocus();
 					return (false);
 				}
@@ -122,7 +122,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					txtSemanaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtSemanaHasta.requestFocus();
 					return (false);
 				}
@@ -136,7 +136,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -446,7 +446,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					}	
 					else {
 						Message.ShowValidateMessage(parent,
-						"La liquidación no se ha generado porque hay liquidaciones de meses posteriores.");
+						"La liquidaciï¿½n no se ha generado porque hay liquidaciones de meses posteriores.");
 						return null;
 					}
 				}
@@ -544,7 +544,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 						session.getSession().flush();
 						updateStatus(cont++);
 					}
-					if (!transaction.wasCommitted()) {
+					if (transaction.isActive()) {
 						transaction.commit();
 					}
 					session.getSession().close();
@@ -559,11 +559,11 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					}
 					updateStatus(cont++);
 					Message.ShowValidateMessage(parent,
-							"La liquidación se ha generado con éxito.");
+							"La liquidaciï¿½n se ha generado con ï¿½xito.");
 					return "Completado";
 				} else {
 					Message.ShowValidateMessage(parent,
-							"No exiate ningún cosechero para liquidar.");
+							"No exiate ningï¿½n cosechero para liquidar.");
 				}
 			}
 			return "Completado";
@@ -591,7 +591,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 				int respuestavalue = JOptionPane
 						.showOptionDialog(
 								null,
-								"La liquidación para el mes indicado ya ha sido generada, ¿está seguro de volver a generarla?",
+								"La liquidaciï¿½n para el mes indicado ya ha sido generada, ï¿½estï¿½ seguro de volver a generarla?",
 								"", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.WARNING_MESSAGE, null, botones,
 								botones[0]);

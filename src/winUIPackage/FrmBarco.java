@@ -142,7 +142,7 @@ public class FrmBarco extends javax.swing.JPanel {
 						.replicate(barco, ReplicationMode.OVERWRITE);
 				session.getSession().saveOrUpdate(barco);
 				session.getSession().flush();
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();

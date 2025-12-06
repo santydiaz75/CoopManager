@@ -67,7 +67,7 @@ public class ListadoPersonal
         if(WORKING_DIRECTORY == null) {
         	
             try {
-                URL url = IRPF.class.getResource("ListadoPersonal.jasper");  
+                URL url = ListadoPersonal.class.getResource("ListadoPersonal.jasper");  
                 if(url.getProtocol().equals("file")) {
                     File f = new File(url.toURI());
                     f = f.getParentFile().getParentFile();

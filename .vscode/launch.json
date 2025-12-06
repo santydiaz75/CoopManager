@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Ejecutar CoopManager",
+            "request": "launch",
+            "mainClass": "winUIPackage.Launcher",
+            "projectName": "CoopManager",
+            "vmArgs": "-Dfile.encoding=ISO-8859-1",
+            "encoding": "ISO-8859-1"
+        },
+        {
+            "type": "java",
+            "name": "Debug CoopManager",
+            "request": "launch",
+            "mainClass": "winUIPackage.Launcher",
+            "projectName": "CoopManager",
+            "vmArgs": "-Dfile.encoding=ISO-8859-1",
+            "encoding": "ISO-8859-1"
+        }
+    ]
+}

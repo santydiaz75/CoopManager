@@ -68,7 +68,7 @@ public class FacturaLiquidacionRetorno
         if(WORKING_DIRECTORY == null) {
         	
             try {
-                URL url = FacturaLiquidacion.class.getResource("FacturaLiquidacionRetorno.jasper");  
+                URL url = FacturaLiquidacionRetorno.class.getResource("FacturaLiquidacionRetorno.jasper");  
                 if(url.getProtocol().equals("file")) {
                     File f = new File(url.toURI());
                     f = f.getParentFile().getParentFile();

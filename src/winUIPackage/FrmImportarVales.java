@@ -401,24 +401,24 @@ public class FrmImportarVales extends javax.swing.JDialog {
 					}
 				}
 			}
-			if (!transaction.wasCommitted()) {
+			if (transaction.isActive()) {
 				transaction.commit();
 			}
 			session.getSession().close();
 			bf.close();
 			Message.ShowInformationMessage(this,
-					"Importación realizada con éxito");
+					"Importaciï¿½n realizada con ï¿½xito");
 			return "Completado";
 
 		} catch (RuntimeException he) {
 			he.printStackTrace();
 			Message.ShowRuntimeError(parent,
-					"Error en el proceso de importación", he);
+					"Error en el proceso de importaciï¿½n", he);
 			return "Error";
 		} catch (IOException e) {
 			e.printStackTrace();
 			Message
-					.ShowIOError(parent, "Error en el proceso de importación",
+					.ShowIOError(parent, "Error en el proceso de importaciï¿½n",
 							e);
 			return "Error";
 		}

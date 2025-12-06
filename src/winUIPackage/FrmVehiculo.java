@@ -118,7 +118,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 			columns.add(new ColumnData("State", "",
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
-			columns.add(new ColumnData("Ano", "Año", EntityType.NumberWidth,
+			columns.add(new ColumnData("Ano", "Aï¿½o", EntityType.NumberWidth,
 					SwingConstants.RIGHT, NormalType, null, null));
 			columns.add(new ColumnData("Mes", "Mes", EntityType.NumberWidth,
 					SwingConstants.RIGHT, NormalType, null, null));
@@ -126,7 +126,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					.add(new ColumnData("IdGasto", "Id. gasto",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("IdGastoDesc", "Descripción",
+			columns.add(new ColumnData("IdGastoDesc", "Descripciï¿½n",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboTipoGastoDesc, null));
 			columns.add(new ColumnData("Importe", "Importe",
@@ -644,7 +644,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 						session.getSession().flush();
 					}
 				}
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -688,7 +688,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					if (tblGastos.getValueAt(actualrow,
 							GastosTableModel.columnAno).equals("")) {
 						Message.ShowValidateMessage(tblGastos,
-								"Debe indicar un año.");
+								"Debe indicar un aï¿½o.");
 						tblGastos.changeSelection(actualrow,
 								GastosTableModel.columnAno, false, false);
 						tblGastos.editCellAt(actualrow,

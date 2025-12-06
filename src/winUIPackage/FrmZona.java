@@ -134,7 +134,7 @@ public class FrmZona extends javax.swing.JPanel {
 				session.getSession().replicate(zona, ReplicationMode.OVERWRITE);
 				session.getSession().saveOrUpdate(zona);
 				session.getSession().flush();
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();

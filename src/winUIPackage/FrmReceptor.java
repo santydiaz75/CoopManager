@@ -185,7 +185,7 @@ public class FrmReceptor extends javax.swing.JPanel {
 						ReplicationMode.OVERWRITE);
 				session.getSession().saveOrUpdate(receptor);
 				session.getSession().flush();
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();

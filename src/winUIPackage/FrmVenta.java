@@ -130,14 +130,14 @@ public class FrmVenta extends javax.swing.JPanel {
 					.add(new ColumnData("IdCategoria", "Id. categoria",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("CategoriaDesc", "Descripción",
+			columns.add(new ColumnData("CategoriaDesc", "Descripciï¿½n",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboCategoriaDesc, null));
 			columns
-					.add(new ColumnData("NumCajas", "Número de cajas",
+					.add(new ColumnData("NumCajas", "Nï¿½mero de cajas",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("NumKilos", "Número de Kilos",
+			columns.add(new ColumnData("NumKilos", "Nï¿½mero de Kilos",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtNumKilos, "#,##0.00"));
 			columns.add(new ColumnData("Precio", "Precio",
@@ -839,7 +839,7 @@ public class FrmVenta extends javax.swing.JPanel {
 						session.getSession().flush();
 					}
 				}
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -874,7 +874,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtSemana.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtSemana.requestFocus();
 					return (false);
 				}
@@ -888,7 +888,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -903,7 +903,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdReceptor.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtIdReceptor.requestFocus();
 					return (false);
 				}
@@ -913,7 +913,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdBarco.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtIdBarco.requestFocus();
 					return (false);
 				}
@@ -923,7 +923,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdVehiculo.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtIdVehiculo.requestFocus();
 					return (false);
 				}
@@ -933,7 +933,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdConductor.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtIdConductor.requestFocus();
 					return (false);
 				}
@@ -943,7 +943,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdPuerto.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtIdPuerto.requestFocus();
 					return (false);
 				}
@@ -969,7 +969,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnIdCategoria).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un categoría.");
+								"Debe indicar un categorï¿½a.");
 						tblDetalle.changeSelection(actualrow,
 								DetalleTableModel.columnIdCategoria, false,
 								false);
@@ -981,7 +981,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnNumKilos).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un número de kilos.");
+								"Debe indicar un nï¿½mero de kilos.");
 						tblDetalle.changeSelection(tblDetalle.getSelectedRow(),
 								DetalleTableModel.columnNumKilos, false, false);
 						tblDetalle.editCellAt(actualrow,
@@ -992,7 +992,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnNumCajas).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un número de cajas.");
+								"Debe indicar un nï¿½mero de cajas.");
 						tblDetalle.changeSelection(tblDetalle.getSelectedRow(),
 								DetalleTableModel.columnNumCajas, false, false);
 						tblDetalle.editCellAt(actualrow,

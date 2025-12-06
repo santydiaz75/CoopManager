@@ -6,6 +6,7 @@
 package reportsPackage;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -67,7 +68,7 @@ public class ListadoCosecheros
         if(WORKING_DIRECTORY == null) {
         	
             try {
-                URL url = IRPF.class.getResource("ListadoCosecheros.jasper");  
+                URL url = ListadoCosecheros.class.getResource("ListadoCosecheros.jasper");  
                 if(url.getProtocol().equals("file")) {
                     File f = new File(url.toURI());
                     f = f.getParentFile().getParentFile();
@@ -101,24 +102,47 @@ public class ListadoCosecheros
         
         try
         {            
-        	String workDirectory = getDirectory().getPath();
-            String master =  workDirectory + 
-            			"\\reportsPackage\\ListadoCosecheros.jasper";
+            JasperReport masterReport = null;
+            String workDirectory = getDirectory().getPath();
             
-            if (master == null) 
+            // Try loading from file system first (more reliable for compatibility)
+            String master = workDirectory + "\\reportsPackage\\ListadoCosecheros.jasper";
+            System.out.println("DEBUG: Trying to load from file: " + master);
+            
+            if (new File(master).exists()) {
+                masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);
+                System.out.println("DEBUG: Successfully loaded from file system");
+            } else {
+                // Fallback to classpath
+                System.out.println("DEBUG: File not found, trying classpath...");
+                URL reportUrl = ListadoCosecheros.class.getResource("/reportsPackage/ListadoCosecheros.jasper");
+                if (reportUrl != null) {
+                    // Try converting URL to file path for better compatibility
+                    if (reportUrl.getProtocol().equals("file")) {
+                        String filePath = reportUrl.getPath();
+                        masterReport = (JasperReport) JRLoader.loadObjectFromFile(filePath);
+                        workDirectory = new File(filePath).getParent();
+                    } else {
+                        masterReport = (JasperReport) JRLoader.loadObject(reportUrl);
+                        workDirectory = "";
+                    }
+                    System.out.println("DEBUG: Successfully loaded from classpath");
+                }
+            }
+            
+            if (masterReport == null) 
             	Message.ShowErrorMessage(parent, "ListadoCosecheros", "No encuentro el archivo del informe maestro.");
             else {
-            
-            	JasperReport masterReport = null;
-                masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
 	            //este es el par·metro, se pueden agregar m·s par·metros
 	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
-	            parameters.put("LOGO_DIR", workDirectory +  
-	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
+	            
+	            // Use workDirectory for logo path
+	            String logoPath = workDirectory + "\\reportsPackage\\Anagrama" + empresa + ".jpg";
+	            parameters.put("LOGO_DIR", logoPath);
 	            
 	            //Informe dise√±ado y compilado con iReport
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);

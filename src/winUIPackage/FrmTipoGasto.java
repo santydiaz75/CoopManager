@@ -142,7 +142,7 @@ public class FrmTipoGasto extends javax.swing.JPanel {
 						.replicate(tipogasto, ReplicationMode.OVERWRITE);
 				session.getSession().saveOrUpdate(tipogasto);
 				session.getSession().flush();
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -166,7 +166,7 @@ public class FrmTipoGasto extends javax.swing.JPanel {
 		try {
 			if (txtDescTipoGasto.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar una descripción para el tipo de gasto.");
+						"Debe indicar una descripciï¿½n para el tipo de gasto.");
 				txtDescTipoGasto.requestFocus();
 				return (false);
 			}

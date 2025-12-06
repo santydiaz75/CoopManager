@@ -143,7 +143,7 @@ public class FrmConcepto extends javax.swing.JPanel {
 						.replicate(concepto, ReplicationMode.OVERWRITE);
 				session.getSession().saveOrUpdate(concepto);
 				session.getSession().flush();
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -210,7 +210,7 @@ public class FrmConcepto extends javax.swing.JPanel {
 		lblConceptoDesc.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblConceptoDesc.setForeground(new java.awt.Color(255, 0, 0));
 		lblConceptoDesc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblConceptoDesc.setText("Descripción");
+		lblConceptoDesc.setText("Descripciï¿½n");
 
 		txtConceptoDesc.setFont(new java.awt.Font("Segoe UI", 0, 14));
 		txtConceptoDesc.setHorizontalAlignment(javax.swing.JTextField.LEFT);

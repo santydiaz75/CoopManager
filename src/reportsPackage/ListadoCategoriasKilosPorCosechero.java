@@ -68,7 +68,7 @@ public class ListadoCategoriasKilosPorCosechero
         if(WORKING_DIRECTORY == null) {
         	
             try {
-                URL url = IRPF.class.getResource("ListadoCategoriasKilosPorCosechero.jasper");  
+                URL url = ListadoCategoriasKilosPorCosechero.class.getResource("ListadoCategoriasKilosPorCosechero.jasper");  
                 if(url.getProtocol().equals("file")) {
                     File f = new File(url.toURI());
                     f = f.getParentFile().getParentFile();

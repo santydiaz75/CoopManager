@@ -68,7 +68,7 @@ public class FacturaLiquidacionParaCopia
         if(WORKING_DIRECTORY == null) {
         	
             try {
-                URL url = FacturaLiquidacion.class.getResource("FacturaLiquidacionConCopia.jasper");  
+                URL url = FacturaLiquidacionParaCopia.class.getResource("FacturaLiquidacionConCopia.jasper");  
                 if(url.getProtocol().equals("file")) {
                     File f = new File(url.toURI());
                     f = f.getParentFile().getParentFile();

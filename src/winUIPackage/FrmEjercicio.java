@@ -158,7 +158,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 						ReplicationMode.OVERWRITE);
 				session.getSession().saveOrUpdate(ejercicio);
 				session.getSession().flush();
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -183,7 +183,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 
 		try {
 			if (txtAno.getText().equals("")) {
-				Message.ShowValidateMessage(pnlData, "Debe indicar un año.");
+				Message.ShowValidateMessage(pnlData, "Debe indicar un aï¿½o.");
 				txtAno.requestFocus();
 				return (false);
 			} else {
@@ -191,7 +191,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 					txtAno.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtAno.requestFocus();
 					return (false);
 				}
@@ -202,7 +202,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 					txtDesdeFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtDesdeFecha.requestFocus();
 					return (false);
 				}
@@ -213,7 +213,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 					txtHastaFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtHastaFecha.requestFocus();
 					return (false);
 				}

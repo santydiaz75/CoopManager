@@ -787,7 +787,7 @@ public class FrmFactura extends javax.swing.JPanel {
 						session.getSession().flush();
 					}
 				}
-				if (!transaction.wasCommitted()) {
+				if (transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -821,7 +821,7 @@ public class FrmFactura extends javax.swing.JPanel {
 					txtIdentidad.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtIdentidad.requestFocus();
 					return (false);
 				}
@@ -837,7 +837,7 @@ public class FrmFactura extends javax.swing.JPanel {
 					txtSemana.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtSemana.requestFocus();
 					return (false);
 				}
@@ -851,7 +851,7 @@ public class FrmFactura extends javax.swing.JPanel {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -861,7 +861,7 @@ public class FrmFactura extends javax.swing.JPanel {
 					txtTipoImpuesto.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtTipoImpuesto.requestFocus();
 					return (false);
 				}
@@ -1298,7 +1298,7 @@ public class FrmFactura extends javax.swing.JPanel {
         lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblAno.setForeground(new java.awt.Color(255, 0, 0));
         lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAno.setText("Año");
+        lblAno.setText("Aï¿½o");
 
         txtAno.setEditable(false);
         txtAno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1372,7 +1372,7 @@ public class FrmFactura extends javax.swing.JPanel {
 
         lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDireccion.setText("Dirección");
+        lblDireccion.setText("Direcciï¿½n");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1388,7 +1388,7 @@ public class FrmFactura extends javax.swing.JPanel {
 
         lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPoblacion.setText("Población");
+        lblPoblacion.setText("Poblaciï¿½n");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1404,7 +1404,7 @@ public class FrmFactura extends javax.swing.JPanel {
 
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoPostal.setText("Código postal");
+        lblCodigoPostal.setText("Cï¿½digo postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1500,7 +1500,7 @@ public class FrmFactura extends javax.swing.JPanel {
 
         lblImporteIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblImporteIRPF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblImporteIRPF.setText("Retención");
+        lblImporteIRPF.setText("Retenciï¿½n");
 
         txtImporteIRPF.setEditable(false);
         txtImporteIRPF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1519,7 +1519,7 @@ public class FrmFactura extends javax.swing.JPanel {
         });
 
         cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectAll.setText("Quitar selección");
+        cmdDeselectAll.setText("Quitar selecciï¿½n");
         cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1529,8 +1529,8 @@ public class FrmFactura extends javax.swing.JPanel {
         });
 
         cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeleteLinea.setText("Eliminar línea");
-        cmdDeleteLinea.setToolTipText("Eliminar las líneas seleccionados");
+        cmdDeleteLinea.setText("Eliminar lï¿½nea");
+        cmdDeleteLinea.setToolTipText("Eliminar las lï¿½neas seleccionados");
         cmdDeleteLinea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeleteLinea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
