@@ -78,7 +78,7 @@ public class FrmBackup extends javax.swing.JDialog {
 		lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblApellidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 		lblApellidos
-				.setText("A continuaci\u00f3n se realizar\u00e1 la copia de seguridad de la base de datos");
+				.setText("A continuaciï¿½n se realizarï¿½la copia de seguridad de la base de datos");
 		lblApellidos
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -140,29 +140,31 @@ public class FrmBackup extends javax.swing.JDialog {
 		try {
 			FileWriter fw = new FileWriter(backupFile);
 			/*objeto que escribira sobre el backup archivo*/
-			Process backup;
-			Runtime runtime = Runtime.getRuntime();
-			backup = runtime
-					.exec(System.getenv("MYSQLPATH")
-							+ "\\bin\\mysqldump --opt --password=demoli23 --user=root coopmanagerdb");
+			// Process backup;
+			// Runtime runtime = Runtime.getRuntime();
+			// backup = runtime
+			//		.exec(System.getenv("MYSQLPATH")
+			//			+ "\\bin\\mysqldump --opt --password=demoli23 --user=root coopmanagerdb");
 			/*Process es el que ejecuta el comando para buscar el mysqldump.exe*/
-			InputStreamReader irs = new InputStreamReader(backup
-					.getInputStream());
-			BufferedReader br = new BufferedReader(irs);
+			// TODO: Implementar backup para SQL Server usando sqlcmd o similar
+			// throw new UnsupportedOperationException("Backup no implementado para SQL Server");
+			// InputStreamReader irs = new InputStreamReader(backup
+			//		.getInputStream());
+			// BufferedReader br = new BufferedReader(irs);
 			/* se escribe sobre el archivo*/
-			String line;
-			Integer cont = 0;
-			updateStatus(cont);
-			while ((line = br.readLine()) != null) {
-				updateStatus(cont++);
-				fw.write(line + "\n");
-			}
+			// String line;
+			// Integer cont = 0;
+			// updateStatus(cont);
+			// while ((line = br.readLine()) != null) {
+			//	updateStatus(cont++);
+			//	fw.write(line + "\n");
+			// }
 			fw.close();
-			irs.close();
-			br.close();
+			// irs.close();
+			// br.close();
 			Message.ShowInformationMessage(this,
-					"Archivo de copia de seguridad generado con éxito");
-			return "Completado";
+					"Funcionalidad de backup no implementada para SQL Server");
+			return "No implementado";
 
 		} catch (RuntimeException he) {
 			Message.ShowRuntimeError(parent,

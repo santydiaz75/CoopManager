@@ -311,7 +311,7 @@ public class FrmMDI extends javax.swing.JFrame {
 
         CategoriasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CategoriasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/categoria.png"))); // NOI18N
-        CategoriasMenuItem.setToolTipText("Categorías");
+        CategoriasMenuItem.setToolTipText("Categorï¿½as");
         CategoriasMenuItem.setBorderPainted(true);
         CategoriasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -388,10 +388,10 @@ public class FrmMDI extends javax.swing.JFrame {
 
         VehiculosMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         VehiculosMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Vehiculos.png"))); // NOI18N
-        VehiculosMenu.setToolTipText("Vehículos");
+        VehiculosMenu.setToolTipText("Vehï¿½culos");
         VehiculosMenu.setBorderPainted(true);
 
-        VehiculosMenuItem.setText("Vehículos");
+        VehiculosMenuItem.setText("Vehï¿½culos");
         VehiculosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 VehiculosMenuItemMousePressed(evt);
@@ -550,7 +550,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintValeEntradaItem);
 
-        PrintRelacionCosecherosKilos.setText("Relación de cosecheros y kilos");
+        PrintRelacionCosecherosKilos.setText("Relaciï¿½n de cosecheros y kilos");
         PrintRelacionCosecherosKilos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintRelacionCosecherosKilosActionPerformed(evt);
@@ -558,7 +558,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintRelacionCosecherosKilos);
         
-        PrintListadoCategoriasKilosPorCosechero.setText("Relación de kilos por campaña");
+        PrintListadoCategoriasKilosPorCosechero.setText("Relaciï¿½n de kilos por campaï¿½a");
         PrintListadoCategoriasKilosPorCosechero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	PrintListadoCategoriasKilosPorCosecheroActionPerformed(evt);
@@ -566,7 +566,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintListadoCategoriasKilosPorCosechero);
 
-        PrintKilosInutilizadosItem.setText("Relación de kilos inutilizados");
+        PrintKilosInutilizadosItem.setText("Relaciï¿½n de kilos inutilizados");
         PrintKilosInutilizadosItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintKilosInutilizadosItemActionPerformed(evt);
@@ -599,7 +599,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintResumenLiquidacion);
 
-        PrintIGICItem.setText("Relación de I.G.I.C.");
+        PrintIGICItem.setText("Relaciï¿½n de I.G.I.C.");
         PrintIGICItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintIGICItemActionPerformed(evt);
@@ -607,7 +607,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintIGICItem);
 
-        PrintIRPFItem.setText("Relación de I.R.P.F.");
+        PrintIRPFItem.setText("Relaciï¿½n de I.R.P.F.");
         PrintIRPFItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintIRPFItemActionPerformed(evt);
@@ -682,7 +682,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintListadoPersonalSalarioMedio);
         
-        PrintListadoNominas.setText("Listado de nóminas");
+        PrintListadoNominas.setText("Listado de nï¿½minas");
         PrintListadoNominas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintListadoNominasActionPerformed(evt);
@@ -732,7 +732,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         ToolsMenuItem.add(BackupManuItem);
 
-        ImportarValesMenuItem.setText("Importación de vales");
+        ImportarValesMenuItem.setText("Importaciï¿½n de vales");
         ImportarValesMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImportarValesMenuItemActionPerformed(evt);
@@ -809,7 +809,7 @@ public class FrmMDI extends javax.swing.JFrame {
 
         ExitMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ExitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Salir.png"))); // NOI18N
-        ExitMenuItem.setToolTipText("Salir de la aplicación");
+        ExitMenuItem.setToolTipText("Salir de la aplicaciï¿½n");
         ExitMenuItem.setBorderPainted(true);
         ExitMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

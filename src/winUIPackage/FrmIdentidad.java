@@ -481,7 +481,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
 
         lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDireccion.setText("Direcciï¿½n");
+        lblDireccion.setText("Dirección");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtNombreIdentidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -513,7 +513,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
 
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoPostal.setText("Cï¿½digo postal");
+        lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

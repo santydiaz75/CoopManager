@@ -179,13 +179,13 @@ public class FrmBanco extends javax.swing.JPanel {
 		try {
 			if (txtIdBanco.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un c�digo para el banco.");
+						"Debe indicar un cÃ¯�digo para el banco.");
 				txtIdBanco.requestFocus();
 				return (false);
 			}
 			if (txtIdSucursal.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un c�digo para la sucursal.");
+						"Debe indicar un cÃ¯�digo para la sucursal.");
 				txtIdSucursal.requestFocus();
 				return (false);
 			}

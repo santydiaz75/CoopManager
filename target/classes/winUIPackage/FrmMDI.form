@@ -316,7 +316,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="GeneraLiquidacionMenuiItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Generar liquidaci&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Generar liquidación"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GeneraLiquidacionMenuiItemActionPerformed"/>
@@ -332,7 +332,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="GenerarLiquidacionRetornoMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Generar liquidaci&#xf3;n Retorno"/>
+                <Property name="text" type="java.lang.String" value="Generar liquidación Retorno"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GenerarLiquidacionRetornoMenuItemActionPerformed"/>
@@ -340,7 +340,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="GenerarLiquidacionRetornoPorCosecheroMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Generar liquidaci&#xf3;n Retorno Por Cosechero"/>
+                <Property name="text" type="java.lang.String" value="Generar liquidación Retorno Por Cosechero"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GenerarLiquidacionRetornoPorCosecheroMenuItemActionPerformed"/>
@@ -414,7 +414,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintRelacionCosecherosKilos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relaci&#xf3;n de cosecheros y kilos"/>
+                <Property name="text" type="java.lang.String" value="Relación de cosecheros y kilos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintRelacionCosecherosKilosActionPerformed"/>
@@ -422,7 +422,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintKilosInutilizadosItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relaci&#xf3;n de kilos inutilizados"/>
+                <Property name="text" type="java.lang.String" value="Relación de kilos inutilizados"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintKilosInutilizadosItemActionPerformed"/>
@@ -432,7 +432,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintPreliquidacionItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Preliquidaci&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Preliquidación"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintPreliquidacionItemActionPerformed"/>
@@ -440,7 +440,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintFacturaLiquidacionItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Facturas de liquidaci&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Facturas de liquidación"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintFacturaLiquidacionItemActionPerformed"/>
@@ -448,7 +448,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintResumenLiquidacion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Resumen de liquidaci&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Resumen de liquidación"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintResumenLiquidacionActionPerformed"/>
@@ -456,7 +456,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintIGICItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relaci&#xf3;n de I.G.I.C."/>
+                <Property name="text" type="java.lang.String" value="Relación de I.G.I.C."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintIGICItemActionPerformed"/>
@@ -464,7 +464,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintIRPFItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relaci&#xf3;n de I.R.P.F."/>
+                <Property name="text" type="java.lang.String" value="Relación de I.R.P.F."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintIRPFItemActionPerformed"/>
@@ -472,7 +472,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintFacturaLiquidacionRetornoItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Facturas de liquidaci&#xf3;n Retorno"/>
+                <Property name="text" type="java.lang.String" value="Facturas de liquidación Retorno"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintFacturaLiquidacionRetornoItemActionPerformed"/>
@@ -500,7 +500,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintControlProduccionZonasMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Control de producci&#xf3;n por zonas"/>
+                <Property name="text" type="java.lang.String" value="Control de producción por zonas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintControlProduccionZonasMenuItemActionPerformed"/>
@@ -534,7 +534,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintListadoNominas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listado de n&#xf3;minas"/>
+                <Property name="text" type="java.lang.String" value="Listado de nóminas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintListadoNominasActionPerformed"/>
@@ -596,7 +596,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ImportarValesMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Importaci&#xf3;n de vales"/>
+                <Property name="text" type="java.lang.String" value="Importación de vales"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ImportarValesMenuItemActionPerformed"/>
@@ -604,7 +604,7 @@
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="ContabilizarMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Contabilizaci&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Contabilización"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="ContaLiquidacionesMenuItem">
@@ -695,7 +695,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagesPackage/Salir.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Salir de la aplicaci&#xf3;n"/>
+            <Property name="toolTipText" type="java.lang.String" value="Salir de la aplicación"/>
             <Property name="borderPainted" type="boolean" value="true"/>
           </Properties>
           <Events>

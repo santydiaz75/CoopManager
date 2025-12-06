@@ -110,7 +110,7 @@ public class FrmContaLiquidaciones extends javax.swing.JInternalFrame {
 			headerData.add("Concepto");
 			headerData.add("Debe=1;Haber=2");
 			headerData.add("Importe");
-			headerData.add("Número diario");
+			headerData.add("Nï¿½mero diario");
 
 			Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
 
@@ -233,7 +233,7 @@ public class FrmContaLiquidaciones extends javax.swing.JInternalFrame {
 						EntityType.ShortTextWidth);
 				tblResult.getColumn("Importe").setPreferredWidth(
 						EntityType.NumberWidth);
-				tblResult.getColumn("Número diario").setPreferredWidth(
+				tblResult.getColumn("Nï¿½mero diario").setPreferredWidth(
 						EntityType.ShortTextWidth);
 
 				txtTotalDebe.setValue(totalDebe);
@@ -263,7 +263,7 @@ public class FrmContaLiquidaciones extends javax.swing.JInternalFrame {
 					txtMes.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtMes.requestFocus();
 					return (false);
 				}
@@ -310,7 +310,7 @@ public class FrmContaLiquidaciones extends javax.swing.JInternalFrame {
 		lblCuentaRappel = new javax.swing.JLabel();
 		txtCuentaRappel = new javax.swing.JTextField();
 
-		setTitle("Contabilizaci\u00f3n de liquidaciones");
+		setTitle("Contabilización de liquidaciones");
 
 		pnlData.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -392,7 +392,7 @@ public class FrmContaLiquidaciones extends javax.swing.JInternalFrame {
 		lblMes.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblMes.setForeground(new java.awt.Color(255, 0, 0));
 		lblMes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblMes.setText("Mes de liquidaci\u00f3n");
+		lblMes.setText("Mes de liquidaciï¿½n");
 
 		txtMes.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));

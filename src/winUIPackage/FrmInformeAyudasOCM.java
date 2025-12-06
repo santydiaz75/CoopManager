@@ -82,7 +82,7 @@ public class FrmInformeAyudasOCM extends javax.swing.JDialog {
 					txtSemanaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-						"El tipo de datos indicado no es válido.");
+						"El tipo de datos indicado no es vï¿½lido.");
 					txtSemanaDesde.requestFocus();
 					return (false);
 				}
@@ -98,7 +98,7 @@ public class FrmInformeAyudasOCM extends javax.swing.JDialog {
 					txtSemanaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-						"El tipo de datos indicado no es válido.");
+						"El tipo de datos indicado no es vï¿½lido.");
 					txtSemanaHasta.requestFocus();
 					return (false);
 				}

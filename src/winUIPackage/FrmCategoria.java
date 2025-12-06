@@ -253,21 +253,21 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtIdCategoria.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vÃ¯�lido.");
 					txtIdCategoria.requestFocus();
 					return (false);
 				}
 				if (entity.CategoriaFindByIdCategoria(this,
 						((Number) txtIdCategoria.getValue()).intValue()) != null) {
 					Message.ShowValidateMessage(pnlData,
-							"El c�digo de categor�a especificado ya existe.");
+							"El cÃ¯�digo de categorÃ¯�a especificado ya existe.");
 					txtIdCategoria.requestFocus();
 					return (false);
 				}
 			}
 			if (txtNombreCategoria.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un nombre para la categor�a.");
+						"Debe indicar un nombre para la categorÃ¯�a.");
 				txtNombreCategoria.requestFocus();
 				return (false);
 			}
@@ -277,7 +277,7 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtNumKilosCaja.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vÃ¯�lido.");
 					txtNumKilosCaja.requestFocus();
 					return (false);
 				}
@@ -287,7 +287,7 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtIdSubcategoria.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vÃ¯�lido.");
 					txtIdSubcategoria.requestFocus();
 					return (false);
 				}
@@ -297,7 +297,7 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtOrden.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vÃ¯�lido.");
 					txtOrden.requestFocus();
 					return (false);
 				}
@@ -307,7 +307,7 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtIdGrupo.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vÃ¯�lido.");
 					txtIdGrupo.requestFocus();
 					return (false);
 				}
@@ -405,12 +405,12 @@ public class FrmCategoria extends javax.swing.JPanel {
         lblIdCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblIdCategoria.setForeground(new java.awt.Color(255, 0, 0));
         lblIdCategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblIdCategoria.setText("Id categor�a");
+        lblIdCategoria.setText("Id categorÃ¯�a");
 
         lblNombreCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNombreCategoria.setForeground(new java.awt.Color(255, 0, 0));
         lblNombreCategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNombreCategoria.setText("Descripci�n");
+        lblNombreCategoria.setText("DescripciÃ¯�n");
 
         txtNombreCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombreCategoria.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -425,11 +425,11 @@ public class FrmCategoria extends javax.swing.JPanel {
 
         lblNumKilosCaja.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNumKilosCaja.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNumKilosCaja.setText("N� kilos caja");
+        lblNumKilosCaja.setText("NÃ¯�kilos caja");
 
         lblIdSubcategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblIdSubcategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblIdSubcategoria.setText("Subcategor�a");
+        lblIdSubcategoria.setText("SubcategorÃ¯�a");
 
         cboSubcategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cboSubcategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

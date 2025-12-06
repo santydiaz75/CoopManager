@@ -30,6 +30,18 @@ public final class Launcher {
   */
   public static void main (String... aArgs) {
     
+    // Configurar UTF-8 y locale español
+    System.setProperty("file.encoding", "UTF-8");
+    System.setProperty("user.language", "es");
+    System.setProperty("user.country", "ES");
+    
+    // Configurar Swing para UTF-8
+    try {
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
+      // Si falla, usar el look and feel por defecto
+    }
+    
     /*
     * Implementation Note:
     *

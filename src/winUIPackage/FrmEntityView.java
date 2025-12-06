@@ -1499,7 +1499,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		try {
 			Object[] botones = { "Si", "No" };
 			int respuestavalue = JOptionPane.showOptionDialog(null,
-					"Se va a eliminar el registro seleccionado, ¿está seguro?",
+					"Se va a eliminar el registro seleccionado, ï¿½estï¿½seguro?",
 					"", JOptionPane.DEFAULT_OPTION,
 					JOptionPane.WARNING_MESSAGE, null, botones, botones[0]);
 
@@ -1748,7 +1748,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
                                             newRecord();
                                         }
                                         else {
-                                            Message.ShowValidateMessage(fDetail, "No se puede eliminar el empleado porque tiene nóminas");
+                                            Message.ShowValidateMessage(fDetail, "No se puede eliminar el empleado porque tiene nï¿½minas");
                                         }
 					break;
 				}
@@ -1830,7 +1830,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 
 		btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource(
 				"/imagesPackage/New.png"))); // NOI18N
-		btnAdd.setToolTipText("A\u00f1adir");
+		btnAdd.setToolTipText("Aï¿½adir");
 		btnAdd.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -9,14 +9,14 @@
 
 	<!-- Database connection settings -->
 	<property name="connection.driver_class">
-		com.mysql.cj.jdbc.Driver
+		com.microsoft.sqlserver.jdbc.SQLServerDriver
 	</property>
 
 	<property name="connection.url">
-		jdbc:mysql://127.0.0.1:3306/coopmanagerdb
+		jdbc:sqlserver://SQL6032.site4now.net;databaseName=db_aa764d_coopmanagerdb;trustServerCertificate=true
 	</property>
 
-	<property name="connection.username">coopuser</property>
+	<property name="connection.username">db_aa764d_coopmanagerdb_admin</property>
 
 	<!--		<property name="connection.provider_class">-->
 	<!--      		org.jasypt.hibernate.connectionprovider.EncryptedPasswordDriverManagerConnectionProvider-->
@@ -34,7 +34,7 @@
 	<property name="connection.pool_size">2</property>
 
 	<!-- SQL dialect -->
-	<property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+	<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
 
 	<!-- Enable Hibernate's current session context -->
 	<property name="current_session_context_class">

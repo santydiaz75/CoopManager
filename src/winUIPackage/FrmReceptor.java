@@ -279,7 +279,7 @@ public class FrmReceptor extends javax.swing.JPanel {
 
 		lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblDireccion.setText("Direcci\u00f3n");
+		lblDireccion.setText("Dirección");
 		lblDireccion
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -297,7 +297,7 @@ public class FrmReceptor extends javax.swing.JPanel {
 
 		lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblPoblacion.setText("Poblaci\u00f3n");
+		lblPoblacion.setText("Poblaciï¿½n");
 		lblPoblacion
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -316,7 +316,7 @@ public class FrmReceptor extends javax.swing.JPanel {
 		lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblCodigoPostal
 				.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblCodigoPostal.setText("C\u00f3digo postal");
+		lblCodigoPostal.setText("Código postal");
 		lblCodigoPostal
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -334,7 +334,7 @@ public class FrmReceptor extends javax.swing.JPanel {
 
 		lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblTelefono.setText("Tel\u00e9fono");
+		lblTelefono.setText("Telï¿½fono");
 		lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
 		txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14));

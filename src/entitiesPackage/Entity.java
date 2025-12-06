@@ -216,7 +216,7 @@ public class Entity {
 					Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.LiquidacionDeleteByMes()", he);
 			}
@@ -233,17 +233,17 @@ public class Entity {
 		float baseimponible = 0;
 		Connection conn = null;
 		CallableStatement proc = null;
-	
+
 	   try
 	   {
 		   try 
 	       {
-	        	final String login = "coopuser"; //usuario de acceso a MySQL
+	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.mysql.jdbc.Driver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
-	            String paswworddecrypt = bte.decrypt("lk8Ay3Lex6JXR3rcsUqxI2dQlRKmTq4N");
+	            String paswworddecrypt = "salmadh2010";
 	            conn = DriverManager.getConnection(url,login,paswworddecrypt);
 	       } 
 	       catch (ClassNotFoundException ex) 
@@ -285,12 +285,12 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "coopuser"; //usuario de acceso a MySQL
+	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.mysql.jdbc.Driver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
-	            String paswworddecrypt = bte.decrypt("lk8Ay3Lex6JXR3rcsUqxI2dQlRKmTq4N");
+	            String paswworddecrypt = "salmadh2010";
 	            conn = DriverManager.getConnection(url,login,paswworddecrypt);
 	       } 
 	       catch (ClassNotFoundException ex) 
@@ -331,12 +331,12 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "coopuser"; //usuario de acceso a MySQL
+	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.mysql.jdbc.Driver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
-	            String paswworddecrypt = bte.decrypt("lk8Ay3Lex6JXR3rcsUqxI2dQlRKmTq4N");
+	            String paswworddecrypt = "salmadh2010";
 	            conn = DriverManager.getConnection(url,login,paswworddecrypt);
 	       } 
 	       catch (ClassNotFoundException ex) 
@@ -372,12 +372,12 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "coopuser"; //usuario de acceso a MySQL
+	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.mysql.jdbc.Driver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
-	            String paswworddecrypt = bte.decrypt("lk8Ay3Lex6JXR3rcsUqxI2dQlRKmTq4N");
+	            String paswworddecrypt = "salmadh2010";
 	            conn = DriverManager.getConnection(url,login,paswworddecrypt);
 	       } 
 	       catch (ClassNotFoundException ex) 
@@ -415,12 +415,12 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "coopuser"; //usuario de acceso a MySQL
+	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.mysql.jdbc.Driver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
-	            String paswworddecrypt = bte.decrypt("lk8Ay3Lex6JXR3rcsUqxI2dQlRKmTq4N");
+	            String paswworddecrypt = "salmadh2010";
 	            conn = DriverManager.getConnection(url,login,paswworddecrypt);
 	       } 
 	       catch (ClassNotFoundException ex) 
@@ -466,12 +466,12 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "coopuser"; //usuario de acceso a MySQL
+	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.mysql.jdbc.Driver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
-	            String paswworddecrypt = bte.decrypt("lk8Ay3Lex6JXR3rcsUqxI2dQlRKmTq4N");
+	            String paswworddecrypt = "salmadh2010";
 	            conn = DriverManager.getConnection(url,login,paswworddecrypt);
 	       } 
 	       catch (ClassNotFoundException ex) 
@@ -870,7 +870,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.BancoDelete()", he);
 			}
@@ -980,7 +980,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.BarcoDelete()", he);
 			}
@@ -1018,7 +1018,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.CalendarioDelete()", he);
 			}
@@ -1138,7 +1138,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.BimestreDelete()", he);
 			}
@@ -1295,7 +1295,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.CategoriaDelete()", he);
 			}
@@ -1426,7 +1426,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.ConceptoDelete()", he);
 			}
@@ -1513,7 +1513,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.ConceptoPagoDelete()", he);
 			}
@@ -1603,7 +1603,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.ConductorDelete()", he);
 			}
@@ -1762,7 +1762,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.CosecheroDelete()", he);
 			}
@@ -1834,7 +1834,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.EjercicioDelete()", he);
 			}
@@ -1888,7 +1888,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.EmpleadoDelete()", he);
 			}
@@ -2047,7 +2047,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.EmpresaDelete()", he);
 			}
@@ -2190,7 +2190,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.EntradaDelete()", he);
 			}
@@ -2241,7 +2241,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.FacturaDelete()", he);
 			}
@@ -2281,7 +2281,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.FacturapagoDelete()", he);
 			}
@@ -2431,7 +2431,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.IdentidadDelete()", he);
 			}
@@ -2477,7 +2477,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.PrecioDelete()", he);
 			}
@@ -2675,7 +2675,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.ReceptorDelete()", he);
 			}
@@ -2804,7 +2804,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.TiposgastoDelete()", he);
 			}
@@ -2910,7 +2910,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.TiposcosteDelete()", he);
 			}
@@ -3020,7 +3020,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.VehiculosDelete()", he);
 			}
@@ -3122,7 +3122,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.VentaDelete()", he);
 			}
@@ -3232,7 +3232,7 @@ public class Entity {
 				Message.ShowInformationMessage(parentFrame, "El registro se ha eliminado con �xito.");
 			} catch (HibernateException he) {
 				if (he.getCause().getClass() == java.sql.SQLIntegrityConstraintViolationException.class)
-					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est� usando.");
+					Message.ShowInformationMessage(parentFrame, "El registro no se puede eliminar porque se est�usando.");
 				else
 					Message.ShowHibernateError(parentFrame, "Entity.ZonasDelete()", he);
 			}

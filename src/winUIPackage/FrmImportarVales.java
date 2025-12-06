@@ -79,7 +79,7 @@ public class FrmImportarVales extends javax.swing.JDialog {
 		txtFile = new javax.swing.JTextField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Importaci\u00f3n de vales");
+		setTitle("Importaci�n de vales");
 		setResizable(false);
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
@@ -99,7 +99,7 @@ public class FrmImportarVales extends javax.swing.JDialog {
 		lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblApellidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 		lblApellidos
-				.setText("A continuaci\u00f3n se importar\u00e1n los vales del fichero especificado");
+				.setText("A continuaci�n se importar�n los vales del fichero especificado");
 		lblApellidos
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 

@@ -891,7 +891,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 				if (entity.CosecheroFindByIdCosechero(this,
 						((Number) txtIdCosechero.getValue()).intValue()) != null) {
 					Message.ShowValidateMessage(pnlData,
-							"El cï¿½digo de cosechero especificado ya existe.");
+							"El Cï¿½digo de cosechero especificado ya existe.");
 					TabCosechero.setSelectedIndex(0);
 					txtIdCosechero.requestFocus();
 					return (false);
@@ -974,7 +974,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 					if (tblParcelas.getValueAt(actualrow,
 							ParcelasTableModel.columnPoligono).equals("")) {
 						Message.ShowValidateMessage(tblParcelas,
-								"Debe indicar el polï¿½gono.");
+								"Debe indicar el Polï¿½gono.");
 						tblParcelas
 								.changeSelection(tblParcelas.getSelectedRow(),
 										ParcelasTableModel.columnPoligono,
@@ -1209,7 +1209,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 
         lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDireccion.setText("Direcciï¿½n");
+        lblDireccion.setText("Dirección");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

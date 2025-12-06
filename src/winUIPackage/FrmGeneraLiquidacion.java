@@ -171,7 +171,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 		progressbar = new javax.swing.JProgressBar();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Generaci\u00f3n de liquidaciones");
+		setTitle("Generaci�n de liquidaciones");
 		setResizable(false);
 
 		lblSemanaDesde.setFont(new java.awt.Font("Segoe UI", 1, 14));
@@ -237,7 +237,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 		lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblFecha.setForeground(new java.awt.Color(255, 0, 0));
 		lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblFecha.setText("Fecha de liquidaci\u00f3n");
+		lblFecha.setText("Fecha de liquidaci�n");
 
 		txtFecha.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -591,7 +591,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 				int respuestavalue = JOptionPane
 						.showOptionDialog(
 								null,
-								"La liquidaci�n para el mes indicado ya ha sido generada, �est� seguro de volver a generarla?",
+								"La liquidaci�n para el mes indicado ya ha sido generada, �est�seguro de volver a generarla?",
 								"", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.WARNING_MESSAGE, null, botones,
 								botones[0]);

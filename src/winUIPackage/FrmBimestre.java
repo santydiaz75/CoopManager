@@ -203,7 +203,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 					txtBimestre.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vÃ¯�lido.");
 					txtBimestre.requestFocus();
 					return (false);
 				}
@@ -211,7 +211,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 
 			if (txtDescripcion.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar una descripci�n.");
+						"Debe indicar una descripciÃ¯�n.");
 				txtDescripcion.requestFocus();
 				return (false);
 			}
@@ -221,7 +221,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 					txtDesdeFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vÃ¯�lido.");
 					txtDesdeFecha.requestFocus();
 					return (false);
 				}
@@ -232,7 +232,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 					txtHastaFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vÃ¯�lido.");
 					txtHastaFecha.requestFocus();
 					return (false);
 				}
@@ -271,7 +271,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 		lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblAno.setForeground(new java.awt.Color(255, 0, 0));
 		lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblAno.setText("A\u00f1o");
+		lblAno.setText("A�o");
 
 		lblBimestre.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblBimestre.setForeground(new java.awt.Color(255, 0, 0));
@@ -370,7 +370,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 		lblDescripcion.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblDescripcion.setForeground(new java.awt.Color(255, 0, 0));
 		lblDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblDescripcion.setText("Descripci\u00f3n");
+		lblDescripcion.setText("Descripci�n");
 
 		txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14));
 		txtDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);

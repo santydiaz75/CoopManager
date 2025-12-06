@@ -147,7 +147,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			columns.add(new ColumnData("Duracion", "Duraciï¿½n",
 					EntityType.TextWidth, SwingConstants.LEFT, NormalType,
 					null, null));
-			columns.add(new ColumnData("ImporteLiquidacion", "Liquidaciï¿½n",
+			columns.add(new ColumnData("ImporteLiquidacion", "liquidaciï¿½n",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteLiquidacion, "#,##0.00"));
 			columns.add(new ColumnData("ImporteIrpf", "Irpf",
@@ -2945,7 +2945,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblVacaciones.getValueAt(actualrow,
 							VacacionesTableModel.columnNumDias).equals("")) {
 						Message.ShowValidateMessage(tblVacaciones,
-								"Debe indicar un nï¿½mero de dï¿½as.");
+								"Debe indicar un Nï¿½mero de dï¿½as.");
 						tblVacaciones.changeSelection(tblVacaciones
 								.getSelectedRow(),
 								VacacionesTableModel.columnNumDias, false,
@@ -3442,7 +3442,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDireccion.setText("Direcciï¿½n");
+        lblDireccion.setText("Dirección");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

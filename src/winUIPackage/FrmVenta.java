@@ -969,7 +969,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnIdCategoria).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un categor�a.");
+								"Debe indicar una categor�a.");
 						tblDetalle.changeSelection(actualrow,
 								DetalleTableModel.columnIdCategoria, false,
 								false);
@@ -981,7 +981,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnNumKilos).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un n�mero de kilos.");
+								"Debe indicar un N�mero de kilos.");
 						tblDetalle.changeSelection(tblDetalle.getSelectedRow(),
 								DetalleTableModel.columnNumKilos, false, false);
 						tblDetalle.editCellAt(actualrow,
@@ -992,7 +992,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnNumCajas).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un n�mero de cajas.");
+								"Debe indicar un N�mero de cajas.");
 						tblDetalle.changeSelection(tblDetalle.getSelectedRow(),
 								DetalleTableModel.columnNumCajas, false, false);
 						tblDetalle.editCellAt(actualrow,
@@ -1456,7 +1456,7 @@ public class FrmVenta extends javax.swing.JPanel {
 		});
 
 		cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeselectAll.setText("Quitar selecci\u00f3n");
+		cmdDeselectAll.setText("Quitar selecci�n");
 		cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
 		cmdDeselectAll.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1467,8 +1467,8 @@ public class FrmVenta extends javax.swing.JPanel {
 		});
 
 		cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeleteLinea.setText("Eliminar l\u00ednea");
-		cmdDeleteLinea.setToolTipText("Eliminar las l\u00edneas seleccionados");
+		cmdDeleteLinea.setText("Eliminar l�nea");
+		cmdDeleteLinea.setToolTipText("Eliminar las l�neas seleccionados");
 		cmdDeleteLinea.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		cmdDeleteLinea.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1500,7 +1500,7 @@ public class FrmVenta extends javax.swing.JPanel {
 		lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblAno.setForeground(new java.awt.Color(255, 0, 0));
 		lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblAno.setText("A\u00f1o");
+		lblAno.setText("A�o");
 
 		txtAno.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));

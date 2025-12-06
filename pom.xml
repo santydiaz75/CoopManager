@@ -16,9 +16,9 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>5.6.15.Final</hibernate.version>
-        <mysql.version>9.0.0</mysql.version>
+        <sqlserver.version>12.8.1.jre11</sqlserver.version>
         <jasperreports.version>6.21.3</jasperreports.version>
         <jasypt.version>1.9.3</jasypt.version>
         <commons-logging.version>1.3.3</commons-logging.version>
@@ -36,11 +36,11 @@
             <version>${hibernate.version}</version>
         </dependency>
         
-        <!-- MySQL Connector -->
+        <!-- SQL Server Connector -->
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>${mysql.version}</version>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>${sqlserver.version}</version>
         </dependency>
         
         <!-- JasperReports -->

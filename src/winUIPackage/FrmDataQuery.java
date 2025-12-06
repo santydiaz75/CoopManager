@@ -1,9 +1,3 @@
-/*
- * prueba.java
- *
- * Created on __DATE__, __TIME__
- */
-
 package winUIPackage;
 
 import java.awt.AWTKeyStroke;
@@ -279,7 +273,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 			headerDataEntradas.add("Cosechero");
 			headerDataEntradas.add("Semana");
 			headerDataEntradas.add("Fecha");
-			headerDataEntradas.add("Piñas");
+			headerDataEntradas.add("Piï¿½as");
 			headerDataEntradas.add("Kilos");
 
 			Vector<Vector<Object>> tableDataEntradas = new Vector<Vector<Object>>();
@@ -343,18 +337,18 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 						EntityType.NumberWidth);
 				tblEntradas.getColumn("Fecha").setPreferredWidth(
 						EntityType.DateWidth);
-				tblEntradas.getColumn("Piñas").setPreferredWidth(
+				tblEntradas.getColumn("Piï¿½as").setPreferredWidth(
 						EntityType.NumberWidth);
 				tblEntradas.getColumn("Kilos").setPreferredWidth(
 						EntityType.NumberWidth);
-				tblEntradas.getColumn("Piñas").setPreferredWidth(
+				tblEntradas.getColumn("Piï¿½as").setPreferredWidth(
 						EntityType.NumberWidth);
 				tblEntradas.getColumn("Kilos").setPreferredWidth(
 						EntityType.NumberWidth);
 				DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
 				rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
 				tblEntradas.getColumn("Semana").setCellRenderer(rightRenderer);
-				tblEntradas.getColumn("Piñas").setCellRenderer(rightRenderer);
+				tblEntradas.getColumn("Piï¿½as").setCellRenderer(rightRenderer);
 				tblEntradas.getColumn("Kilos").setCellRenderer(rightRenderer);
 
 				txtTotalKilosEntradas.setValue(totalKilos);
@@ -364,7 +358,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 			}
 
 			Vector<String> headerDataEntCategorias = new Vector<String>();
-			headerDataEntCategorias.add("Categorías");
+			headerDataEntCategorias.add("Categorï¿½as");
 			headerDataEntCategorias.add("Kilos");
 			headerDataEntCategorias.add("Porcentaje");
 
@@ -478,7 +472,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 
 				tblEntCategorias.setModel(new MyViewTableModel(
 						tableDataEntCategorias, headerDataEntCategorias));
-				tblEntCategorias.getColumn("Categorías").setPreferredWidth(
+				tblEntCategorias.getColumn("Categorï¿½as").setPreferredWidth(
 						EntityType.TextWidth);
 				tblEntCategorias.getColumn("Kilos").setPreferredWidth(
 						EntityType.NumberWidth);
@@ -627,7 +621,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 			}
 
 			Vector<String> headerDataVenCategorias = new Vector<String>();
-			headerDataVenCategorias.add("Categorías");
+			headerDataVenCategorias.add("Categorï¿½as");
 			headerDataVenCategorias.add("Cajas");
 			headerDataVenCategorias.add("Kilos");
 			headerDataVenCategorias.add("Importe");
@@ -788,7 +782,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 				}
 				tblVenCategorias.setModel(new MyViewTableModel(
 						tableDataVenCategorias, headerDataVenCategorias));
-				tblVenCategorias.getColumn("Categorías").setPreferredWidth(
+				tblVenCategorias.getColumn("Categorï¿½as").setPreferredWidth(
 						EntityType.TextWidth);
 				tblVenCategorias.getColumn("Kilos").setPreferredWidth(
 						EntityType.NumberWidth);
@@ -994,7 +988,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		lblTotalPinasEntradas.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblTotalPinasEntradas
 				.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblTotalPinasEntradas.setText("Total pi\u00f1as");
+		lblTotalPinasEntradas.setText("Total piï¿½as");
 
 		txtTotalPinasEntradas.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1010,7 +1004,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		lblKilosvsPinas.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblKilosvsPinas
 				.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblKilosvsPinas.setText("Kilos/Pi\u00f1as");
+		lblKilosvsPinas.setText("Kilos/Piï¿½as");
 
 		txtKilosvsPinas.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));

@@ -1,191 +1,191 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ControlESAlmacen" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="7" bottomMargin="7">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<parameter name="Empresa" class="java.lang.Integer"/>
-	<parameter name="Ejercicio" class="java.lang.Integer"/>
-	<parameter name="ZonaDesde" class="java.lang.Integer"/>
-	<parameter name="ZonaHasta" class="java.lang.Integer"/>
-	<parameter name="LOGO1_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["D:\\Informatica\\Desarrollo\\GestCoop\\src\\reportsPackage\\AnagramaAsprocan.jpg"]]></defaultValueExpression>
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='ControlESAlmacen' language='groovy' pageWidth='595' pageHeight='842' columnWidth='555' leftMargin='20' rightMargin='20' topMargin='7' bottomMargin='7'>
+	<property name='ireport.zoom' value='1.0'/>
+	<property name='ireport.x' value='0'/>
+	<property name='ireport.y' value='0'/>
+	<style name='Title' forecolor='#FFFFFF' fontName='Arial' fontSize='26' isBold='true' pdfFontName='Helvetica-Bold'/>
+	<style name='SubTitle' forecolor='#666666' fontName='Arial' fontSize='18'/>
+	<style name='Column header' forecolor='#666666' fontName='Arial' fontSize='12' isBold='true'/>
+	<style name='Detail' fontName='Arial' fontSize='12'/>
+	<parameter name='Empresa' class='java.lang.Integer'/>
+	<parameter name='Ejercicio' class='java.lang.Integer'/>
+	<parameter name='ZonaDesde' class='java.lang.Integer'/>
+	<parameter name='ZonaHasta' class='java.lang.Integer'/>
+	<parameter name='LOGO1_DIR' class='java.lang.String' isForPrompting='false'>
+		<defaultValueExpression><![CDATA['D:\\Informatica\\Desarrollo\\GestCoop\\src\\reportsPackage\\AnagramaAsprocan.jpg']]></defaultValueExpression>
 	</parameter>
-	<parameter name="LOGO2_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["D:\\Informatica\\Desarrollo\\GestCoop\\src\\reportsPackage\\AnagramaAgriten.jpg"]]></defaultValueExpression>
+	<parameter name='LOGO2_DIR' class='java.lang.String' isForPrompting='false'>
+		<defaultValueExpression><![CDATA['D:\\Informatica\\Desarrollo\\GestCoop\\src\\reportsPackage\\AnagramaAgriten.jpg']]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT ec.IdZona, z.NombreZona, month(ec.Fecha) as mes, m.NombreMes,
-coalesce(`coopmanagerdb`.EntradasKilosMesZona($P{Empresa}, $P{Ejercicio}, month(ec.Fecha), ec.IdZona),0) as Kilos,
-coalesce(`coopmanagerdb`.EntradasNumPinasMesZona($P{Empresa}, $P{Ejercicio}, month(ec.Fecha), ec.IdZona),0) as NumPinas,
-coalesce(`coopmanagerdb`.EntradasKilosMesZona($P{Empresa}, $P{Ejercicio}, month(ec.Fecha), ec.IdZona),0) / coalesce(`coopmanagerdb`.EntradasNumPinasMesZona($P{Empresa}, $P{Ejercicio}, month(ec.Fecha), ec.IdZona),0) as Promedio
-FROM `coopmanagerdb`.`entradascabecera` ec inner join `coopmanagerdb`.`meses` m on month(ec.fecha) = m.mes inner join `coopmanagerdb`.`zonas` z on ec.ejercicio = z.ejercicio and ec.empresa = z.empresa and EC.IdZona = Z.IdZona
+		<![CDATA[SELECT ec.IdZona, z.NombreZona, DATEPART(MONTH, ec.Fecha) as mes, m.NombreMes,
+coalesce([db_aa764d_coopmanagerdb].[dbo].[EntradasKilosMesZona]($P{Empresa}, $P{Ejercicio}, DATEPART(MONTH, ec.Fecha), ec.IdZona),0) as Kilos,
+coalesce([db_aa764d_coopmanagerdb].[dbo].[EntradasNumPinasMesZona]($P{Empresa}, $P{Ejercicio}, DATEPART(MONTH, ec.Fecha), ec.IdZona),0) as NumPinas,
+coalesce([db_aa764d_coopmanagerdb].[dbo].[EntradasKilosMesZona]($P{Empresa}, $P{Ejercicio}, DATEPART(MONTH, ec.Fecha), ec.IdZona),0) / coalesce([db_aa764d_coopmanagerdb].[dbo].[EntradasNumPinasMesZona]($P{Empresa}, $P{Ejercicio}, DATEPART(MONTH, ec.Fecha), ec.IdZona),0) as Promedio
+FROM [db_aa764d_coopmanagerdb].[dbo].[entradascabecera] ec inner join [db_aa764d_coopmanagerdb].[dbo].[meses] m on DATEPART(MONTH, ec.fecha) = m.mes inner join [db_aa764d_coopmanagerdb].[dbo].[zonas] z on ec.ejercicio = z.ejercicio and ec.empresa = z.empresa and EC.IdZona = Z.IdZona
 where ec.ejercicio = $P{Ejercicio} and ec.empresa = $P{Empresa} and ec.IdZona >= $P{ZonaDesde} and ec.IdZona <= $P{ZonaHasta}
-group by ec.IdZona, z.NombreZona, month(ec.Fecha), m.NombreMes
-order by ec.IdZona, month(ec.fecha);]]>
+group by ec.IdZona, z.NombreZona, DATEPART(MONTH, ec.Fecha), m.NombreMes
+order by ec.IdZona, DATEPART(MONTH, ec.fecha);]]>
 	</queryString>
-	<field name="IdZona" class="java.lang.Integer"/>
-	<field name="NombreZona" class="java.lang.String"/>
-	<field name="mes" class="java.lang.Long"/>
-	<field name="NombreMes" class="java.lang.String"/>
-	<field name="Kilos" class="java.lang.Float"/>
-	<field name="NumPinas" class="java.lang.Float"/>
-	<field name="Promedio" class="java.lang.Double"/>
-	<variable name="Kilos_1" class="java.lang.Float" resetType="Group" resetGroup="zona" calculation="Sum">
+	<field name='IdZona' class='java.lang.Integer'/>
+	<field name='NombreZona' class='java.lang.String'/>
+	<field name='mes' class='java.lang.Long'/>
+	<field name='NombreMes' class='java.lang.String'/>
+	<field name='Kilos' class='java.lang.Float'/>
+	<field name='NumPinas' class='java.lang.Float'/>
+	<field name='Promedio' class='java.lang.Double'/>
+	<variable name='Kilos_1' class='java.lang.Float' resetType='Group' resetGroup='zona' calculation='Sum'>
 		<variableExpression><![CDATA[$F{Kilos}]]></variableExpression>
 	</variable>
-	<variable name="NumPinas_1" class="java.lang.Float" resetType="Group" resetGroup="zona" calculation="Sum">
+	<variable name='NumPinas_1' class='java.lang.Float' resetType='Group' resetGroup='zona' calculation='Sum'>
 		<variableExpression><![CDATA[$F{NumPinas}]]></variableExpression>
 	</variable>
-	<variable name="Promedio_1" class="java.lang.Double">
+	<variable name='Promedio_1' class='java.lang.Double'>
 		<variableExpression><![CDATA[$V{Kilos_1}/$V{NumPinas_1}]]></variableExpression>
 	</variable>
-	<group name="zona" isStartNewPage="true">
+	<group name='zona' isStartNewPage='true'>
 		<groupExpression><![CDATA[$F{IdZona}]]></groupExpression>
 		<groupHeader>
-			<band height="193">
+			<band height='193'>
 				<rectangle>
-					<reportElement x="1" y="178" width="403" height="15"/>
+					<reportElement x='1' y='178' width='403' height='15'/>
 				</rectangle>
 				<staticText>
-					<reportElement style="Column header" x="11" y="105" width="293" height="19"/>
-					<textElement textAlignment="Center">
-						<font fontName="Tahoma" size="14" isUnderline="false"/>
+					<reportElement style='Column header' x='11' y='105' width='293' height='19'/>
+					<textElement textAlignment='Center'>
+						<font fontName='Tahoma' size='14' isUnderline='false'/>
 					</textElement>
-					<text><![CDATA[CONTROL DE PRODUCCIÃ“N POR ZONAS]]></text>
+					<text><![CDATA[CONTROL DE PRODUCCIÓN POR [db_aa764d_coopmanagerdb].[dbo].[zonas]]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="19" y="135" width="69" height="15"/>
+					<reportElement style='Column header' x='19' y='135' width='69' height='15'/>
 					<textElement>
-						<font fontName="Tahoma"/>
+						<font fontName='Tahoma'/>
 					</textElement>
 					<text><![CDATA[ZONA:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="88" y="135" width="255" height="15"/>
+					<reportElement x='88' y='135' width='255' height='15'/>
 					<textElement>
-						<font fontName="Tahoma" size="12"/>
+						<font fontName='Tahoma' size='12'/>
 					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{NombreZona}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.String'><![CDATA[$F{NombreZona}]]></textFieldExpression>
 				</textField>
 				<image>
-					<reportElement x="11" y="12" width="224" height="80"/>
-					<imageExpression class="java.lang.String"><![CDATA[$P{LOGO1_DIR}]]></imageExpression>
+					<reportElement x='11' y='12' width='224' height='80'/>
+					<imageExpression class='java.lang.String'><![CDATA[$P{LOGO1_DIR}]]></imageExpression>
 				</image>
 				<staticText>
-					<reportElement style="Column header" x="1" y="178" width="90" height="15"/>
-					<textElement textAlignment="Center">
-						<font fontName="Tahoma" size="10"/>
+					<reportElement style='Column header' x='1' y='178' width='90' height='15'/>
+					<textElement textAlignment='Center'>
+						<font fontName='Tahoma' size='10'/>
 					</textElement>
 					<text><![CDATA[MES]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="101" y="178" width="80" height="15"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="10"/>
+					<reportElement style='Column header' x='101' y='178' width='80' height='15'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='10'/>
 					</textElement>
 					<text><![CDATA[KILOS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="187" y="178" width="90" height="15"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="10"/>
+					<reportElement style='Column header' x='187' y='178' width='90' height='15'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='10'/>
 					</textElement>
-					<text><![CDATA[NÂº PIÃ‘AS]]></text>
+					<text><![CDATA[Nº PIÑAS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="289" y="178" width="115" height="15"/>
-					<textElement textAlignment="Center">
-						<font fontName="Tahoma" size="10"/>
+					<reportElement style='Column header' x='289' y='178' width='115' height='15'/>
+					<textElement textAlignment='Center'>
+						<font fontName='Tahoma' size='10'/>
 					</textElement>
-					<text><![CDATA[PROMEDIO/PIÃ‘A]]></text>
+					<text><![CDATA[PROMEDIO/PIÑA]]></text>
 				</staticText>
 				<image>
-					<reportElement x="325" y="12" width="224" height="80"/>
-					<imageExpression class="java.lang.String"><![CDATA[$P{LOGO2_DIR}]]></imageExpression>
+					<reportElement x='325' y='12' width='224' height='80'/>
+					<imageExpression class='java.lang.String'><![CDATA[$P{LOGO2_DIR}]]></imageExpression>
 				</image>
-				<textField pattern="#,##0">
-					<reportElement x="304" y="105" width="100" height="20" forecolor="#666666"/>
+				<textField pattern='#,##0'>
+					<reportElement x='304' y='105' width='100' height='20' forecolor='#666666'/>
 					<textElement>
-						<font fontName="Tahoma" size="14" isBold="true"/>
+						<font fontName='Tahoma' size='14' isBold='true'/>
 					</textElement>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[$P{Ejercicio}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.Integer'><![CDATA[$P{Ejercicio}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="72">
+			<band height='72'>
 				<rectangle>
-					<reportElement x="1" y="0" width="403" height="19"/>
+					<reportElement x='1' y='0' width='403' height='19'/>
 				</rectangle>
 				<staticText>
-					<reportElement style="Column header" x="3" y="4" width="85" height="15"/>
+					<reportElement style='Column header' x='3' y='4' width='85' height='15'/>
 					<textElement>
-						<font fontName="Tahoma" size="12"/>
+						<font fontName='Tahoma' size='12'/>
 					</textElement>
-					<text><![CDATA[TOTAL AÃ‘O]]></text>
+					<text><![CDATA[TOTAL AÑO]]></text>
 				</staticText>
-				<textField pattern="#,##0">
-					<reportElement x="101" y="4" width="80" height="15"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="12"/>
+				<textField pattern='#,##0'>
+					<reportElement x='101' y='4' width='80' height='15'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='12'/>
 					</textElement>
-					<textFieldExpression class="java.lang.Float"><![CDATA[$V{Kilos_1}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.Float'><![CDATA[$V{Kilos_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0">
-					<reportElement x="189" y="4" width="88" height="15"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="12"/>
+				<textField pattern='#,##0'>
+					<reportElement x='189' y='4' width='88' height='15'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='12'/>
 					</textElement>
-					<textFieldExpression class="java.lang.Float"><![CDATA[$V{NumPinas_1}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.Float'><![CDATA[$V{NumPinas_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="###0.00">
-					<reportElement x="304" y="4" width="70" height="15"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="12"/>
+				<textField pattern='###0.00'>
+					<reportElement x='304' y='4' width='70' height='15'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='12'/>
 					</textElement>
-					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Promedio_1}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.Double'><![CDATA[$V{Promedio_1}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
 	</group>
-	<group name="meses">
+	<group name='meses'>
 		<groupExpression><![CDATA[$F{mes}]]></groupExpression>
 		<groupHeader>
-			<band height="15">
+			<band height='15'>
 				<rectangle>
-					<reportElement x="1" y="0" width="403" height="15"/>
+					<reportElement x='1' y='0' width='403' height='15'/>
 				</rectangle>
-				<textField isBlankWhenNull="true">
-					<reportElement x="1" y="0" width="90" height="15"/>
+				<textField isBlankWhenNull='true'>
+					<reportElement x='1' y='0' width='90' height='15'/>
 					<textElement>
-						<font fontName="Tahoma" size="10"/>
+						<font fontName='Tahoma' size='10'/>
 					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{NombreMes}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.String'><![CDATA[$F{NombreMes}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0" isBlankWhenNull="true">
-					<reportElement x="187" y="0" width="90" height="15"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="10"/>
+				<textField pattern='#,##0' isBlankWhenNull='true'>
+					<reportElement x='187' y='0' width='90' height='15'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='10'/>
 					</textElement>
-					<textFieldExpression class="java.lang.Float"><![CDATA[$F{NumPinas}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.Float'><![CDATA[$F{NumPinas}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0">
-					<reportElement x="101" y="0" width="80" height="15"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma"/>
+				<textField pattern='#,##0'>
+					<reportElement x='101' y='0' width='80' height='15'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma'/>
 					</textElement>
-					<textFieldExpression class="java.lang.Float"><![CDATA[$F{Kilos}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.Float'><![CDATA[$F{Kilos}]]></textFieldExpression>
 				</textField>
-				<textField pattern="###0.00">
-					<reportElement x="289" y="0" width="85" height="15"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma"/>
+				<textField pattern='###0.00'>
+					<reportElement x='289' y='0' width='85' height='15'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma'/>
 					</textElement>
-					<textFieldExpression class="java.lang.Double"><![CDATA[$F{Promedio}]]></textFieldExpression>
+					<textFieldExpression class='java.lang.Double'><![CDATA[$F{Promedio}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -194,31 +194,36 @@ order by ec.IdZona, month(ec.fecha);]]>
 		</groupFooter>
 	</group>
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</background>
 	<detail>
 		<band/>
 	</detail>
 	<pageFooter>
-		<band height="13" splitType="Stretch">
+		<band height='13' splitType='Stretch'>
 			<textField>
-				<reportElement mode="Opaque" x="1" y="0" width="513" height="13" backcolor="#E6E6E6"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA["PÃ¡gina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<reportElement mode='Opaque' x='1' y='0' width='513' height='13' backcolor='#E6E6E6'/>
+				<textElement textAlignment='Right'/>
+				<textFieldExpression class='java.lang.String'><![CDATA['Página '+$V{PAGE_NUMBER}+' de']]></textFieldExpression>
 			</textField>
-			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="514" y="0" width="40" height="13" backcolor="#E6E6E6"/>
+			<textField evaluationTime='Report'>
+				<reportElement mode='Opaque' x='514' y='0' width='40' height='13' backcolor='#E6E6E6'/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression class='java.lang.String'><![CDATA[' ' + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="1" y="0" width="423" height="13"/>
+			<textField pattern='EEEEE dd MMMMM yyyy'>
+				<reportElement x='1' y='0' width='423' height='13'/>
 				<textElement/>
-				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression class='java.util.Date'><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</summary>
 </jasperReport>
+
+
+
+
+

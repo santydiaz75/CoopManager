@@ -1,124 +1,125 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturaLiquidacionConCopia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="7" bottomMargin="7">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="377"/>
-	<parameter name="Empresa" class="java.lang.Integer"/>
-	<parameter name="Ejercicio" class="java.lang.Integer"/>
-	<parameter name="Mes" class="java.lang.Integer"/>
-	<parameter name="SemanaDesde" class="java.lang.Integer"/>
-	<parameter name="SemanaHasta" class="java.lang.Integer"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String">
-		<defaultValueExpression><![CDATA["D:\\Informatica\\Desarrollo\\GestCoop\\src\\reportsPackage\\"]]></defaultValueExpression>
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='FacturaLiquidacionConCopia' language='groovy' pageWidth='595' pageHeight='842' columnWidth='555' leftMargin='20' rightMargin='20' topMargin='7' bottomMargin='7'>
+	<property name='ireport.zoom' value='1.0'/>
+	<property name='ireport.x' value='0'/>
+	<property name='ireport.y' value='377'/>
+	<parameter name='Empresa' class='java.lang.Integer'/>
+	<parameter name='Ejercicio' class='java.lang.Integer'/>
+	<parameter name='Mes' class='java.lang.Integer'/>
+	<parameter name='SemanaDesde' class='java.lang.Integer'/>
+	<parameter name='SemanaHasta' class='java.lang.Integer'/>
+	<parameter name='SUBREPORT_DIR' class='java.lang.String'>
+		<defaultValueExpression><![CDATA['D:\\Informatica\\Desarrollo\\GestCoop\\src\\reportsPackage\\']]></defaultValueExpression>
 	</parameter>
-	<parameter name="FechaDesde" class="java.util.Date"/>
-	<parameter name="FechaHasta" class="java.util.Date"/>
-	<parameter name="NumeroFacturaDesde" class="java.lang.Integer">
+	<parameter name='FechaDesde' class='java.util.Date'/>
+	<parameter name='FechaHasta' class='java.util.Date'/>
+	<parameter name='NumeroFacturaDesde' class='java.lang.Integer'>
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
-	<parameter name="NumeroFacturaHasta" class="java.lang.Integer">
+	<parameter name='NumeroFacturaHasta' class='java.lang.Integer'>
 		<defaultValueExpression><![CDATA[999999]]></defaultValueExpression>
 	</parameter>
-	<parameter name="LOGO_DIR" class="java.lang.String">
-		<defaultValueExpression><![CDATA["D:\\Informatica\\Desarrollo\\GestCoop\\src\\reportsPackage\\Anagrama.jpg"]]></defaultValueExpression>
+	<parameter name='LOGO_DIR' class='java.lang.String'>
+		<defaultValueExpression><![CDATA['D:\\Informatica\\Desarrollo\\GestCoop\\src\\reportsPackage\\Anagrama.jpg']]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[select 1 as uno;]]>
 	</queryString>
-	<field name="uno" class="java.lang.Long"/>
+	<field name='uno' class='java.lang.Long'/>
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</background>
 	<title>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</title>
 	<pageHeader>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</pageHeader>
 	<detail>
-		<band height="802">
+		<band height='802'>
 			<subreport>
-				<reportElement x="-22" y="0" width="593" height="400"/>
-				<subreportParameter name="SUBREPORT_DIR">
+				<reportElement x='-22' y='0' width='593' height='400'/>
+				<subreportParameter name='SUBREPORT_DIR'>
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="FechaHasta">
+				<subreportParameter name='FechaHasta'>
 					<subreportParameterExpression><![CDATA[$P{FechaHasta}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="LOGO_DIR">
+				<subreportParameter name='LOGO_DIR'>
 					<subreportParameterExpression><![CDATA[$P{LOGO_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="SemanaDesde">
+				<subreportParameter name='SemanaDesde'>
 					<subreportParameterExpression><![CDATA[$P{SemanaDesde}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="NumeroFacturaDesde">
+				<subreportParameter name='NumeroFacturaDesde'>
 					<subreportParameterExpression><![CDATA[$P{NumeroFacturaDesde}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="Empresa">
+				<subreportParameter name='Empresa'>
 					<subreportParameterExpression><![CDATA[$P{Empresa}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="NumeroFacturaHasta">
+				<subreportParameter name='NumeroFacturaHasta'>
 					<subreportParameterExpression><![CDATA[$P{NumeroFacturaHasta}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="Mes">
+				<subreportParameter name='Mes'>
 					<subreportParameterExpression><![CDATA[$P{Mes}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="SemanaHasta">
+				<subreportParameter name='SemanaHasta'>
 					<subreportParameterExpression><![CDATA[$P{SemanaHasta}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="Ejercicio">
+				<subreportParameter name='Ejercicio'>
 					<subreportParameterExpression><![CDATA[$P{Ejercicio}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="FechaDesde">
+				<subreportParameter name='FechaDesde'>
 					<subreportParameterExpression><![CDATA[$P{FechaDesde}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "FacturaLiquidacion.jasper"]]></subreportExpression>
+				<subreportExpression class='java.lang.String'><![CDATA[$P{SUBREPORT_DIR} + 'FacturaLiquidacion.jasper']]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="-22" y="400" width="593" height="400"/>
-				<subreportParameter name="SUBREPORT_DIR">
+				<reportElement x='-22' y='400' width='593' height='400'/>
+				<subreportParameter name='SUBREPORT_DIR'>
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="FechaHasta">
+				<subreportParameter name='FechaHasta'>
 					<subreportParameterExpression><![CDATA[$P{FechaHasta}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="SemanaDesde">
+				<subreportParameter name='SemanaDesde'>
 					<subreportParameterExpression><![CDATA[$P{SemanaDesde}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="LOGO_DIR">
+				<subreportParameter name='LOGO_DIR'>
 					<subreportParameterExpression><![CDATA[$P{LOGO_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="NumeroFacturaDesde">
+				<subreportParameter name='NumeroFacturaDesde'>
 					<subreportParameterExpression><![CDATA[$P{NumeroFacturaDesde}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="Empresa">
+				<subreportParameter name='Empresa'>
 					<subreportParameterExpression><![CDATA[$P{Empresa}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="NumeroFacturaHasta">
+				<subreportParameter name='NumeroFacturaHasta'>
 					<subreportParameterExpression><![CDATA[$P{NumeroFacturaHasta}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="Mes">
+				<subreportParameter name='Mes'>
 					<subreportParameterExpression><![CDATA[$P{Mes}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="SemanaHasta">
+				<subreportParameter name='SemanaHasta'>
 					<subreportParameterExpression><![CDATA[$P{SemanaHasta}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="Ejercicio">
+				<subreportParameter name='Ejercicio'>
 					<subreportParameterExpression><![CDATA[$P{Ejercicio}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="FechaDesde">
+				<subreportParameter name='FechaDesde'>
 					<subreportParameterExpression><![CDATA[$P{FechaDesde}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "FacturaLiquidacion.jasper"]]></subreportExpression>
+				<subreportExpression class='java.lang.String'><![CDATA[$P{SUBREPORT_DIR} + 'FacturaLiquidacion.jasper']]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
 	<pageFooter>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</summary>
 </jasperReport>
+

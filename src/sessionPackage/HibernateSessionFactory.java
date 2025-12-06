@@ -29,23 +29,14 @@ public class HibernateSessionFactory {
     private static String configFile = CONFIG_FILE_LOCATION;
 
 	public static String getConnectionURL() {
-		String server = WindowsRegistry.readRegistry("HKLM\\Software\\GestCoop", "Server");
-		if (server == null)
-		      server = WindowsRegistry.readRegistry("HKLM\\Software\\Wow6432Node\\GestCoop", "Server");
-		if (server == null)
-			server = "127.0.0.1";
-		String dataBase = WindowsRegistry.readRegistry("HKLM\\Software\\GestCoop", "DataBase");
-		if (dataBase == null)
-	       dataBase = WindowsRegistry.readRegistry("HKLM\\Software\\Wow6432Node\\GestCoop", "DataBase");
-		if (dataBase == null)
-			dataBase = "coopmanagerdb";
-		return "jdbc:mysql://" + server + "/" + dataBase;
+		// Usar directamente la configuraci�n de SQL Server sin consultar el registro
+		return "jdbc:sqlserver://SQL6032.site4now.net;databaseName=db_aa764d_coopmanagerdb;trustServerCertificate=true";
 	}
 	
 	static {
     	try {
 			configuration.configure(configFile);
-			configuration.setProperty("hibernate.connection.url", getConnectionURL());
+			// configuration.setProperty("hibernate.connection.url", getConnectionURL());
 			PBEStringEncryptor encryptor =
 			      new StandardPBEStringEncryptor();
 			// La clave se puede obtener consultar en web,

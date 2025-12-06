@@ -2,3 +2,10 @@
 /GestCoopNB/GestCoop/build/
 /GestCoopNB/GestCoop/dist/
 /bin
+
+# Archivos compilados de Java
+*.class
+
+# Archivos temporales
+*.bak
+*.tmp

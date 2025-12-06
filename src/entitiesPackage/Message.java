@@ -24,7 +24,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"El registro se ha grabado con éxito.", "",
+				"El registro se ha grabado con ï¿½xito.", "",
 				JOptionPane.INFORMATION_MESSAGE,
 				JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 	}
@@ -50,7 +50,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de ejecución en " + procname + ". \n" +  e.getMessage() + "\nPor favor póngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de ejecuciï¿½n en " + procname + ". \n" +  e.getMessage() + "\nPor favor pï¿½ngase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
@@ -58,7 +58,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de ejecución en " + procname + ". \n" +  e.getMessage() + "\nPor favor póngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de ejecuciï¿½n en " + procname + ". \n" +  e.getMessage() + "\nPor favor pï¿½ngase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
@@ -66,7 +66,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de entrada/salida en " + procname + ". \n" +  e.getMessage() + "\nPor favor póngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de entrada/salida en " + procname + ". \n" +  e.getMessage() + "\nPor favor pï¿½ngase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
@@ -74,7 +74,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de ejecución en " + procname + ". \n" +  e.getMessage() + "\nPor favor póngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de ejecuciï¿½n en " + procname + ". \n" +  e.getMessage() + "\nPor favor pï¿½ngase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
@@ -82,7 +82,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de ejecución en " + procname + ". \n" + msgErr + "\nPor favor póngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de ejecuciï¿½n en " + procname + ". \n" + msgErr + "\nPor favor pï¿½ngase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}

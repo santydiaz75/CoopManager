@@ -257,7 +257,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 		lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblAno.setForeground(new java.awt.Color(255, 0, 0));
 		lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblAno.setText("A\u00f1o");
+		lblAno.setText("A�o");
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
 				"/imagesPackage/ok.png"))); // NOI18N

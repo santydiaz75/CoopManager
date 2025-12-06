@@ -1,91 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturaLiquidacionPrecios" language="groovy" pageWidth="394" pageHeight="802" columnWidth="394" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f9537847-2ce7-4a61-a0ca-3cafd7a6409f">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<parameter name="Empresa" class="java.lang.Integer"/>
-	<parameter name="Ejercicio" class="java.lang.Integer"/>
-	<parameter name="Mes" class="java.lang.Integer"/>
-	<parameter name="SemanaDesde" class="java.lang.Integer"/>
-	<parameter name="SemanaHasta" class="java.lang.Integer"/>
-	<parameter name="NumeroFactura" class="java.lang.Integer">
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='FacturaLiquidacionPrecios' language='groovy' pageWidth='394' pageHeight='802' columnWidth='394' leftMargin='0' rightMargin='0' topMargin='0' bottomMargin='0' uuid='f9537847-2ce7-4a61-a0ca-3cafd7a6409f'>
+	<property name='ireport.zoom' value='1.0'/>
+	<property name='ireport.x' value='0'/>
+	<property name='ireport.y' value='0'/>
+	<parameter name='Empresa' class='java.lang.Integer'/>
+	<parameter name='Ejercicio' class='java.lang.Integer'/>
+	<parameter name='Mes' class='java.lang.Integer'/>
+	<parameter name='SemanaDesde' class='java.lang.Integer'/>
+	<parameter name='SemanaHasta' class='java.lang.Integer'/>
+	<parameter name='NumeroFactura' class='java.lang.Integer'>
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT ca.empresa, ca.ejercicio, ca.IdCategoria, ca.NombreCategoria,ca.orden,
-`coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, ca.IdCategoria) as PrecioSemana1,
-`coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 1, ca.IdCategoria) as PrecioSemana2,
-`coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 2, ca.IdCategoria) as PrecioSemana3,
-`coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 3, ca.IdCategoria) as PrecioSemana4,
-`coopmanagerdb`.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 4, ca.IdCategoria) as PrecioSemana5
-FROM `coopmanagerdb`.`liquidacioneslineas` ll left outer join `coopmanagerdb`.`categorias` ca on `coopmanagerdb`.`CategoriaGetGrupo`(ll.empresa, ll.ejercicio, ll.IdCategoria) = ca.IdCategoria left outer join  `coopmanagerdb`.`precios` p on ca.IdCategoria = p.IdCategoria and
+[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, ca.IdCategoria) as PrecioSemana1,
+[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 1, ca.IdCategoria) as PrecioSemana2,
+[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 2, ca.IdCategoria) as PrecioSemana3,
+[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 3, ca.IdCategoria) as PrecioSemana4,
+[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 4, ca.IdCategoria) as PrecioSemana5
+FROM [db_aa764d_coopmanagerdb].[dbo].[liquidacioneslineas] ll left outer join [db_aa764d_coopmanagerdb].[dbo].[categorias] ca on [db_aa764d_coopmanagerdb].[dbo].[CategoriaGetGrupo](ll.empresa, ll.ejercicio, ll.IdCategoria) = ca.IdCategoria left outer join  [db_aa764d_coopmanagerdb].[dbo].[precios] p on ca.IdCategoria = p.IdCategoria and
 ca.Ejercicio = p.ejercicio and ca.empresa = p.empresa
 where  ll.ejercicio = $P{Ejercicio} and ll.empresa = $P{Empresa} and ll.NumeroFactura = $P{NumeroFactura} and p.Semana >=  $P{SemanaDesde} and p.ejercicio = $P{Ejercicio} and p.empresa = $P{Empresa} and p.Semana <= $P{SemanaHasta}
 group by ca.empresa, ca.ejercicio, ca.IdCategoria, ca.NombreCategoria
 order by ca.orden Desc;]]>
 	</queryString>
-	<field name="empresa" class="java.lang.Integer">
+	<field name='empresa' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ejercicio" class="java.lang.Integer">
+	<field name='ejercicio' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="IdCategoria" class="java.lang.Integer">
+	<field name='IdCategoria' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="NombreCategoria" class="java.lang.String">
+	<field name='NombreCategoria' class='java.lang.String'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="orden" class="java.lang.Integer">
+	<field name='orden' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="PrecioSemana1" class="java.lang.Float">
+	<field name='PrecioSemana1' class='java.lang.Float'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="PrecioSemana2" class="java.lang.Float">
+	<field name='PrecioSemana2' class='java.lang.Float'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="PrecioSemana3" class="java.lang.Float">
+	<field name='PrecioSemana3' class='java.lang.Float'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="PrecioSemana4" class="java.lang.Float">
+	<field name='PrecioSemana4' class='java.lang.Float'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="PrecioSemana5" class="java.lang.Float">
+	<field name='PrecioSemana5' class='java.lang.Float'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<sortField name="orden" order="Descending"/>
-	<variable name="PrecioSemana2_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+	<sortField name='orden' order='Descending'/>
+	<variable name='PrecioSemana2_1' class='java.lang.Float' resetType='Group' resetGroup='GrupoCategoria' calculation='Sum'>
 		<variableExpression><![CDATA[$F{PrecioSemana2}]]></variableExpression>
 	</variable>
-	<variable name="PrecioSemana1_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+	<variable name='PrecioSemana1_1' class='java.lang.Float' resetType='Group' resetGroup='GrupoCategoria' calculation='Sum'>
 		<variableExpression><![CDATA[$F{PrecioSemana1}]]></variableExpression>
 	</variable>
-	<variable name="PrecioSemana3_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+	<variable name='PrecioSemana3_1' class='java.lang.Float' resetType='Group' resetGroup='GrupoCategoria' calculation='Sum'>
 		<variableExpression><![CDATA[$F{PrecioSemana3}]]></variableExpression>
 	</variable>
-	<variable name="PrecioSemana4_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+	<variable name='PrecioSemana4_1' class='java.lang.Float' resetType='Group' resetGroup='GrupoCategoria' calculation='Sum'>
 		<variableExpression><![CDATA[$F{PrecioSemana4}]]></variableExpression>
 	</variable>
-	<variable name="PrecioSemana5_1" class="java.lang.Float" resetType="Group" resetGroup="GrupoCategoria" calculation="Sum">
+	<variable name='PrecioSemana5_1' class='java.lang.Float' resetType='Group' resetGroup='GrupoCategoria' calculation='Sum'>
 		<variableExpression><![CDATA[$F{PrecioSemana5}]]></variableExpression>
 	</variable>
-	<variable name="Semana1" class="java.lang.Integer">
+	<variable name='Semana1' class='java.lang.Integer'>
 		<variableExpression><![CDATA[$P{SemanaDesde}]]></variableExpression>
 	</variable>
-	<variable name="Semana2" class="java.lang.Integer">
+	<variable name='Semana2' class='java.lang.Integer'>
 		<variableExpression><![CDATA[$P{SemanaDesde} + 1]]></variableExpression>
 	</variable>
-	<variable name="Semana3" class="java.lang.Integer">
+	<variable name='Semana3' class='java.lang.Integer'>
 		<variableExpression><![CDATA[$P{SemanaDesde} + 2]]></variableExpression>
 	</variable>
-	<variable name="Semana5" class="java.lang.Integer">
+	<variable name='Semana5' class='java.lang.Integer'>
 		<variableExpression><![CDATA[$P{SemanaDesde} + 4]]></variableExpression>
 	</variable>
-	<variable name="Semana4" class="java.lang.Integer">
+	<variable name='Semana4' class='java.lang.Integer'>
 		<variableExpression><![CDATA[$P{SemanaDesde} + 3]]></variableExpression>
 	</variable>
-	<group name="GrupoEmpresa">
+	<group name='GrupoEmpresa'>
 		<groupExpression><![CDATA[$F{empresa}]]></groupExpression>
 		<groupHeader>
 			<band/>
@@ -94,140 +94,140 @@ order by ca.orden Desc;]]>
 			<band/>
 		</groupFooter>
 	</group>
-	<group name="GrupoEjercicio">
+	<group name='GrupoEjercicio'>
 		<groupExpression><![CDATA[$F{ejercicio}]]></groupExpression>
 		<groupHeader>
-			<band height="28">
+			<band height='28'>
 				<staticText>
-					<reportElement mode="Transparent" x="221" y="4" width="33" height="15" forecolor="#666666" backcolor="#FFFFFF" uuid="31d8d556-7bb6-4fb9-bf90-f6b472b33d7f"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='221' y='4' width='33' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='31d8d556-7bb6-4fb9-bf90-f6b472b33d7f'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[SEM. Nº ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="335" y="4" width="33" height="15" forecolor="#666666" backcolor="#FFFFFF" uuid="fe187da7-ebe7-4103-845b-ac91436e8fc7"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='335' y='4' width='33' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='fe187da7-ebe7-4103-845b-ac91436e8fc7'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[SEM. Nº ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="8" y="5" width="94" height="15" forecolor="#666666" backcolor="#FFFFFF" uuid="6edf6525-e777-4353-942c-a6ee9bdfa263"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='8' y='5' width='94' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='6edf6525-e777-4353-942c-a6ee9bdfa263'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[CLASE DE FRUTA]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="278" y="4" width="33" height="15" forecolor="#666666" backcolor="#FFFFFF" uuid="5f81a6df-c5c2-4f71-a37e-0b1949165415"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='278' y='4' width='33' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='5f81a6df-c5c2-4f71-a37e-0b1949165415'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[SEM. Nº ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="163" y="4" width="33" height="15" forecolor="#666666" backcolor="#FFFFFF" uuid="d35f251c-841c-41b5-a8a7-6c1891fec940"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='163' y='4' width='33' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='d35f251c-841c-41b5-a8a7-6c1891fec940'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[SEM. Nº ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="105" y="4" width="33" height="15" forecolor="#666666" backcolor="#FFFFFF" uuid="2144b753-2bfd-4899-8753-90763cda8076"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='105' y='4' width='33' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='2144b753-2bfd-4899-8753-90763cda8076'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[SEM. Nº ]]></text>
 				</staticText>
-				<textField evaluationTime="Group" evaluationGroup="GrupoEjercicio">
-					<reportElement mode="Transparent" x="312" y="4" width="20" height="12" forecolor="#666666" backcolor="#FFFFFF" uuid="9424645c-3838-4629-962d-66f1aa09548e"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+				<textField evaluationTime='Group' evaluationGroup='GrupoEjercicio'>
+					<reportElement mode='Transparent' x='312' y='4' width='20' height='12' forecolor='#666666' backcolor='#FFFFFF' uuid='9424645c-3838-4629-962d-66f1aa09548e'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{Semana4}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="GrupoEjercicio">
-					<reportElement mode="Transparent" x="254" y="4" width="20" height="12" forecolor="#666666" backcolor="#FFFFFF" uuid="3622c598-5295-4993-a56e-9877f0cdd026"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+				<textField evaluationTime='Group' evaluationGroup='GrupoEjercicio'>
+					<reportElement mode='Transparent' x='254' y='4' width='20' height='12' forecolor='#666666' backcolor='#FFFFFF' uuid='3622c598-5295-4993-a56e-9877f0cdd026'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{Semana3}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="GrupoEjercicio">
-					<reportElement mode="Transparent" x="196" y="4" width="20" height="12" forecolor="#666666" backcolor="#FFFFFF" uuid="8f25d21b-3b96-4c4f-a737-74818cf92995"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+				<textField evaluationTime='Group' evaluationGroup='GrupoEjercicio'>
+					<reportElement mode='Transparent' x='196' y='4' width='20' height='12' forecolor='#666666' backcolor='#FFFFFF' uuid='8f25d21b-3b96-4c4f-a737-74818cf92995'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{Semana2}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="GrupoEjercicio">
-					<reportElement mode="Transparent" x="369" y="4" width="20" height="12" forecolor="#666666" backcolor="#FFFFFF" uuid="980d1e44-d98d-4cb7-ba55-9cc1cd3fa6ef">
+				<textField evaluationTime='Group' evaluationGroup='GrupoEjercicio'>
+					<reportElement mode='Transparent' x='369' y='4' width='20' height='12' forecolor='#666666' backcolor='#FFFFFF' uuid='980d1e44-d98d-4cb7-ba55-9cc1cd3fa6ef'>
 						<printWhenExpression><![CDATA[$P{SemanaHasta} == ($P{SemanaDesde} + 4)]]></printWhenExpression>
 					</reportElement>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{Semana5}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="GrupoEjercicio">
-					<reportElement mode="Transparent" x="138" y="4" width="20" height="12" forecolor="#666666" backcolor="#FFFFFF" uuid="55a7abc7-4f4a-4e5f-abf4-f58c70f89abd"/>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+				<textField isStretchWithOverflow='true' evaluationTime='Group' evaluationGroup='GrupoEjercicio'>
+					<reportElement mode='Transparent' x='138' y='4' width='20' height='12' forecolor='#666666' backcolor='#FFFFFF' uuid='55a7abc7-4f4a-4e5f-abf4-f58c70f89abd'/>
+					<textElement textAlignment='Left' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{Semana1}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement x="0" y="25" width="394" height="1" uuid="c32a2f01-b7b3-4a50-807f-547b47a52ec3"/>
+					<reportElement x='0' y='25' width='394' height='1' uuid='c32a2f01-b7b3-4a50-807f-547b47a52ec3'/>
 				</line>
 				<staticText>
-					<reportElement mode="Transparent" x="105" y="15" width="43" height="11" forecolor="#666666" backcolor="#FFFFFF" uuid="57207a8c-7928-4ebf-978e-b10b375cf22f"/>
-					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='105' y='15' width='43' height='11' forecolor='#666666' backcolor='#FFFFFF' uuid='57207a8c-7928-4ebf-978e-b10b375cf22f'/>
+					<textElement textAlignment='Center' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[EUROS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="221" y="14" width="43" height="11" forecolor="#666666" backcolor="#FFFFFF" uuid="4d0a2f14-d213-42a6-8dee-221adccd4fba"/>
-					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='221' y='14' width='43' height='11' forecolor='#666666' backcolor='#FFFFFF' uuid='4d0a2f14-d213-42a6-8dee-221adccd4fba'/>
+					<textElement textAlignment='Center' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[EUROS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="162" y="15" width="43" height="11" forecolor="#666666" backcolor="#FFFFFF" uuid="987a02e5-becb-4dd2-a3dc-e5019985648d"/>
-					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='162' y='15' width='43' height='11' forecolor='#666666' backcolor='#FFFFFF' uuid='987a02e5-becb-4dd2-a3dc-e5019985648d'/>
+					<textElement textAlignment='Center' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[EUROS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="278" y="14" width="43" height="11" forecolor="#666666" backcolor="#FFFFFF" uuid="958093e8-f696-4872-8a93-547bdad0f2f1"/>
-					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='278' y='14' width='43' height='11' forecolor='#666666' backcolor='#FFFFFF' uuid='958093e8-f696-4872-8a93-547bdad0f2f1'/>
+					<textElement textAlignment='Center' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[EUROS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="335" y="14" width="43" height="11" forecolor="#666666" backcolor="#FFFFFF" uuid="430eba18-b302-4a32-be62-9fa48b3ea9ec"/>
-					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="Tahoma" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
+					<reportElement mode='Transparent' x='335' y='14' width='43' height='11' forecolor='#666666' backcolor='#FFFFFF' uuid='430eba18-b302-4a32-be62-9fa48b3ea9ec'/>
+					<textElement textAlignment='Center' verticalAlignment='Top' rotation='None' markup='none'>
+						<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+						<paragraph lineSpacing='Single'/>
 					</textElement>
 					<text><![CDATA[EUROS]]></text>
 				</staticText>
@@ -237,51 +237,51 @@ order by ca.orden Desc;]]>
 			<band/>
 		</groupFooter>
 	</group>
-	<group name="GrupoCategoria">
+	<group name='GrupoCategoria'>
 		<groupExpression><![CDATA[$F{IdCategoria}]]></groupExpression>
 		<groupHeader>
-			<band height="12">
+			<band height='12'>
 				<textField>
-					<reportElement x="8" y="0" width="94" height="12" uuid="1e772582-551b-471e-9fff-9a78531b3d32"/>
+					<reportElement x='8' y='0' width='94' height='12' uuid='1e772582-551b-471e-9fff-9a78531b3d32'/>
 					<textElement>
-						<font fontName="Tahoma" size="8"/>
+						<font fontName='Tahoma' size='8'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{NombreCategoria}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
-					<reportElement x="103" y="0" width="32" height="12" uuid="2b28574c-0c22-44ea-946d-7faafb3b43e9"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="9"/>
+				<textField evaluationTime='Group' evaluationGroup='GrupoCategoria' pattern='###0.00;-###0.00' isBlankWhenNull='true'>
+					<reportElement x='103' y='0' width='32' height='12' uuid='2b28574c-0c22-44ea-946d-7faafb3b43e9'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='9'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{PrecioSemana1_1}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
-					<reportElement x="162" y="0" width="32" height="12" uuid="b06cb643-ce10-4c31-893d-5eb6c39e5a48"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="9"/>
+				<textField evaluationTime='Group' evaluationGroup='GrupoCategoria' pattern='###0.00;-###0.00' isBlankWhenNull='true'>
+					<reportElement x='162' y='0' width='32' height='12' uuid='b06cb643-ce10-4c31-893d-5eb6c39e5a48'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='9'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{PrecioSemana2_1}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
-					<reportElement x="220" y="0" width="32" height="12" uuid="419f8750-b95e-4895-8579-25d49d50cb49"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="9"/>
+				<textField evaluationTime='Group' evaluationGroup='GrupoCategoria' pattern='###0.00;-###0.00' isBlankWhenNull='true'>
+					<reportElement x='220' y='0' width='32' height='12' uuid='419f8750-b95e-4895-8579-25d49d50cb49'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='9'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{PrecioSemana3_1}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
-					<reportElement x="278" y="0" width="32" height="12" uuid="70d787a7-a6d9-4d68-abcc-e37b732604fb"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="9"/>
+				<textField evaluationTime='Group' evaluationGroup='GrupoCategoria' pattern='###0.00;-###0.00' isBlankWhenNull='true'>
+					<reportElement x='278' y='0' width='32' height='12' uuid='70d787a7-a6d9-4d68-abcc-e37b732604fb'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='9'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{PrecioSemana4_1}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="GrupoCategoria" pattern="###0.00;-###0.00" isBlankWhenNull="true">
-					<reportElement x="335" y="0" width="32" height="12" uuid="13722283-9c6e-4514-b12c-00816a8c3a42">
+				<textField evaluationTime='Group' evaluationGroup='GrupoCategoria' pattern='###0.00;-###0.00' isBlankWhenNull='true'>
+					<reportElement x='335' y='0' width='32' height='12' uuid='13722283-9c6e-4514-b12c-00816a8c3a42'>
 						<printWhenExpression><![CDATA[$P{SemanaHasta} == ($P{SemanaDesde} + 4)]]></printWhenExpression>
 					</reportElement>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="9"/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='9'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{PrecioSemana5_1}]]></textFieldExpression>
 				</textField>
@@ -292,27 +292,32 @@ order by ca.orden Desc;]]>
 		</groupFooter>
 	</group>
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</background>
 	<title>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</title>
 	<pageHeader>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</pageHeader>
 	<columnHeader>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</columnHeader>
 	<detail>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</detail>
 	<columnFooter>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</columnFooter>
 	<pageFooter>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</summary>
 </jasperReport>
+
+
+
+
+

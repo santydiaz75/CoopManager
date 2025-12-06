@@ -1,337 +1,341 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoNominas" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="7" bottomMargin="7" uuid="dc2cb56a-ea79-4cd2-9072-c89bf9e4fd01">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<parameter name="Empresa" class="java.lang.Integer"/>
-	<parameter name="Ejercicio" class="java.lang.Integer"/>
-	<parameter name="LOGO_DIR" class="java.lang.String" isForPrompting="false">
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='ListadoNominas' language='groovy' pageWidth='842' pageHeight='595' orientation='Landscape' columnWidth='802' leftMargin='20' rightMargin='20' topMargin='7' bottomMargin='7' uuid='dc2cb56a-ea79-4cd2-9072-c89bf9e4fd01'>
+	<property name='ireport.zoom' value='1.0'/>
+	<property name='ireport.x' value='0'/>
+	<property name='ireport.y' value='0'/>
+	<style name='Title' forecolor='#FFFFFF' fontName='Arial' fontSize='26' isBold='true' pdfFontName='Helvetica-Bold'/>
+	<style name='SubTitle' forecolor='#666666' fontName='Arial' fontSize='18'/>
+	<style name='Column header' forecolor='#666666' fontName='Arial' fontSize='12' isBold='true'/>
+	<style name='Detail' fontName='Arial' fontSize='12'/>
+	<parameter name='Empresa' class='java.lang.Integer'/>
+	<parameter name='Ejercicio' class='java.lang.Integer'/>
+	<parameter name='LOGO_DIR' class='java.lang.String' isForPrompting='false'>
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="Mes" class="java.lang.Integer"/>
+	<parameter name='Mes' class='java.lang.Integer'/>
 	<queryString>
-		<![CDATA[SELECT e.empresa, e.ejercicio, e.idEmpleado, concat(concat(e.nombre, " "), coalesce(e.apellidos, "")) AS NombreCompleto, en.TotalDevengado, en.ImporteIrpf, en.ImporteSegSoc, (en.ImporteSegAutonomo + en.ImporteEmbargo) AS ImporteOtros,  en.TotalLiquido, en.ImporteBonificacion, em.Lopd
-FROM `coopmanagerdb`.`empleados` e INNER JOIN `coopmanagerdb`.`empresas` em ON e.Empresa = em.IdEmpresa INNER JOIN `coopmanagerdb`.`empleadosnominas` en ON
+		<![CDATA[SELECT e.empresa, e.ejercicio, e.idEmpleado, (e.nombre + ' ', coalesce(e.apellidos, "')) AS NombreCompleto, en.TotalDevengado, en.ImporteIrpf, en.ImporteSegSoc, (en.ImporteSegAutonomo + en.ImporteEmbargo) AS ImporteOtros,  en.TotalLiquido, en.ImporteBonificacion, em.Lopd
+FROM [db_aa764d_coopmanagerdb].[dbo].[empleados] e INNER JOIN [db_aa764d_coopmanagerdb].[dbo].[empresas] em ON e.Empresa = em.IdEmpresa INNER JOIN [db_aa764d_coopmanagerdb].[dbo].[empleadosnominas] en ON
 e.Empresa = en.Empresa and e.Ejercicio = en.Ejercicio and e.IdEmpleado = en.IdEmpleado
 where e.ejercicio = $P{Ejercicio} and e.empresa = $P{Empresa} and en.Mes = $P{Mes}
 order by e.nombre]]>
 	</queryString>
-	<field name="empresa" class="java.lang.Integer">
+	<field name='empresa' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ejercicio" class="java.lang.Integer">
+	<field name='ejercicio' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="idEmpleado" class="java.lang.Integer">
+	<field name='idEmpleado' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="NombreCompleto" class="java.lang.String"/>
-	<field name="TotalDevengado" class="java.math.BigDecimal">
+	<field name='NombreCompleto' class='java.lang.String'/>
+	<field name='TotalDevengado' class='java.math.BigDecimal'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ImporteIrpf" class="java.math.BigDecimal">
+	<field name='ImporteIrpf' class='java.math.BigDecimal'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ImporteSegSoc" class="java.math.BigDecimal">
+	<field name='ImporteSegSoc' class='java.math.BigDecimal'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ImporteOtros" class="java.math.BigDecimal"/>
-	<field name="TotalLiquido" class="java.math.BigDecimal">
+	<field name='ImporteOtros' class='java.math.BigDecimal'/>
+	<field name='TotalLiquido' class='java.math.BigDecimal'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ImporteBonificacion" class="java.math.BigDecimal">
+	<field name='ImporteBonificacion' class='java.math.BigDecimal'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Lopd" class="java.lang.String">
+	<field name='Lopd' class='java.lang.String'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<variable name="idEmpleado_1" class="java.lang.Integer" resetType="Group" resetGroup="grupoEmpresa" calculation="Count">
+	<variable name='idEmpleado_1' class='java.lang.Integer' resetType='Group' resetGroup='grupoEmpresa' calculation='Count'>
 		<variableExpression><![CDATA[$F{idEmpleado}]]></variableExpression>
 	</variable>
-	<variable name="TotalLiquido_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='TotalLiquido_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{TotalLiquido}]]></variableExpression>
 	</variable>
-	<variable name="TotalDevengado_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='TotalDevengado_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{TotalDevengado}]]></variableExpression>
 	</variable>
-	<variable name="ImporteIrpf_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='ImporteIrpf_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{ImporteIrpf}]]></variableExpression>
 	</variable>
-	<variable name="ImporteSegSoc_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='ImporteSegSoc_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{ImporteSegSoc}]]></variableExpression>
 	</variable>
-	<variable name="ImporteOtros_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='ImporteOtros_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{ImporteOtros}]]></variableExpression>
 	</variable>
-	<variable name="ImporteBonificacion_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='ImporteBonificacion_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{ImporteBonificacion}]]></variableExpression>
 	</variable>
-	<variable name="ImporteAcuerdo" class="java.lang.Float">
+	<variable name='ImporteAcuerdo' class='java.lang.Float'>
 		<variableExpression><![CDATA[$F{TotalLiquido}+$F{ImporteBonificacion}]]></variableExpression>
 	</variable>
-	<variable name="ImporteAcuerdo_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='ImporteAcuerdo_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{TotalLiquido}+$F{ImporteBonificacion}]]></variableExpression>
 	</variable>
-	<group name="grupoEmpresa">
+	<group name='grupoEmpresa'>
 		<groupExpression><![CDATA[$F{empresa}]]></groupExpression>
 		<groupFooter>
-			<band height="49">
+			<band height='49'>
 				<staticText>
-					<reportElement style="Column header" x="2" y="29" width="201" height="20" uuid="30b2403b-abb8-4a08-8693-f4885b979cab"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma"/>
+					<reportElement style='Column header' x='2' y='29' width='201' height='20' uuid='30b2403b-abb8-4a08-8693-f4885b979cab'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma'/>
 					</textElement>
-					<text><![CDATA[NÚMERO TOTALDE EMPLEADOS:]]></text>
+					<text><![CDATA[N�MERO TOTALDE [db_aa764d_coopmanagerdb].[dbo].[empleados]:]]></text>
 				</staticText>
 				<line>
-					<reportElement x="0" y="18" width="802" height="1" uuid="20fbcbde-504c-4c82-b6bb-d9fe3fd42c1e"/>
+					<reportElement x='0' y='18' width='802' height='1' uuid='20fbcbde-504c-4c82-b6bb-d9fe3fd42c1e'/>
 				</line>
 				<textField>
-					<reportElement x="203" y="29" width="37" height="20" uuid="34ff309f-bc6c-4caa-82cc-c7c493ec3327"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="12" isBold="true"/>
+					<reportElement x='203' y='29' width='37' height='20' uuid='34ff309f-bc6c-4caa-82cc-c7c493ec3327'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='12' isBold='true'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{idEmpleado_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement x="554" y="29" width="76" height="20" uuid="d58e288f-a62d-42e6-aecd-3d05174fcf21"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" size="12" isBold="true"/>
+				<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+					<reportElement x='554' y='29' width='76' height='20' uuid='d58e288f-a62d-42e6-aecd-3d05174fcf21'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='12' isBold='true'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{TotalLiquido_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement x="249" y="29" width="74" height="20" uuid="7c322414-09c3-4a6f-92c3-517262aff365"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" isBold="true"/>
+				<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+					<reportElement x='249' y='29' width='74' height='20' uuid='7c322414-09c3-4a6f-92c3-517262aff365'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{TotalDevengado_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement x="323" y="29" width="71" height="20" uuid="b753eab2-9e94-4a1b-ada9-4bba2c4ba881"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" isBold="true"/>
+				<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+					<reportElement x='323' y='29' width='71' height='20' uuid='b753eab2-9e94-4a1b-ada9-4bba2c4ba881'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{ImporteIrpf_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement x="391" y="29" width="82" height="20" uuid="a6e00689-8b72-4bd7-8347-3af3b4a8e6a5"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" isBold="true"/>
+				<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+					<reportElement x='391' y='29' width='82' height='20' uuid='a6e00689-8b72-4bd7-8347-3af3b4a8e6a5'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{ImporteSegSoc_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement x="473" y="29" width="81" height="20" uuid="30ac3592-f71e-443f-8bc8-cfe872ce23a7"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" isBold="true"/>
+				<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+					<reportElement x='473' y='29' width='81' height='20' uuid='30ac3592-f71e-443f-8bc8-cfe872ce23a7'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{ImporteOtros_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement x="630" y="29" width="88" height="20" uuid="5280d5e3-c52b-4025-b2dd-8f78358c07cf"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" isBold="true"/>
+				<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+					<reportElement x='630' y='29' width='88' height='20' uuid='5280d5e3-c52b-4025-b2dd-8f78358c07cf'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{ImporteBonificacion_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement x="718" y="29" width="64" height="20" uuid="2bcc3505-de92-435e-8fbf-fe0f6dbbf8bc"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma" isBold="true"/>
+				<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+					<reportElement x='718' y='29' width='64' height='20' uuid='2bcc3505-de92-435e-8fbf-fe0f6dbbf8bc'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{ImporteAcuerdo_1}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
 	</group>
-	<group name="grupoEjercicio">
+	<group name='grupoEjercicio'>
 		<groupExpression><![CDATA[$F{ejercicio}]]></groupExpression>
 	</group>
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</background>
 	<pageHeader>
-		<band height="141">
+		<band height='141'>
 			<image>
-				<reportElement x="15" y="10" width="308" height="75" uuid="dfacc55a-53d0-40b2-8566-95df6485a1c3"/>
+				<reportElement x='15' y='10' width='308' height='75' uuid='dfacc55a-53d0-40b2-8566-95df6485a1c3'/>
 				<imageExpression><![CDATA[$P{LOGO_DIR}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement style="Column header" x="2" y="122" width="250" height="15" uuid="d2368e4f-89a4-4cc8-b4ad-4a8586f1ed06"/>
+				<reportElement style='Column header' x='2' y='122' width='250' height='15' uuid='d2368e4f-89a4-4cc8-b4ad-4a8586f1ed06'/>
 				<textElement>
-					<font fontName="Tahoma" size="11"/>
+					<font fontName='Tahoma' size='11'/>
 				</textElement>
 				<text><![CDATA[NOMBRE Y APELLIDOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="536" y="122" width="83" height="15" uuid="60cb3b1e-000f-438e-b4af-a635efc2f3a1"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma" size="11"/>
+				<reportElement style='Column header' x='536' y='122' width='83' height='15' uuid='60cb3b1e-000f-438e-b4af-a635efc2f3a1'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='11'/>
 				</textElement>
 				<text><![CDATA[LIQUIDO]]></text>
 			</staticText>
 			<line>
-				<reportElement x="1" y="136" width="801" height="1" uuid="80f763f5-0b7a-48ec-8c94-0b2c525fa1bb"/>
+				<reportElement x='1' y='136' width='801' height='1' uuid='80f763f5-0b7a-48ec-8c94-0b2c525fa1bb'/>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="252" y="107" width="71" height="30" uuid="12594bec-df0b-4d1d-8c40-07c43249c5c0"/>
-				<textElement textAlignment="Center">
-					<font fontName="Tahoma" size="11"/>
+				<reportElement style='Column header' x='252' y='107' width='71' height='30' uuid='12594bec-df0b-4d1d-8c40-07c43249c5c0'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='11'/>
 				</textElement>
 				<text><![CDATA[TOTAL DEVENGADO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="323" y="122" width="68" height="15" uuid="d0ce418b-81ef-4f4c-9a1b-7b4f31069056"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma" size="11"/>
+				<reportElement style='Column header' x='323' y='122' width='68' height='15' uuid='d0ce418b-81ef-4f4c-9a1b-7b4f31069056'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='11'/>
 				</textElement>
 				<text><![CDATA[I.R.P.F.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="394" y="107" width="79" height="30" uuid="a2d9c1ab-cae7-4bd1-877c-fb7822374164"/>
-				<textElement textAlignment="Center">
-					<font fontName="Tahoma" size="11"/>
+				<reportElement style='Column header' x='394' y='107' width='79' height='30' uuid='a2d9c1ab-cae7-4bd1-877c-fb7822374164'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='11'/>
 				</textElement>
 				<text><![CDATA[SEGURIDAD SOCIAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="473" y="107" width="63" height="30" uuid="aa143f31-8bc7-46a3-9094-957c7ef2bda9"/>
-				<textElement textAlignment="Center">
-					<font fontName="Tahoma" size="11"/>
+				<reportElement style='Column header' x='473' y='107' width='63' height='30' uuid='aa143f31-8bc7-46a3-9094-957c7ef2bda9'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='11'/>
 				</textElement>
 				<text><![CDATA[OTROS DTOS.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="630" y="122" width="88" height="15" uuid="c1572b48-3215-4a8f-8a4b-da95fece4797"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma" size="11"/>
+				<reportElement style='Column header' x='630' y='122' width='88' height='15' uuid='c1572b48-3215-4a8f-8a4b-da95fece4797'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='11'/>
 				</textElement>
-				<text><![CDATA[BONIFICACIÓN]]></text>
+				<text><![CDATA[BONIFICACI�N]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="718" y="122" width="64" height="15" uuid="a6def7dc-d99a-4ebe-be14-b36959e352fd"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma" size="11"/>
+				<reportElement style='Column header' x='718' y='122' width='64' height='15' uuid='a6def7dc-d99a-4ebe-be14-b36959e352fd'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='11'/>
 				</textElement>
 				<text><![CDATA[ACUERDO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="2" y="94" width="38" height="21" forecolor="#666666" uuid="7d4b1cfb-6e51-477a-921e-55457655258d"/>
+				<reportElement style='Column header' x='2' y='94' width='38' height='21' forecolor='#666666' uuid='7d4b1cfb-6e51-477a-921e-55457655258d'/>
 				<textElement>
-					<font fontName="Tahoma" size="14"/>
+					<font fontName='Tahoma' size='14'/>
 				</textElement>
-				<text><![CDATA[Año:]]></text>
+				<text><![CDATA[A�o:]]></text>
 			</staticText>
-			<textField pattern="#,##0">
-				<reportElement x="40" y="94" width="100" height="20" forecolor="#666666" uuid="fe295cc4-53b1-4d15-bfbe-9e24ff35dd32"/>
+			<textField pattern='#,##0'>
+				<reportElement x='40' y='94' width='100' height='20' forecolor='#666666' uuid='fe295cc4-53b1-4d15-bfbe-9e24ff35dd32'/>
 				<textElement>
-					<font fontName="Tahoma" size="14" isBold="true"/>
+					<font fontName='Tahoma' size='14' isBold='true'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ejercicio}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="20">
-			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="250" height="18" uuid="186001f5-fb88-428c-8a1a-bab10fe39f72"/>
+		<band height='20'>
+			<textField isBlankWhenNull='true'>
+				<reportElement x='0' y='0' width='250' height='18' uuid='186001f5-fb88-428c-8a1a-bab10fe39f72'/>
 				<textElement>
-					<font fontName="Tahoma"/>
+					<font fontName='Tahoma'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NombreCompleto}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00;-#,##0.00">
-				<reportElement x="536" y="0" width="83" height="18" uuid="d3bc447c-7c8b-4ff7-ab1e-eff092dd13cc"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma"/>
+			<textField pattern='#,##0.00;-#,##0.00'>
+				<reportElement x='536' y='0' width='83' height='18' uuid='d3bc447c-7c8b-4ff7-ab1e-eff092dd13cc'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TotalLiquido}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="252" y="0" width="71" height="20" uuid="efef5f59-1b48-4295-8d3e-4368ef5f1b07"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma"/>
+			<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+				<reportElement x='252' y='0' width='71' height='20' uuid='efef5f59-1b48-4295-8d3e-4368ef5f1b07'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TotalDevengado}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="323" y="0" width="71" height="20" uuid="82bd7363-b9b2-4510-9881-f08313d6e40d"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma"/>
+			<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+				<reportElement x='323' y='0' width='71' height='20' uuid='82bd7363-b9b2-4510-9881-f08313d6e40d'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ImporteIrpf}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="391" y="0" width="82" height="20" uuid="5b28b306-3f48-4362-a148-5b11f56372eb"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma"/>
+			<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+				<reportElement x='391' y='0' width='82' height='20' uuid='5b28b306-3f48-4362-a148-5b11f56372eb'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ImporteSegSoc}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="473" y="0" width="63" height="20" uuid="c9848139-dd32-4212-821e-4eab97aa6650"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma"/>
+			<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+				<reportElement x='473' y='0' width='63' height='20' uuid='c9848139-dd32-4212-821e-4eab97aa6650'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ImporteOtros}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="630" y="0" width="88" height="20" uuid="1dba06c5-7889-41b5-826b-ab2ecc971e10"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma"/>
+			<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+				<reportElement x='630' y='0' width='88' height='20' uuid='1dba06c5-7889-41b5-826b-ab2ecc971e10'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ImporteBonificacion}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="718" y="0" width="64" height="20" uuid="683aa859-3046-43a6-8cd8-121d56d2b360"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma"/>
+			<textField pattern='#,##0.00;-#,##0.00' isBlankWhenNull='true'>
+				<reportElement x='718' y='0' width='64' height='20' uuid='683aa859-3046-43a6-8cd8-121d56d2b360'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{ImporteAcuerdo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="83" splitType="Stretch">
-			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="758" y="70" width="40" height="13" backcolor="#E6E6E6" uuid="fc4c8003-b19c-44e2-9c1f-2846cd9a8ca9"/>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+		<band height='83' splitType='Stretch'>
+			<textField evaluationTime='Report'>
+				<reportElement mode='Opaque' x='758' y='70' width='40' height='13' backcolor='#E6E6E6' uuid='fc4c8003-b19c-44e2-9c1f-2846cd9a8ca9'/>
+				<textFieldExpression><![CDATA[' ' + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="0" y="70" width="758" height="13" backcolor="#E6E6E6" uuid="11c0b85b-6c4b-45b7-933f-cc650e52e112"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<reportElement mode='Opaque' x='0' y='70' width='758' height='13' backcolor='#E6E6E6' uuid='11c0b85b-6c4b-45b7-933f-cc650e52e112'/>
+				<textElement textAlignment='Right'/>
+				<textFieldExpression><![CDATA['P�gina '+$V{PAGE_NUMBER}+' de']]></textFieldExpression>
 			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="2" y="70" width="423" height="13" uuid="9f5ec07d-1ba1-4dda-bece-a9d4743320a5"/>
+			<textField pattern='EEEEE dd MMMMM yyyy'>
+				<reportElement x='2' y='70' width='423' height='13' uuid='9f5ec07d-1ba1-4dda-bece-a9d4743320a5'/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="800" height="64" uuid="c6f13800-3ff4-4dcc-888d-f3dc1b247cc4">
+				<reportElement x='0' y='0' width='800' height='64' uuid='c6f13800-3ff4-4dcc-888d-f3dc1b247cc4'>
 					<printWhenExpression><![CDATA[($P{Empresa}==1)]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Justified" markup="none">
-					<font size="9"/>
+				<textElement textAlignment='Justified' markup='none'>
+					<font size='9'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="800" height="64" uuid="2463c045-985f-405d-8623-8fd04c198032">
+				<reportElement x='0' y='0' width='800' height='64' uuid='2463c045-985f-405d-8623-8fd04c198032'>
 					<printWhenExpression><![CDATA[($P{Empresa}==2)]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Justified" markup="none">
-					<font size="9"/>
+				<textElement textAlignment='Justified' markup='none'>
+					<font size='9'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch"/>
 	</summary>
 </jasperReport>
+
+
+
+

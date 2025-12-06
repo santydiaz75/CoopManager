@@ -86,7 +86,7 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
 					txtImporteKilo.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtImporteKilo.requestFocus();
 					return (false);
 				}
@@ -101,7 +101,7 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
 					txtPorcentajeKilos.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtPorcentajeKilos.requestFocus();
 					return (false);
 				}
@@ -116,14 +116,14 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
 					txtEjericioContable.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtEjericioContable.requestFocus();
 					return (false);
 				}
 			}
                         
                         if (txtNumeroBonificacion.getText().equals("")) {
-				Message.ShowValidateMessage(parent, "Debe indicar un número de la bonificación en el año contable.");
+				Message.ShowValidateMessage(parent, "Debe indicar un nï¿½mero de la bonificaciï¿½n en el aï¿½o contable.");
 				txtNumeroBonificacion.requestFocus();
 				return (false);
 			} else {
@@ -131,7 +131,7 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
 					txtNumeroBonificacion.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtNumeroBonificacion.requestFocus();
 					return (false);
 				}
@@ -146,14 +146,14 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
 			}
                         
                         if (txtTitulo.getText().equals("")) {
-				Message.ShowValidateMessage(parent, "Debe indicar un título.");
+				Message.ShowValidateMessage(parent, "Debe indicar un tï¿½tulo.");
 				txtTitulo.requestFocus();
 				return (false);
 			} 
@@ -190,7 +190,7 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
         txtTitulo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Generación de liquidaciones");
+        setTitle("Generaciï¿½n de liquidaciones");
         setResizable(false);
 
         btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png"))); // NOI18N
@@ -204,7 +204,7 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
 
         lblEjercicio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblEjercicio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblEjercicio.setText("Generar la liquidación de Retorno");
+        lblEjercicio.setText("Generar la liquidaciï¿½n de Retorno");
         lblEjercicio.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         lblImporteKilo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -243,7 +243,7 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
         lblNumeroBonificacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNumeroBonificacion.setForeground(new java.awt.Color(255, 0, 0));
         lblNumeroBonificacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNumeroBonificacion.setText("Número bonificación");
+        lblNumeroBonificacion.setText("Nï¿½mero bonificaciï¿½n");
         lblNumeroBonificacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtNumeroBonificacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -254,7 +254,7 @@ public class FrmGeneraLiquidacionRetorno extends javax.swing.JDialog {
         lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(255, 0, 0));
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFecha.setText("Fecha de liquidación");
+        lblFecha.setText("Fecha de liquidaciï¿½n");
 
         txtFecha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         try {

@@ -863,7 +863,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		lblIdVehiculo.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblIdVehiculo.setForeground(new java.awt.Color(255, 0, 0));
 		lblIdVehiculo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblIdVehiculo.setText("Id veh\u00edculo");
+		lblIdVehiculo.setText("Id veh�culo");
 
 		lblMarca.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblMarca.setForeground(new java.awt.Color(255, 0, 0));
@@ -890,7 +890,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 
 		lblMatricula.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblMatricula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblMatricula.setText("Matr\u00edcula");
+		lblMatricula.setText("Matr�cula");
 
 		txtMatricula.setFont(new java.awt.Font("Segoe UI", 0, 14));
 		txtMatricula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -951,7 +951,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		});
 
 		cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeselectAll.setText("Quitar selecci\u00f3n");
+		cmdDeselectAll.setText("Quitar selecci�n");
 		cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
 		cmdDeselectAll.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

@@ -78,7 +78,7 @@ public class FrmInformeListadoPersonalBanco extends javax.swing.JDialog {
 					txtMes.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtMes.requestFocus();
 					return (false);
 				}

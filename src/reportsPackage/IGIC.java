@@ -40,14 +40,14 @@ public class IGIC
     {        
         try 
         {
-        	final String login = "coopuser"; //usuario de acceso a MySQL
+        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.mysql.jdbc.Driver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
-            String paswworddecrypt = bte.decrypt("lk8Ay3Lex6JXR3rcsUqxI2dQlRKmTq4N");
+            String paswworddecrypt = "salmadh2010";
             conn = DriverManager.getConnection(url,login,paswworddecrypt);
         } 
         catch (ClassNotFoundException ex) 
@@ -113,7 +113,7 @@ public class IGIC
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
+	            //este es el parï¿½metro, se pueden agregar mï¿½s parï¿½metros
 	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
@@ -123,10 +123,10 @@ public class IGIC
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-	            //Informe diseÃ±ado y compilado con iReport
+	            //Informe diseï¿½ado y compilado con iReport
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicaciÃ³n al salir
+	            //Se lanza el Viewer de Jasper, no termina aplicaciï¿½n al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop");
 	            jviewer.setVisible(true);

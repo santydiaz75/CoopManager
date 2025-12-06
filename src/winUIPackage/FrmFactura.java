@@ -1372,7 +1372,7 @@ public class FrmFactura extends javax.swing.JPanel {
 
         lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDireccion.setText("Direcciï¿½n");
+        lblDireccion.setText("Dirección");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

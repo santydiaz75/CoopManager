@@ -105,7 +105,7 @@ public class FrmContaLiquidacionesPagos extends javax.swing.JInternalFrame {
 			headerData.add("Concepto");
 			headerData.add("Debe=1;Haber=2");
 			headerData.add("Importe");
-			headerData.add("Número diario");
+			headerData.add("Nï¿½mero diario");
 
 			Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
 
@@ -241,7 +241,7 @@ public class FrmContaLiquidacionesPagos extends javax.swing.JInternalFrame {
 						EntityType.ShortTextWidth);
 				tblResult.getColumn("Importe").setPreferredWidth(
 						EntityType.NumberWidth);
-				tblResult.getColumn("Número diario").setPreferredWidth(
+				tblResult.getColumn("Nï¿½mero diario").setPreferredWidth(
 						EntityType.ShortTextWidth);
 
 				txtTotalDebe.setValue(totalDebe);
@@ -272,7 +272,7 @@ public class FrmContaLiquidacionesPagos extends javax.swing.JInternalFrame {
 					txtFechaPagoDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFechaPagoDesde.requestFocus();
 					return (false);
 				}
@@ -288,7 +288,7 @@ public class FrmContaLiquidacionesPagos extends javax.swing.JInternalFrame {
 					txtFechaPagoHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFechaPagoHasta.requestFocus();
 					return (false);
 				}
@@ -331,7 +331,7 @@ public class FrmContaLiquidacionesPagos extends javax.swing.JInternalFrame {
 		lblCuentaComisiones = new javax.swing.JLabel();
 		txtCuentaComisiones = new javax.swing.JTextField();
 
-		setTitle("Contabilizaci\u00f3n de pagos de liquidaciones");
+		setTitle("Contabilización de pagos de liquidaciones");
 
 		pnlData.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

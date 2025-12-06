@@ -261,7 +261,7 @@
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" value="C&#xf3;digo postal"/>
+                    <Property name="text" type="java.lang.String" value="Código postal"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                   </Properties>
                 </Component>
@@ -293,7 +293,7 @@
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" value="Direcci&#xf3;n"/>
+                    <Property name="text" type="java.lang.String" value="Dirección"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                   </Properties>
                 </Component>
@@ -339,7 +339,7 @@
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" value="Poblaci&#xf3;n"/>
+                    <Property name="text" type="java.lang.String" value="Población"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                   </Properties>
                 </Component>
@@ -591,7 +591,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Quitar selecci&#xf3;n"/>
+                    <Property name="text" type="java.lang.String" value="Quitar selección"/>
                     <Property name="toolTipText" type="java.lang.String" value="Quitar la seleccionar todas las filas"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -625,8 +625,8 @@
             <Container class="javax.swing.JPanel" name="jPanel1">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="2. Ley Org&#xe1;nica de Protecci&#xf3;n de Datos">
-                    <Property name="tabTitle" type="java.lang.String" value="2. Ley Org&#xe1;nica de Protecci&#xf3;n de Datos"/>
+                  <JTabbedPaneConstraints tabName="2. Ley Orgánica de Protección de Datos">
+                    <Property name="tabTitle" type="java.lang.String" value="2. Ley Orgánica de Protección de Datos"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>

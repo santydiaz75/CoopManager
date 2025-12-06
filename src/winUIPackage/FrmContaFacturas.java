@@ -103,7 +103,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 			headerData.add("Concepto");
 			headerData.add("Debe=1;Haber=2");
 			headerData.add("Importe");
-			headerData.add("Número diario");
+			headerData.add("Nï¿½mero diario");
 
 			Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
 
@@ -127,7 +127,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 				NumberFormat formatDecimal = new DecimalFormat("#,##0.00");
 
 				for (Object linea : lineasList) {
-					concepto = "FRA Nº "
+					concepto = "FRA Nï¿½"
 							+ ((Facturascabecera) linea).getId().getIdFactura()
 							+ " "
 							+ ((Facturascabecera) linea).getNombre()
@@ -211,7 +211,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 						EntityType.ShortTextWidth);
 				tblResult.getColumn("Importe").setPreferredWidth(
 						EntityType.NumberWidth);
-				tblResult.getColumn("Número diario").setPreferredWidth(
+				tblResult.getColumn("Nï¿½mero diario").setPreferredWidth(
 						EntityType.ShortTextWidth);
 
 				txtTotalDebe.setValue(totalDebe);
@@ -242,7 +242,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 					txtFacturaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFacturaDesde.requestFocus();
 					return (false);
 				}
@@ -258,7 +258,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 					txtFacturaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtFacturaHasta.requestFocus();
 					return (false);
 				}
@@ -305,7 +305,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 		txtCuentaIGIC7 = new javax.swing.JTextField();
 		jSeparator1 = new javax.swing.JSeparator();
 
-		setTitle("Contabilizaci\u00f3n de facturas");
+		setTitle("Contabilización de facturas");
 
 		pnlData.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -437,7 +437,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 				14));
 		lblCuentaPrestacionServicios
 				.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblCuentaPrestacionServicios.setText("Cuenta prestaci\u00f3n serv.");
+		lblCuentaPrestacionServicios.setText("Cuenta prestaciï¿½n serv.");
 		lblCuentaPrestacionServicios
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 

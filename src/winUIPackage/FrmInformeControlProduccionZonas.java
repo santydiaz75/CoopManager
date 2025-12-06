@@ -73,7 +73,7 @@ public class FrmInformeControlProduccionZonas extends javax.swing.JDialog {
 					txtZonaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtZonaDesde.requestFocus();
 					return (false);
 				}
@@ -88,7 +88,7 @@ public class FrmInformeControlProduccionZonas extends javax.swing.JDialog {
 					txtZonaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtZonaHasta.requestFocus();
 					return (false);
 				}
@@ -119,7 +119,7 @@ public class FrmInformeControlProduccionZonas extends javax.swing.JDialog {
 		btnOk = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Informe de control de producci\u00f3n por zonas");
+		setTitle("Informe de control de producción por zonas");
 		setResizable(false);
 
 		lblZonaDesde.setFont(new java.awt.Font("Segoe UI", 1, 14));

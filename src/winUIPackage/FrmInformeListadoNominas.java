@@ -78,7 +78,7 @@ public class FrmInformeListadoNominas extends javax.swing.JDialog {
 					txtMes.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+							"El tipo de datos indicado no es vï¿½lido.");
 					txtMes.requestFocus();
 					return (false);
 				}
@@ -106,7 +106,7 @@ public class FrmInformeListadoNominas extends javax.swing.JDialog {
 		txtMes = new javax.swing.JFormattedTextField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Informe de listado de n\u00f3minas");
+		setTitle("Informe de listado de nï¿½minas");
 		setResizable(false);
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(

@@ -1,117 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoCosecherosKilos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="7" bottomMargin="7" uuid="968eefd4-311b-436c-9cbc-541cde669ac6">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<parameter name="Empresa" class="java.lang.Integer"/>
-	<parameter name="FechaDesde" class="java.util.Date"/>
-	<parameter name="FechaHasta" class="java.util.Date"/>
-	<parameter name="LOGO_DIR" class="java.lang.String" isForPrompting="false">
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='ListadoCosecherosKilos' language='groovy' pageWidth='595' pageHeight='842' columnWidth='555' leftMargin='20' rightMargin='20' topMargin='7' bottomMargin='7' uuid='968eefd4-311b-436c-9cbc-541cde669ac6'>
+	<property name='ireport.zoom' value='1.0'/>
+	<property name='ireport.x' value='0'/>
+	<property name='ireport.y' value='0'/>
+	<style name='Title' forecolor='#FFFFFF' fontName='Arial' fontSize='26' isBold='true' pdfFontName='Helvetica-Bold'/>
+	<style name='SubTitle' forecolor='#666666' fontName='Arial' fontSize='18'/>
+	<style name='Column header' forecolor='#666666' fontName='Arial' fontSize='12' isBold='true'/>
+	<style name='Detail' fontName='Arial' fontSize='12'/>
+	<parameter name='Empresa' class='java.lang.Integer'/>
+	<parameter name='FechaDesde' class='java.util.Date'/>
+	<parameter name='FechaHasta' class='java.util.Date'/>
+	<parameter name='LOGO_DIR' class='java.lang.String' isForPrompting='false'>
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT v.empresa, v.nif, v.apellidos, v.nombre, v.numkilosreferencia,  Sum(v.numkilos) as NumKIlos, e.Lopd FROM `coopmanagerdb`.`viewentradasquery` v inner join `coopmanagerdb`.`empresas` e ON v.Empresa = e.IdEmpresa
+		<![CDATA[SELECT v.empresa, v.nif, v.apellidos, v.nombre, v.numkilosreferencia,  Sum(v.numkilos) as NumKIlos, e.Lopd FROM [db_aa764d_coopmanagerdb].[dbo].[viewentradasquery] v inner join [db_aa764d_coopmanagerdb].[dbo].[empresas] e ON v.Empresa = e.IdEmpresa
 where v.Fecha >= $P{FechaDesde} and v.Fecha <= $P{FechaHasta} and v.empresa = $P{Empresa}
 group by v.empresa, v.nif, v.apellidos, v.nombre, v.numkilosreferencia
 order by v.apellidos, v.idCosechero]]>
 	</queryString>
-	<field name="Empresa" class="java.lang.Integer">
+	<field name='Empresa' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Nif" class="java.lang.String">
+	<field name='Nif' class='java.lang.String'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Apellidos" class="java.lang.String">
+	<field name='Apellidos' class='java.lang.String'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Nombre" class="java.lang.String">
+	<field name='Nombre' class='java.lang.String'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="NumKilosReferencia" class="java.lang.Float">
+	<field name='NumKilosReferencia' class='java.lang.Float'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="NumKIlos" class="java.lang.Double">
+	<field name='NumKIlos' class='java.lang.Double'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Lopd" class="java.lang.String">
+	<field name='Lopd' class='java.lang.String'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<variable name="Nif_1" class="java.lang.Integer" resetType="Group" resetGroup="grupoEmpresa" calculation="Count">
+	<variable name='Nif_1' class='java.lang.Integer' resetType='Group' resetGroup='grupoEmpresa' calculation='Count'>
 		<variableExpression><![CDATA[$F{Nif}]]></variableExpression>
 	</variable>
-	<variable name="numkilosreferencia_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='numkilosreferencia_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{NumKilosReferencia}]]></variableExpression>
 	</variable>
-	<variable name="TotalKilos_1" class="java.lang.Float" resetType="Group" resetGroup="grupoEmpresa" calculation="Sum">
+	<variable name='TotalKilos_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
 		<variableExpression><![CDATA[$F{NumKIlos}]]></variableExpression>
 	</variable>
-	<variable name="NumKIlos_1" class="java.lang.Double" resetType="Group" resetGroup="NIF" calculation="Sum">
+	<variable name='NumKIlos_1' class='java.lang.Double' resetType='Group' resetGroup='NIF' calculation='Sum'>
 		<variableExpression><![CDATA[$F{NumKIlos}]]></variableExpression>
 	</variable>
-	<group name="grupoEmpresa">
+	<group name='grupoEmpresa'>
 		<groupExpression><![CDATA[$F{Empresa}]]></groupExpression>
 		<groupFooter>
-			<band height="49">
+			<band height='49'>
 				<line>
-					<reportElement x="0" y="20" width="555" height="1" uuid="2c5b948b-83f1-42c2-a014-37b344d8d4ce"/>
+					<reportElement x='0' y='20' width='555' height='1' uuid='2c5b948b-83f1-42c2-a014-37b344d8d4ce'/>
 				</line>
-				<textField pattern="#,##0" isBlankWhenNull="true">
-					<reportElement x="395" y="27" width="84" height="20" uuid="0ac230af-f741-4e62-b9c5-27e93612e6a1"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma"/>
+				<textField pattern='#,##0' isBlankWhenNull='true'>
+					<reportElement x='395' y='27' width='84' height='20' uuid='0ac230af-f741-4e62-b9c5-27e93612e6a1'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{numkilosreferencia_1}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0" isBlankWhenNull="true">
-					<reportElement x="479" y="27" width="76" height="20" uuid="9879ffbc-1c40-456e-aafb-e8315bb284c2"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma"/>
+				<textField pattern='#,##0' isBlankWhenNull='true'>
+					<reportElement x='479' y='27' width='76' height='20' uuid='9879ffbc-1c40-456e-aafb-e8315bb284c2'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{TotalKilos_1}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
 	</group>
-	<group name="NIF">
+	<group name='NIF'>
 		<groupExpression><![CDATA[$F{Nif}]]></groupExpression>
 		<groupHeader>
-			<band height="15">
+			<band height='15'>
 				<textField>
-					<reportElement x="70" y="0" width="156" height="15" uuid="b3dee641-5ac9-4e0e-98b4-3b8eb821fa9e"/>
+					<reportElement x='70' y='0' width='156' height='15' uuid='b3dee641-5ac9-4e0e-98b4-3b8eb821fa9e'/>
 					<textElement>
-						<font fontName="Tahoma"/>
+						<font fontName='Tahoma'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Apellidos}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="226" y="0" width="169" height="15" uuid="8b78c755-090e-407c-8a22-879e7e1a7b76"/>
+					<reportElement x='226' y='0' width='169' height='15' uuid='8b78c755-090e-407c-8a22-879e7e1a7b76'/>
 					<textElement>
-						<font fontName="Tahoma"/>
+						<font fontName='Tahoma'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="0" y="0" width="70" height="15" uuid="1c8d5242-6bf5-45d9-ac33-88f551f07414"/>
+					<reportElement x='0' y='0' width='70' height='15' uuid='1c8d5242-6bf5-45d9-ac33-88f551f07414'/>
 					<textElement>
-						<font fontName="Tahoma"/>
+						<font fontName='Tahoma'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Nif}]]></textFieldExpression>
 				</textField>
-				<textField pattern="#,##0">
-					<reportElement x="395" y="0" width="71" height="15" uuid="fa332b1a-8393-4067-9042-7f2c4914d940"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma"/>
+				<textField pattern='#,##0'>
+					<reportElement x='395' y='0' width='71' height='15' uuid='fa332b1a-8393-4067-9042-7f2c4914d940'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{NumKilosReferencia}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="NIF" pattern="#,##0">
-					<reportElement x="479" y="0" width="76" height="15" uuid="f61436ff-f3cb-422b-8e36-8ac16718a480"/>
-					<textElement textAlignment="Right">
-						<font fontName="Tahoma"/>
+				<textField evaluationTime='Group' evaluationGroup='NIF' pattern='#,##0'>
+					<reportElement x='479' y='0' width='76' height='15' uuid='f61436ff-f3cb-422b-8e36-8ac16718a480'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma'/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{NumKIlos_1}]]></textFieldExpression>
 				</textField>
@@ -119,84 +119,84 @@ order by v.apellidos, v.idCosechero]]>
 		</groupHeader>
 	</group>
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</background>
 	<pageHeader>
-		<band height="160">
+		<band height='160'>
 			<image>
-				<reportElement x="13" y="0" width="308" height="75" uuid="8c76450e-e948-443c-838d-274621ddc635"/>
+				<reportElement x='13' y='0' width='308' height='75' uuid='8c76450e-e948-443c-838d-274621ddc635'/>
 				<imageExpression><![CDATA[$P{LOGO_DIR}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement style="Column header" x="1" y="75" width="555" height="32" uuid="9128760f-10f3-405d-a6f9-016130e96bd2"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font fontName="Tahoma" size="18"/>
+				<reportElement style='Column header' x='1' y='75' width='555' height='32' uuid='9128760f-10f3-405d-a6f9-016130e96bd2'/>
+				<textElement textAlignment='Center' verticalAlignment='Bottom'>
+					<font fontName='Tahoma' size='18'/>
 				</textElement>
-				<text><![CDATA[RELACIÓN DE KILOS POR COSECHEROS ]]></text>
+				<text><![CDATA[RELACI�N DE KILOS POR [db_aa764d_coopmanagerdb].[dbo].[cosecheros] ]]></text>
 			</staticText>
 			<line>
-				<reportElement x="1" y="157" width="554" height="1" uuid="7c541e51-ba64-4ceb-86e8-41d02e8c7ecf"/>
+				<reportElement x='1' y='157' width='554' height='1' uuid='7c541e51-ba64-4ceb-86e8-41d02e8c7ecf'/>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="70" y="141" width="156" height="15" uuid="0c3d17ec-9d02-4663-abcd-3cb89b87b739"/>
+				<reportElement style='Column header' x='70' y='141' width='156' height='15' uuid='0c3d17ec-9d02-4663-abcd-3cb89b87b739'/>
 				<textElement>
-					<font fontName="Tahoma" size="10"/>
+					<font fontName='Tahoma' size='10'/>
 				</textElement>
 				<text><![CDATA[APELLIDOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="226" y="141" width="169" height="16" uuid="1304dfa3-2ead-4f06-bbba-44445e202f5a"/>
+				<reportElement style='Column header' x='226' y='141' width='169' height='16' uuid='1304dfa3-2ead-4f06-bbba-44445e202f5a'/>
 				<textElement>
-					<font fontName="Tahoma" size="10"/>
+					<font fontName='Tahoma' size='10'/>
 				</textElement>
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="0" y="140" width="70" height="15" uuid="b9ba0eb4-b10c-406c-b192-44f6271e2f5a"/>
+				<reportElement style='Column header' x='0' y='140' width='70' height='15' uuid='b9ba0eb4-b10c-406c-b192-44f6271e2f5a'/>
 				<textElement>
-					<font fontName="Tahoma" size="10"/>
+					<font fontName='Tahoma' size='10'/>
 				</textElement>
 				<text><![CDATA[N.I.F.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="395" y="141" width="71" height="15" uuid="fc0e1855-2d12-413a-8539-1b90dab68dab"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma" size="10"/>
+				<reportElement style='Column header' x='395' y='141' width='71' height='15' uuid='fc0e1855-2d12-413a-8539-1b90dab68dab'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='10'/>
 				</textElement>
 				<text><![CDATA[KILOS REF]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="479" y="140" width="76" height="15" uuid="cc50260a-125a-4142-b416-68bdbed5f57d"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma" size="10"/>
+				<reportElement style='Column header' x='479' y='140' width='76' height='15' uuid='cc50260a-125a-4142-b416-68bdbed5f57d'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='10'/>
 				</textElement>
 				<text><![CDATA[TOTAL KILOS ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="1" y="85" width="36" height="21" forecolor="#666666" uuid="c2299565-8532-4d5a-ba75-d040b0a40457"/>
+				<reportElement style='Column header' x='1' y='85' width='36' height='21' forecolor='#666666' uuid='c2299565-8532-4d5a-ba75-d040b0a40457'/>
 				<textElement>
-					<font fontName="Tahoma" size="14"/>
+					<font fontName='Tahoma' size='14'/>
 				</textElement>
 				<text><![CDATA[]]></text>
 			</staticText>
-			<textField pattern="d/M/yyyy">
-				<reportElement x="129" y="107" width="124" height="20" forecolor="#666666" uuid="638ab14a-e036-4922-9961-049fd2645891"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma" size="14" isBold="true"/>
+			<textField pattern='d/M/yyyy'>
+				<reportElement x='129' y='107' width='124' height='20' forecolor='#666666' uuid='638ab14a-e036-4922-9961-049fd2645891'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='14' isBold='true'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{FechaDesde}]]></textFieldExpression>
 			</textField>
-			<textField pattern="d/M/yyyy">
-				<reportElement x="295" y="107" width="128" height="20" forecolor="#666666" uuid="8f5edb47-eb31-4f80-92b9-d68742f37e60"/>
+			<textField pattern='d/M/yyyy'>
+				<reportElement x='295' y='107' width='128' height='20' forecolor='#666666' uuid='8f5edb47-eb31-4f80-92b9-d68742f37e60'/>
 				<textElement>
-					<font fontName="Tahoma" size="14" isBold="true"/>
+					<font fontName='Tahoma' size='14' isBold='true'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{FechaHasta}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Column header" x="253" y="107" width="42" height="20" uuid="f58c415f-7620-4645-98dd-abb174467762"/>
-				<textElement textAlignment="Center">
-					<font fontName="Tahoma" size="14"/>
+				<reportElement style='Column header' x='253' y='107' width='42' height='20' uuid='f58c415f-7620-4645-98dd-abb174467762'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='14'/>
 				</textElement>
 				<text><![CDATA[-]]></text>
 			</staticText>
@@ -206,41 +206,45 @@ order by v.apellidos, v.idCosechero]]>
 		<band/>
 	</detail>
 	<pageFooter>
-		<band height="102" splitType="Stretch">
-			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="513" y="89" width="40" height="13" backcolor="#E6E6E6" uuid="fb059d2b-527a-489c-b213-4d709f16af51"/>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+		<band height='102' splitType='Stretch'>
+			<textField evaluationTime='Report'>
+				<reportElement mode='Opaque' x='513' y='89' width='40' height='13' backcolor='#E6E6E6' uuid='fb059d2b-527a-489c-b213-4d709f16af51'/>
+				<textFieldExpression><![CDATA[' ' + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="0" y="89" width="513" height="13" backcolor="#E6E6E6" uuid="4077edcc-b273-4e7e-ab18-102b2683d880"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<reportElement mode='Opaque' x='0' y='89' width='513' height='13' backcolor='#E6E6E6' uuid='4077edcc-b273-4e7e-ab18-102b2683d880'/>
+				<textElement textAlignment='Right'/>
+				<textFieldExpression><![CDATA['P�gina '+$V{PAGE_NUMBER}+' de']]></textFieldExpression>
 			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="89" width="423" height="13" uuid="630bbbda-dbd3-479d-8b56-9f0733dd2eb1"/>
+			<textField pattern='EEEEE dd MMMMM yyyy'>
+				<reportElement x='0' y='89' width='423' height='13' uuid='630bbbda-dbd3-479d-8b56-9f0733dd2eb1'/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="553" height="89" uuid="551d849b-a3b3-4559-92c1-af69a310e18c">
+				<reportElement x='0' y='0' width='553' height='89' uuid='551d849b-a3b3-4559-92c1-af69a310e18c'>
 					<printWhenExpression><![CDATA[($P{Empresa}==1)]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Justified" markup="none">
-					<font size="8"/>
+				<textElement textAlignment='Justified' markup='none'>
+					<font size='8'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="553" height="89" uuid="47ee94f3-273b-4b6f-bbe3-2bbdef136edd">
+				<reportElement x='0' y='0' width='553' height='89' uuid='47ee94f3-273b-4b6f-bbe3-2bbdef136edd'>
 					<printWhenExpression><![CDATA[($P{Empresa}==2)]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Justified" markup="none">
-					<font size="8"/>
+				<textElement textAlignment='Justified' markup='none'>
+					<font size='8'/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band splitType='Stretch'/>
 	</summary>
 </jasperReport>
+
+
+
+
