@@ -546,6 +546,7 @@ winUIPackage\FrmFactura$4.class
 winUIPackage\FrmFacturaPago$10.class
 entitiesPackage\Bancos.class
 winUIPackage\FrmEmpleado$ContratosTableModel.class
+reportsPackage\ListadoCosecherosFixed.class
 entitiesPackage\ViewventascategoriasreceptorqueryId.class
 entitiesPackage\BancosId.class
 winUIPackage\FrmGeneraLiquidacionRetorno.class

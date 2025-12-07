@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.HashMap;
@@ -22,6 +24,7 @@ import sessionPackage.HibernateSessionFactory;
 import entitiesPackage.Message;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.*;
 import net.sf.jasperreports.engine.util.*;
 import net.sf.jasperreports.view.*;
 
@@ -134,7 +137,29 @@ public class ListadoCosecheros
             	Message.ShowErrorMessage(parent, "ListadoCosecheros", "No encuentro el archivo del informe maestro.");
             else {
             
-	            //este es el parámetro, se pueden agregar más parámetros
+                // === SOLUCION: Usar consulta SQL corregida ===
+                // El archivo .jasper original contiene una consulta con referencias hardcodeadas:
+                // FROM [db_aa764d_coopmanagerdb].[dbo].[cosecheros] 
+                // Esto causa errores. En su lugar, ejecutamos una consulta corregida
+                // y pasamos los datos como JRResultSetDataSource
+                
+                String sqlQuery = "SELECT c.Empresa, c.Ejercicio, c.IdCosechero, c.Apellidos, c.Nombre, " +
+                                 "c.Nif, c.Telefono1, c.Email, e.Lopd " +
+                                 "FROM cosecheros c " +
+                                 "INNER JOIN empresas e ON c.Empresa = e.IdEmpresa " +
+                                 "WHERE c.Ejercicio = ? AND c.Empresa = ? " +
+                                 "ORDER BY c.Apellidos";
+                
+                System.out.println("DEBUG: Ejecutando consulta SQL corregida...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setInt(1, ejercicio);
+                pstmt.setInt(2, empresa);
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
+
+	            //este es el parametro, se pueden agregar mas parametros
 	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
@@ -144,13 +169,18 @@ public class ListadoCosecheros
 	            String logoPath = workDirectory + "\\reportsPackage\\Anagrama" + empresa + ".jpg";
 	            parameters.put("LOGO_DIR", logoPath);
 	            
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
+                System.out.println("DEBUG: Generando reporte con consulta corregida...");
+	            //Informe disenado y compilado con iReport - usando dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
+
+	            //Se lanza el Viewer de Jasper, no termina aplicacion al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop");
+	            jviewer.setTitle("GestCoop - Listado Cosecheros (FIXED)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

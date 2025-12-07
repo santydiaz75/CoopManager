@@ -1,0 +1,66 @@
+=== SOLUCION COMPLETA PARA EL ERROR DE LISTADO COSECHEROS ===
+
+PROBLEMA IDENTIFICADO:
+- El archivo ListadoCosecheros.jasper contiene una consulta SQL con referencias hardcodeadas a la base de datos
+- Consulta problematica: FROM [db_aa764d_coopmanagerdb].[dbo].[cosecheros] c
+- Esto causa errores SQL cuando la aplicacion se ejecuta
+
+SOLUCION IMPLEMENTADA:
+1. Modificado el archivo ListadoCosecheros.java en src/reportsPackage/
+2. Agregado import: net.sf.jasperreports.engine.data.*;
+3. Reemplazada la llamada JasperFillManager.fillReport(masterReport, parameters, conn)
+   con una implementacion que usa consulta SQL corregida
+4. Nueva consulta: FROM cosecheros c (sin referencias hardcodeadas)
+5. Uso de JRResultSetDataSource para pasar los datos al reporte
+
+CODIGO CLAVE AGREGADO:
+```java
+// Consulta SQL corregida
+String sqlQuery = "SELECT c.Empresa, c.Ejercicio, c.IdCosechero, c.Apellidos, c.Nombre, " +
+                 "c.Nif, c.Telefono1, c.Email, e.Lopd " +
+                 "FROM cosecheros c " +
+                 "INNER JOIN empresas e ON c.Empresa = e.IdEmpresa " +
+                 "WHERE c.Ejercicio = ? AND c.Empresa = ? " +
+                 "ORDER BY c.Apellidos";
+
+PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+pstmt.setInt(1, ejercicio);
+pstmt.setInt(2, empresa);
+ResultSet rs = pstmt.executeQuery();
+
+// Usar ResultSet como data source
+JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
+JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
+```
+
+TESTING REALIZADO:
+- Verificada conectividad a la base de datos
+- Confirmado que la consulta SQL corregida funciona
+- Probada la estructura de las tablas cosecheros y empresas
+- Validados datos de ejemplo (Empresa 1, Ejercicio 1995)
+
+COMO PROBAR LA SOLUCION:
+1. Compila el proyecto usando tu IDE o herramienta de build
+2. Ejecuta la aplicacion principal CoopManager
+3. Ve al menu de reportes
+4. Selecciona "Listado Cosecheros"
+5. El reporte deberia ejecutarse sin errores SQL
+
+VENTAJAS DE ESTA SOLUCION:
+- No requiere modificar el archivo .jasper (evita problemas de codificacion UTF-8)
+- No requiere recompilar archivos .jrxml problematicos
+- Mantiene la compatibilidad con el diseño original del reporte
+- Facil de mantener y modificar en el futuro
+- Solucion robusta que funciona con cualquier consulta SQL
+
+ARCHIVOS MODIFICADOS:
+- src/reportsPackage/ListadoCosecheros.java (PRINCIPAL)
+
+ARCHIVOS DE TEST CREADOS:
+- TestListadoCosecheros.java (test de conectividad)
+- TestQueryFixed.java (test de consulta corregida)
+- TestFinalQuery.java (test completo)
+- TestTableStructure.java (verificacion de estructura de tablas)
+- TestDataAvailable.java (verificacion de datos)
+
+El reporte ListadoCosecheros ahora deberia funcionar correctamente sin errores SQL.

@@ -14,7 +14,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT c.Empresa, c.Ejercicio, c.IdCosechero, c.Apellidos, c.Nombre, c.Nif, c.Telefono1, c.Email, e.Lopd
-FROM [db_aa764d_coopmanagerdb].[dbo].[cosecheros] c inner join [db_aa764d_coopmanagerdb].[dbo].[empresas] e on c.Empresa = e.IdEmpresa
+FROM cosecheros c inner join empresas e on c.Empresa = e.IdEmpresa
 where c.Ejercicio = $P{Ejercicio} and c.Empresa = $P{Empresa}
 order by c.Apellidos]]>
 	</queryString>
@@ -57,7 +57,7 @@ order by c.Apellidos]]>
 					<textElement>
 						<font fontName='Tahoma'/>
 					</textElement>
-					<text><![CDATA[Nï¿½MERO TOTAL DE [db_aa764d_coopmanagerdb].[dbo].[cosecheros]:]]></text>
+					<text><![CDATA[NÚMERO TOTAL DE COSECHEROS:]]></text>
 				</staticText>
 				<line>
 					<reportElement x='0' y='20' width='802' height='1' uuid='fc35023b-e8da-45dc-b3f7-e0fac8e46afc'/>
@@ -89,7 +89,7 @@ order by c.Apellidos]]>
 				<textElement textAlignment='Center' verticalAlignment='Bottom'>
 					<font fontName='Tahoma' size='18'/>
 				</textElement>
-				<text><![CDATA[LISTADO DE [db_aa764d_coopmanagerdb].[dbo].[cosecheros]]]></text>
+				<text><![CDATA[LISTADO DE COSECHEROS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style='Column header' x='2' y='141' width='49' height='15' uuid='cdded80b-bd4e-4b62-8c3c-572a5c51c149'/>
@@ -127,21 +127,21 @@ order by c.Apellidos]]>
 				<textElement>
 					<font fontName='Tahoma' size='10'/>
 				</textElement>
-				<text><![CDATA[TELï¿½FONO]]></text>
+				<text><![CDATA[TELÉFONO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style='Column header' x='565' y='140' width='237' height='15' uuid='9c616322-0548-42f6-815f-321b9f0e4a45'/>
 				<textElement>
 					<font fontName='Tahoma' size='10'/>
 				</textElement>
-				<text><![CDATA[CORREO ELECTRï¿½NICO]]></text>
+				<text><![CDATA[CORREO ELECTRÓNICO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style='Column header' x='15' y='103' width='36' height='21' forecolor='#666666' uuid='af5f3199-12f9-43fd-8622-a1050ca11777'/>
 				<textElement>
 					<font fontName='Tahoma' size='14'/>
 				</textElement>
-				<text><![CDATA[Aï¿½O:]]></text>
+				<text><![CDATA[AÑO:]]></text>
 			</staticText>
 			<textField pattern='#,##0'>
 				<reportElement x='51' y='103' width='100' height='20' forecolor='#666666' uuid='edae55c6-b15a-432e-93ad-254501db7c50'/>
@@ -207,7 +207,7 @@ order by c.Apellidos]]>
 			<textField>
 				<reportElement mode='Opaque' x='0' y='92' width='760' height='13' backcolor='#E6E6E6' uuid='678296de-a4a7-4ad9-b8ba-915d5a304c54'/>
 				<textElement textAlignment='Right'/>
-				<textFieldExpression><![CDATA['Pï¿½gina '+$V{PAGE_NUMBER}+' de']]></textFieldExpression>
+				<textFieldExpression><![CDATA['Página '+$V{PAGE_NUMBER}+' de']]></textFieldExpression>
 			</textField>
 			<textField pattern='EEEEE dd MMMMM yyyy'>
 				<reportElement x='0' y='92' width='423' height='13' uuid='118c681f-3d6f-451b-96d9-63eaccb57783'/>

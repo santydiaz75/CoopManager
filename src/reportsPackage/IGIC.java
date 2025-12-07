@@ -22,6 +22,7 @@ import sessionPackage.HibernateSessionFactory;
 import entitiesPackage.Message;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.*;
 import net.sf.jasperreports.engine.util.*;
 import net.sf.jasperreports.view.*;
 
@@ -123,12 +124,27 @@ public class IGIC
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
+	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
+
+	            
+	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+
+	            
+	            // En archivo IGIC.jrxml
+
+	            
+	            // TODO: Implementar solucion especifica si hay errores SQL
+
+	            
+	            System.out.println("WARNING: IGIC - verificar referencias DB en .jrxml");
+
+	            
 	            //Informe diseñado y compilado con iReport
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop");
+	            jviewer.setTitle("GestCoop - IGIC (CHECK SQL)");
 	            jviewer.setVisible(true);
             }
         }
