@@ -50,7 +50,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de ejecuci贸n en " + procname + ". \n" +  e.getMessage() + "\nPor favor p贸ngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de ejecuci髇 en " + procname + ". \n" +  e.getMessage() + "\nPor favor p髇gase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
@@ -58,7 +58,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de ejecuci贸n en " + procname + ". \n" +  e.getMessage() + "\nPor favor p贸ngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de ejecuci髇 en " + procname + ". \n" +  e.getMessage() + "\nPor favor p髇gase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
@@ -66,7 +66,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de entrada/salida en " + procname + ". \n" +  e.getMessage() + "\nPor favor p贸ngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de entrada/salida en " + procname + ". \n" +  e.getMessage() + "\nPor favor p髇gase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
@@ -74,7 +74,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de ejecuci贸n en " + procname + ". \n" +  e.getMessage() + "\nPor favor p贸ngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de ejecuci髇 en " + procname + ". \n" +  e.getMessage() + "\nPor favor p髇gase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
@@ -82,7 +82,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"Se ha producido el siguiente error de ejecuci贸n en " + procname + ". \n" + msgErr + "\nPor favor p贸ngase en contacto con su administrador de sistemas.", "",
+				"Se ha producido el siguiente error de ejecuci髇 en " + procname + ". \n" + msgErr + "\nPor favor p髇gase en contacto con su administrador de sistemas.", "",
 				JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null,
 				options, options[0]);
 	}
