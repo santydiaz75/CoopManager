@@ -707,7 +707,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtSemana.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemana.requestFocus();
 					return (false);
 				}
@@ -723,7 +723,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtSemanaEntrada.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaEntrada.requestFocus();
 					return (false);
 				}
@@ -737,7 +737,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -752,7 +752,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtIdCosechero.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtIdCosechero.requestFocus();
 					return (false);
 				}
@@ -767,7 +767,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtNumPinas.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtNumPinas.requestFocus();
 					return (false);
 				}
@@ -777,7 +777,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtImporteBonificacion.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtImporteBonificacion.requestFocus();
 					return (false);
 				}
@@ -787,7 +787,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtKilosBonificacion.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtKilosBonificacion.requestFocus();
 					return (false);
 				}
@@ -797,7 +797,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtNumPinasBonificacion.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtNumPinasBonificacion.requestFocus();
 					return (false);
 				}
@@ -807,7 +807,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					txtIdCosechero.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtIdCosechero.requestFocus();
 					return (false);
 				}
@@ -822,7 +822,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					int respuestavalue = JOptionPane
 							.showOptionDialog(
 									null,
-									"Ya hay una entrada para el cosechero y semana seleccionados, ï¿½desea crear otra?",
+									"Ya hay una entrada para el cosechero y semana seleccionados, ¿Desea crear otra?",
 									"", JOptionPane.DEFAULT_OPTION,
 									JOptionPane.WARNING_MESSAGE, null, botones,
 									botones[0]);
@@ -2241,3 +2241,5 @@ public class FrmEntrada extends javax.swing.JPanel {
 	// End of variables declaration//GEN-END:variables
 
 }
+
+

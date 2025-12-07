@@ -96,7 +96,7 @@ order by c.Apellidos]]>
 				<textElement>
 					<font fontName='Tahoma' size='10'/>
 				</textElement>
-				<text><![CDATA[Cï¿½DIGO]]></text>
+				<text><![CDATA[CÓDIGO]]></text>
 			</staticText>
 			<line>
 				<reportElement x='1' y='156' width='801' height='1' uuid='fbf20486-dc2b-4584-8f36-cc6076801755'/>

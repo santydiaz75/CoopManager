@@ -819,7 +819,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					txtTipoCoste.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtTipoCoste.requestFocus();
 					return (false);
 				}
@@ -834,7 +834,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					txtIdentidad.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtIdentidad.requestFocus();
 					return (false);
 				}
@@ -848,7 +848,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -858,7 +858,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					txtTipoImpuesto.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtTipoImpuesto.requestFocus();
 					return (false);
 				}
@@ -1353,7 +1353,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 
         lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPoblacion.setText("Poblaciï¿½n");
+        lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1369,7 +1369,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoPostal.setText("Cï¿½digo postal");
+        lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -2195,3 +2195,4 @@ public class FrmFacturaPago extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 }
+

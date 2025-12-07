@@ -147,7 +147,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			columns.add(new ColumnData("Duracion", "Duraciï¿½n",
 					EntityType.TextWidth, SwingConstants.LEFT, NormalType,
 					null, null));
-			columns.add(new ColumnData("ImporteLiquidacion", "liquidaciï¿½n",
+			columns.add(new ColumnData("ImporteLiquidacion", "liquidación",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteLiquidacion, "#,##0.00"));
 			columns.add(new ColumnData("ImporteIrpf", "Irpf",
@@ -2723,7 +2723,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					txtFechaNacimiento.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFechaNacimiento.requestFocus();
 					return (false);
 				}
@@ -2733,7 +2733,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					txtFechaAntiguedad.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFechaAntiguedad.requestFocus();
 					return (false);
 				}
@@ -3469,7 +3469,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPoblacion.setText("Poblaciï¿½n");
+        lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -3485,7 +3485,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoPostal.setText("Cï¿½digo postal");
+        lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -3501,7 +3501,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTelefono.setText("Telï¿½fono");
+        lblTelefono.setText("Teléfono");
         lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -4374,7 +4374,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
                     .addGap(17, 17, 17)))
         );
 
-        TabEmpleado.addTab("4. Nï¿½minas", pnlData4);
+        TabEmpleado.addTab("4. nóminas", pnlData4);
 
         jScrollPane4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -5355,3 +5355,5 @@ public class FrmEmpleado extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 }
+
+

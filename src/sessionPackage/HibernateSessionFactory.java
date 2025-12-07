@@ -29,7 +29,7 @@ public class HibernateSessionFactory {
     private static String configFile = CONFIG_FILE_LOCATION;
 
 	public static String getConnectionURL() {
-		// Usar directamente la configuraciï¿½n de SQL Server sin consultar el registro
+		// Usar directamente la configuración de SQL Server sin consultar el registro
 		return "jdbc:sqlserver://SQL6032.site4now.net;databaseName=db_aa764d_coopmanagerdb;trustServerCertificate=true";
 	}
 	

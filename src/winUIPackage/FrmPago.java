@@ -141,12 +141,12 @@ public class FrmPago extends javax.swing.JDialog {
 			columns.add(new ColumnData("CuentaBancaria", "Cuenta bancaria",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboCuentaBancaria, null));
-			columns.add(new ColumnData("Talon", "Talï¿½n", EntityType.IdWidth,
+			columns.add(new ColumnData("Talon", "Talón", EntityType.IdWidth,
 					SwingConstants.RIGHT, NormalType, null, null));
 			columns.add(new ColumnData("Importe", "Importe",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporte, "#,##0.00"));
-			columns.add(new ColumnData("Comision", "Comisiï¿½n",
+			columns.add(new ColumnData("Comision", "Comisión",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtComision, "#,##0.00"));
 			columns.add(new ColumnData("CuentaContable", "Cuenta",
@@ -878,7 +878,7 @@ public class FrmPago extends javax.swing.JDialog {
 		});
 
 		cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeselectAll.setText("Quitar selecciï¿½n");
+		cmdDeselectAll.setText("Quitar selección");
 		cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
 		cmdDeselectAll.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -889,8 +889,8 @@ public class FrmPago extends javax.swing.JDialog {
 		});
 
 		cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeleteLinea.setText("Eliminar lï¿½nea");
-		cmdDeleteLinea.setToolTipText("Eliminar las lï¿½neas seleccionados");
+		cmdDeleteLinea.setText("Eliminar línea");
+		cmdDeleteLinea.setToolTipText("Eliminar las líneas seleccionados");
 		cmdDeleteLinea.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		cmdDeleteLinea.addMouseListener(new java.awt.event.MouseAdapter() {

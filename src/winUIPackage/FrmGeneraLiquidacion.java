@@ -92,7 +92,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					txtMes.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtMes.requestFocus();
 					return (false);
 				}
@@ -107,7 +107,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					txtSemanaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaDesde.requestFocus();
 					return (false);
 				}
@@ -122,7 +122,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					txtSemanaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaHasta.requestFocus();
 					return (false);
 				}
@@ -136,7 +136,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -237,7 +237,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 		lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblFecha.setForeground(new java.awt.Color(255, 0, 0));
 		lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblFecha.setText("Fecha de liquidaciï¿½n");
+		lblFecha.setText("Fecha de liquidación");
 
 		txtFecha.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -446,7 +446,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					}	
 					else {
 						Message.ShowValidateMessage(parent,
-						"La liquidaciï¿½n no se ha generado porque hay liquidaciones de meses posteriores.");
+						"La liquidación no se ha generado porque hay liquidaciones de meses posteriores.");
 						return null;
 					}
 				}
@@ -559,7 +559,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					}
 					updateStatus(cont++);
 					Message.ShowValidateMessage(parent,
-							"La liquidaciï¿½n se ha generado con ï¿½xito.");
+							"La liquidación se ha generado con ï¿½xito.");
 					return "Completado";
 				} else {
 					Message.ShowValidateMessage(parent,
@@ -591,7 +591,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 				int respuestavalue = JOptionPane
 						.showOptionDialog(
 								null,
-								"La liquidaciï¿½n para el mes indicado ya ha sido generada, ï¿½estï¿½seguro de volver a generarla?",
+								"La liquidación para el mes indicado ya ha sido generada, ï¿½estï¿½seguro de volver a generarla?",
 								"", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.WARNING_MESSAGE, null, botones,
 								botones[0]);
@@ -648,3 +648,5 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 	// End of variables declaration//GEN-END:variables
 
 }
+
+

@@ -480,7 +480,7 @@ public class FrmContaNominas extends javax.swing.JInternalFrame {
 					txtMes.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtMes.requestFocus();
 					return (false);
 				}

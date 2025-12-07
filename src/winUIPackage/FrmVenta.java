@@ -130,14 +130,14 @@ public class FrmVenta extends javax.swing.JPanel {
 					.add(new ColumnData("IdCategoria", "Id. categoria",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("CategoriaDesc", "Descripci�n",
+			columns.add(new ColumnData("CategoriaDesc", "Descripción",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboCategoriaDesc, null));
 			columns
-					.add(new ColumnData("NumCajas", "N�mero de cajas",
+					.add(new ColumnData("NumCajas", "Nómero de cajas",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("NumKilos", "N�mero de Kilos",
+			columns.add(new ColumnData("NumKilos", "Nómero de Kilos",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtNumKilos, "#,##0.00"));
 			columns.add(new ColumnData("Precio", "Precio",
@@ -874,7 +874,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtSemana.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vólido.");
 					txtSemana.requestFocus();
 					return (false);
 				}
@@ -888,7 +888,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vólido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -903,7 +903,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdReceptor.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vólido.");
 					txtIdReceptor.requestFocus();
 					return (false);
 				}
@@ -913,7 +913,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdBarco.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vólido.");
 					txtIdBarco.requestFocus();
 					return (false);
 				}
@@ -923,7 +923,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdVehiculo.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vólido.");
 					txtIdVehiculo.requestFocus();
 					return (false);
 				}
@@ -933,7 +933,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdConductor.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vólido.");
 					txtIdConductor.requestFocus();
 					return (false);
 				}
@@ -943,7 +943,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdPuerto.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es vólido.");
 					txtIdPuerto.requestFocus();
 					return (false);
 				}
@@ -969,7 +969,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnIdCategoria).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar una categor�a.");
+								"Debe indicar una categoróa.");
 						tblDetalle.changeSelection(actualrow,
 								DetalleTableModel.columnIdCategoria, false,
 								false);
@@ -981,7 +981,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnNumKilos).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un N�mero de kilos.");
+								"Debe indicar un Nómero de kilos.");
 						tblDetalle.changeSelection(tblDetalle.getSelectedRow(),
 								DetalleTableModel.columnNumKilos, false, false);
 						tblDetalle.editCellAt(actualrow,
@@ -992,7 +992,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnNumCajas).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un N�mero de cajas.");
+								"Debe indicar un Nómero de cajas.");
 						tblDetalle.changeSelection(tblDetalle.getSelectedRow(),
 								DetalleTableModel.columnNumCajas, false, false);
 						tblDetalle.editCellAt(actualrow,
@@ -1456,7 +1456,7 @@ public class FrmVenta extends javax.swing.JPanel {
 		});
 
 		cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeselectAll.setText("Quitar selecci�n");
+		cmdDeselectAll.setText("Quitar selección");
 		cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
 		cmdDeselectAll.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1467,8 +1467,8 @@ public class FrmVenta extends javax.swing.JPanel {
 		});
 
 		cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeleteLinea.setText("Eliminar l�nea");
-		cmdDeleteLinea.setToolTipText("Eliminar las l�neas seleccionados");
+		cmdDeleteLinea.setText("Eliminar lónea");
+		cmdDeleteLinea.setToolTipText("Eliminar las lóneas seleccionados");
 		cmdDeleteLinea.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		cmdDeleteLinea.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1500,7 +1500,7 @@ public class FrmVenta extends javax.swing.JPanel {
 		lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblAno.setForeground(new java.awt.Color(255, 0, 0));
 		lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblAno.setText("A�o");
+		lblAno.setText("Aóo");
 
 		txtAno.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));

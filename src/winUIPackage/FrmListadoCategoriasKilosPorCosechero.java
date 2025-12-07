@@ -80,10 +80,10 @@ public class FrmListadoCategoriasKilosPorCosechero extends javax.swing.JDialog {
 			} else {
 				try {
 					txtFechaDesde.commitEdit();
-				} catch (ParseException e) {
-					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
-					txtFechaDesde.requestFocus();
+			} catch (ParseException e) {
+				Message.ShowValidateMessage(parent,
+						"El tipo de datos indicado no es válido.");
+				txtFechaDesde.requestFocus();
 					return (false);
 				}
 			}
@@ -95,10 +95,10 @@ public class FrmListadoCategoriasKilosPorCosechero extends javax.swing.JDialog {
 			} else {
 				try {
 					txtFechaHasta.commitEdit();
-				} catch (ParseException e) {
-					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
-					txtFechaHasta.requestFocus();
+			} catch (ParseException e) {
+				Message.ShowValidateMessage(parent,
+						"El tipo de datos indicado no es válido.");
+				txtFechaHasta.requestFocus();
 					return (false);
 				}
 			}
@@ -127,7 +127,7 @@ public class FrmListadoCategoriasKilosPorCosechero extends javax.swing.JDialog {
 		txtFechaHasta = new javax.swing.JFormattedTextField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Informe de relaciï¿½n de kilos por campaï¿½a");
+		setTitle("Informe de relación de kilos por campaña");
 		setResizable(false);
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(

@@ -78,7 +78,7 @@ public class FrmBackup extends javax.swing.JDialog {
 		lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblApellidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 		lblApellidos
-				.setText("A continuaciï¿½n se realizarï¿½la copia de seguridad de la base de datos");
+				.setText("A continuación se realizará la copia de seguridad de la base de datos");
 		lblApellidos
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 

@@ -112,7 +112,7 @@ public class KilosInutilizados
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el par�metro, se pueden agregar m�s par�metros
+	            //este es el parámetro, se pueden agregar más parámetros
 	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
@@ -122,10 +122,10 @@ public class KilosInutilizados
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-	            //Informe dise�ado y compilado con iReport
+	            //Informe diseñado y compilado con iReport
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicaci�n al salir
+	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop");
 	            jviewer.setVisible(true);

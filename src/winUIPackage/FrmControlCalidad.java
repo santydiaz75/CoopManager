@@ -72,10 +72,10 @@ public class FrmControlCalidad extends javax.swing.JDialog {
 			} else {
 				try {
 					txtSemanaDesde.commitEdit();
-				} catch (ParseException e) {
-					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
-					txtSemanaDesde.requestFocus();
+			} catch (ParseException e) {
+				Message.ShowValidateMessage(parent,
+						"El tipo de datos indicado no es válido.");
+				txtSemanaDesde.requestFocus();
 					return (false);
 				}
 			}
@@ -87,10 +87,10 @@ public class FrmControlCalidad extends javax.swing.JDialog {
 			} else {
 				try {
 					txtSemanaHasta.commitEdit();
-				} catch (ParseException e) {
-					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
-					txtSemanaHasta.requestFocus();
+			} catch (ParseException e) {
+				Message.ShowValidateMessage(parent,
+						"El tipo de datos indicado no es válido.");
+				txtSemanaHasta.requestFocus();
 					return (false);
 				}
 			}

@@ -76,7 +76,7 @@ public class FrmInformeVale extends javax.swing.JDialog {
 					txtCosechero.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtCosechero.requestFocus();
 					return (false);
 				}
@@ -91,7 +91,7 @@ public class FrmInformeVale extends javax.swing.JDialog {
 					txtSemanaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaDesde.requestFocus();
 					return (false);
 				}
@@ -106,7 +106,7 @@ public class FrmInformeVale extends javax.swing.JDialog {
 					txtSemanaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaHasta.requestFocus();
 					return (false);
 				}

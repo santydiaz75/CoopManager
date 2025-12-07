@@ -108,7 +108,7 @@ public class FrmInformeFacturas extends javax.swing.JDialog {
 					txtFacturaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-						"El tipo de datos indicado no es vï¿½lido.");
+						"El tipo de datos indicado no es válido.");
 					txtFacturaDesde.requestFocus();
 					return (false);
 				}
@@ -124,7 +124,7 @@ public class FrmInformeFacturas extends javax.swing.JDialog {
 					txtFacturaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-						"El tipo de datos indicado no es vï¿½lido.");
+						"El tipo de datos indicado no es válido.");
 					txtFacturaHasta.requestFocus();
 					return (false);
 				}
@@ -134,7 +134,7 @@ public class FrmInformeFacturas extends javax.swing.JDialog {
 					txtCuentaBancaria.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-						"El tipo de datos indicado no es vï¿½lido.");
+						"El tipo de datos indicado no es válido.");
 					txtCuentaBancaria.requestFocus();
 					return (false);
 				}
@@ -171,7 +171,7 @@ public class FrmInformeFacturas extends javax.swing.JDialog {
 		lblFacturaDesde.setForeground(new java.awt.Color(255, 0, 0));
 		lblFacturaDesde
 				.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblFacturaDesde.setText("Nï¿½mero de factura desde");
+		lblFacturaDesde.setText("Número de factura desde");
 		lblFacturaDesde
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -188,7 +188,7 @@ public class FrmInformeFacturas extends javax.swing.JDialog {
 		lblFacturaHasta.setForeground(new java.awt.Color(255, 0, 0));
 		lblFacturaHasta
 				.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblFacturaHasta.setText("Nï¿½mero de factura hasta");
+		lblFacturaHasta.setText("Número de factura hasta");
 		lblFacturaHasta
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 

@@ -78,7 +78,7 @@ public class FrmInformeFacturasLiquidacion extends javax.swing.JDialog {
 					txtMes.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtMes.requestFocus();
 					return (false);
 				}
@@ -93,7 +93,7 @@ public class FrmInformeFacturasLiquidacion extends javax.swing.JDialog {
 					txtSemanaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaDesde.requestFocus();
 					return (false);
 				}
@@ -108,7 +108,7 @@ public class FrmInformeFacturasLiquidacion extends javax.swing.JDialog {
 					txtSemanaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaHasta.requestFocus();
 					return (false);
 				}
@@ -118,7 +118,7 @@ public class FrmInformeFacturasLiquidacion extends javax.swing.JDialog {
 					txtFacturaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFacturaDesde.requestFocus();
 					return (false);
 				}
@@ -128,7 +128,7 @@ public class FrmInformeFacturasLiquidacion extends javax.swing.JDialog {
 					txtFacturaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFacturaHasta.requestFocus();
 					return (false);
 				}
@@ -164,7 +164,7 @@ public class FrmInformeFacturasLiquidacion extends javax.swing.JDialog {
 		txtFacturaHasta = new javax.swing.JFormattedTextField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Informe de facturas de liquidaciï¿½n");
+		setTitle("Informe de facturas de liquidación");
 		setResizable(false);
 
 		lblSemanaDesde.setFont(new java.awt.Font("Segoe UI", 1, 14));
@@ -549,3 +549,4 @@ public class FrmInformeFacturasLiquidacion extends javax.swing.JDialog {
 	// End of variables declaration//GEN-END:variables
 
 }
+

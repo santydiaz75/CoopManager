@@ -80,7 +80,7 @@ public class FrmInformeKilosInutilizados extends javax.swing.JDialog {
 					txtSemanaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaDesde.requestFocus();
 					return (false);
 				}
@@ -95,7 +95,7 @@ public class FrmInformeKilosInutilizados extends javax.swing.JDialog {
 					txtSemanaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaHasta.requestFocus();
 					return (false);
 				}
@@ -121,7 +121,7 @@ public class FrmInformeKilosInutilizados extends javax.swing.JDialog {
 		btnOk = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Informe de relaciï¿½n de kilos inutilizados");
+		setTitle("Informe de relación de kilos inutilizados");
 		setResizable(false);
 
 		lblSemanaDesde.setFont(new java.awt.Font("Segoe UI", 1, 14));
@@ -290,7 +290,7 @@ public class FrmInformeKilosInutilizados extends javax.swing.JDialog {
 					int respuestavalue = JOptionPane
 							.showOptionDialog(
 									null,
-									"ï¿½Desea volver a calcular los kilos inutilizados?",
+									"¿Desea volver a calcular los kilos inutilizados?",
 									"", JOptionPane.DEFAULT_OPTION,
 									JOptionPane.WARNING_MESSAGE, null, botones,
 									botones[0]);
@@ -348,3 +348,4 @@ public class FrmInformeKilosInutilizados extends javax.swing.JDialog {
 	// End of variables declaration//GEN-END:variables
 
 }
+

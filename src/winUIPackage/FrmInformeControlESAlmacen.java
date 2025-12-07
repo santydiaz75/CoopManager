@@ -77,7 +77,7 @@ public class FrmInformeControlESAlmacen extends javax.swing.JDialog {
 					txtSemanaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaDesde.requestFocus();
 					return (false);
 				}
@@ -92,7 +92,7 @@ public class FrmInformeControlESAlmacen extends javax.swing.JDialog {
 					txtSemanaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemanaHasta.requestFocus();
 					return (false);
 				}
@@ -120,7 +120,7 @@ public class FrmInformeControlESAlmacen extends javax.swing.JDialog {
 		txtMes = new javax.swing.JFormattedTextField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Informe de control de entrada/salida del almacï¿½n");
+		setTitle("Informe de control de entrada/salida del almacén");
 		setResizable(false);
 
 		lblSemanaDesde.setFont(new java.awt.Font("Segoe UI", 1, 14));

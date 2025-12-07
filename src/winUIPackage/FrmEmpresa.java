@@ -752,7 +752,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoPostal.setText("Cï¿½digo postal");
+        lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         lblProvincia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -794,7 +794,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPoblacion.setText("Poblaciï¿½n");
+        lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -810,7 +810,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTelefono.setText("Telï¿½fono");
+        lblTelefono.setText("Teléfono");
         lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -935,7 +935,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
         });
 
         cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectAll.setText("Quitar selecciï¿½n");
+        cmdDeselectAll.setText("Quitar selección");
         cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1103,7 +1103,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        TabEmpresa.addTab("2. Ley Orgï¿½nica de Protecciï¿½n de Datos", jPanel1);
+        TabEmpresa.addTab("2. Ley Orgánica de Protección de Datos", jPanel1);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png"))); // NOI18N
         btnCancel.setToolTipText("Cancelar");

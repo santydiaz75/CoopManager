@@ -120,7 +120,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					.add(new ColumnData("IdCategoria", "Id. categoria",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("CategoriaDesc", "Descripci�n",
+			columns.add(new ColumnData("CategoriaDesc", "descripción",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboCategoriaDesc, null));
 			columns.add(new ColumnData("Precio", "Precio",
@@ -642,7 +642,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					txtSemana.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemana.requestFocus();
 					return (false);
 				}
@@ -652,7 +652,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					txtDesdeFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es válido.");
 					txtDesdeFecha.requestFocus();
 					return (false);
 				}
@@ -663,7 +663,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					txtHastaFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es válido.");
 					txtHastaFecha.requestFocus();
 					return (false);
 				}
@@ -673,7 +673,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					txtPorcKilosInutilizados.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v�lido.");
+							"El tipo de datos indicado no es válido.");
 					txtPorcKilosInutilizados.requestFocus();
 					return (false);
 				}
@@ -699,7 +699,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					if (tblPrecios.getValueAt(actualrow,
 							PreciosTableModel.columnIdCategoria).equals("")) {
 						Message.ShowValidateMessage(tblPrecios,
-								"Debe indicar una categor�a.");
+								"Debe indicar una categorï¿½a.");
 						tblPrecios.changeSelection(tblPrecios.getSelectedRow(),
 								PreciosTableModel.columnIdCategoria, false,
 								false);
@@ -810,7 +810,7 @@ public class FrmSemana extends javax.swing.JPanel {
 		lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblAno.setForeground(new java.awt.Color(255, 0, 0));
 		lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblAno.setText("A�o");
+		lblAno.setText("Aï¿½o");
 
 		lblSemana.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblSemana.setForeground(new java.awt.Color(255, 0, 0));
@@ -967,7 +967,7 @@ public class FrmSemana extends javax.swing.JPanel {
 		txtPrecio.setPreferredSize(new java.awt.Dimension(0, 0));
 
 		cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeselectAll.setText("Quitar selecci�n");
+		cmdDeselectAll.setText("Quitar selecciï¿½n");
 		cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
 		cmdDeselectAll.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -978,8 +978,8 @@ public class FrmSemana extends javax.swing.JPanel {
 		});
 
 		cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeleteLinea.setText("Eliminar l�nea");
-		cmdDeleteLinea.setToolTipText("Eliminar las l�neas seleccionados");
+		cmdDeleteLinea.setText("Eliminar lï¿½nea");
+		cmdDeleteLinea.setToolTipText("Eliminar las lï¿½neas seleccionados");
 		cmdDeleteLinea.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		cmdDeleteLinea.addMouseListener(new java.awt.event.MouseAdapter() {

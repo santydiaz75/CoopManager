@@ -82,7 +82,7 @@ public class FrmListadoCosecherosKilos extends javax.swing.JDialog {
 					txtFechaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFechaDesde.requestFocus();
 					return (false);
 				}
@@ -97,7 +97,7 @@ public class FrmListadoCosecherosKilos extends javax.swing.JDialog {
 					txtFechaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFechaHasta.requestFocus();
 					return (false);
 				}
@@ -127,7 +127,7 @@ public class FrmListadoCosecherosKilos extends javax.swing.JDialog {
 		txtFechaHasta = new javax.swing.JFormattedTextField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Informe de relaciï¿½n de cosecheros y kilos");
+		setTitle("Informe de relación de cosecheros y kilos");
 		setResizable(false);
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(

@@ -461,7 +461,7 @@ public class FrmConductor extends javax.swing.JPanel {
 
         lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPoblacion.setText("Poblaciï¿½n");
+        lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -477,7 +477,7 @@ public class FrmConductor extends javax.swing.JPanel {
 
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoPostal.setText("Cï¿½digo postal");
+        lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -493,7 +493,7 @@ public class FrmConductor extends javax.swing.JPanel {
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTelefono.setText("Telï¿½fono");
+        lblTelefono.setText("Teléfono");
         lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

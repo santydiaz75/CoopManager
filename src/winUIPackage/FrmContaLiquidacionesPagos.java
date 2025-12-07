@@ -272,7 +272,7 @@ public class FrmContaLiquidacionesPagos extends javax.swing.JInternalFrame {
 					txtFechaPagoDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFechaPagoDesde.requestFocus();
 					return (false);
 				}
@@ -288,7 +288,7 @@ public class FrmContaLiquidacionesPagos extends javax.swing.JInternalFrame {
 					txtFechaPagoHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFechaPagoHasta.requestFocus();
 					return (false);
 				}

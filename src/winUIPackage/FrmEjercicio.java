@@ -191,7 +191,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 					txtAno.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtAno.requestFocus();
 					return (false);
 				}
@@ -202,7 +202,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 					txtDesdeFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtDesdeFecha.requestFocus();
 					return (false);
 				}
@@ -213,7 +213,7 @@ public class FrmEjercicio extends javax.swing.JPanel {
 					txtHastaFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtHastaFecha.requestFocus();
 					return (false);
 				}
@@ -609,3 +609,4 @@ public class FrmEjercicio extends javax.swing.JPanel {
 	// End of variables declaration//GEN-END:variables
 
 }
+

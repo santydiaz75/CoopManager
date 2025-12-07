@@ -91,7 +91,7 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
 					txtCosechero.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtCosechero.requestFocus();
 					return (false);
 				}
@@ -106,7 +106,7 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
 					txtImporteKilo.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtImporteKilo.requestFocus();
 					return (false);
 				}
@@ -121,7 +121,7 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
 					txtNumeroKilos.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtNumeroKilos.requestFocus();
 					return (false);
 				}
@@ -136,7 +136,7 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
 					txtEjericioContable.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtEjericioContable.requestFocus();
 					return (false);
 				}
@@ -151,7 +151,7 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
 					txtNumeroBonificacion.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtNumeroBonificacion.requestFocus();
 					return (false);
 				}
@@ -166,7 +166,7 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -245,7 +245,7 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
         
         lblEjercicio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblEjercicio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblEjercicio.setText("Generar la liquidaciï¿½n de Retorno por Cosechero");
+        lblEjercicio.setText("Generar la liquidación de Retorno por Cosechero");
         lblEjercicio.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         lblImporteKilo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -295,7 +295,7 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
         lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(255, 0, 0));
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFecha.setText("Fecha de liquidaciï¿½n");
+        lblFecha.setText("Fecha de liquidación");
 
         txtFecha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         try {
@@ -526,3 +526,4 @@ public class FrmGeneraLiquidacionRetornoPorCosechero extends javax.swing.JDialog
     // End of variables declaration//GEN-END:variables
 
 }
+

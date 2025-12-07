@@ -326,7 +326,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
 					txtTipoIGIC.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtTipoIGIC.requestFocus();
 					return (false);
 				}
@@ -336,7 +336,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
 					txtTipoIRPF.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtTipoIRPF.requestFocus();
 					return (false);
 				}
@@ -497,7 +497,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
 
         lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPoblacion.setText("Poblaciï¿½n");
+        lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -529,7 +529,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTelefono.setText("Telï¿½fono");
+        lblTelefono.setText("Teléfono");
         lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1304,3 +1304,4 @@ public class FrmIdentidad extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 }
+

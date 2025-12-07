@@ -242,7 +242,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 					txtFacturaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFacturaDesde.requestFocus();
 					return (false);
 				}
@@ -258,7 +258,7 @@ public class FrmContaFacturas extends javax.swing.JInternalFrame {
 					txtFacturaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFacturaHasta.requestFocus();
 					return (false);
 				}

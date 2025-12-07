@@ -118,7 +118,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 			columns.add(new ColumnData("State", "",
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
-			columns.add(new ColumnData("Ano", "A�o", EntityType.NumberWidth,
+			columns.add(new ColumnData("Ano", "Año", EntityType.NumberWidth,
 					SwingConstants.RIGHT, NormalType, null, null));
 			columns.add(new ColumnData("Mes", "Mes", EntityType.NumberWidth,
 					SwingConstants.RIGHT, NormalType, null, null));
@@ -126,7 +126,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					.add(new ColumnData("IdGasto", "Id. gasto",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("IdGastoDesc", "Descripci�n",
+			columns.add(new ColumnData("IdGastoDesc", "Descripción",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboTipoGastoDesc, null));
 			columns.add(new ColumnData("Importe", "Importe",
@@ -688,7 +688,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					if (tblGastos.getValueAt(actualrow,
 							GastosTableModel.columnAno).equals("")) {
 						Message.ShowValidateMessage(tblGastos,
-								"Debe indicar un a�o.");
+								"Debe indicar un Año.");
 						tblGastos.changeSelection(actualrow,
 								GastosTableModel.columnAno, false, false);
 						tblGastos.editCellAt(actualrow,
@@ -863,7 +863,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		lblIdVehiculo.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblIdVehiculo.setForeground(new java.awt.Color(255, 0, 0));
 		lblIdVehiculo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblIdVehiculo.setText("Id veh�culo");
+		lblIdVehiculo.setText("Id vehículo");
 
 		lblMarca.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblMarca.setForeground(new java.awt.Color(255, 0, 0));
@@ -890,7 +890,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 
 		lblMatricula.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblMatricula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblMatricula.setText("Matr�cula");
+		lblMatricula.setText("Matrï¿½cula");
 
 		txtMatricula.setFont(new java.awt.Font("Segoe UI", 0, 14));
 		txtMatricula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -951,7 +951,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		});
 
 		cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeselectAll.setText("Quitar selecci�n");
+		cmdDeselectAll.setText("Quitar selecciï¿½n");
 		cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
 		cmdDeselectAll.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

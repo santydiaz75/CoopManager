@@ -1748,7 +1748,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
                                             newRecord();
                                         }
                                         else {
-                                            Message.ShowValidateMessage(fDetail, "No se puede eliminar el empleado porque tiene nï¿½minas");
+                                            Message.ShowValidateMessage(fDetail, "No se puede eliminar el empleado porque tiene nóminas");
                                         }
 					break;
 				}

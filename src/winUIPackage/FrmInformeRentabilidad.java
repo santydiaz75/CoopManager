@@ -71,7 +71,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtFechaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFechaDesde.requestFocus();
 					return (false);
 				}
@@ -86,7 +86,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtFechaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtFechaHasta.requestFocus();
 					return (false);
 				}
@@ -101,7 +101,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtCuotaAgriten.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtCuotaAgriten.requestFocus();
 					return (false);
 				}
@@ -113,7 +113,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtComisiones.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtComisiones.requestFocus();
 					return (false);
 				}
@@ -125,7 +125,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtSubvenciones.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtSubvenciones.requestFocus();
 					return (false);
 				}
@@ -137,7 +137,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtAmortizaciones.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtAmortizaciones.requestFocus();
 					return (false);
 				}
@@ -149,7 +149,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtGastosFinancieros.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtGastosFinancieros.requestFocus();
 					return (false);
 				}

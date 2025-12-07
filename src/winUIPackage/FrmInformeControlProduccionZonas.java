@@ -73,7 +73,7 @@ public class FrmInformeControlProduccionZonas extends javax.swing.JDialog {
 					txtZonaDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtZonaDesde.requestFocus();
 					return (false);
 				}
@@ -88,7 +88,7 @@ public class FrmInformeControlProduccionZonas extends javax.swing.JDialog {
 					txtZonaHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es vï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtZonaHasta.requestFocus();
 					return (false);
 				}

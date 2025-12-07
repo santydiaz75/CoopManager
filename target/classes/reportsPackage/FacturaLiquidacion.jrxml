@@ -379,7 +379,7 @@ co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, cagrp.ord
 					<textElement textAlignment='Center'>
 						<font fontName='Tahoma' size='10'/>
 					</textElement>
-					<text><![CDATA[Cï¿½DIGO]]></text>
+					<text><![CDATA[CÓDIGO]]></text>
 				</staticText>
 				<rectangle>
 					<reportElement x='1' y='114' width='289' height='58' uuid='6daaceac-7b44-4e6b-866c-acf92324fc7b'/>
