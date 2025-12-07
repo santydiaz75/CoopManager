@@ -28,7 +28,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT l.empresa, l.ejercicio, l.mes, m.NombreMes,  l.NumeroFactura, l.fecha, l.IdCosechero, (ISNULL(co.Apellidos + ', ', '') + ISNULL(co.Nombre, '')) as NombreApellidos, co.NIF,
-co.Direccion, co.CodigoPostal, co.Poblacion, coalesce(l.TipoIgic,0) as TipoIgic, coalesce(l.TipoIrpf, 0) as TipoIrpf, coalesce(l.ImporteIgic,0) as ImporteIgic, coalesce(l.ImporteIrpf, 0) as ImporteIrpf, coalesce(l.ImporteBonificacion, 0) as ImporteBonificacion, cagrp.orden, [db_aa764d_coopmanagerdb].[dbo].[CategoriaGetGrupo](ll.empresa, ll.ejercicio, ll.IdCategoria) as IdCategoria, cagrp.NombreCategoria,
+co.Direccion, co.CodigoPostal, co.Poblacion, coalesce(l.TipoIgic,0) as TipoIgic, coalesce(l.TipoIrpf, 0) as TipoIrpf, coalesce(l.ImporteIgic,0) as ImporteIgic, coalesce(l.ImporteIrpf, 0) as ImporteIrpf, coalesce(l.ImporteBonificacion, 0) as ImporteBonificacion, cagrp.orden, dbo.CategoriaGetGrupo(ll.empresa, ll.ejercicio, ll.IdCategoria) as IdCategoria, cagrp.NombreCategoria,
 coalesce(ll.PinasSemana1, 0) as PinasSemana1,
 coalesce(ll.PinasSemana2, 0) as PinasSemana2,
 coalesce(ll.PinasSemana3, 0) as PinasSemana3,
@@ -49,26 +49,26 @@ Sum(coalesce(ll.KilosInutSemana2, 0)) as KilosInutSemana2,
 Sum(coalesce(ll.KilosInutSemana3, 0)) as KilosInutSemana3,
 Sum(coalesce(ll.KilosInutSemana4, 0)) as KilosInutSemana4,
 Sum(coalesce(ll.KilosInutSemana5, 0)) as KilosInutSemana5,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosSemanaTotal]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, l.IdCosechero) as KilosSemana1Total,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosSemanaTotal]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, l.IdCosechero) as KilosSemana2Total,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosSemanaTotal]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, l.IdCosechero) as KilosSemana3Total,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosSemanaTotal]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, l.IdCosechero) as KilosSemana4Total,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosSemanaTotal]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, l.IdCosechero) as KilosSemana5Total,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosAcumulados]($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero, 0) as KilosAcumuladosTotal,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosInutilizadosAcumulado]($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero, 0) as KilosInutilizadosAcumuladoTotal,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPinasAcumuladas]($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero) as PinasAcumuladasTotal,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionImporteTotalAcumulado]($P{Empresa}, $P{Ejercicio}, $P{Mes}, l.IdCosechero) as ImporteTotalAcumulado, [db_aa764d_coopmanagerdb].[dbo].[empresas].Lopd
-FROM [db_aa764d_coopmanagerdb].[dbo].[liquidaciones] l
-INNER JOIN [db_aa764d_coopmanagerdb].[dbo].[empresas]  [db_aa764d_coopmanagerdb].[dbo].[empresas] On [db_aa764d_coopmanagerdb].[dbo].[empresas].[IdEmpresa] = l.empresa
-left outer join [db_aa764d_coopmanagerdb].[dbo].[liquidacioneslineas] ll on l.empresa = ll.empresa and l.ejercicio = ll.ejercicio
+dbo.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, l.IdCosechero) as KilosSemana1Total,
+dbo.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, l.IdCosechero) as KilosSemana2Total,
+dbo.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, l.IdCosechero) as KilosSemana3Total,
+dbo.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, l.IdCosechero) as KilosSemana4Total,
+dbo.LiquidacionKilosSemanaTotal($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, l.IdCosechero) as KilosSemana5Total,
+dbo.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero, 0) as KilosAcumuladosTotal,
+dbo.LiquidacionKilosInutilizadosAcumulado($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero, 0) as KilosInutilizadosAcumuladoTotal,
+dbo.LiquidacionPinasAcumuladas($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, l.IdCosechero) as PinasAcumuladasTotal,
+dbo.LiquidacionImporteTotalAcumulado($P{Empresa}, $P{Ejercicio}, $P{Mes}, l.IdCosechero) as ImporteTotalAcumulado, empresas.Lopd
+FROM liquidaciones l
+INNER JOIN empresas ON empresas.IdEmpresa = l.empresa
+left outer join liquidacioneslineas ll on l.empresa = ll.empresa and l.ejercicio = ll.ejercicio
 and l.NumeroFactura = ll.NumeroFactura
-left outer join [db_aa764d_coopmanagerdb].[dbo].[meses] m on l.mes = m.mes
-left outer join (Select * From [db_aa764d_coopmanagerdb].[dbo].[cosecheros] where idgrupo = IdCosechero) co on l.IdCosechero = co.IdCosechero and l.ejercicio = co.Ejercicio and l.empresa = co.Empresa
-left outer join [db_aa764d_coopmanagerdb].[dbo].[categorias] ca on ll.IdCategoria = ca.IdCategoria and ll.ejercicio = ca.ejercicio and ll.empresa = ca.empresa
-left outer join [db_aa764d_coopmanagerdb].[dbo].[categorias] cagrp on ca.IdGrupo = cagrp.IdCategoria and ca.ejercicio = cagrp.ejercicio and ca.empresa = cagrp.empresa
+left outer join meses m on l.mes = m.mes
+left outer join (Select * From cosecheros where idgrupo = IdCosechero) co on l.IdCosechero = co.IdCosechero and l.ejercicio = co.Ejercicio and l.empresa = co.Empresa
+left outer join categorias ca on ll.IdCategoria = ca.IdCategoria and ll.ejercicio = ca.ejercicio and ll.empresa = ca.empresa
+left outer join categorias cagrp on ca.IdGrupo = cagrp.IdCategoria and ca.ejercicio = cagrp.ejercicio and ca.empresa = cagrp.empresa
 where l.mes = $P{Mes} and l.ejercicio = $P{Ejercicio} and l.empresa = $P{Empresa} and l.NumeroFactura >= $P{NumeroFacturaDesde} and l.NumeroFactura <= $P{NumeroFacturaHasta}
-group by l.empresa, l.ejercicio, l.mes, l.NumeroFactura, l.fecha, l.IdCosechero, co.Nombre, co.Apellidos, co.NIF,
-co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, cagrp.orden, [db_aa764d_coopmanagerdb].[dbo].[CategoriaGetGrupo](ll.empresa, ll.ejercicio, ll.IdCategoria), cagrp.NombreCategoria;]]>
+group by l.empresa, l.ejercicio, l.mes, m.NombreMes, l.NumeroFactura, l.fecha, l.IdCosechero, co.Nombre, co.Apellidos, co.NIF,
+co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, cagrp.orden, dbo.CategoriaGetGrupo(ll.empresa, ll.ejercicio, ll.IdCategoria), cagrp.NombreCategoria, l.TipoIgic, l.TipoIrpf, l.ImporteIgic, l.ImporteIrpf, l.ImporteBonificacion, ll.PinasSemana1, ll.PinasSemana2, ll.PinasSemana3, ll.PinasSemana4, ll.PinasSemana5, ll.PrecioSemana1, ll.PrecioSemana2, ll.PrecioSemana3, ll.PrecioSemana4, ll.PrecioSemana5, empresas.Lopd;]]>
 	</queryString>
 	<field name='empresa' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -379,7 +379,7 @@ co.Direccion, co.CodigoPostal, co.Poblacion, co.TipoIgic, co.TipoIrpf, cagrp.ord
 					<textElement textAlignment='Center'>
 						<font fontName='Tahoma' size='10'/>
 					</textElement>
-					<text><![CDATA[CÓDIGO]]></text>
+					<text><![CDATA[Cï¿½DIGO]]></text>
 				</staticText>
 				<rectangle>
 					<reportElement x='1' y='114' width='289' height='58' uuid='6daaceac-7b44-4e6b-866c-acf92324fc7b'/>

@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import sessionPackage.HibernateSessionFactory;
 
 import entitiesPackage.Message;
 
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.*;
 import net.sf.jasperreports.engine.util.*;
@@ -119,29 +122,44 @@ public class ControlCalidad
 	            parameters.put("Ejercicio", ejercicio);
 	            parameters.put("SemanaDesde", SemanaDesde);
 	            parameters.put("SemanaHasta", SemanaHasta);
-	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
 
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+                // === SOLUCION: Usar consulta SQL corregida ===
+                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+                
+                String sqlQuery = "SELECT distinct v.*, e.Lopd " +
+                                 "FROM viewcontrolcalidad v inner join empresas e on v.Empresa = e.IdEmpresa " +
+                                 "where v.Empresa = ? and v.Ejercicio = ? and v.Semana >= ? and v.Semana <= ? " +
+                                 "order by v.IdCosechero";
+                
+                System.out.println("DEBUG: Executing corrected SQL query...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setInt(1, empresa);
+                pstmt.setInt(2, ejercicio);
+                pstmt.setInt(3, SemanaDesde);
+                pstmt.setInt(4, SemanaHasta);
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	
-	            // En archivo ControlCalidad.jrxml
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
+	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
+	            System.out.println("INFO: ControlCalidad - usando consulta SQL corregida");
 
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	
-	            System.out.println("WARNING: ControlCalidad - verificar referencias DB en .jrxml");
-
-	
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - ControlCalidad (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - ControlCalidad (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

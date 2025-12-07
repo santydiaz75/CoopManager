@@ -50,9 +50,7 @@ java %JVM_DEBUG_OPTS% ^
      -Djava.awt.headless=false ^
      -Dswing.aatext=true ^
      -Dsun.java2d.opengl=false ^
-     -verbose:gc ^
-     -XX:+PrintGCDetails ^
-     -XX:+PrintGCTimeStamps ^
+     -Xlog:gc*:gc.log ^
      -Xms512m ^
      -Xmx2048m ^
      -cp "target\classes;target\dependency\*" ^

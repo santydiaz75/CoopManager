@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Date;
@@ -22,6 +24,7 @@ import sessionPackage.HibernateSessionFactory;
 import entitiesPackage.Message;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.*;
 import net.sf.jasperreports.engine.util.*;
 import net.sf.jasperreports.view.*;
 
@@ -119,14 +122,43 @@ public class ListadoCosecherosKilos
 	            parameters.put("FechaHasta", fechahasta);
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
-	            
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
+
+                // === SOLUCION: Usar consulta SQL corregida ===
+                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+                
+                String sqlQuery = "SELECT v.empresa, v.nif, v.apellidos, v.nombre, v.numkilosreferencia, " +
+                                 "Sum(v.numkilos) as NumKIlos, e.Lopd " +
+                                 "FROM viewentradasquery v inner join empresas e ON v.Empresa = e.IdEmpresa " +
+                                 "where v.Fecha >= ? and v.Fecha <= ? and v.empresa = ? " +
+                                 "group by v.empresa, v.nif, v.apellidos, v.nombre, v.numkilosreferencia, " +
+                                 "e.Lopd, v.idCosechero " +
+                                 "order by v.apellidos, v.idCosechero";
+                
+                System.out.println("DEBUG: Executing corrected SQL query...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setDate(1, new java.sql.Date(fechadesde.getTime())); // fecha desde
+                pstmt.setDate(2, new java.sql.Date(fechahasta.getTime())); // fecha hasta
+                pstmt.setInt(3, empresa);                                  // empresa
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
+
+	            System.out.println("INFO: ListadoCosecherosKilos - usando consulta SQL corregida");
+
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
+
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop");
+	            jviewer.setTitle("GestCoop - ListadoCosecherosKilos (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

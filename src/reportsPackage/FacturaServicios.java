@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.HashMap;
@@ -124,28 +126,40 @@ public class FacturaServicios
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
+	            // === SOLUCION: Usar consulta SQL corregida ===
+	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+	            // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+	            
+	            String sqlQuery = "SELECT * FROM facturaservicios fs WHERE fs.Empresa = ? AND fs.Ejercicio = ? AND fs.IdFactura >= ? AND fs.IdFactura <= ?";
+	            
+	            System.out.println("DEBUG: Executing corrected SQL query...");
+	            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+	            pstmt.setInt(1, empresa);
+	            pstmt.setInt(2, ejercicio);
+	            pstmt.setLong(3, idFacturaDesde);
+	            pstmt.setLong(4, idFacturaHasta);
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	            // Crear data source from ResultSet
+	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
+	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
+	            System.out.println("INFO: FacturaServicios - usando consulta SQL corregida");
 
-	
-	            // En archivo FacturaServicios.jrxml
+	            System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	
-	            System.out.println("WARNING: FacturaServicios - verificar referencias DB en .jrxml");
-
-	
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - FacturaServicios (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - FacturaServicios (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

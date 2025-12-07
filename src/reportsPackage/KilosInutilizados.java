@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.HashMap;
@@ -122,29 +124,55 @@ public class KilosInutilizados
 	            parameters.put("SemanaHasta", SemanaHasta);
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
-	            
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
 
-	            
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+                // === SOLUCION: Usar consulta SQL corregida ===
+                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+                
+                String sqlQuery = "SELECT co.Empresa, co.Ejercicio, co.NIF, " +
+                                 "dbo.CosecheroGetNombreByNif(?, ?, co.NIF) as NombreApellidos, " +
+                                 "dbo.EntradasKilosNifCosechero(?, ?, co.NIF, ?, ?) AS KilosEntregados, " +
+                                 "dbo.EntradasKilosInutilizadosNifCosechero(?, ?, co.NIF, ?, ?) AS KilosInutilizados, " +
+                                 "e.Lopd " +
+                                 "FROM cosecheros co inner join empresas e on co.Empresa = e.IdEmpresa " +
+                                 "WHERE co.Empresa = ? and co.Ejercicio = ?";
+                
+                System.out.println("DEBUG: Executing corrected SQL query...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setInt(1, empresa);     // CosecheroGetNombreByNif empresa
+                pstmt.setInt(2, ejercicio);   // CosecheroGetNombreByNif ejercicio
+                pstmt.setInt(3, empresa);     // EntradasKilosNifCosechero empresa
+                pstmt.setInt(4, ejercicio);   // EntradasKilosNifCosechero ejercicio
+                pstmt.setInt(5, SemanaDesde); // EntradasKilosNifCosechero semana desde
+                pstmt.setInt(6, SemanaHasta); // EntradasKilosNifCosechero semana hasta
+                pstmt.setInt(7, empresa);     // EntradasKilosInutilizadosNifCosechero empresa
+                pstmt.setInt(8, ejercicio);   // EntradasKilosInutilizadosNifCosechero ejercicio
+                pstmt.setInt(9, SemanaDesde); // EntradasKilosInutilizadosNifCosechero semana desde
+                pstmt.setInt(10, SemanaHasta); // EntradasKilosInutilizadosNifCosechero semana hasta
+                pstmt.setInt(11, empresa);    // WHERE empresa
+                pstmt.setInt(12, ejercicio);  // WHERE ejercicio
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            
-	            // En archivo KilosInutilizados.jrxml
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
+	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
+	            System.out.println("INFO: KilosInutilizados - usando consulta SQL corregida");
 
-	            
-	            // TODO: Implementar solucion especifica si hay errores SQL
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            
-	            System.out.println("WARNING: KilosInutilizados - verificar referencias DB en .jrxml");
-
-	            
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - KilosInutilizados (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - KilosInutilizados (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

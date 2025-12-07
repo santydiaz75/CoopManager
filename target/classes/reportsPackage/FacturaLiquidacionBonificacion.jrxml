@@ -11,23 +11,23 @@
 	<parameter name='SemanaHasta' class='java.lang.Integer'/>
 	<queryString>
 		<![CDATA[SELECT
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionImporteBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, $P{Grupo}) as ImporteSemana1,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionImporteBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, $P{Grupo}) as ImporteSemana2,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionImporteBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, $P{Grupo}) as ImporteSemana3,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionImporteBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, $P{Grupo}) as ImporteSemana4,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionImporteBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, $P{Grupo}) as ImporteSemana5,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKIlosBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, $P{Grupo}) as KilosSemana1,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKIlosBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, $P{Grupo}) as KilosSemana2,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKIlosBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, $P{Grupo}) as KilosSemana3,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKIlosBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, $P{Grupo}) as KilosSemana4,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKIlosBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, $P{Grupo}) as KilosSemana5,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionNumPinasBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, $P{Grupo}) as PinasSemana1,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionNumPinasBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, $P{Grupo}) as PinasSemana2,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionNumPinasBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, $P{Grupo}) as PinasSemana3,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionNumPinasBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, $P{Grupo}) as PinasSemana4,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionNumPinasBonificacionSemana]($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, $P{Grupo}) as PinasSemana5
-FROM [db_aa764d_coopmanagerdb].[dbo].[entradascabecera] ec
-WHERE  ec.ejercicio = $P{Ejercicio} and ec.empresa = $P{Empresa} and [db_aa764d_coopmanagerdb].[dbo].[CosecheroGetGrupo](ec.empresa, ec.ejercicio, ec.IdCosechero) = $P{Grupo} and ec.RecogidaPropia <> 0
+dbo.LiquidacionImporteBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, $P{Grupo}) as ImporteSemana1,
+dbo.LiquidacionImporteBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, $P{Grupo}) as ImporteSemana2,
+dbo.LiquidacionImporteBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, $P{Grupo}) as ImporteSemana3,
+dbo.LiquidacionImporteBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, $P{Grupo}) as ImporteSemana4,
+dbo.LiquidacionImporteBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, $P{Grupo}) as ImporteSemana5,
+dbo.LiquidacionKIlosBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, $P{Grupo}) as KilosSemana1,
+dbo.LiquidacionKIlosBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, $P{Grupo}) as KilosSemana2,
+dbo.LiquidacionKIlosBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, $P{Grupo}) as KilosSemana3,
+dbo.LiquidacionKIlosBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, $P{Grupo}) as KilosSemana4,
+dbo.LiquidacionKIlosBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, $P{Grupo}) as KilosSemana5,
+dbo.LiquidacionNumPinasBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde}, $P{Grupo}) as PinasSemana1,
+dbo.LiquidacionNumPinasBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 1, $P{Grupo}) as PinasSemana2,
+dbo.LiquidacionNumPinasBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 2, $P{Grupo}) as PinasSemana3,
+dbo.LiquidacionNumPinasBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 3, $P{Grupo}) as PinasSemana4,
+dbo.LiquidacionNumPinasBonificacionSemana($P{Empresa}, $P{Ejercicio}, $P{Mes}, $P{SemanaDesde} + 4, $P{Grupo}) as PinasSemana5
+FROM entradascabecera ec
+WHERE  ec.ejercicio = $P{Ejercicio} and ec.empresa = $P{Empresa} and dbo.CosecheroGetGrupo(ec.empresa, ec.ejercicio, ec.IdCosechero) = $P{Grupo} and ec.RecogidaPropia <> 0
 group by ec.empresa, ec.ejercicio, ec.IdCosechero;]]>
 	</queryString>
 	<field name='ImporteSemana1' class='java.lang.Float'/>

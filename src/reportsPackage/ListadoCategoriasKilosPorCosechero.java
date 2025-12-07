@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Date;
@@ -120,29 +122,50 @@ public class ListadoCategoriasKilosPorCosechero
 	            parameters.put("FechaHasta", fechahasta);
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
-	            
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
 
-	            
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+                // === SOLUCION: Usar consulta SQL corregida ===
+                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+                
+                String sqlQuery = "SELECT v.empresa, v.nif, v.apellidos, v.nombre, v.numkilosreferencia, " +
+                                 "e.Lopd, c.NombreCategoria, sum(el.numkilos) as KilosCategorias " +
+                                 "FROM viewentradasquery v " +
+                                 "inner join entradaslineas el ON v.IdEntrada = el.IdEntrada " +
+                                 "and v.Empresa = el.Empresa and v.Ejercicio = el.Ejercicio " +
+                                 "inner join empresas e ON v.Empresa = e.IdEmpresa " +
+                                 "inner join categorias c ON el.Empresa = c.Empresa and el.Ejercicio = c.Ejercicio and el.IdCategoria = c.IdCategoria " +
+                                 "where v.Fecha >= ? and v.Fecha <= ? and v.empresa = ? " +
+                                 "group by v.empresa, v.nif, v.apellidos, v.nombre, v.numkilosreferencia, " +
+                                 "e.Lopd, c.NombreCategoria, v.idCosechero, c.orden " +
+                                 "order by v.apellidos, v.idCosechero, c.orden desc";
+                
+                System.out.println("DEBUG: Executing corrected SQL query...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setDate(1, new java.sql.Date(fechadesde.getTime())); // fecha desde
+                pstmt.setDate(2, new java.sql.Date(fechahasta.getTime())); // fecha hasta
+                pstmt.setInt(3, empresa);                                  // empresa
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            
-	            // En archivo ListadoCategoriasKilosPorCosechero.jrxml
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
+	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
+	            System.out.println("INFO: ListadoCategoriasKilosPorCosechero - usando consulta SQL corregida");
 
-	            
-	            // TODO: Implementar solucion especifica si hay errores SQL
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            
-	            System.out.println("WARNING: ListadoCategoriasKilosPorCosechero - verificar referencias DB en .jrxml");
-
-	            
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - ListadoCategoriasKilosPorCosechero (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - ListadoCategoriasKilosPorCosechero (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

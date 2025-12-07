@@ -9,9 +9,9 @@
 	<parameter name='SemanaHasta' class='java.lang.Integer'/>
 	<queryString>
 		<![CDATA[SELECT NombreCategoria, Orden,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosAcumulados]($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, c.IdCategoria) as KilosAcumulados,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosAcumulados]($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, 0) as KilosAcumuladosTotal
-FROM [db_aa764d_coopmanagerdb].[dbo].[categorias] c where c.Empresa = $P{Empresa} and c.Ejercicio = $P{Ejercicio} and [db_aa764d_coopmanagerdb].[dbo].[LiquidacionKilosAcumulados]($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, c.IdCategoria) > 0;]]>
+dbo.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, c.IdCategoria) as KilosAcumulados,
+dbo.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, 0) as KilosAcumuladosTotal
+FROM categorias c where c.Empresa = $P{Empresa} and c.Ejercicio = $P{Ejercicio} and dbo.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, c.IdCategoria) > 0;]]>
 	</queryString>
 	<field name='NombreCategoria' class='java.lang.String'>
 		<fieldDescription><![CDATA[]]></fieldDescription>

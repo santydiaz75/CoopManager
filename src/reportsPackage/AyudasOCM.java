@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import sessionPackage.HibernateSessionFactory;
 
 import entitiesPackage.Message;
 
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.*;
 import net.sf.jasperreports.engine.util.*;
@@ -120,29 +123,63 @@ public class AyudasOCM
 	            parameters.put("Ejercicio", ejercicio);
 	            parameters.put("SemanaDesde", SemanaDesde);
 	            parameters.put("SemanaHasta", SemanaHasta);
-	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
 
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+                // === SOLUCION: Usar consulta SQL corregida ===
+                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+                
+                String sqlQuery = "SELECT ec.Empresa, ec.Ejercicio, ec.IdCosechero, " +
+                                 "dbo.CosecheroGetNombreByNif(co.Empresa, co.Ejercicio, co.NIF) as NombreApellidos, " +
+                                 "co.NIF, co.Direccion, co.Poblacion, co.CodigoPostal, co.Telefono1, " +
+                                 "co.IdBanco, co.IdSucursal, co.DigitoControl, co.CuentaBancaria, co.CuentaContable, " +
+                                 "sum(ec.NumPinas) AS NumPinas, " +
+                                 "(SELECT sum(el1.NumKilos) FROM entradascabecera ec1 " +
+                                 " inner join entradaslineas el1 on ec1.Empresa = el1.Empresa and ec1.Ejercicio = el1.Ejercicio and ec1.IdEntrada = el1.IdEntrada " +
+                                 " where (ec.IdCosechero = ec1.IdCosechero) and ec1.Empresa = ? and ec1.Ejercicio = ? " +
+                                 " and ec1.Semana >= ? and ec1.Semana <= ?) as Kilos, " +
+                                 "e.Lopd " +
+                                 "FROM entradascabecera ec " +
+                                 "inner join cosecheros co on ec.Empresa = co.Empresa and ec.Ejercicio = co.Ejercicio and ec.IdCosechero = co.IdCosechero " +
+                                 "inner join empresas e on e.IdEmpresa = co.Empresa " +
+                                 "where ec.Empresa = ? and ec.Ejercicio = ? and ec.Semana >= ? and ec.Semana <= ? " +
+                                 "group by ec.Empresa, ec.Ejercicio, ec.IdCosechero, " +
+                                 "dbo.CosecheroGetNombreByNif(co.Empresa, co.Ejercicio, co.NIF), " +
+                                 "co.NIF, co.Direccion, co.Poblacion, co.CodigoPostal, co.Telefono1, " +
+                                 "co.IdBanco, co.IdSucursal, co.DigitoControl, co.CuentaBancaria, co.CuentaContable, e.Lopd " +
+                                 "order by NombreApellidos";
+                
+                System.out.println("DEBUG: Executing corrected SQL query...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setInt(1, empresa);     // subquery empresa
+                pstmt.setInt(2, ejercicio);   // subquery ejercicio
+                pstmt.setInt(3, SemanaDesde); // subquery semana desde
+                pstmt.setInt(4, SemanaHasta); // subquery semana hasta
+                pstmt.setInt(5, empresa);     // main query empresa
+                pstmt.setInt(6, ejercicio);   // main query ejercicio
+                pstmt.setInt(7, SemanaDesde); // main query semana desde
+                pstmt.setInt(8, SemanaHasta); // main query semana hasta
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	
-	            // En archivo AyudasOCM.jrxml
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
+	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
+	            System.out.println("INFO: AyudasOCM - usando consulta SQL corregida");
 
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	
-	            System.out.println("WARNING: AyudasOCM - verificar referencias DB en .jrxml");
-
-	
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - AyudasOCM (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - AyudasOCM (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

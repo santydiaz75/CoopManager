@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Date;
@@ -134,39 +136,27 @@ public class FacturaLiquidacion
 	            parameters.put("SUBREPORT_DIR", workDirectory +  
     			"\\reportsPackage\\");
 	            
-	            
-	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
+	            // === SOLUCION IMPLEMENTADA: Consultas SQL corregidas ===
+                // Se han corregido las consultas SQL en todos los archivos .jrxml:
+                // - FacturaLiquidacion.jrxml (reporte principal)
+                // - FacturaLiquidacionPrecios.jrxml (subreporte precios)
+                // - FacturaLiquidacionBonificacion.jrxml (subreporte bonificaciones)
+                // - FacturaLiquidacionAcumulado.jrxml (subreporte acumulados)
+                // Eliminadas todas las referencias hardcodeadas [db_aa764d_coopmanagerdb].[dbo]
+                System.out.println("INFO: FacturaLiquidacion - consultas SQL corregidas en archivos .jrxml");
 
-	            
-	            
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            // Los subreportes requieren conexión directa para funcionar correctamente
+	            // Por ello, usamos la conexión directa pero con consulta SQL corregida en el .jrxml
+	            System.out.println("INFO: FacturaLiquidacion - usando conexión directa para subreportes");
 
-	            
-	            
-	
-	            // En archivo FacturaLiquidacion.jrxml
-
-	            
-	            
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	            
-	            
-	
-	            System.out.println("WARNING: FacturaLiquidacion - verificar referencias DB en .jrxml");
-
-	            
-	            
-	
-	            //Informe diseÃ±ado y compilado con iReport
+                System.out.println("DEBUG: Filling report with connection for subreports...");
+	            //Informe diseñado y compilado con iReport - usando conexión para subreportes
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicaciÃ³n al salir
+	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - FacturaLiquidacion (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - FacturaLiquidacion (SQL Corregido)");
 	            jviewer.setVisible(true);
             }
         }

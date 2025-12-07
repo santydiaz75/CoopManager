@@ -13,15 +13,15 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT ca.empresa, ca.ejercicio, ca.IdCategoria, ca.NombreCategoria,ca.orden,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, ca.IdCategoria) as PrecioSemana1,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 1, ca.IdCategoria) as PrecioSemana2,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 2, ca.IdCategoria) as PrecioSemana3,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 3, ca.IdCategoria) as PrecioSemana4,
-[db_aa764d_coopmanagerdb].[dbo].[LiquidacionPrecioSemana]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 4, ca.IdCategoria) as PrecioSemana5
-FROM [db_aa764d_coopmanagerdb].[dbo].[liquidacioneslineas] ll left outer join [db_aa764d_coopmanagerdb].[dbo].[categorias] ca on [db_aa764d_coopmanagerdb].[dbo].[CategoriaGetGrupo](ll.empresa, ll.ejercicio, ll.IdCategoria) = ca.IdCategoria left outer join  [db_aa764d_coopmanagerdb].[dbo].[precios] p on ca.IdCategoria = p.IdCategoria and
+dbo.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, ca.IdCategoria) as PrecioSemana1,
+dbo.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 1, ca.IdCategoria) as PrecioSemana2,
+dbo.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 2, ca.IdCategoria) as PrecioSemana3,
+dbo.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 3, ca.IdCategoria) as PrecioSemana4,
+dbo.LiquidacionPrecioSemana($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde} + 4, ca.IdCategoria) as PrecioSemana5
+FROM liquidacioneslineas ll left outer join categorias ca on dbo.CategoriaGetGrupo(ll.empresa, ll.ejercicio, ll.IdCategoria) = ca.IdCategoria left outer join precios p on ca.IdCategoria = p.IdCategoria and
 ca.Ejercicio = p.ejercicio and ca.empresa = p.empresa
 where  ll.ejercicio = $P{Ejercicio} and ll.empresa = $P{Empresa} and ll.NumeroFactura = $P{NumeroFactura} and p.Semana >=  $P{SemanaDesde} and p.ejercicio = $P{Ejercicio} and p.empresa = $P{Empresa} and p.Semana <= $P{SemanaHasta}
-group by ca.empresa, ca.ejercicio, ca.IdCategoria, ca.NombreCategoria
+group by ca.empresa, ca.ejercicio, ca.IdCategoria, ca.NombreCategoria, ca.orden
 order by ca.orden Desc;]]>
 	</queryString>
 	<field name='empresa' class='java.lang.Integer'>

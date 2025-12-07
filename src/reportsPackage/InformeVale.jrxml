@@ -9,18 +9,7 @@
 	<parameter name='SemanaHasta' class='java.lang.Integer'/>
 	<parameter name='Cosechero' class='java.lang.Integer'/>
 	<queryString>
-		<![CDATA[SELECT ec.Empresa, ec.Ejercicio, case when $P{Cosechero} = 0 then 0 else co.IdCosechero end as IdCosechero, case when $P{Cosechero} = 0 then 'Todos' else (co.Apellidos + ', ' + co.Nombre) end as NombreApellidos,
- ca.IdCategoria, ca.NombreCategoria,  case when $P{Cosechero} = 0 then 'Todas' else z.NombreZona end as NombreZona, (SELECT sum(NumPinas) FROM [db_aa764d_coopmanagerdb].[dbo].[entradascabecera] ec1 where (ec1.IdCosechero = $P{Cosechero} or $P{Cosechero} = 0) and ec1.Empresa = $P{Empresa} and ec1.Ejercicio = $P{Ejercicio} and ec1.Semana >= $P{SemanaDesde} and ec1.Semana <= $P{SemanaHasta}) as NumPinas, (SELECT sum(NumKilos) FROM [db_aa764d_coopmanagerdb].[dbo].[entradascabecera] ec1 inner join [db_aa764d_coopmanagerdb].[dbo].[entradaslineas] el1 on
-ec1.Empresa = el1.Empresa and ec1.Ejercicio = el1.Ejercicio and ec1.IdEntrada = el1.IdEntrada where (ec1.IdCosechero = $P{Cosechero} or $P{Cosechero} = 0)  and ec1.Empresa = $P{Empresa} and ec1.Ejercicio = $P{Ejercicio} and ec1.Semana >= $P{SemanaDesde} and ec1.Semana <= $P{SemanaHasta}) as KilosTotal, Sum(NumKilos) as NumKilos, e.Lopd
-FROM [db_aa764d_coopmanagerdb].[dbo].[entradascabecera] ec inner join [db_aa764d_coopmanagerdb].[dbo].[empresas] e
-on e.IdEmpresa = ec.Empresa inner join [db_aa764d_coopmanagerdb].[dbo].[cosecheros] co
-on ec.Empresa = co.Empresa and ec.Ejercicio = co.Ejercicio and ec.IdCosechero = co.IdCosechero
-inner join [db_aa764d_coopmanagerdb].[dbo].[entradaslineas] el on ec.Empresa = el.Empresa and ec.Ejercicio = el.Ejercicio and ec.IdEntrada = el.IdEntrada
-inner join [db_aa764d_coopmanagerdb].[dbo].[categorias] ca on el.Empresa = ca.Empresa and el.Ejercicio = ca.Ejercicio and [db_aa764d_coopmanagerdb].[dbo].[CategoriaGetGrupo](el.Empresa, el.Ejercicio, el.IdCategoria) = ca.IdCategoria
-inner join [db_aa764d_coopmanagerdb].[dbo].[zonas] z on ec.Empresa = z.Empresa and ec.Ejercicio = z.Ejercicio and ec.IdZona = z.IdZona
-where  (ec.IdCosechero = $P{Cosechero} or $P{Cosechero} = 0) and ec.Empresa = $P{Empresa} and ec.Ejercicio = $P{Ejercicio} and ec.Semana >= $P{SemanaDesde} and ec.Semana <= $P{SemanaHasta}
-group by ec.Empresa, ec.Ejercicio, IdCosechero, NombreApellidos, ca.IdCategoria, ca.NombreCategoria, (SELECT sum(NumPinas) FROM [db_aa764d_coopmanagerdb].[dbo].[entradascabecera] ec1 where (ec1.IdCosechero = $P{Cosechero}  or $P{Cosechero} = 0) and ec1.Empresa = $P{Empresa} and ec1.Ejercicio = $P{Ejercicio} and ec1.Semana >= $P{SemanaDesde} and ec1.Semana <= $P{SemanaHasta}), (SELECT sum(NumKilos) FROM [db_aa764d_coopmanagerdb].[dbo].[entradascabecera] ec1 inner join [db_aa764d_coopmanagerdb].[dbo].[entradaslineas] el1 on
-ec1.Empresa = el1.Empresa and ec1.Ejercicio = el1.Ejercicio and ec1.IdEntrada = el1.IdEntrada where (ec1.IdCosechero = $P{Cosechero}  or $P{Cosechero} = 0) and ec1.Empresa = $P{Empresa} and ec1.Ejercicio = $P{Ejercicio} and ec1.Semana >= $P{SemanaDesde} and ec1.Semana <= $P{SemanaHasta}) order by ca.Orden Desc;]]>
+		<![CDATA[]]>
 	</queryString>
 	<field name='Empresa' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>

@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Date;
@@ -133,39 +135,82 @@ public class ResumenLiquidacion
     			"\\reportsPackage\\");
 	            
 	            
-	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
+	            // === SOLUCION: Usar consulta SQL corregida ===
+                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+                
+                String sqlQuery = "SELECT l.empresa, l.ejercicio, l.mes, m.NombreMes, l.NumeroFactura, l.fecha, " +
+                                 "l.IdCosechero, (co.Apellidos + ', ' + co.Nombre) as NombreApellidos, " +
+                                 "coalesce(l.BaseImponible,0) as BaseImponible, coalesce(l.ImporteBonificacion,0) as ImporteBonificacion, " +
+                                 "coalesce(co.TipoIgic,0) as TipoIgic, coalesce(co.TipoIrpf, 0) as TipoIrpf, " +
+                                 "coalesce(l.ImporteIgic,0) as ImporteIgic, coalesce(l.ImporteIrpf, 0) as ImporteIrpf, " +
+                                 "coalesce(ll.PinasSemana1, 0) as PinasSemana1, " +
+                                 "coalesce(ll.PinasSemana2, 0) as PinasSemana2, " +
+                                 "coalesce(ll.PinasSemana3, 0) as PinasSemana3, " +
+                                 "coalesce(ll.PinasSemana4, 0) as PinasSemana4, " +
+                                 "coalesce(ll.PinasSemana5, 0) as PinasSemana5, " +
+                                 "coalesce(ll.PrecioSemana1, 0) as PrecioSemana1, " +
+                                 "coalesce(ll.PrecioSemana2, 0) as PrecioSemana2, " +
+                                 "coalesce(ll.PrecioSemana3, 0) as PrecioSemana3, " +
+                                 "coalesce(ll.PrecioSemana4, 0) as PrecioSemana4, " +
+                                 "coalesce(ll.PrecioSemana5, 0) as PrecioSemana5, " +
+                                 "Sum(coalesce(ll.KilosSemana1, 0)) as KilosSemana1, " +
+                                 "Sum(coalesce(ll.KilosSemana2, 0)) as KilosSemana2, " +
+                                 "Sum(coalesce(ll.KilosSemana3, 0)) as KilosSemana3, " +
+                                 "Sum(coalesce(ll.KilosSemana4, 0)) as KilosSemana4, " +
+                                 "Sum(coalesce(ll.KilosSemana5, 0)) as KilosSemana5, " +
+                                 "Sum(coalesce(ll.KilosInutSemana1, 0)) as KilosInutSemana1, " +
+                                 "Sum(coalesce(ll.KilosInutSemana2, 0)) as KilosInutSemana2, " +
+                                 "Sum(coalesce(ll.KilosInutSemana3, 0)) as KilosInutSemana3, " +
+                                 "Sum(coalesce(ll.KilosInutSemana4, 0)) as KilosInutSemana4, " +
+                                 "Sum(coalesce(ll.KilosInutSemana5, 0)) as KilosInutSemana5, " +
+                                 "e.Lopd " +
+                                 "FROM liquidaciones l inner join empresas e on l.empresa = e.IdEmpresa " +
+                                 "left outer join liquidacioneslineas ll on l.empresa = ll.empresa and l.ejercicio = ll.ejercicio " +
+                                 "and l.NumeroFactura = ll.NumeroFactura " +
+                                 "left outer join meses m on l.mes = m.mes " +
+                                 "left outer join (Select * From cosecheros where idgrupo = IdCosechero) co on l.IdCosechero = co.IdCosechero and co.Ejercicio = ? and co.Empresa = ? " +
+                                 "where l.mes = ? and l.ejercicio = ? and l.empresa = ? " +
+                                 "group by l.empresa, l.ejercicio, l.mes, m.NombreMes, l.NumeroFactura, l.fecha, l.IdCosechero, " +
+                                 "(co.Apellidos + ', ' + co.Nombre), coalesce(l.BaseImponible,0), coalesce(l.ImporteBonificacion,0), " +
+                                 "coalesce(co.TipoIgic,0), coalesce(co.TipoIrpf, 0), coalesce(l.ImporteIgic,0), coalesce(l.ImporteIrpf, 0), " +
+                                 "coalesce(ll.PinasSemana1, 0), coalesce(ll.PinasSemana2, 0), coalesce(ll.PinasSemana3, 0), " +
+                                 "coalesce(ll.PinasSemana4, 0), coalesce(ll.PinasSemana5, 0), coalesce(ll.PrecioSemana1, 0), " +
+                                 "coalesce(ll.PrecioSemana2, 0), coalesce(ll.PrecioSemana3, 0), coalesce(ll.PrecioSemana4, 0), " +
+                                 "coalesce(ll.PrecioSemana5, 0), e.Lopd";
+                
+                System.out.println("DEBUG: Executing corrected SQL query for ResumenLiquidacion...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                
+                // Set parameters 
+                pstmt.setInt(1, ejercicio);  // co.Ejercicio = ?
+                pstmt.setInt(2, empresa);    // co.Empresa = ?
+                pstmt.setInt(3, mes);        // l.mes = ?
+                pstmt.setInt(4, ejercicio);  // l.ejercicio = ?
+                pstmt.setInt(5, empresa);    // l.empresa = ?
+                
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            
-	            
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
+	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
+	            System.out.println("INFO: ResumenLiquidacion - usando consulta SQL corregida");
 
-	            
-	            
-	
-	            // En archivo ResumenLiquidacion.jrxml
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            
-	            
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	            
-	            
-	
-	            System.out.println("WARNING: ResumenLiquidacion - verificar referencias DB en .jrxml");
-
-	            
-	            
-	
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - ResumenLiquidacion (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - ResumenLiquidacion (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

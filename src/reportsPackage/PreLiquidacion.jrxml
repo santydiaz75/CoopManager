@@ -18,15 +18,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT co.Empresa, co.Ejercicio, m.NombreMes, co.IdCosechero, (co.Apellidos + ', ' + co.Nombre) as NombreApellidos, coalesce(co.TipoIgic,0) as TipoIgic, coalesce(co.TipoIrpf, 0) as TipoIrpf,
-coalesce([db_aa764d_coopmanagerdb].[dbo].[PreLiquidacionGetBaseImponible]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, $P{SemanaHasta}, co.IdCosechero), 0) as BaseImponible,
-coalesce([db_aa764d_coopmanagerdb].[dbo].[PreLiquidacionGetNumKilos]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, $P{SemanaHasta}, co.IdCosechero), 0) as NumKilos,
-coalesce([db_aa764d_coopmanagerdb].[dbo].[PreLiquidacionKilosInutilizadosCosechero]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, $P{SemanaHasta}, co.IdCosechero), 0) as NumKilosInut,
-coalesce([db_aa764d_coopmanagerdb].[dbo].[PreLiquidacionGetNumPinas]($P{Empresa}, $P{Ejercicio}, $P{SemanaDesde}, $P{SemanaHasta}, co.IdCosechero), 0) as NumPinas, e.Lopd
-FROM [db_aa764d_coopmanagerdb].[dbo].[cosecheros] co inner join [db_aa764d_coopmanagerdb].[dbo].[empresas] e On co.Empresa = e.IdEmpresa
-left outer join [db_aa764d_coopmanagerdb].[dbo].[meses] m on $P{Mes} = m.mes
-where co.Ejercicio = $P{Ejercicio} and co.Empresa = $P{Empresa}
-group by co.Empresa, co.Ejercicio, m.NombreMes, co.IdCosechero, (co.Apellidos + ', ' + co.Nombre), coalesce(co.TipoIgic,0), coalesce(co.TipoIrpf, 0);]]>
+		<![CDATA[]]>
 	</queryString>
 	<field name='empresa' class='java.lang.Integer'>
 		<fieldDescription><![CDATA[]]></fieldDescription>

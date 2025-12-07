@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Date;
@@ -101,83 +103,96 @@ public class PreLiquidacion
     public void runReporte(int empresa, int ejercicio, int mes, int semanaDesde, int semanaHasta, 
     		Date fechaDesde, Date fechaHasta)
     {
-        //this.id_contact="";
-        //this.id_contact = id;
-        
         try
         {       
         	String workDirectory = getDirectory().getPath();
             String master =  workDirectory +  
             			"\\reportsPackage\\PreLiquidacion.jasper";
             
-            if (master == null)          
+            if (master == null) {
             	Message.ShowErrorMessage(parent, "PreLiquidacion", "No encuentro el archivo del informe maestro.");
-            else {
-
-	            JasperReport masterReport = null;
-	            masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);              
-	            
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
-	            Map<String, Object> parameters = new HashMap<String, Object>();
-	            parameters.put("Empresa", empresa);
-	            parameters.put("Ejercicio", ejercicio);
-	            parameters.put("Mes", mes);
-	            parameters.put("SemanaDesde", semanaDesde);
-	            parameters.put("SemanaHasta", semanaHasta);
-	            parameters.put("FechaDesde", fechaDesde);
-	            parameters.put("FechaHasta", fechaHasta);
-	            parameters.put("LOGO_DIR", workDirectory +  
-	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
-	            parameters.put("SUBREPORT_DIR", workDirectory +  
-    			"\\reportsPackage\\");
-	            
-	            
-	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
-
-	            
-	            
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
-
-	            
-	            
-	
-	            // En archivo PreLiquidacion.jrxml
-
-	            
-	            
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	            
-	            
-	
-	            System.out.println("WARNING: PreLiquidacion - verificar referencias DB en .jrxml");
-
-	            
-	            
-	
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
-	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - PreLiquidacion (CHECK SQL)");
-	            jviewer.setVisible(true);
+            	return;
             }
-        }
 
+	        JasperReport masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);
+	        
+	        // Preparar consulta SQL sin referencias hardcodeadas
+	        String sql = "SELECT co.Empresa, co.Ejercicio, m.NombreMes, co.IdCosechero, " +
+	        		     "(co.Apellidos + ', ' + co.Nombre) as NombreApellidos, " +
+	        		     "coalesce(co.TipoIgic,0) as TipoIgic, coalesce(co.TipoIrpf, 0) as TipoIrpf, " +
+	        		     "coalesce(dbo.PreLiquidacionGetBaseImponible(?, ?, ?, ?, co.IdCosechero), 0) as BaseImponible, " +
+	        		     "coalesce(dbo.PreLiquidacionGetNumKilos(?, ?, ?, ?, co.IdCosechero), 0) as NumKilos, " +
+	        		     "coalesce(dbo.PreLiquidacionKilosInutilizadosCosechero(?, ?, ?, ?, co.IdCosechero), 0) as NumKilosInut, " +
+	        		     "coalesce(dbo.PreLiquidacionGetNumPinas(?, ?, ?, ?, co.IdCosechero), 0) as NumPinas, e.Lopd " +
+	        		     "FROM cosecheros co inner join empresas e On co.Empresa = e.IdEmpresa " +
+	        		     "left outer join meses m on ? = m.mes " +
+	        		     "where co.Ejercicio = ? and co.Empresa = ? " +
+	        		     "group by co.Empresa, co.Ejercicio, m.NombreMes, co.IdCosechero, " +
+	        		     "(co.Apellidos + ', ' + co.Nombre), coalesce(co.TipoIgic,0), coalesce(co.TipoIrpf, 0), e.Lopd";
+	        
+	        System.out.println("PreLiquidacion - Executing SQL: " + sql);
+	        
+	        PreparedStatement pstmt = conn.prepareStatement(sql);
+	        
+	        // Establecer parametros (multiples veces para las funciones)
+	        pstmt.setInt(1, empresa);   // PreLiquidacionGetBaseImponible
+	        pstmt.setInt(2, ejercicio);
+	        pstmt.setInt(3, semanaDesde);
+	        pstmt.setInt(4, semanaHasta);
+	        pstmt.setInt(5, empresa);   // PreLiquidacionGetNumKilos
+	        pstmt.setInt(6, ejercicio);
+	        pstmt.setInt(7, semanaDesde);
+	        pstmt.setInt(8, semanaHasta);
+	        pstmt.setInt(9, empresa);   // PreLiquidacionKilosInutilizadosCosechero
+	        pstmt.setInt(10, ejercicio);
+	        pstmt.setInt(11, semanaDesde);
+	        pstmt.setInt(12, semanaHasta);
+	        pstmt.setInt(13, empresa);  // PreLiquidacionGetNumPinas
+	        pstmt.setInt(14, ejercicio);
+	        pstmt.setInt(15, semanaDesde);
+	        pstmt.setInt(16, semanaHasta);
+	        pstmt.setInt(17, mes);      // meses join
+	        pstmt.setInt(18, ejercicio); // where ejercicio
+	        pstmt.setInt(19, empresa);  // where empresa
+	        
+	        System.out.println("PreLiquidacion - Parameters: empresa=" + empresa + ", ejercicio=" + ejercicio + 
+	        		           ", mes=" + mes + ", semanaDesde=" + semanaDesde + ", semanaHasta=" + semanaHasta);
+	        
+	        ResultSet rs = pstmt.executeQuery();
+	        
+	        // Crear datasource con los resultados
+	        JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
+	        
+	        // Preparar parametros
+	        Map<String, Object> parameters = new HashMap<String, Object>();
+	        parameters.put("Empresa", empresa);
+	        parameters.put("Ejercicio", ejercicio);
+	        parameters.put("Mes", mes);
+	        parameters.put("SemanaDesde", semanaDesde);
+	        parameters.put("SemanaHasta", semanaHasta);
+	        parameters.put("FechaDesde", fechaDesde);
+	        parameters.put("FechaHasta", fechaHasta);
+	        parameters.put("LOGO_DIR", workDirectory + "\\reportsPackage\\Anagrama" + empresa + ".jpg");
+	        parameters.put("SUBREPORT_DIR", workDirectory + "\\reportsPackage\\");
+	        
+	        // Generar reporte
+	        JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
+
+	        // Mostrar reporte
+	        JasperViewer jviewer = new JasperViewer(jasperPrint, false);
+	        jviewer.setTitle("GestCoop - PreLiquidacion");
+	        jviewer.setVisible(true);
+	        
+	        // Limpiar recursos
+	        rs.close();
+	        pstmt.close();
+        }
         catch (Exception j)
         {
         	j.printStackTrace();
         	Message.ShowErrorMessage(parent, "PreLiquidacion", "Mensaje de Error: " + j.getMessage());
         }
-        
-    }
-    
-    public void cerrar()
+    }    public void cerrar()
     {
         try 
         {
