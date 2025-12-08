@@ -3,9 +3,6 @@ package sessionPackage;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
-import org.jasypt.encryption.pbe.PBEStringEncryptor;
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.hibernate.encryptor.HibernatePBEEncryptorRegistry;
 
 /**
  * Configures and provides access to Hibernate sessions, tied to the
@@ -37,17 +34,6 @@ public class HibernateSessionFactory {
     	try {
 			configuration.configure(configFile);
 			// configuration.setProperty("hibernate.connection.url", getConnectionURL());
-			PBEStringEncryptor encryptor =
-			      new StandardPBEStringEncryptor();
-			// La clave se puede obtener consultar en web,
-			// en una variable del programa o de entorno...
-			encryptor.setPassword("santi");
-			HibernatePBEEncryptorRegistry registry =
-			      HibernatePBEEncryptorRegistry.getInstance();
-
-			// Asignar el mismo nombre que en hibernate-mapping
-			registry.registerPBEStringEncryptor(
-			      "hibernateEncryptor", encryptor);
 			
 			sessionFactory = configuration.buildSessionFactory();
 		} catch (Exception e) {
@@ -87,18 +73,6 @@ public class HibernateSessionFactory {
 	public static void rebuildSessionFactory() {
 		try {
 			configuration.configure(configFile);
-			
-			PBEStringEncryptor encryptor =
-			      new StandardPBEStringEncryptor();
-			// La clave se puede obtener consultar en web,
-			// en una variable del programa o de entorno...
-			encryptor.setPassword("santi");
-			HibernatePBEEncryptorRegistry registry =
-			      HibernatePBEEncryptorRegistry.getInstance();
-
-			// Asignar el mismo nombre que en hibernate-mapping
-			registry.registerPBEStringEncryptor(
-			      "hibernateEncryptor", encryptor);
 			
 			sessionFactory = configuration.buildSessionFactory();
 		} catch (Exception e) {

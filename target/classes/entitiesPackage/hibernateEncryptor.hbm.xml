@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
       <typedef name="encrypted"
-      class="org.jasypt.hibernate5.type.EncryptedStringType">
+      class="org.jasypt.hibernate.type.EncryptedStringType">
             <param name="encryptorRegisteredName">
                   hibernateEncryptor</param>
       </typedef>

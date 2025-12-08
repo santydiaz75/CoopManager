@@ -78,7 +78,7 @@
 	<mapping resource="entitiesPackage/Empleadosnominas.hbm.xml" />
 	<mapping resource="entitiesPackage/Facturascabecera.hbm.xml" />
 	<mapping resource="entitiesPackage/Facturaslineas.hbm.xml" />
-	<mapping resource="entitiesPackage/hibernateEncryptor.hbm.xml" />
+	<!-- <mapping resource="entitiesPackage/hibernateEncryptor.hbm.xml" /> -->
 	<mapping resource="entitiesPackage/Viewliquidaciones.hbm.xml" />
 	<mapping resource="entitiesPackage/Facturaspagocabecera.hbm.xml" />
 	<mapping resource="entitiesPackage/Facturaspagolineas.hbm.xml" />
