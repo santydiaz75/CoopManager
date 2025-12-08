@@ -9,8 +9,6 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Date;
@@ -24,7 +22,6 @@ import sessionPackage.HibernateSessionFactory;
 import entitiesPackage.Message;
 
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.*;
 import net.sf.jasperreports.engine.util.*;
 import net.sf.jasperreports.view.*;
 
@@ -43,13 +40,13 @@ public class Rentabilidad
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
             String url = HibernateSessionFactory.getConnectionURL();
+            String login = HibernateSessionFactory.getConfiguration().getProperty("hibernate.connection.username");
+            String password = HibernateSessionFactory.getConfiguration().getProperty("hibernate.connection.password");
             
         	this.parent = parent;
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
-            String password = "salmadh2010";
-            conn = DriverManager.getConnection(url,login,password);
+            conn = DriverManager.getConnection(url, login, password);
         } 
         catch (ClassNotFoundException ex) 
         {
@@ -103,17 +100,18 @@ public class Rentabilidad
         
         try
         {            
-            String master = getDirectory().getPath() + 
-							"\\reportsPackage\\Rentabilidad.jasper";
+            String masterJrxml = getDirectory().getPath() + 
+							"\\reportsPackage\\Rentabilidad.jrxml";
             
-            if (master == null) 
+            if (masterJrxml == null) 
             	Message.ShowErrorMessage(parent, "Rentabilidad", "No encuentro el archivo del informe maestro.");
             else {
             
             	JasperReport masterReport = null;
-                masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
+                // Compilar directamente desde JRXML
+                masterReport = JasperCompileManager.compileReport(masterJrxml);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
+	            //este es el par�metro, se pueden agregar m�s par�metros
 	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
@@ -126,27 +124,12 @@ public class Rentabilidad
 	            parameters.put("GastosFinancieros", gastosfinancieros);
 	            parameters.put("CuotaAgriten", cuotaAgriten);
 	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
-
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
-
-	
-	            // En archivo Rentabilidad.jrxml
-
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	
-	            System.out.println("WARNING: Rentabilidad - verificar referencias DB en .jrxml");
-
-	
-	            //Informe diseñado y compilado con iReport
+	            //Informe dise�ado y compilado con iReport
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - Rentabilidad (CHECK SQL)");
+	            jviewer.setTitle("GestCoop");
 	            jviewer.setVisible(true);
             }
         }

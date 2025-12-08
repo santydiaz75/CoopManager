@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='Rentabilidad' language='groovy' pageWidth='595' pageHeight='842' columnWidth='555' leftMargin='20' rightMargin='20' topMargin='20' bottomMargin='20'>
 	<property name='ireport.zoom' value='1.0'/>
 	<property name='ireport.x' value='0'/>
@@ -29,7 +29,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select distinct [tc].[Empresa] AS [Empresa],[tc].[Ejercicio] AS [Ejercicio],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],1, $P{FechaDesde}, $P{FechaHasta}) AS[Envases_y_Embalajes],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],2, $P{FechaDesde}, $P{FechaHasta}) AS [Arrendamientos_y_Canones],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],3, $P{FechaDesde}, $P{FechaHasta}) AS [Reparaciones_y_Conservaciones],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],4, $P{FechaDesde}, $P{FechaHasta}) AS [ServiciosProfesionales],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],5, $P{FechaDesde}, $P{FechaHasta}) AS [Seguros],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],6, $P{FechaDesde}, $P{FechaHasta}) AS [Publicidad_y_RelPublicas],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],7, $P{FechaDesde}, $P{FechaHasta}) AS [Suministros],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],8, $P{FechaDesde}, $P{FechaHasta}) AS [ServiciosBancarios],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],9, $P{FechaDesde}, $P{FechaHasta}) AS [Tributos],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],10, $P{FechaDesde}, $P{FechaHasta}) AS [OtrosServicios],[db_aa764d_coopmanagerdb].[dbo].[ImporteGastosByTipoCoste]([tc].[Empresa],[tc].[Ejercicio],11, $P{FechaDesde}, $P{FechaHasta}) AS [MaterialesAuxiliares],[db_aa764d_coopmanagerdb].[dbo].[ImporteNominas]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta}) AS [TotalNominas],([db_aa764d_coopmanagerdb].[dbo].[ImporteNominas]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta}) + [db_aa764d_coopmanagerdb].[dbo].[ImporteGastosTotal]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta})) AS [TotalGastos],[db_aa764d_coopmanagerdb].[dbo].[EntradaGetNumKilosTotal]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta}) AS [TotalKilos],[db_aa764d_coopmanagerdb].[dbo].[ImporteIngresosExplotacion]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta}) AS [ImporteIngresos],[db_aa764d_coopmanagerdb].[dbo].[ImporteLiquidaciones]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta}) AS [ConsumosExplotacion],([db_aa764d_coopmanagerdb].[dbo].[ImporteIngresosExplotacion]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta}) / [db_aa764d_coopmanagerdb].[dbo].[EntradaGetNumKilosTotal]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta})) AS [PrecioVenta],([db_aa764d_coopmanagerdb].[dbo].[ImporteLiquidaciones]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta}) / [db_aa764d_coopmanagerdb].[dbo].[EntradaGetNumKilosTotal]([tc].[Empresa],[tc].[Ejercicio], $P{FechaDesde}, $P{FechaHasta})) AS [PrecioCompra] from [[db_aa764d_coopmanagerdb].[dbo].[tiposcoste]] [tc] where [tc].[Empresa] = $P{Empresa} and [tc].[Ejercicio] = $P{Ejercicio};]]>
+		<![CDATA[select distinct tc.Empresa AS Empresa, tc.Ejercicio AS Ejercicio, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 1, $P{FechaDesde}, $P{FechaHasta}) AS Envases_y_Embalajes, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 2, $P{FechaDesde}, $P{FechaHasta}) AS Arrendamientos_y_Canones, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 3, $P{FechaDesde}, $P{FechaHasta}) AS Reparaciones_y_Conservaciones, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 4, $P{FechaDesde}, $P{FechaHasta}) AS ServiciosProfesionales, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 5, $P{FechaDesde}, $P{FechaHasta}) AS Seguros, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 6, $P{FechaDesde}, $P{FechaHasta}) AS Publicidad_y_RelPublicas, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 7, $P{FechaDesde}, $P{FechaHasta}) AS Suministros, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 8, $P{FechaDesde}, $P{FechaHasta}) AS ServiciosBancarios, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 9, $P{FechaDesde}, $P{FechaHasta}) AS Tributos, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 10, $P{FechaDesde}, $P{FechaHasta}) AS OtrosServicios, dbo.ImporteGastosByTipoCoste(tc.Empresa, tc.Ejercicio, 11, $P{FechaDesde}, $P{FechaHasta}) AS MaterialesAuxiliares, dbo.ImporteNominas(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta}) AS TotalNominas, (dbo.ImporteNominas(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta}) + dbo.ImporteGastosTotal(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta})) AS TotalGastos, dbo.EntradaGetNumKilosTotal(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta}) AS TotalKilos, dbo.ImporteIngresosExplotacion(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta}) AS ImporteIngresos, dbo.ImporteLiquidaciones(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta}) AS ConsumosExplotacion, (dbo.ImporteIngresosExplotacion(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta}) / dbo.EntradaGetNumKilosTotal(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta})) AS PrecioVenta, (dbo.ImporteLiquidaciones(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta}) / dbo.EntradaGetNumKilosTotal(tc.Empresa, tc.Ejercicio, $P{FechaDesde}, $P{FechaHasta})) AS PrecioCompra from dbo.tiposcoste tc where tc.Empresa = $P{Empresa} and tc.Ejercicio = $P{Ejercicio}]]>
 	</queryString>
 	<field name='Empresa' class='java.lang.Integer'/>
 	<field name='Ejercicio' class='java.lang.Integer'/>
@@ -126,7 +126,7 @@
 					<textElement>
 						<font fontName='Tahoma' size='20' isBold='true'/>
 					</textElement>
-					<text><![CDATA[C�lculo de costes y rentabilidad del a�o]]></text>
+					<text><![CDATA[Calculo de costes y rentabilidad del anio]]></text>
 				</staticText>
 				<textField pattern='#,##0'>
 					<reportElement x='428' y='20' width='64' height='43' forecolor='#000000'/>
@@ -197,7 +197,7 @@
 				<textElement>
 					<font fontName='Tahoma' size='11' isBold='true'/>
 				</textElement>
-				<text><![CDATA[Arrendamientos y c�nones]]></text>
+				<text><![CDATA[Arrendamientos y canones]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode='Opaque' x='21' y='120' width='151' height='20' forecolor='#000000' backcolor='#FFFFFF'/>
@@ -225,7 +225,7 @@
 				<textElement>
 					<font fontName='Tahoma' size='11' isBold='true'/>
 				</textElement>
-				<text><![CDATA[Publicidad, propaganda y relac. p�blicas]]></text>
+				<text><![CDATA[Publicidad, propaganda y relac. publicas]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode='Opaque' x='21' y='180' width='228' height='20' forecolor='#000000' backcolor='#FFFFFF'/>
@@ -246,14 +246,14 @@
 				<textElement>
 					<font fontName='Tahoma' size='11' isBold='true'/>
 				</textElement>
-				<text><![CDATA[[db_aa764d_coopmanagerdb].[dbo].[gastos] de personal]]></text>
+				<text><![CDATA[Gastos de personal]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode='Opaque' x='21' y='263' width='151' height='20' forecolor='#000000' backcolor='#FFFFFF'/>
 				<textElement>
 					<font fontName='Tahoma' size='11' isBold='true'/>
 				</textElement>
-				<text><![CDATA[[db_aa764d_coopmanagerdb].[dbo].[gastos] financieros]]></text>
+				<text><![CDATA[Gastos financieros]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode='Opaque' x='21' y='283' width='151' height='20' forecolor='#000000' backcolor='#FFFFFF'/>
@@ -267,21 +267,21 @@
 				<textElement textAlignment='Right'>
 					<font fontName='Tahoma' size='12' isBold='true'/>
 				</textElement>
-				<text><![CDATA[Total [db_aa764d_coopmanagerdb].[dbo].[gastos]]]></text>
+				<text><![CDATA[Total gastos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode='Opaque' x='21' y='391' width='228' height='20' forecolor='#000000' backcolor='#FFFFFF'/>
 				<textElement>
 					<font fontName='Tahoma' size='11' isBold='true'/>
 				</textElement>
-				<text><![CDATA[Kilos de pl�tanos]]></text>
+				<text><![CDATA[Kilos de platanos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode='Opaque' x='21' y='435' width='228' height='20' forecolor='#000000' backcolor='#FFFFFF'/>
 				<textElement>
 					<font fontName='Tahoma' size='11' isBold='true'/>
 				</textElement>
-				<text><![CDATA[Ingresos de explotaci�n]]></text>
+				<text><![CDATA[Ingresos de explotacion]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode='Opaque' x='21' y='455' width='228' height='20' forecolor='#000000' backcolor='#FFFFFF'/>
@@ -599,7 +599,7 @@
 				<textElement>
 					<font fontName='Tahoma' size='12' isBold='true'/>
 				</textElement>
-				<text><![CDATA[Consumos de explotaci�n]]></text>
+				<text><![CDATA[Consumos de explotacion]]></text>
 			</staticText>
 			<textField pattern='#,##0.00;-#,##0.00'>
 				<reportElement x='265' y='646' width='100' height='20'/>
@@ -660,7 +660,7 @@
 			<textField>
 				<reportElement mode='Opaque' x='0' y='13' width='509' height='13' backcolor='#E6E6E6'/>
 				<textElement textAlignment='Right'/>
-				<textFieldExpression class='java.lang.String'><![CDATA['P�gina '+$V{PAGE_NUMBER}+' de']]></textFieldExpression>
+				<textFieldExpression class='java.lang.String'><![CDATA['Pagina '+$V{PAGE_NUMBER}+' de']]></textFieldExpression>
 			</textField>
 			<textField evaluationTime='Report'>
 				<reportElement mode='Opaque' x='509' y='13' width='40' height='13' backcolor='#E6E6E6'/>

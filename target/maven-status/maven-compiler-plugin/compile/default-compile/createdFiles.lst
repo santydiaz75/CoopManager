@@ -153,6 +153,7 @@ winUIPackage\FrmListadoCosecherosKilos.class
 winUIPackage\FrmEmpleado$7.class
 winUIPackage\FrmSemana$17.class
 winUIPackage\FrmVehiculo$3.class
+reportsPackage\CompileRentabilidad.class
 winUIPackage\PreferencesUI.class
 winUIPackage\FrmCobro$9.class
 winUIPackage\FrmEmpleado$23.class
@@ -442,6 +443,7 @@ entitiesPackage\LiquidacioneslineasId.class
 reportsPackage\KilosInutilizados.class
 winUIPackage\FrmCosechero$4.class
 entitiesPackage\LiquidacionesId.class
+reportsPackage\Rentabilidad.class
 winUIPackage\FrmInformeControlESAlmacen.class
 winUIPackage\FrmVenta$2.class
 winUIPackage\FrmReceptor$2.class
