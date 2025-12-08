@@ -15,13 +15,13 @@
 	<parameter name='Mes' class='java.lang.Integer'/>
 	<queryString>
 		<![CDATA[SELECT e.empresa, em.Nombre AS NombreEmpresa, e.ejercicio, en.CuentaBancariaPago, b.nombreBanco, e.idEmpleado, (e.nombre + ' ', coalesce(e.apellidos, "')) AS NombreCompleto, e.IdBanco, e.IdSucursal, e.DigitoControl,  e.CuentaBancaria, en.TotalLiquido, em.Lopd
-FROM [db_aa764d_coopmanagerdb].[dbo].[empleados] e INNER JOIN [db_aa764d_coopmanagerdb].[dbo].[empresas] em ON
-e.Empresa = em.IdEmpresa INNER JOIN [db_aa764d_coopmanagerdb].[dbo].[empleadosnominas] en ON
+FROM empleados e INNER JOIN empresas em ON
+e.Empresa = em.IdEmpresa INNER JOIN empleadosnominas en ON
 e.Empresa = en.Empresa and e.Ejercicio = en.Ejercicio and e.IdEmpleado = en.IdEmpleado
-LEFT JOIN [db_aa764d_coopmanagerdb].[dbo].[bancos] b  ON
+LEFT JOIN bancos b  ON
 en.Empresa = b.Empresa and en.Ejercicio = b.Ejercicio and left(en.CuentaBancariaPago,4) = b.IdBanco
 where e.ejercicio = $P{Ejercicio} and e.empresa = $P{Empresa} and en.Mes = $P{Mes}
-group by e.empresa, e.ejercicio, en.CuentaBancariaPago, b.nombreBanco, e.idEmpleado, (e.nombre + ' ' + ISNULL(e.apellidos, '')), e.IdBanco, e.IdSucursal, e.DigitoControl,  e.CuentaBancaria, en.TotalLiquido
+group by e.empresa, em.Nombre, e.ejercicio, en.CuentaBancariaPago, b.nombreBanco, e.idEmpleado, e.nombre, e.apellidos, e.IdBanco, e.IdSucursal, e.DigitoControl, e.CuentaBancaria, en.TotalLiquido, em.Lopd
 order by  en.CuentaBancariaPago, e.nombre]]>
 	</queryString>
 	<field name='empresa' class='java.lang.Integer'>
@@ -146,7 +146,7 @@ order by  en.CuentaBancariaPago, e.nombre]]>
 					<textElement textAlignment='Right'>
 						<font fontName='Tahoma'/>
 					</textElement>
-					<text><![CDATA[Nï¿½MERO TOTALDE [db_aa764d_coopmanagerdb].[dbo].[empleados]:]]></text>
+					<text><![CDATA[NÚMERO TOTAL DE EMPLEADOS:]]></text>
 				</staticText>
 				<line>
 					<reportElement x='3' y='19' width='802' height='1' uuid='d9eab9d4-3809-4729-ae13-ddb8a65ccc41'/>

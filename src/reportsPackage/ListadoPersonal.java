@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import sessionPackage.HibernateSessionFactory;
 import entitiesPackage.Message;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.*;
 import net.sf.jasperreports.engine.util.*;
 import net.sf.jasperreports.view.*;
 
@@ -112,21 +115,47 @@ public class ListadoPersonal
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
+	            // Par�metros del reporte
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
+                // === SOLUCION: Usar consulta SQL corregida ===
+                // Ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+                String sqlQuery = "SELECT e.empresa, e.ejercicio, e.idEmpleado, " +
+                                 "(e.nombre + ' ' + coalesce(e.apellidos, '')) AS NombreCompleto, " +
+                                 "e.nif, e.fechaNacimiento, e.fechaAntiguedad, e.Categoria, em.Lopd " +
+                                 "FROM empleados e inner join empresas em On e.Empresa = em.IdEmpresa " +
+                                 "where e.ejercicio = ? and e.empresa = ? " +
+                                 "order by e.nombre";
+                
+                System.out.println("DEBUG: Executing corrected SQL query for ListadoPersonal...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setInt(1, ejercicio);
+                pstmt.setInt(2, empresa);
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
+
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            // Se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
+	            System.out.println("INFO: ListadoPersonal - usando consulta SQL corregida");
+
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            // Informe dise�ado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
-	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop");
+	            // Se lanza el Viewer de Jasper, no termina aplicaci�n al salir
+	            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
+	            jviewer.setTitle("GestCoop - ListadoPersonal (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

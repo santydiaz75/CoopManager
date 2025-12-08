@@ -15,7 +15,7 @@
 	<parameter name='Mes' class='java.lang.Integer'/>
 	<queryString>
 		<![CDATA[SELECT e.empresa, e.ejercicio, e.idEmpleado, (e.nombre + ' ', coalesce(e.apellidos, "')) AS NombreCompleto, en.TotalDevengado, en.ImporteIrpf, en.ImporteSegSoc, (en.ImporteSegAutonomo + en.ImporteEmbargo) AS ImporteOtros,  en.TotalLiquido, en.ImporteBonificacion, em.Lopd
-FROM [db_aa764d_coopmanagerdb].[dbo].[empleados] e INNER JOIN [db_aa764d_coopmanagerdb].[dbo].[empresas] em ON e.Empresa = em.IdEmpresa INNER JOIN [db_aa764d_coopmanagerdb].[dbo].[empleadosnominas] en ON
+FROM empleados e INNER JOIN empresas em ON e.Empresa = em.IdEmpresa INNER JOIN empleadosnominas en ON
 e.Empresa = en.Empresa and e.Ejercicio = en.Ejercicio and e.IdEmpleado = en.IdEmpleado
 where e.ejercicio = $P{Ejercicio} and e.empresa = $P{Empresa} and en.Mes = $P{Mes}
 order by e.nombre]]>
@@ -85,7 +85,7 @@ order by e.nombre]]>
 					<textElement textAlignment='Right'>
 						<font fontName='Tahoma'/>
 					</textElement>
-					<text><![CDATA[Nï¿½MERO TOTALDE [db_aa764d_coopmanagerdb].[dbo].[empleados]:]]></text>
+					<text><![CDATA[NÚMERO TOTAL DE EMPLEADOS:]]></text>
 				</staticText>
 				<line>
 					<reportElement x='0' y='18' width='802' height='1' uuid='20fbcbde-504c-4c82-b6bb-d9fe3fd42c1e'/>

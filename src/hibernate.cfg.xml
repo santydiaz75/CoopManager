@@ -38,7 +38,7 @@
 
 	<!-- Enable Hibernate's current session context -->
 	<property name="current_session_context_class">
-		org.hibernate.context.ThreadLocalSessionContext
+		thread
 	</property>
 
 	<!-- Disable the second-level cache  -->

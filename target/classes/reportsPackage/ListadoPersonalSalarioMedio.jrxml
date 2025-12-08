@@ -14,10 +14,10 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT e.empresa, e.ejercicio, e.idEmpleado, (e.nombre + ' ', coalesce(e.apellidos, "')) AS NombreCompleto, e.nif, em.Lopd, round(sum(n.TotalDevengado + n.ImporteBonificacion) / count(n.IdEmpleado),2) As 'BrutoMedio', round(sum(n.TotalLiquido + n.ImporteBonificacion) / count(n.IdEmpleado),2) As 'LiquidoMedio'
-FROM [db_aa764d_coopmanagerdb].[dbo].[empleados] e inner join [db_aa764d_coopmanagerdb].[dbo].[empresas] em On e.Empresa = em.IdEmpresa inner join [db_aa764d_coopmanagerdb].[dbo].[empleadosnominas] n
+FROM empleados e inner join empresas em On e.Empresa = em.IdEmpresa inner join empleadosnominas n
 On e.Empresa = n.empresa And e.ejercicio = n.ejercicio And e.idEmpleado = n.idEmpleado
 where e.ejercicio = $P{Ejercicio} and e.empresa = $P{Empresa}
-group by e.idEmpleado
+group by e.empresa, e.ejercicio, e.idEmpleado, e.nombre, e.apellidos, e.nif, em.Lopd
 order by e.nombre]]>
 	</queryString>
 	<field name='empresa' class='java.lang.Integer'>
@@ -48,7 +48,7 @@ order by e.nombre]]>
 					<textElement>
 						<font fontName='Tahoma'/>
 					</textElement>
-					<text><![CDATA[Nï¿½MERO TOTALDE [db_aa764d_coopmanagerdb].[dbo].[empleados]:]]></text>
+					<text><![CDATA[NÚMERO TOTAL DE EMPLEADOS:]]></text>
 				</staticText>
 				<line>
 					<reportElement x='0' y='18' width='802' height='1' uuid='844c4a11-a23a-4b19-8965-0f4d38dd0dc3'/>

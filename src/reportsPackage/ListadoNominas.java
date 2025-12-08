@@ -47,8 +47,10 @@ public class ListadoNominas
             
         	this.parent = parent;
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
-            String password = "salmadh2010";
-            conn = DriverManager.getConnection(url,login,password);
+            BasicTextEncryptor bte = new BasicTextEncryptor();
+            bte.setPassword("santi");
+            String paswworddecrypt = "salmadh2010";
+            conn = DriverManager.getConnection(url,login,paswworddecrypt);
         } 
         catch (ClassNotFoundException ex) 
         {
@@ -113,8 +115,7 @@ public class ListadoNominas
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
+	            // Par�metros del reporte
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -122,28 +123,43 @@ public class ListadoNominas
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
+                // === SOLUCION: Usar consulta SQL corregida ===
+                String sqlQuery = "SELECT e.empresa, e.ejercicio, e.idEmpleado, " +
+                                 "(e.nombre + ' ' + coalesce(e.apellidos, '')) AS NombreCompleto, " +
+                                 "en.TotalDevengado, en.ImporteIrpf, en.ImporteSegSoc, " +
+                                 "(en.ImporteSegAutonomo + en.ImporteEmbargo) AS ImporteOtros, " +
+                                 "en.TotalLiquido, en.ImporteBonificacion, em.Lopd " +
+                                 "FROM empleados e INNER JOIN empresas em ON e.Empresa = em.IdEmpresa " +
+                                 "INNER JOIN empleadosnominas en ON " +
+                                 "e.Empresa = en.Empresa and e.Ejercicio = en.Ejercicio and e.IdEmpleado = en.IdEmpleado " +
+                                 "where e.ejercicio = ? and e.empresa = ? and en.Mes = ? " +
+                                 "order by e.nombre";
+                
+                System.out.println("DEBUG: Executing corrected SQL query for ListadoNominas...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setInt(1, ejercicio);
+                pstmt.setInt(2, empresa);
+                pstmt.setInt(3, mes);
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            System.out.println("INFO: ListadoNominas - usando consulta SQL corregida");
 
-	            
-	            // En archivo ListadoNominas.jrxml
-
-	            
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	            
-	            System.out.println("WARNING: ListadoNominas - verificar referencias DB en .jrxml");
-
-	            
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            // Informe dise�ado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
-	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - ListadoNominas (CHECK SQL)");
+	            // Se lanza el Viewer de Jasper, no termina aplicaci�n al salir
+	            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
+	            jviewer.setTitle("GestCoop - ListadoNominas (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

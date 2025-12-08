@@ -47,8 +47,10 @@ public class CartaCosecheros
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
-            String password = "salmadh2010";
-            conn = DriverManager.getConnection(url,login,password);
+            BasicTextEncryptor bte = new BasicTextEncryptor();
+            bte.setPassword("santi");
+            String paswworddecrypt = "salmadh2010";
+            conn = DriverManager.getConnection(url,login,paswworddecrypt);
         } 
         catch (ClassNotFoundException ex) 
         {

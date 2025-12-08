@@ -14,7 +14,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT e.empresa, e.ejercicio, e.idEmpleado, (e.nombre + ' ', coalesce(e.apellidos, "')) AS NombreCompleto, e.nif, e.fechaNacimiento, e.fechaAntiguedad,  e.Categoria, em.Lopd
-FROM [db_aa764d_coopmanagerdb].[dbo].[empleados] e inner join [db_aa764d_coopmanagerdb].[dbo].[empresas] em On e.Empresa = em.IdEmpresa
+FROM empleados e inner join empresas em On e.Empresa = em.IdEmpresa
 where e.ejercicio = $P{Ejercicio} and e.empresa = $P{Empresa}
 order by e.nombre]]>
 	</queryString>
@@ -55,7 +55,7 @@ order by e.nombre]]>
 					<textElement>
 						<font fontName='Tahoma'/>
 					</textElement>
-					<text><![CDATA[Nï¿½MERO TOTALDE [db_aa764d_coopmanagerdb].[dbo].[empleados]:]]></text>
+					<text><![CDATA[NÚMERO TOTAL DE EMPLEADOS:]]></text>
 				</staticText>
 				<line>
 					<reportElement x='0' y='18' width='802' height='1' uuid='844c4a11-a23a-4b19-8965-0f4d38dd0dc3'/>

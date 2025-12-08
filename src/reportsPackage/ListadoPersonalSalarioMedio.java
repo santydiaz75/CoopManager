@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import sessionPackage.HibernateSessionFactory;
 import entitiesPackage.Message;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.*;
 import net.sf.jasperreports.engine.util.*;
 import net.sf.jasperreports.view.*;
 
@@ -44,8 +47,10 @@ public class ListadoPersonalSalarioMedio
             
         	this.parent = parent;
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
-            String password = "salmadh2010";
-            conn = DriverManager.getConnection(url,login,password);
+            BasicTextEncryptor bte = new BasicTextEncryptor();
+            bte.setPassword("santi");
+            String paswworddecrypt = "salmadh2010";
+            conn = DriverManager.getConnection(url,login,paswworddecrypt);
         } 
         catch (ClassNotFoundException ex) 
         {
@@ -110,21 +115,50 @@ public class ListadoPersonalSalarioMedio
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
+	            // Par�metros del reporte
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-	            //Informe diseñado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
+                // === SOLUCION: Usar consulta SQL corregida ===
+                String sqlQuery = "SELECT e.empresa, e.ejercicio, e.idEmpleado, " +
+                                 "(e.nombre + ' ' + coalesce(e.apellidos, '')) AS NombreCompleto, " +
+                                 "e.nif, em.Lopd, " +
+                                 "round(sum(n.TotalDevengado + n.ImporteBonificacion) / count(n.IdEmpleado),2) As BrutoMedio, " +
+                                 "round(sum(n.TotalLiquido + n.ImporteBonificacion) / count(n.IdEmpleado),2) As LiquidoMedio " +
+                                 "FROM empleados e inner join empresas em On e.Empresa = em.IdEmpresa " +
+                                 "inner join empleadosnominas n On e.Empresa = n.empresa And e.ejercicio = n.ejercicio " +
+                                 "And e.idEmpleado = n.idEmpleado " +
+                                 "where e.ejercicio = ? and e.empresa = ? " +
+                                 "group by e.empresa, e.ejercicio, e.idEmpleado, e.nombre, e.apellidos, e.nif, em.Lopd " +
+                                 "order by e.nombre";
+                
+                System.out.println("DEBUG: Executing corrected SQL query for ListadoPersonalSalarioMedio...");
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                pstmt.setInt(1, ejercicio);
+                pstmt.setInt(2, empresa);
+                ResultSet rs = pstmt.executeQuery();
+                
+                // Crear data source from ResultSet
+                JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
+
+	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
+	            System.out.println("INFO: ListadoPersonalSalarioMedio - usando consulta SQL corregida");
+
+                System.out.println("DEBUG: Filling report with corrected data source...");
+	            // Informe dise�ado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
-	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop");
+	            // Se lanza el Viewer de Jasper, no termina aplicaci�n al salir
+	            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
+	            jviewer.setTitle("GestCoop - ListadoPersonalSalarioMedio (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 
