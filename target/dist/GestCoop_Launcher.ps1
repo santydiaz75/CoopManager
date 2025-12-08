@@ -7,7 +7,7 @@ $ScriptDir = if ($MyInvocation.MyCommand.Path) {
 } elseif ($PSScriptRoot) { 
     $PSScriptRoot 
 } else {
-    # Para ejecutables ps2exe, usar la ubicación del ejecutable
+    # Para ejecutables ps2exe, usar la ubicaciï¿½n del ejecutable
     try {
         $exeLocation = [System.Reflection.Assembly]::GetExecutingAssembly().Location
         if ($exeLocation) {
@@ -29,13 +29,12 @@ try {
     # Ignorar errores
 }
 
-# Función simple para mostrar mensajes
+# Funciï¿½n simple para mostrar mensajes
 function Show-Error($msg) {
     try {
         [System.Windows.Forms.MessageBox]::Show($msg, "GestCoop Error", "OK", "Error")
     } catch {
         Write-Host "ERROR: $msg" -ForegroundColor Red
-        Read-Host "Presione Enter para continuar"
     }
 }
 

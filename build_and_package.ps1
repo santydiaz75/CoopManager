@@ -420,6 +420,78 @@ function Create-Executable {
     }
 }
 
+function Create-ReportsPackage {
+    param($DistDir)
+    
+    Write-Step "Creando paquete de reportes"
+    
+    $reportsDestDir = Join-Path $DistDir "reportsPackage"
+    
+    # Crear directorio de reportes si no existe
+    if (-not (Test-Path $reportsDestDir)) {
+        New-Item -ItemType Directory -Path $reportsDestDir -Force | Out-Null
+        Write-Host "? Directorio creado: $reportsDestDir" -ForegroundColor Green
+    }
+    
+    # Buscar archivos de reportes en las ubicaciones fuente
+    $sourceLocations = @(
+        "src\reportsPackage",
+        "target\classes\reportsPackage"
+    )
+    
+    $copiedFiles = @()
+    
+    foreach ($sourceLocation in $sourceLocations) {
+        if (Test-Path $sourceLocation) {
+            # Buscar archivos .jrxml, .jasper y .jpg
+            $reportFiles = Get-ChildItem $sourceLocation -Include "*.jrxml", "*.jasper", "*.jpg" -Recurse
+            
+            foreach ($reportFile in $reportFiles) {
+                $destFile = Join-Path $reportsDestDir $reportFile.Name
+                
+                # Solo copiar si el archivo no existe o es más nuevo
+                $shouldCopy = $true
+                if (Test-Path $destFile) {
+                    $existingFile = Get-Item $destFile
+                    if ($existingFile.LastWriteTime -ge $reportFile.LastWriteTime) {
+                        $shouldCopy = $false
+                    }
+                }
+                
+                if ($shouldCopy) {
+                    try {
+                        Copy-Item $reportFile.FullName $destFile -Force
+                        if ($copiedFiles -notcontains $reportFile.Name) {
+                            $copiedFiles += $reportFile.Name
+                        }
+                    } catch {
+                        Write-Warning "No se pudo copiar $($reportFile.Name): $_"
+                    }
+                }
+            }
+        }
+    }
+    
+    # Mostrar resumen
+    if ($copiedFiles.Count -gt 0) {
+        Write-Host "? Archivos de reportes copiados: $($copiedFiles.Count)" -ForegroundColor Green
+        foreach ($file in ($copiedFiles | Sort-Object)) {
+            Write-Host "  - $file" -ForegroundColor Gray
+        }
+    } else {
+        Write-Host "! No se encontraron nuevos archivos de reportes para copiar" -ForegroundColor Yellow
+    }
+    
+    # Verificar contenido final del directorio
+    $finalFiles = Get-ChildItem $reportsDestDir -File
+    $jrxmlFiles = $finalFiles | Where-Object { $_.Extension -eq '.jrxml' }
+    $jasperFiles = $finalFiles | Where-Object { $_.Extension -eq '.jasper' }
+    $jpgFiles = $finalFiles | Where-Object { $_.Extension -eq '.jpg' }
+    Write-Host "? Total de archivos en reportsPackage: $($finalFiles.Count) (.jrxml: $($jrxmlFiles.Count), .jasper: $($jasperFiles.Count), .jpg: $($jpgFiles.Count))" -ForegroundColor Green
+    
+    return $reportsDestDir
+}
+
 function Test-Application {
     param($ExePath)
     
@@ -428,11 +500,13 @@ function Test-Application {
     $distDir = Split-Path $ExePath
     $jarFile = Join-Path $distDir "GestCoop.jar"
     $libDir = Join-Path $distDir "GestCoop_lib"
+    $reportsDir = Join-Path $distDir "reportsPackage"
     
     # Verificar archivos necesarios
     $requiredFiles = @(
         @{ Path = $jarFile; Description = "JAR principal" },
         @{ Path = $libDir; Description = "Directorio de dependencias" },
+        @{ Path = $reportsDir; Description = "Paquete de reportes" },
         @{ Path = $ExePath; Description = "Ejecutable" }
     )
     
@@ -526,6 +600,11 @@ function Main {
         Write-Host "? Iniciando generación del ejecutable..." -ForegroundColor Yellow
         $exePath = Create-Executable -LauncherPath $launcherPath
         Write-Host "? Ejecutable completado: $exePath" -ForegroundColor Green
+        
+        # Crear paquete de reportes
+        Write-Host "? Iniciando creación del paquete de reportes..." -ForegroundColor Yellow
+        $reportsDir = Create-ReportsPackage -DistDir $distDir
+        Write-Host "? Paquete de reportes completado: $reportsDir" -ForegroundColor Green
         
         # Verificar aplicación
         Test-Application -ExePath $exePath
