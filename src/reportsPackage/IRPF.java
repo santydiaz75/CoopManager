@@ -126,13 +126,40 @@ public class IRPF
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-	            // === SOLUCION: Usar consulta SQL corregida ===
-	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-	            // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+	            // === SOLUCION: Usar tabla liquidaciones en lugar de irpf ===
+	            // La tabla 'irpf' no existe - los datos estan en 'liquidaciones'
+	            // Creamos una consulta que obtiene los datos de IRPF desde liquidaciones
 	            
-	            String sqlQuery = "SELECT * FROM irpf i WHERE i.Empresa = ? AND i.Ejercicio = ? AND i.Fecha >= ? AND i.Fecha <= ?";
+	            String sqlQuery = """
+	                SELECT 
+	                    l.Empresa,
+	                    l.Ejercicio, 
+	                    l.NumeroFactura,
+	                    l.Fecha,
+	                    l.IdCosechero,
+	                    l.Mes,
+	                    l.TipoIRPF as TipoIrpf,
+	                    l.BaseImponible,
+	                    l.ImporteIRPF as ImporteIrpf,
+	                    l.TipoIGIC as TipoIgic,
+	                    l.ImporteIGIC as ImporteIgic,
+	                    CONCAT(COALESCE(c.Nombre, ''), ' ', COALESCE(c.Apellidos, '')) as NombreApellidos,
+	                    c.Nombre,
+	                    c.Apellidos,
+	                    c.Nif,
+	                    c.CodigoAsesoria,
+	                    e.Lopd as lopd
+	                FROM liquidaciones l 
+	                LEFT JOIN cosecheros c ON l.IdCosechero = c.IdCosechero 
+	                    AND l.Empresa = c.Empresa AND l.Ejercicio = c.Ejercicio
+	                LEFT JOIN empresas e ON l.Empresa = e.IdEmpresa
+	                WHERE l.Empresa = ? AND l.Ejercicio = ? 
+	                    AND l.Fecha >= ? AND l.Fecha <= ?
+	                    AND l.ImporteIRPF > 0
+	                ORDER BY l.Fecha, l.NumeroFactura
+	                """;
 	            
-	            System.out.println("DEBUG: Executing corrected SQL query...");
+	            System.out.println("DEBUG: Executing corrected SQL query using liquidaciones table...");
 	            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 	            pstmt.setInt(1, empresa);
 	            pstmt.setInt(2, ejercicio);
@@ -144,17 +171,18 @@ public class IRPF
 	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
 	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
-	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
-	            System.out.println("INFO: IRPF - usando consulta SQL corregida");
+	            // Se ha corregido para usar la tabla 'liquidaciones' en lugar de 'irpf'
+	            // La tabla 'irpf' no existia en la base de datos
+	            // Los datos de IRPF se obtienen desde liquidaciones con JOIN a cosecheros y empresas
+	            System.out.println("INFO: IRPF - usando consulta corregida desde tabla liquidaciones");
 
-	            System.out.println("DEBUG: Filling report with corrected data source...");
+	            System.out.println("DEBUG: Filling report with data from liquidaciones table...");
 	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - IRPF (Version Corregida)");
+	            jviewer.setTitle("GestCoop - IRPF (Datos desde Liquidaciones)");
 	            jviewer.setVisible(true);
 	            
 	            // Cerrar recursos

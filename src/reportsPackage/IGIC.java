@@ -126,13 +126,39 @@ public class IGIC
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-	            // === SOLUCION: Usar consulta SQL corregida ===
-	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-	            // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
+	            // === SOLUCION: Usar tabla liquidaciones en lugar de igic ===
+	            // La tabla 'igic' no existe - los datos estan en 'liquidaciones'
+	            // Creamos una consulta que obtiene los datos de IGIC desde liquidaciones
 	            
-	            String sqlQuery = "SELECT * FROM igic i WHERE i.Empresa = ? AND i.Ejercicio = ? AND i.Fecha >= ? AND i.Fecha <= ?";
+	            String sqlQuery = """
+	                SELECT 
+	                    l.Empresa,
+	                    l.Ejercicio, 
+	                    l.NumeroFactura,
+	                    l.Fecha,
+	                    l.IdCosechero,
+	                    l.Mes,
+	                    l.TipoIGIC as TipoIgic,
+	                    l.BaseImponible,
+	                    l.ImporteIGIC as ImporteIgic,
+	                    l.TipoIRPF,
+	                    l.ImporteIRPF,
+	                    CONCAT(COALESCE(c.Nombre, ''), ' ', COALESCE(c.Apellidos, '')) as NombreApellidos,
+	                    c.Nombre,
+	                    c.Apellidos,
+	                    c.Nif,
+	                    e.Lopd as lopd
+	                FROM liquidaciones l 
+	                LEFT JOIN cosecheros c ON l.IdCosechero = c.IdCosechero 
+	                    AND l.Empresa = c.Empresa AND l.Ejercicio = c.Ejercicio
+	                LEFT JOIN empresas e ON l.Empresa = e.IdEmpresa
+	                WHERE l.Empresa = ? AND l.Ejercicio = ? 
+	                    AND l.Fecha >= ? AND l.Fecha <= ?
+	                    AND l.ImporteIGIC > 0
+	                ORDER BY l.Fecha, l.NumeroFactura
+	                """;
 	            
-	            System.out.println("DEBUG: Executing corrected SQL query...");
+	            System.out.println("DEBUG: Executing corrected SQL query using liquidaciones table...");
 	            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 	            pstmt.setInt(1, empresa);
 	            pstmt.setInt(2, ejercicio);
@@ -144,17 +170,18 @@ public class IGIC
 	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
 	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
-	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
-	            System.out.println("INFO: IGIC - usando consulta SQL corregida");
+	            // Se ha corregido para usar la tabla 'liquidaciones' en lugar de 'igic'
+	            // La tabla 'igic' no existia en la base de datos
+	            // Los datos de IGIC se obtienen desde liquidaciones con JOIN a cosecheros
+	            System.out.println("INFO: IGIC - usando consulta corregida desde tabla liquidaciones");
 
-	            System.out.println("DEBUG: Filling report with corrected data source...");
+	            System.out.println("DEBUG: Filling report with data from liquidaciones table...");
 	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
 	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - IGIC (Version Corregida)");
+	            jviewer.setTitle("GestCoop - IGIC (Datos desde Liquidaciones)");
 	            jviewer.setVisible(true);
 	            
 	            // Cerrar recursos
