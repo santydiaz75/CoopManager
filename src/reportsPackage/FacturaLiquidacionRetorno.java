@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Date;
@@ -128,38 +130,49 @@ public class FacturaLiquidacionRetorno
 	            
 	            
 	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
+	            // === SOLUCION: Usar consulta SQL corregida para SQL Server ===
+	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+	            // ejecutamos una consulta corregida sin referencias a base de datos específica
+	            
+	            String sqlQuery = "SELECT l.empresa, l.ejercicio, l.NumeroFactura, l.fecha, l.IdCosechero, " +
+	                "(COALESCE(co.Apellidos + ', ', '') + COALESCE(co.Nombre, '')) as NombreApellidos, " +
+	                "co.NIF, co.Direccion, co.CodigoPostal, co.Poblacion, " +
+	                "COALESCE(l.TipoIgic, 0) as TipoIgic, COALESCE(l.TipoIrpf, 0) as TipoIrpf, " +
+	                "COALESCE(l.ImporteIgic, 0) as ImporteIgic, COALESCE(l.ImporteIrpf, 0) as ImporteIrpf, " +
+	                "lr.IdCategoria, ca.NombreCategoria, lr.KilosTotal, lr.PrecioEscandallo, " +
+	                "CAST(NULL AS VARCHAR(1)) AS Lopd, lr.Titulo, lr.Concepto " +
+	                "FROM liquidaciones l " +
+	                "INNER JOIN empresas e ON l.empresa = e.IdEmpresa " +
+	                "LEFT OUTER JOIN liquidacionesretorno lr ON l.empresa = lr.empresa " +
+	                "    AND l.ejercicio = lr.ejercicio AND l.NumeroFactura = lr.NumeroFactura " +
+	                "LEFT OUTER JOIN cosecheros co ON l.IdCosechero = co.IdCosechero " +
+	                "    AND l.ejercicio = co.Ejercicio AND l.empresa = co.Empresa " +
+	                "    AND co.idgrupo = co.IdCosechero " +
+	                "LEFT OUTER JOIN categorias ca ON lr.IdCategoria = ca.IdCategoria " +
+	                "    AND lr.ejercicio = ca.ejercicio AND lr.empresa = ca.empresa " +
+	                "WHERE l.mes >= 13 AND l.ejercicio = ? AND l.empresa = ?";
+	            
+	            System.out.println("DEBUG: Executing corrected SQL Server query for FacturaLiquidacionRetorno...");
+	            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+	            pstmt.setInt(1, ejercicio);
+	            pstmt.setInt(2, empresa);
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	            // Crear data source from ResultSet
+	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            
-	            
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+	            System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 
-	            
-	            
-	
-	            // En archivo FacturaLiquidacionRetorno.jrxml
-
-	            
-	            
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	            
-	            
-	
-	            System.out.println("WARNING: FacturaLiquidacionRetorno - verificar referencias DB en .jrxml");
-
-	            
-	            
-	
-	            //Informe diseÃ±ado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
-	            //Se lanza el Viewer de Jasper, no termina aplicaciÃ³n al salir
+	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - FacturaLiquidacionRetorno (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - FacturaLiquidacionRetorno (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

@@ -125,28 +125,61 @@ public class ControlESAlmacen
 	            parameters.put("LOGO_DIR", workDirectory +  
     			"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
-
+	            // === SOLUCION: Usar consulta SQL corregida para SQL Server ===
+	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+	            // ejecutamos una consulta corregida que evita las referencias hardcodeadas
+	            
+	            String sqlQuery = "SELECT c.semana, ca.IdCategoria, ca.NombreCategoria, " +
+	                "COALESCE(dbo.EntradasKilosSemana(?, ?, c.semana, ca.IdCategoria), 0) as EntradaKilosSemana, " +
+	                "COALESCE(dbo.VentasKilosSemana(?, ?, c.semana, ca.IdCategoria), 0) as VentasKilosSemana, " +
+	                "dbo.EntradasGetFecha(?, ?, c.semana) as Fecha, " +
+	                "COALESCE(dbo.EntradasKilosInutilizadosSemana(?, ?, c.semana, ca.IdCategoria), 0) as KilosInutilizadosSemana " +
+	                "FROM calendario c " +
+	                "CROSS JOIN categorias ca " +
+	                "WHERE ca.ejercicio = c.ejercicio AND ca.empresa = c.empresa " +
+	                "AND c.semana >= ? AND c.semana <= ? AND c.ejercicio = ? AND c.empresa = ? " +
+	                "AND (COALESCE(dbo.EntradasKilosSemana(?, ?, c.semana, ca.IdCategoria), 0) > 0 " +
+	                "OR COALESCE(dbo.VentasKilosSemana(?, ?, c.semana, ca.IdCategoria), 0) > 0) " +
+	                "GROUP BY c.semana, ca.IdCategoria, ca.NombreCategoria " +
+	                "ORDER BY c.semana, ca.IdCategoria";
+	            
+	            System.out.println("DEBUG: Executing corrected SQL Server query for ControlESAlmacen...");
+	            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+	            // Setear parámetros múltiples veces según se necesite en la consulta
+	            pstmt.setInt(1, empresa);    // EntradasKilosSemana - parámetro 1
+	            pstmt.setInt(2, ejercicio);  // EntradasKilosSemana - parámetro 2
+	            pstmt.setInt(3, empresa);    // VentasKilosSemana - parámetro 1
+	            pstmt.setInt(4, ejercicio);  // VentasKilosSemana - parámetro 2
+	            pstmt.setInt(5, empresa);    // EntradasGetFecha - parámetro 1
+	            pstmt.setInt(6, ejercicio);  // EntradasGetFecha - parámetro 2
+	            pstmt.setInt(7, empresa);    // EntradasKilosInutilizadosSemana - parámetro 1
+	            pstmt.setInt(8, ejercicio);  // EntradasKilosInutilizadosSemana - parámetro 2
+	            pstmt.setInt(9, SemanaDesde);   // WHERE semana >=
+	            pstmt.setInt(10, SemanaHasta);  // WHERE semana <=
+	            pstmt.setInt(11, ejercicio);    // WHERE ejercicio =
+	            pstmt.setInt(12, empresa);      // WHERE empresa =
+	            pstmt.setInt(13, empresa);   // EntradasKilosSemana en HAVING - parámetro 1
+	            pstmt.setInt(14, ejercicio); // EntradasKilosSemana en HAVING - parámetro 2
+	            pstmt.setInt(15, empresa);   // VentasKilosSemana en HAVING - parámetro 1
+	            pstmt.setInt(16, ejercicio); // VentasKilosSemana en HAVING - parámetro 2
+	            
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	            // Crear data source from ResultSet
+	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
-
-	
-	            // En archivo ControlESAlmacen.jrxml
-
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	
-	            System.out.println("WARNING: ControlESAlmacen - verificar referencias DB en .jrxml");
-
-	
-	            //Informe diseÃ±ado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
-	            //Se lanza el Viewer de Jasper, no termina aplicaciÃ³n al salir
+	            System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
+	            
+	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - ControlESAlmacen (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - ControlESAlmacen (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 

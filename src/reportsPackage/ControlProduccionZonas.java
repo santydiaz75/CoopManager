@@ -129,28 +129,58 @@ public class ControlProduccionZonas
 	            parameters.put("LOGO2_DIR", workDirectory +  
     			"\\reportsPackage\\AnagramaAgriten.jpg");
 	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
+	            // === SOLUCION: Usar consulta SQL corregida para SQL Server ===
+	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
+	            // ejecutamos una consulta corregida sin referencias a base de datos específica
+	            
+	            String sqlQuery = "SELECT ec.IdZona, z.NombreZona, DATEPART(MONTH, ec.Fecha) as mes, m.NombreMes, " +
+	                "COALESCE(dbo.EntradasKilosMesZona(?, ?, DATEPART(MONTH, ec.Fecha), ec.IdZona), 0) as Kilos, " +
+	                "COALESCE(dbo.EntradasNumPinasMesZona(?, ?, DATEPART(MONTH, ec.Fecha), ec.IdZona), 0) as NumPinas, " +
+	                "CASE WHEN COALESCE(dbo.EntradasNumPinasMesZona(?, ?, DATEPART(MONTH, ec.Fecha), ec.IdZona), 0) > 0 " +
+	                "THEN COALESCE(dbo.EntradasKilosMesZona(?, ?, DATEPART(MONTH, ec.Fecha), ec.IdZona), 0) / " +
+	                "     COALESCE(dbo.EntradasNumPinasMesZona(?, ?, DATEPART(MONTH, ec.Fecha), ec.IdZona), 0) " +
+	                "ELSE 0 END as Promedio " +
+	                "FROM entradascabecera ec " +
+	                "INNER JOIN meses m ON DATEPART(MONTH, ec.fecha) = m.mes " +
+	                "INNER JOIN zonas z ON ec.ejercicio = z.ejercicio AND ec.empresa = z.empresa AND ec.IdZona = z.IdZona " +
+	                "WHERE ec.ejercicio = ? AND ec.empresa = ? AND ec.IdZona >= ? AND ec.IdZona <= ? " +
+	                "GROUP BY ec.IdZona, z.NombreZona, DATEPART(MONTH, ec.Fecha), m.NombreMes " +
+	                "ORDER BY ec.IdZona, DATEPART(MONTH, ec.fecha)";
+	            
+	            System.out.println("DEBUG: Executing corrected SQL Server query for ControlProduccionZonas...");
+	            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+	            // Setear parámetros múltiples veces según se necesite en la consulta
+	            pstmt.setInt(1, empresa);     // EntradasKilosMesZona - primera llamada empresa
+	            pstmt.setInt(2, ejercicio);   // EntradasKilosMesZona - primera llamada ejercicio
+	            pstmt.setInt(3, empresa);     // EntradasNumPinasMesZona - primera llamada empresa
+	            pstmt.setInt(4, ejercicio);   // EntradasNumPinasMesZona - primera llamada ejercicio
+	            pstmt.setInt(5, empresa);     // EntradasNumPinasMesZona - CASE WHEN empresa
+	            pstmt.setInt(6, ejercicio);   // EntradasNumPinasMesZona - CASE WHEN ejercicio
+	            pstmt.setInt(7, empresa);     // EntradasKilosMesZona - THEN empresa
+	            pstmt.setInt(8, ejercicio);   // EntradasKilosMesZona - THEN ejercicio
+	            pstmt.setInt(9, empresa);     // EntradasNumPinasMesZona - denominador empresa
+	            pstmt.setInt(10, ejercicio);  // EntradasNumPinasMesZona - denominador ejercicio
+	            pstmt.setInt(11, ejercicio);  // WHERE ec.ejercicio
+	            pstmt.setInt(12, empresa);    // WHERE ec.empresa
+	            pstmt.setInt(13, idZonaDesde); // WHERE ec.IdZona >=
+	            pstmt.setInt(14, idZonaHasta); // WHERE ec.IdZona <=
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	            // Crear data source from ResultSet
+	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
+	            System.out.println("DEBUG: Filling report with corrected data source...");
+	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
+	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 
-	
-	            // En archivo ControlProduccionZonas.jrxml
-
-	
-	            // TODO: Implementar solucion especifica si hay errores SQL
-
-	
-	            System.out.println("WARNING: ControlProduccionZonas - verificar referencias DB en .jrxml");
-
-	
-	            //Informe diseÃ±ado y compilado con iReport
-	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
-	
-	            //Se lanza el Viewer de Jasper, no termina aplicaciÃ³n al salir
+	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-	            jviewer.setTitle("GestCoop - ControlProduccionZonas (CHECK SQL)");
+	            jviewer.setTitle("GestCoop - ControlProduccionZonas (Version Corregida)");
 	            jviewer.setVisible(true);
+	            
+	            // Cerrar recursos
+	            rs.close();
+	            pstmt.close();
             }
         }
 
