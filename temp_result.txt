@@ -1,2 +1,0 @@
-Error: Could not find or load main class .encoding=ISO-8859-1
-Caused by: java.lang.ClassNotFoundException: /encoding=ISO-8859-1

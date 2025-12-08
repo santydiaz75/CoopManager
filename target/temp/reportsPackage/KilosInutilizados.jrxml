@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='KIlosInutilizados' language='groovy' pageWidth='595' pageHeight='842' columnWidth='555' leftMargin='20' rightMargin='20' topMargin='7' bottomMargin='7' uuid='3ae08a6b-8a5d-44dd-bed9-f39333ff2fe7'>
+	<property name='ireport.zoom' value='1.0'/>
+	<property name='ireport.x' value='0'/>
+	<property name='ireport.y' value='0'/>
+	<style name='Title' forecolor='#FFFFFF' fontName='Arial' fontSize='26' isBold='true' pdfFontName='Helvetica-Bold'/>
+	<style name='SubTitle' forecolor='#666666' fontName='Arial' fontSize='18'/>
+	<style name='Column header' forecolor='#666666' fontName='Arial' fontSize='12' isBold='true'/>
+	<style name='Detail' fontName='Arial' fontSize='12'/>
+	<parameter name='Empresa' class='java.lang.Integer'/>
+	<parameter name='Ejercicio' class='java.lang.Integer'/>
+	<parameter name='SemanaDesde' class='java.lang.Integer'/>
+	<parameter name='SemanaHasta' class='java.lang.Integer'/>
+	<parameter name='LOGO_DIR' class='java.lang.String' isForPrompting='false'>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT co.Empresa, co.Ejercicio, co.NIF, [db_aa764d_coopmanagerdb].[dbo].[CosecheroGetNombreByNif]($P{Empresa}, $P{Ejercicio}, co.NIF) as NombreApellidos,
+[db_aa764d_coopmanagerdb].[dbo].[EntradasKilosNifCosechero]($P{Empresa}, $P{Ejercicio}, co.NIF, $P{SemanaDesde}, $P{SemanaHasta}) AS KilosEntregados,
+[db_aa764d_coopmanagerdb].[dbo].[EntradasKilosInutilizadosNifCosechero]($P{Empresa}, $P{Ejercicio}, co.NIF, $P{SemanaDesde}, $P{SemanaHasta}) AS KilosInutilizados, e.Lopd
+FROM (Select co1.* From [db_aa764d_coopmanagerdb].[dbo].[cosecheros] co1 WHERE
+co1.empresa = $P{Empresa} and co1.ejercicio = $P{Ejercicio}  and co1.idgrupo = co1.IdCosechero) co inner join [db_aa764d_coopmanagerdb].[dbo].[empresas] e ON co.Empresa = e.IdEmpresa
+where co.Ejercicio = $P{Ejercicio} and co.Empresa = $P{Empresa} and [db_aa764d_coopmanagerdb].[dbo].[EntradasKilosNifCosechero]($P{Empresa}, $P{Ejercicio}, co.NIF, $P{SemanaDesde}, $P{SemanaHasta}) > 0
+group by co.Empresa, co.Ejercicio, co.NIF, [db_aa764d_coopmanagerdb].[dbo].[CosecheroGetNombreByNif]($P{Empresa}, $P{Ejercicio}, co.NIF)
+order by co.Apellidos]]>
+	</queryString>
+	<field name='empresa' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='ejercicio' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='nif' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='NombreApellidos' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='KilosEntregados' class='java.lang.Float'/>
+	<field name='KilosInutilizados' class='java.lang.Float'/>
+	<field name='Lopd' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name='KilosComercializados' class='java.lang.Float'>
+		<variableExpression><![CDATA[$F{KilosEntregados}-$F{KilosInutilizados}]]></variableExpression>
+	</variable>
+	<variable name='KilosEntregados_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
+		<variableExpression><![CDATA[$F{KilosEntregados}]]></variableExpression>
+	</variable>
+	<variable name='KilosInutilizados_1' class='java.lang.Float' resetType='Group' resetGroup='grupoEmpresa' calculation='Sum'>
+		<variableExpression><![CDATA[$F{KilosInutilizados}]]></variableExpression>
+	</variable>
+	<variable name='KilosComercializadosTotal' class='java.lang.Float'>
+		<variableExpression><![CDATA[$V{KilosEntregados_1}-$V{KilosInutilizados_1}]]></variableExpression>
+	</variable>
+	<group name='grupoEmpresa'>
+		<groupExpression><![CDATA[$F{empresa}]]></groupExpression>
+		<groupFooter>
+			<band height='22'>
+				<staticText>
+					<reportElement style='Column header' x='80' y='1' width='180' height='20' uuid='e75d9a45-0373-44eb-afaa-1f7f4f1e1fa1'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma'/>
+					</textElement>
+					<text><![CDATA[TOTALES]]></text>
+				</staticText>
+				<line>
+					<reportElement x='0' y='0' width='554' height='1' uuid='315fcc42-43ef-4b36-8bc6-a7774409c3bd'/>
+				</line>
+				<textField pattern='#,##0'>
+					<reportElement x='271' y='1' width='66' height='20' uuid='3c5ba014-9006-45ff-a101-579a187ad38d'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosEntregados_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern='#,##0'>
+					<reportElement x='348' y='1' width='85' height='20' uuid='4182a1c5-74df-438d-bfda-eed95785de9f'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosInutilizados_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern='#,##0'>
+					<reportElement x='447' y='1' width='91' height='20' uuid='47ff6207-347f-46a2-8f32-8a4a3b7d2c82'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' isBold='true'/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosComercializadosTotal}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name='grupoEjercicio'>
+		<groupExpression><![CDATA[$F{ejercicio}]]></groupExpression>
+	</group>
+	<group name='grupoNif'>
+		<groupExpression><![CDATA[$F{nif}]]></groupExpression>
+		<groupFooter>
+			<band height='15'>
+				<textField isBlankWhenNull='true'>
+					<reportElement x='65' y='2' width='206' height='12' uuid='2842de1b-8356-42c2-bfd7-64869409c06d'/>
+					<textElement>
+						<font fontName='Tahoma' size='9'/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NombreApellidos}]]></textFieldExpression>
+				</textField>
+				<textField pattern='#,##0'>
+					<reportElement x='260' y='2' width='77' height='12' uuid='4f4c8b07-d00d-4477-b0ee-cbae4db168a0'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='9'/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{KilosEntregados}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x='2' y='2' width='63' height='12' uuid='f68ad54b-6693-482f-84f9-b674ec4243a3'/>
+					<textElement>
+						<font fontName='Tahoma' size='9'/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nif}]]></textFieldExpression>
+				</textField>
+				<textField pattern='#,##0'>
+					<reportElement x='348' y='2' width='83' height='12' uuid='f4a445ee-3797-4352-9d7d-362b0424418a'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='9'/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{KilosInutilizados}]]></textFieldExpression>
+				</textField>
+				<textField pattern='#,##0'>
+					<reportElement x='438' y='2' width='100' height='12' uuid='be407d01-da67-4b06-a13c-62e1bf8ecfc1'/>
+					<textElement textAlignment='Right'>
+						<font fontName='Tahoma' size='9'/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{KilosComercializados}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType='Stretch'/>
+	</background>
+	<pageHeader>
+		<band height='85'>
+			<staticText>
+				<reportElement style='Column header' x='2' y='68' width='63' height='15' uuid='def44975-4a1d-4fa4-b7c0-2310a6201ce6'/>
+				<textElement>
+					<font fontName='Tahoma' size='11'/>
+				</textElement>
+				<text><![CDATA[N.I.F.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style='Column header' x='0' y='29' width='406' height='21' uuid='c5fc1d26-271a-47d5-87bc-aebd53658d4d'/>
+				<textElement>
+					<font fontName='Tahoma' size='14'/>
+				</textElement>
+				<text><![CDATA[RELACI�N DE KILOS INUTILIZADOS DESDE LA SEMANA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style='Column header' x='445' y='29' width='51' height='20' uuid='4848896f-3819-478d-8a93-0bd584352a48'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='14'/>
+				</textElement>
+				<text><![CDATA[HASTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style='Column header' x='65' y='68' width='195' height='15' uuid='239569a0-906f-40b1-8528-e2ad563c02ee'/>
+				<textElement>
+					<font fontName='Tahoma' size='11'/>
+				</textElement>
+				<text><![CDATA[ASOCIADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style='Column header' x='260' y='53' width='88' height='30' uuid='221dd682-8381-4bd0-91eb-f03b461033e9'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='11'/>
+				</textElement>
+				<text><![CDATA[KILOS ENTREGADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style='Column header' x='348' y='53' width='90' height='30' uuid='1a65efe9-32e4-4bca-b8cb-6ac10637e5ae'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='11'/>
+				</textElement>
+				<text><![CDATA[KILOS INUTILIZADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style='Column header' x='438' y='53' width='116' height='30' uuid='83cca40a-bdcb-42f2-a946-b8ba5450d17e'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='11'/>
+				</textElement>
+				<text><![CDATA[KILOS COMERCIALIZADOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x='406' y='29' width='25' height='20' uuid='760c23e1-3396-41fc-9d7c-98d5da9a0145'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='14'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SemanaDesde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x='500' y='29' width='23' height='20' uuid='f43c1532-b421-4e84-958d-a35dd79d3661'/>
+				<textElement textAlignment='Right'>
+					<font fontName='Tahoma' size='14'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SemanaHasta}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x='2' y='83' width='554' height='1' uuid='10b18855-256a-4a12-81af-5583db238228'/>
+			</line>
+			<textField>
+				<reportElement x='40' y='0' width='513' height='20' forecolor='#000000' uuid='34344601-8c30-4216-a37f-b8a6c915cd33'/>
+				<textElement>
+					<font fontName='Tahoma' size='14' isBold='true'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ejercicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style='Column header' x='2' y='0' width='38' height='21' forecolor='#000000' uuid='aee1ba47-eada-4e43-a195-260ff8534160'/>
+				<textElement>
+					<font fontName='Tahoma' size='14'/>
+				</textElement>
+				<text><![CDATA[A�o:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band/>
+	</detail>
+	<pageFooter>
+		<band height='105' splitType='Stretch'>
+			<textField evaluationTime='Report'>
+				<reportElement mode='Opaque' x='512' y='92' width='40' height='13' backcolor='#E6E6E6' uuid='1c8ffbc1-769f-4300-aea8-bc2b1b2dde9c'/>
+				<textFieldExpression><![CDATA[' ' + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode='Opaque' x='0' y='92' width='512' height='13' backcolor='#E6E6E6' uuid='702e611e-e5d5-45a3-a9ef-5f953ac84847'/>
+				<textElement textAlignment='Right'/>
+				<textFieldExpression><![CDATA['P�gina '+$V{PAGE_NUMBER}+' de']]></textFieldExpression>
+			</textField>
+			<textField pattern='EEEEE dd MMMMM yyyy'>
+				<reportElement x='0' y='92' width='423' height='13' uuid='aa3fb50e-cc79-452d-beec-5ab7030969f8'/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x='2' y='0' width='554' height='92' uuid='0a4da7ec-6f35-4372-96d6-6c2bbcb37cce'>
+					<printWhenExpression><![CDATA[($P{Empresa}==1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment='Justified' markup='none'>
+					<font size='8'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x='2' y='0' width='554' height='92' uuid='c5b1e30c-dc42-4bed-a9df-f48a8b02ab75'>
+					<printWhenExpression><![CDATA[($P{Empresa}==2)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment='Justified' markup='none'>
+					<font size='8'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lopd}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType='Stretch'/>
+	</summary>
+</jasperReport>
+
+
+
+

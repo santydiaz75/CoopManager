@@ -177,18 +177,19 @@
                 </configuration>
             </plugin>
             
-            <!-- Maven Assembly Plugin for creating executable JAR -->
+            <!-- Maven JAR Plugin for creating the main JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.7.1</version>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
                 <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
+                    <outputDirectory>${project.build.directory}/dist</outputDirectory>
+                    <finalName>GestCoop</finalName>
                     <archive>
                         <manifest>
                             <mainClass>winUIPackage.Launcher</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>GestCoop_lib/</classpathPrefix>
                         </manifest>
                     </archive>
                 </configuration>
@@ -207,10 +208,30 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/dependency</outputDirectory>
+                            <outputDirectory>${project.build.directory}/dist/GestCoop_lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            
+            <!-- Maven Assembly Plugin as backup for fat JAR if needed -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>winUIPackage.Launcher</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>

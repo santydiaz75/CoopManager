@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.jasypt.encryption.pbe.PBEStringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.hibernate5.encryptor.HibernatePBEEncryptorRegistry;
+import org.jasypt.hibernate.encryptor.HibernatePBEEncryptorRegistry;
 
 /**
  * Configures and provides access to Hibernate sessions, tied to the

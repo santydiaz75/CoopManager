@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='FacturaLiquidacionAcumulado' language='groovy' pageWidth='280' pageHeight='802' columnWidth='280' leftMargin='0' rightMargin='0' topMargin='0' bottomMargin='0' uuid='ba6edb5a-dd4d-47b3-a5fa-62f26ff37f75'>
+	<property name='ireport.zoom' value='1.0'/>
+	<property name='ireport.x' value='0'/>
+	<property name='ireport.y' value='0'/>
+	<parameter name='Empresa' class='java.lang.Integer'/>
+	<parameter name='Ejercicio' class='java.lang.Integer'/>
+	<parameter name='Grupo' class='java.lang.Integer'/>
+	<parameter name='SemanaHasta' class='java.lang.Integer'/>
+	<queryString>
+		<![CDATA[SELECT NombreCategoria, Orden,
+dbo.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, c.IdCategoria) as KilosAcumulados,
+dbo.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, 0) as KilosAcumuladosTotal
+FROM categorias c where c.Empresa = $P{Empresa} and c.Ejercicio = $P{Ejercicio} and dbo.LiquidacionKilosAcumulados($P{Empresa}, $P{Ejercicio}, $P{SemanaHasta}, $P{Grupo}, c.IdCategoria) > 0;]]>
+	</queryString>
+	<field name='NombreCategoria' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Orden' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='KilosAcumulados' class='java.lang.Float'/>
+	<field name='KilosAcumuladosTotal' class='java.lang.Float'/>
+	<sortField name='Orden' order='Descending'/>
+	<variable name='PorcentajeKilos' class='java.lang.Number'>
+		<variableExpression><![CDATA[$F{KilosAcumulados}/$F{KilosAcumuladosTotal}*100]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType='Stretch'/>
+	</background>
+	<title>
+		<band splitType='Stretch'/>
+	</title>
+	<pageHeader>
+		<band height='32'>
+			<staticText>
+				<reportElement x='5' y='0' width='142' height='15' uuid='4cdb16f9-1c14-4dc5-99d8-1b7e500b029c'/>
+				<textElement textAlignment='Center'>
+					<font fontName='Tahoma' size='10' isBold='true'/>
+				</textElement>
+				<text><![CDATA[ACUMULADO EJERCICIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x='147' y='0' width='90' height='15' uuid='b7ad8588-3e21-47b6-bf4a-8749b4a1ef19'/>
+				<textElement>
+					<font fontName='Tahoma' isBold='true'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Ejercicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode='Transparent' x='220' y='15' width='54' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='efaf825f-65c1-4722-8240-6e57f4f004af'/>
+				<textElement textAlignment='Left' verticalAlignment='Middle' rotation='None' markup='none'>
+					<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+					<paragraph lineSpacing='Single'/>
+				</textElement>
+				<text><![CDATA[PORCENTAJE]]></text>
+			</staticText>
+			<line>
+				<reportElement x='0' y='31' width='280' height='1' uuid='51529aab-969a-4102-aa8e-c8d8bd8151a9'/>
+			</line>
+			<staticText>
+				<reportElement mode='Transparent' x='157' y='15' width='58' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='155e9fd6-3b6f-4b4d-b6a0-9ea67dc1441e'/>
+				<textElement textAlignment='Left' verticalAlignment='Middle' rotation='None' markup='none'>
+					<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+					<paragraph lineSpacing='Single'/>
+				</textElement>
+				<text><![CDATA[TOTAL KILOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode='Transparent' x='8' y='15' width='157' height='15' forecolor='#666666' backcolor='#FFFFFF' uuid='306ad1db-c5a2-4a8b-8b3f-7a11aa6e64ef'/>
+				<textElement textAlignment='Left' verticalAlignment='Middle' rotation='None' markup='none'>
+					<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+					<paragraph lineSpacing='Single'/>
+				</textElement>
+				<text><![CDATA[CATEGOR�A]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height='12' splitType='Stretch'>
+			<textField>
+				<reportElement x='8' y='0' width='157' height='12' uuid='66b6eb20-7eb4-4705-83b7-df18afeba45d'/>
+				<textElement>
+					<font fontName='Tahoma' size='8'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NombreCategoria}]]></textFieldExpression>
+			</textField>
+			<textField pattern='#,##0'>
+				<reportElement x='160' y='0' width='58' height='12' uuid='b2f071dc-6be9-4497-96fb-f922365ec750'/>
+				<textElement textAlignment='Center' verticalAlignment='Middle'>
+					<font fontName='Tahoma' size='8'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KilosAcumulados}]]></textFieldExpression>
+			</textField>
+			<textField pattern='#,##0.00;-#,##0.00'>
+				<reportElement x='220' y='0' width='32' height='12' uuid='a7d33ead-2f4d-4d0c-80a1-5ed46dd45bf0'/>
+				<textElement textAlignment='Right' verticalAlignment='Middle'>
+					<font fontName='Tahoma' size='8'/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PorcentajeKilos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode='Transparent' x='255' y='0' width='26' height='12' forecolor='#666666' backcolor='#FFFFFF' uuid='4180e708-549b-41a0-b615-a66943ae1c95'/>
+				<textElement textAlignment='Left' verticalAlignment='Middle' rotation='None' markup='none'>
+					<font fontName='Tahoma' size='8' isBold='true' isItalic='false' isUnderline='false' isStrikeThrough='false' pdfFontName='Helvetica' pdfEncoding='Cp1252' isPdfEmbedded='false'/>
+					<paragraph lineSpacing='Single'/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band splitType='Stretch'/>
+	</summary>
+</jasperReport>
+
+
+
+
