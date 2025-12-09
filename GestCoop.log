@@ -23,3 +23,8 @@
 ? Creando paquete de reportes... target\dist\reportsPackage
 [2025-12-09 13:09:56] [INFO] Compilaci�n completada exitosamente en 44.2 segundos
 [2025-12-09 13:09:56] [INFO] ===========================================
+[2025-12-09 15:46:58] [INFO] Iniciando GestCoop desde: C:\Development\CoopManager\CoopManager
+[2025-12-09 15:46:58] [INFO] Java encontrado en ubicaci?n conocida: C:\Users\santy\.jdk\jdk-21.0.8\bin\java.exe
+[2025-12-09 15:46:58] [INFO] Usando Java: C:\Users\santy\.jdk\jdk-21.0.8\bin\java.exe
+[2025-12-09 15:46:58] [ERROR] ERROR: No se encontr? GestCoop.jar en C:\Development\CoopManager\CoopManager
+[2025-12-09 15:47:04] [ERROR] No se encontr? GestCoop.jar en C:\Development\CoopManager\CoopManager

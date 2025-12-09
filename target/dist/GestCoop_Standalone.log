@@ -1,0 +1,23 @@
+[2025-12-09 15:51:39] [INFO] ===========================================
+[2025-12-09 15:51:39] [INFO] Iniciando GestCoop Standalone desde: C:\Development\CoopManager\CoopManager\target\dist
+[2025-12-09 15:51:39] [INFO] Usuario actual: santy
+[2025-12-09 15:51:39] [INFO] M�quina: DESKTOP-VTJ5Q01
+[2025-12-09 15:51:39] [INFO] PowerShell Version: 7.5.4
+[2025-12-09 15:51:39] [INFO] Sistema Operativo: Microsoft Windows NT 10.0.26200.0
+[2025-12-09 15:51:39] [INFO] ===========================================
+[2025-12-09 15:51:39] [INFO] Windows Forms cargado exitosamente
+[2025-12-09 15:51:39] [INFO] Iniciando b�squeda de Java...
+[2025-12-09 15:51:39] [INFO] Java encontrado en ubicaci�n conocida: C:\Users\santy\.jdk\jdk-21.0.8\bin\java.exe
+[2025-12-09 15:51:39] [INFO] Usando Java: C:\Users\santy\.jdk\jdk-21.0.8\bin\java.exe
+[2025-12-09 15:51:39] [INFO] Usando JAR: C:\Development\CoopManager\CoopManager\target\dist\GestCoop.jar
+[2025-12-09 15:51:39] [INFO] Validando requisitos previos al inicio...
+[2025-12-09 15:51:39] [INFO] Salida de versi�n Java: openjdk version "21.0.8" 2025-07-15 LTS OpenJDK Runtime Environment Microsoft-11933218 (build 21.0.8+9-LTS) OpenJDK 64-Bit Server VM Microsoft-11933218 (build 21.0.8+9-LTS, mixed mode, sharing)
+[2025-12-09 15:51:40] [ERROR] Error verificando versi�n de Java: Cannot index into a null array.
+[2025-12-09 15:51:40] [INFO] Permisos de escritura en directorio verificados
+[2025-12-09 15:51:40] [INFO] Iniciando aplicaci�n GestCoop...
+[2025-12-09 15:51:40] [INFO] Comando: C:\Users\santy\.jdk\jdk-21.0.8\bin\java.exe -jar "C:\Development\CoopManager\CoopManager\target\dist\GestCoop.jar"
+[2025-12-09 15:51:40] [INFO] Directorio de trabajo: C:\Development\CoopManager\CoopManager\target\dist
+[2025-12-09 15:51:40] [INFO] Configuraci�n de proceso completada
+[2025-12-09 15:51:40] [INFO] Proceso iniciado exitosamente. PID: 18428
+[2025-12-09 15:51:43] [INFO] GestCoop ejecut�ndose correctamente despu�s de 3 segundos
+[2025-12-09 15:51:43] [INFO] ===========================================

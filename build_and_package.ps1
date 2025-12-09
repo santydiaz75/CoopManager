@@ -423,14 +423,25 @@ function Create-LauncherScript {
 # GestCoop Launcher - Version Ultra Simple con Logging
 `$ErrorActionPreference = "SilentlyContinue"
 
-# Función para escribir al log
+# Función para escribir al log con mejor manejo de errores
 function Write-AppLog(`$message, `$level = "INFO") {
     `$timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     `$logEntry = "[`$timestamp] [`$level] `$message"
     try {
-        Add-Content -Path (Join-Path `$ScriptDir "GestCoop.log") -Value `$logEntry -ErrorAction SilentlyContinue
+        `$logPath = Join-Path `$ScriptDir "GestCoop.log"
+        Add-Content -Path `$logPath -Value `$logEntry -Encoding UTF8 -ErrorAction SilentlyContinue
+        # También escribir a la consola en modo debug
+        if (`$env:GESTCOOP_DEBUG -eq "1") {
+            Write-Host `$logEntry -ForegroundColor Gray
+        }
     } catch {
-        # Ignorar errores de escritura de log
+        # Intentar escribir al directorio temporal como fallback
+        try {
+            `$tempLogPath = Join-Path `$env:TEMP "GestCoop_error.log"
+            Add-Content -Path `$tempLogPath -Value `$logEntry -Encoding UTF8 -ErrorAction SilentlyContinue
+        } catch {
+            # Si todo falla, ignorar
+        }
     }
 }
 
@@ -464,13 +475,28 @@ try {
     Write-AppLog "Error al cargar Windows Forms: `$(`$_.Exception.Message)" "WARNING"
 }
 
-# Función simple para mostrar mensajes
+# Función mejorada para mostrar mensajes con debug
 function Show-Error(`$msg) {
     Write-AppLog "ERROR: `$msg" "ERROR"
+    Write-AppLog "Stack trace: `$(`$Error[0].ScriptStackTrace)" "ERROR"
+    Write-AppLog "Exception details: `$(`$Error[0].Exception.ToString())" "ERROR"
+    
     try {
-        [System.Windows.Forms.MessageBox]::Show(`$msg, "GestCoop Error", "OK", "Error")
+        # Crear mensaje más detallado para debug
+        `$debugMsg = `$msg
+        if (`$env:GESTCOOP_DEBUG -eq "1") {
+            `$debugMsg += "`n`nDetalles técnicos:`n"
+            `$debugMsg += "- Directorio de trabajo: `$ScriptDir`n"
+            `$debugMsg += "- Usuario: `$env:USERNAME`n"
+            `$debugMsg += "- Máquina: `$env:COMPUTERNAME`n"
+            `$debugMsg += "- PowerShell: `$(`$PSVersionTable.PSVersion)`n"
+            `$debugMsg += "`nVer log completo en: `$(Join-Path `$ScriptDir 'GestCoop.log')"
+        }
+        
+        [System.Windows.Forms.MessageBox]::Show(`$debugMsg, "GestCoop Error", "OK", "Error")
     } catch {
         Write-Host "ERROR: `$msg" -ForegroundColor Red
+        Write-Host "Log ubicado en: `$(Join-Path `$ScriptDir 'GestCoop.log')" -ForegroundColor Yellow
     }
 }
 
@@ -614,9 +640,43 @@ if (-not [System.IO.File]::Exists(`$jarPath)) {
 
 Write-AppLog "Usando JAR: `$jarPath" "INFO"
 
-# Iniciar la aplicación
+# Validar requisitos antes del inicio
+Write-AppLog "Validando requisitos previos al inicio..." "INFO"
+
+# Verificar versión de Java
+try {
+    `$javaVersionOutput = & `$javaExe -version 2>&1
+    Write-AppLog "Salida de versión Java: `$javaVersionOutput" "INFO"
+    
+    if (`$javaVersionOutput -match 'version "(\d+)') {
+        `$javaVersion = `$Matches[1]
+        Write-AppLog "Versión de Java detectada: `$javaVersion" "INFO"
+        if ([int]`$javaVersion -lt 21) {
+            `$errorMsg = "Java `$javaVersion detectado, pero se requiere Java 21 o superior"
+            Show-Error `$errorMsg
+            Write-AppLog `$errorMsg "ERROR"
+            exit 1
+        }
+    }
+} catch {
+    Write-AppLog "Error verificando versión de Java: `$(`$_.Exception.Message)" "ERROR"
+}
+
+# Verificar permisos de directorio
+try {
+    `$testFile = Join-Path `$ScriptDir "test_permissions.tmp"
+    "test" | Out-File -FilePath `$testFile -ErrorAction Stop
+    Remove-Item `$testFile -ErrorAction SilentlyContinue
+    Write-AppLog "Permisos de escritura en directorio verificados" "INFO"
+} catch {
+    Write-AppLog "Advertencia: Posibles problemas de permisos en directorio `$ScriptDir`: `$(`$_.Exception.Message)" "WARNING"
+}
+
+# Iniciar la aplicación con manejo robusto de errores
 try {
     Write-AppLog "Iniciando aplicación GestCoop..." "INFO"
+    Write-AppLog "Comando: `$javaExe -jar `"`$jarPath`"" "INFO"
+    Write-AppLog "Directorio de trabajo: `$ScriptDir" "INFO"
     
     `$startInfo = New-Object System.Diagnostics.ProcessStartInfo
     `$startInfo.FileName = `$javaExe
@@ -624,12 +684,43 @@ try {
     `$startInfo.WorkingDirectory = `$ScriptDir
     `$startInfo.UseShellExecute = `$false
     `$startInfo.CreateNoWindow = `$true
+    `$startInfo.RedirectStandardOutput = `$true
+    `$startInfo.RedirectStandardError = `$true
+    
+    Write-AppLog "Configuración de proceso completada" "INFO"
     
     `$process = [System.Diagnostics.Process]::Start(`$startInfo)
     
     if (`$process) {
-        Write-AppLog "GestCoop iniciado exitosamente. PID: `$(`$process.Id)" "INFO"
-        exit 0
+        Write-AppLog "Proceso iniciado exitosamente. PID: `$(`$process.Id)" "INFO"
+        
+        # Esperar un poco y verificar que el proceso sigue ejecutándose
+        Start-Sleep -Milliseconds 2000
+        
+        if (-not `$process.HasExited) {
+            Write-AppLog "GestCoop ejecutándose correctamente después de 2 segundos" "INFO"
+            exit 0
+        } else {
+            # El proceso terminó prematuramente, capturar salida de error
+            `$stdout = `$process.StandardOutput.ReadToEnd()
+            `$stderr = `$process.StandardError.ReadToEnd()
+            `$exitCode = `$process.ExitCode
+            
+            Write-AppLog "Proceso terminó prematuramente con código: `$exitCode" "ERROR"
+            Write-AppLog "STDOUT: `$stdout" "ERROR"
+            Write-AppLog "STDERR: `$stderr" "ERROR"
+            
+            `$errorMsg = "GestCoop se cerró inesperadamente.`nCódigo de salida: `$exitCode"
+            if (`$stderr) {
+                `$errorMsg += "`nError: `$stderr"
+            }
+            if (`$stdout) {
+                `$errorMsg += "`nSalida: `$stdout"
+            }
+            
+            Show-Error `$errorMsg
+            exit 1
+        }
     } else {
         `$errorMsg = "No se pudo iniciar GestCoop - Process.Start() devolvió null"
         Show-Error `$errorMsg
@@ -637,9 +728,10 @@ try {
         exit 1
     }
 } catch {
-    `$errorMsg = "Error al iniciar GestCoop: `$(`$_.Exception.Message)"
+    `$errorMsg = "Error crítico al iniciar GestCoop: `$(`$_.Exception.Message)"
+    Write-AppLog "Excepción completa: `$(`$_.Exception.ToString())" "ERROR"
+    Write-AppLog "Información del sistema: PowerShell `$(`$PSVersionTable.PSVersion), .NET `$(`$PSVersionTable.CLRVersion)" "ERROR"
     Show-Error `$errorMsg
-    Write-AppLog `$errorMsg "ERROR"
     exit 1
 }
 "@
