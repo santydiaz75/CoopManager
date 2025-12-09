@@ -77,26 +77,137 @@ EJEMPLOS:
     .\build_and_package.ps1 -Clean             # Limpiar y compilar
     .\build_and_package.ps1 -Clean -Verbose    # Compilación completa con detalles
 
+CARACTERÍSTICAS NUEVAS:
+    ? Instalación automática de Java 21 si no está disponible
+    ? Logging completo en archivo GestCoop.log
+    ? Detección inteligente de versiones Java existentes
+    ? Manejo robusto de errores con logging detallado
+
 REQUISITOS:
-    - Java 21 instalado
+    - Java 21 (se instala automáticamente si no está presente)
     - Maven 3.6+ instalado
     - ps2exe instalado (Install-Module ps2exe)
+    - Conexión a Internet (para descarga automática de Java 21)
+
+ARCHIVOS DE LOG:
+    - GestCoop.log: Log del script de compilación
+    - target/dist/GestCoop.log: Log del ejecutable en tiempo de ejecución
 
 "@ "Cyan"
 }
 
+function Write-Log {
+    param(
+        [string]$Message,
+        [string]$Level = "INFO"
+    )
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $logEntry = "[$timestamp] [$Level] $Message"
+    Add-Content -Path "GestCoop.log" -Value $logEntry -ErrorAction SilentlyContinue
+}
+
+function Initialize-Log {
+    # Limpiar log anterior si existe y es muy grande (> 5MB)
+    if (Test-Path "GestCoop.log") {
+        $logFile = Get-Item "GestCoop.log"
+        if ($logFile.Length -gt 5MB) {
+            # Mantener solo las últimas 1000 líneas
+            $content = Get-Content "GestCoop.log" -Tail 1000
+            $content | Set-Content "GestCoop.log"
+            Write-Log "Log anterior truncado - mantenidas últimas 1000 líneas" "INFO"
+        }
+    }
+}
+
+function Install-Java21 {
+    Write-Step "Instalando Java 21"
+    Write-Log "Iniciando instalación de Java 21" "INFO"
+    
+    try {
+        $jdkInstallDir = "C:\Users\$env:USERNAME\.jdk"
+        if (-not (Test-Path $jdkInstallDir)) {
+            New-Item -ItemType Directory -Path $jdkInstallDir -Force | Out-Null
+        }
+        
+        # URL de descarga de OpenJDK 21
+        $jdkVersion = "21.0.8"
+        $downloadUrl = "https://aka.ms/download-jdk/microsoft-jdk-21.0.8-windows-x64.zip"
+        $zipFile = Join-Path $jdkInstallDir "jdk-21-windows.zip"
+        $extractDir = Join-Path $jdkInstallDir "jdk-21.0.8"
+        
+        Write-ColorOutput "? Descargando OpenJDK 21 desde Microsoft..." "Yellow"
+        Write-Log "Descargando Java 21 desde: $downloadUrl" "INFO"
+        
+        # Descargar Java 21
+        try {
+            Invoke-WebRequest -Uri $downloadUrl -OutFile $zipFile -UseBasicParsing
+            Write-Success "Descarga completada"
+            Write-Log "Java 21 descargado exitosamente" "INFO"
+        } catch {
+            Write-Error "Error al descargar Java 21: $_"
+            Write-Log "Error al descargar Java 21: $_" "ERROR"
+            throw
+        }
+        
+        # Extraer el archivo ZIP
+        Write-ColorOutput "? Extrayendo Java 21..." "Yellow"
+        try {
+            Expand-Archive -Path $zipFile -DestinationPath $jdkInstallDir -Force
+            
+            # Buscar el directorio extraído (puede tener un nombre ligeramente diferente)
+            $extractedDirs = Get-ChildItem $jdkInstallDir -Directory | Where-Object { $_.Name -like "*jdk-21*" }
+            if ($extractedDirs.Count -gt 0) {
+                $actualExtractDir = $extractedDirs[0].FullName
+                if ($actualExtractDir -ne $extractDir -and -not (Test-Path $extractDir)) {
+                    Rename-Item $actualExtractDir $extractDir
+                }
+            }
+            
+            Write-Success "Extracción completada"
+            Write-Log "Java 21 extraído exitosamente en: $extractDir" "INFO"
+        } catch {
+            Write-Error "Error al extraer Java 21: $_"
+            Write-Log "Error al extraer Java 21: $_" "ERROR"
+            throw
+        }
+        
+        # Limpiar archivo ZIP
+        Remove-Item $zipFile -Force -ErrorAction SilentlyContinue
+        
+        # Verificar instalación
+        $javaExePath = Join-Path $extractDir "bin\java.exe"
+        if (Test-Path $javaExePath) {
+            Write-Success "Java 21 instalado exitosamente en: $extractDir"
+            Write-Log "Java 21 instalación completada: $javaExePath" "INFO"
+            return $javaExePath
+        } else {
+            Write-Error "La instalación de Java 21 falló - ejecutable no encontrado"
+            Write-Log "Instalación de Java 21 falló - ejecutable no encontrado en: $javaExePath" "ERROR"
+            throw "Java installation failed"
+        }
+        
+    } catch {
+        Write-Error "Error durante la instalación de Java 21: $_"
+        Write-Log "Error crítico durante instalación de Java 21: $_" "ERROR"
+        throw
+    }
+}
+
 function Test-Prerequisites {
     Write-Step "Verificando prerequisitos"
+    Write-Log "Iniciando verificación de prerequisitos" "INFO"
     
     # Verificar Java
     $javaPath = $null
     $javaLocations = @(
+        "C:\Users\$env:USERNAME\.jdk\jdk-21.0.8\bin\java.exe",
         "C:\Users\$env:USERNAME\.jdk\jdk-21.0.8(1)\bin\java.exe"
     )
     
     foreach ($location in $javaLocations) {
         if (Test-Path $location) {
             $javaPath = $location
+            Write-Log "Java encontrado en ubicación conocida: $location" "INFO"
             break
         }
     }
@@ -105,21 +216,28 @@ function Test-Prerequisites {
         # Buscar en directorios de Java con comodines
         $javaSearchPaths = @(
             "C:\Program Files\Java\jdk-21*",
-            "C:\Program Files (x86)\Java\jdk-21*"
+            "C:\Program Files (x86)\Java\jdk-21*",
+            "C:\Users\$env:USERNAME\.jdk\jdk-21*"
         )
         
         foreach ($searchPath in $javaSearchPaths) {
             try {
-                $javaDir = Get-ChildItem (Split-Path $searchPath) -Directory -Name (Split-Path $searchPath -Leaf) -ErrorAction SilentlyContinue | Select-Object -First 1
-                if ($javaDir) {
-                    $testPath = Join-Path (Split-Path $searchPath) $javaDir "bin\java.exe"
-                    if (Test-Path $testPath) {
-                        $javaPath = $testPath
-                        break
+                $parentDir = Split-Path $searchPath
+                if (Test-Path $parentDir) {
+                    $pattern = Split-Path $searchPath -Leaf
+                    $javaDirs = Get-ChildItem $parentDir -Directory | Where-Object { $_.Name -like $pattern }
+                    foreach ($javaDir in $javaDirs) {
+                        $testPath = Join-Path $javaDir.FullName "bin\java.exe"
+                        if (Test-Path $testPath) {
+                            $javaPath = $testPath
+                            Write-Log "Java encontrado en búsqueda: $testPath" "INFO"
+                            break
+                        }
                     }
+                    if ($javaPath) { break }
                 }
             } catch {
-                # Continuar buscando
+                Write-Log "Error en búsqueda de Java en $searchPath`: $_" "WARNING"
             }
         }
     }
@@ -132,18 +250,30 @@ function Test-Prerequisites {
                 $majorVersion = [int]$Matches[1]
                 if ($majorVersion -ge 21) {
                     $javaPath = (Get-Command java).Source
+                    Write-Log "Java $majorVersion encontrado en PATH: $javaPath" "INFO"
+                } else {
+                    Write-Log "Java $majorVersion encontrado en PATH pero es menor a la versión 21" "WARNING"
                 }
             }
         } catch {
-            # Java no encontrado en PATH
+            Write-Log "Java no encontrado en PATH" "WARNING"
         }
     }
     
     if (-not $javaPath) {
-        Write-Error "Java 21+ no encontrado. Instalar Java 21 o superior."
-        exit 1
+        Write-ColorOutput "? Java 21 no encontrado. Instalando automáticamente..." "Yellow"
+        Write-Log "Java 21 no encontrado, iniciando instalación automática" "INFO"
+        try {
+            $javaPath = Install-Java21
+        } catch {
+            Write-Error "No se pudo instalar Java 21 automáticamente. Instale Java 21 manualmente."
+            Write-Log "Falló la instalación automática de Java 21" "ERROR"
+            exit 1
+        }
     }
+    
     Write-Success "Java encontrado: $javaPath"
+    Write-Log "Java verificado exitosamente: $javaPath" "INFO"
     
     # Verificar Maven
     $mavenPath = $null
@@ -154,6 +284,7 @@ function Test-Prerequisites {
     foreach ($location in $mavenLocations) {
         if (Test-Path $location) {
             $mavenPath = $location
+            Write-Log "Maven encontrado en ubicación conocida: $location" "INFO"
             break
         }
     }
@@ -162,7 +293,8 @@ function Test-Prerequisites {
         # Buscar Maven en ubicaciones comunes
         $mavenSearchPaths = @(
             "C:\Program Files\Apache\Maven",
-            "C:\tools"
+            "C:\tools",
+            "C:\Users\$env:USERNAME\.maven"
         )
         
         foreach ($searchPath in $mavenSearchPaths) {
@@ -173,13 +305,14 @@ function Test-Prerequisites {
                         $testPath = Join-Path $searchPath $mavenDir "bin\mvn.cmd"
                         if (Test-Path $testPath) {
                             $mavenPath = $testPath
+                            Write-Log "Maven encontrado en búsqueda: $testPath" "INFO"
                             break
                         }
                     }
                     if ($mavenPath) { break }
                 }
             } catch {
-                # Continuar buscando
+                Write-Log "Error en búsqueda de Maven en $searchPath`: $_" "WARNING"
             }
         }
     }
@@ -189,27 +322,33 @@ function Test-Prerequisites {
             $mavenVersion = & mvn --version 2>&1
             if ($mavenVersion) {
                 $mavenPath = (Get-Command mvn).Source
+                Write-Log "Maven encontrado en PATH: $mavenPath" "INFO"
             }
         } catch {
-            # Maven no encontrado en PATH
+            Write-Log "Maven no encontrado en PATH" "WARNING"
         }
     }
     
     if (-not $mavenPath) {
         Write-Error "Maven no encontrado. Instalar Apache Maven 3.6+ o superior."
+        Write-Log "Maven no encontrado - instalación requerida" "ERROR"
         exit 1
     }
     Write-Success "Maven encontrado: $mavenPath"
+    Write-Log "Maven verificado exitosamente: $mavenPath" "INFO"
     
     # Verificar ps2exe
     try {
         Get-Command ps2exe -ErrorAction Stop | Out-Null
         Write-Success "ps2exe disponible"
+        Write-Log "ps2exe verificado exitosamente" "INFO"
     } catch {
         Write-Error "ps2exe no encontrado. Ejecutar: Install-Module ps2exe"
+        Write-Log "ps2exe no encontrado - instalación requerida" "ERROR"
         exit 1
     }
     
+    Write-Log "Verificación de prerequisitos completada exitosamente" "INFO"
     return @{ Java = $javaPath; Maven = $mavenPath }
 }
 
@@ -217,16 +356,19 @@ function Set-Environment {
     param($JavaPath)
     
     Write-Step "Configurando variables de entorno"
+    Write-Log "Configurando variables de entorno para Java: $JavaPath" "INFO"
     
     $javaHome = Split-Path (Split-Path $JavaPath)
     $env:JAVA_HOME = $javaHome
     $env:PATH = "$javaHome\bin;" + $env:PATH
     
     Write-Success "JAVA_HOME: $javaHome"
+    Write-Log "JAVA_HOME configurado: $javaHome" "INFO"
 }
 
 function Clean-Directories {
     Write-Step "Limpiando directorios de salida"
+    Write-Log "Iniciando limpieza de directorios" "INFO"
     
     $directories = @(
         "target",
@@ -237,6 +379,7 @@ function Clean-Directories {
         if (Test-Path $dir) {
             Remove-Item $dir -Recurse -Force
             Write-Success "Eliminado: $dir"
+            Write-Log "Directorio eliminado: $dir" "INFO"
         }
     }
 }
@@ -245,6 +388,7 @@ function Build-Project {
     param($MavenPath, $SkipTests)
     
     Write-Step "Compilando proyecto con Maven"
+    Write-Log "Iniciando compilación del proyecto" "INFO"
     
     $goals = "clean package"
     if ($SkipTests) {
@@ -256,8 +400,10 @@ function Build-Project {
     try {
         & $MavenPath $goals.Split() $verboseFlag
         Write-Success "Compilación completada"
+        Write-Log "Compilación del proyecto completada exitosamente" "INFO"
     } catch {
         Write-Error "Error en la compilación: $_"
+        Write-Log "Error en la compilación del proyecto: $_" "ERROR"
         exit 1
     }
 }
@@ -274,8 +420,19 @@ function Create-LauncherScript {
         exit 1
     }
     $launcherScript = @"
-# GestCoop Launcher - Version Ultra Simple
+# GestCoop Launcher - Version Ultra Simple con Logging
 `$ErrorActionPreference = "SilentlyContinue"
+
+# Función para escribir al log
+function Write-AppLog(`$message, `$level = "INFO") {
+    `$timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    `$logEntry = "[`$timestamp] [`$level] `$message"
+    try {
+        Add-Content -Path (Join-Path `$ScriptDir "GestCoop.log") -Value `$logEntry -ErrorAction SilentlyContinue
+    } catch {
+        # Ignorar errores de escritura de log
+    }
+}
 
 # Obtener directorio del script
 `$ScriptDir = if (`$MyInvocation.MyCommand.Path) { 
@@ -297,16 +454,19 @@ function Create-LauncherScript {
     }
 }
 
+Write-AppLog "Iniciando GestCoop desde: `$ScriptDir" "INFO"
+
 # Cargar Windows Forms para mostrar mensajes
 try {
     Add-Type -AssemblyName System.Windows.Forms -ErrorAction SilentlyContinue
     Add-Type -AssemblyName System.Drawing -ErrorAction SilentlyContinue
 } catch {
-    # Ignorar errores
+    Write-AppLog "Error al cargar Windows Forms: `$(`$_.Exception.Message)" "WARNING"
 }
 
 # Función simple para mostrar mensajes
 function Show-Error(`$msg) {
+    Write-AppLog "ERROR: `$msg" "ERROR"
     try {
         [System.Windows.Forms.MessageBox]::Show(`$msg, "GestCoop Error", "OK", "Error")
     } catch {
@@ -314,13 +474,78 @@ function Show-Error(`$msg) {
     }
 }
 
+# Función para instalar Java 21 automáticamente
+function Install-Java21-Auto {
+    Write-AppLog "Iniciando instalación automática de Java 21" "INFO"
+    
+    try {
+        `$jdkInstallDir = "C:\Users\`$env:USERNAME\.jdk"
+        if (-not (Test-Path `$jdkInstallDir)) {
+            New-Item -ItemType Directory -Path `$jdkInstallDir -Force | Out-Null
+        }
+        
+        `$downloadUrl = "https://aka.ms/download-jdk/microsoft-jdk-21.0.8-windows-x64.zip"
+        `$zipFile = Join-Path `$jdkInstallDir "jdk-21-windows.zip"
+        `$extractDir = Join-Path `$jdkInstallDir "jdk-21.0.8"
+        
+        Write-AppLog "Descargando Java 21 desde: `$downloadUrl" "INFO"
+        
+        # Mostrar progreso al usuario
+        try {
+            [System.Windows.Forms.MessageBox]::Show("Descargando Java 21. Esto puede tomar unos minutos...", "GestCoop", "OK", "Information")
+        } catch {}
+        
+        # Descargar Java 21
+        Invoke-WebRequest -Uri `$downloadUrl -OutFile `$zipFile -UseBasicParsing
+        Write-AppLog "Java 21 descargado exitosamente" "INFO"
+        
+        # Extraer el archivo ZIP
+        Write-AppLog "Extrayendo Java 21..." "INFO"
+        Expand-Archive -Path `$zipFile -DestinationPath `$jdkInstallDir -Force
+        
+        # Buscar el directorio extraído
+        `$extractedDirs = Get-ChildItem `$jdkInstallDir -Directory | Where-Object { `$_.Name -like "*jdk-21*" }
+        if (`$extractedDirs.Count -gt 0) {
+            `$actualExtractDir = `$extractedDirs[0].FullName
+            if (`$actualExtractDir -ne `$extractDir -and -not (Test-Path `$extractDir)) {
+                Rename-Item `$actualExtractDir `$extractDir
+            }
+        }
+        
+        # Limpiar archivo ZIP
+        Remove-Item `$zipFile -Force -ErrorAction SilentlyContinue
+        
+        # Verificar instalación
+        `$javaExePath = Join-Path `$extractDir "bin\java.exe"
+        if (Test-Path `$javaExePath) {
+            Write-AppLog "Java 21 instalado exitosamente en: `$extractDir" "INFO"
+            return `$javaExePath
+        } else {
+            Write-AppLog "La instalación de Java 21 falló - ejecutable no encontrado en: `$javaExePath" "ERROR"
+            return `$null
+        }
+        
+    } catch {
+        Write-AppLog "Error durante la instalación de Java 21: `$(`$_.Exception.Message)" "ERROR"
+        return `$null
+    }
+}
+
 # Buscar Java de forma simple
 `$javaExe = `$null
 
-# Probar ruta conocida
-`$knownPath = "C:\Users\`$env:USERNAME\.jdk\jdk-21.0.8(1)\bin\java.exe"
-if ([System.IO.File]::Exists(`$knownPath)) {
-    `$javaExe = `$knownPath
+# Probar rutas conocidas
+`$knownPaths = @(
+    "C:\Users\`$env:USERNAME\.jdk\jdk-21.0.8\bin\java.exe",
+    "C:\Users\`$env:USERNAME\.jdk\jdk-21.0.8(1)\bin\java.exe"
+)
+
+foreach (`$knownPath in `$knownPaths) {
+    if ([System.IO.File]::Exists(`$knownPath)) {
+        `$javaExe = `$knownPath
+        Write-AppLog "Java encontrado en ubicación conocida: `$knownPath" "INFO"
+        break
+    }
 }
 
 # Si no se encuentra, probar en PATH
@@ -329,27 +554,70 @@ if (-not `$javaExe) {
         `$javaTest = Get-Command java -ErrorAction Stop 2>`$null
         if (`$javaTest) {
             `$javaExe = `$javaTest.Source
+            Write-AppLog "Java encontrado en PATH: `$javaExe" "INFO"
         }
     } catch {
-        # Ignorar
+        Write-AppLog "Java no encontrado en PATH" "WARNING"
     }
+}
+
+# Buscar en directorios comunes
+if (-not `$javaExe) {
+    `$javaSearchPaths = @(
+        "C:\Program Files\Java\jdk-21*\bin\java.exe",
+        "C:\Program Files (x86)\Java\jdk-21*\bin\java.exe",
+        "C:\Users\`$env:USERNAME\.jdk\jdk-21*\bin\java.exe"
+    )
+    
+    foreach (`$searchPath in `$javaSearchPaths) {
+        `$parentDir = Split-Path (Split-Path `$searchPath)
+        if (Test-Path `$parentDir) {
+            `$pattern = Split-Path (Split-Path `$searchPath) -Leaf
+            `$javaDirs = Get-ChildItem `$parentDir -Directory | Where-Object { `$_.Name -like `$pattern }
+            foreach (`$javaDir in `$javaDirs) {
+                `$testPath = Join-Path `$javaDir.FullName "bin\java.exe"
+                if (Test-Path `$testPath) {
+                    `$javaExe = `$testPath
+                    Write-AppLog "Java encontrado en búsqueda: `$testPath" "INFO"
+                    break
+                }
+            }
+            if (`$javaExe) { break }
+        }
+    }
+}
+
+# Si no encontramos Java, intentar instalación automática
+if (-not `$javaExe) {
+    Write-AppLog "Java 21 no encontrado, iniciando instalación automática" "INFO"
+    `$javaExe = Install-Java21-Auto
 }
 
 # Verificar que encontramos Java
 if (-not `$javaExe) {
-    Show-Error "No se encontro Java 21+. Instale Java y vuelva a intentar."
+    `$errorMsg = "No se encontró Java 21+ y no se pudo instalar automáticamente. Por favor instale Java 21 manualmente."
+    Show-Error `$errorMsg
+    Write-AppLog `$errorMsg "ERROR"
     exit 1
 }
+
+Write-AppLog "Usando Java: `$javaExe" "INFO"
 
 # Verificar que existe el JAR
 `$jarPath = Join-Path `$ScriptDir "GestCoop.jar"
 if (-not [System.IO.File]::Exists(`$jarPath)) {
-    Show-Error "No se encontro GestCoop.jar en `$ScriptDir"
+    `$errorMsg = "No se encontró GestCoop.jar en `$ScriptDir"
+    Show-Error `$errorMsg
+    Write-AppLog `$errorMsg "ERROR"
     exit 1
 }
 
+Write-AppLog "Usando JAR: `$jarPath" "INFO"
+
 # Iniciar la aplicación
 try {
+    Write-AppLog "Iniciando aplicación GestCoop..." "INFO"
+    
     `$startInfo = New-Object System.Diagnostics.ProcessStartInfo
     `$startInfo.FileName = `$javaExe
     `$startInfo.Arguments = "-jar ```"`$jarPath```""
@@ -360,14 +628,18 @@ try {
     `$process = [System.Diagnostics.Process]::Start(`$startInfo)
     
     if (`$process) {
-        # Aplicación iniciada correctamente
+        Write-AppLog "GestCoop iniciado exitosamente. PID: `$(`$process.Id)" "INFO"
         exit 0
     } else {
-        Show-Error "No se pudo iniciar GestCoop"
+        `$errorMsg = "No se pudo iniciar GestCoop - Process.Start() devolvió null"
+        Show-Error `$errorMsg
+        Write-AppLog `$errorMsg "ERROR"
         exit 1
     }
 } catch {
-    Show-Error "Error al iniciar GestCoop: `$(`$_.Exception.Message)"
+    `$errorMsg = "Error al iniciar GestCoop: `$(`$_.Exception.Message)"
+    Show-Error `$errorMsg
+    Write-AppLog `$errorMsg "ERROR"
     exit 1
 }
 "@
@@ -556,6 +828,17 @@ function Show-Summary {
 function Main {
     $startTime = Get-Date
     
+    # Inicializar logging (limpiar log si es muy grande)
+    Initialize-Log
+    
+    # Inicializar logging
+    Write-Log "===========================================" "INFO"
+    Write-Log "Iniciando script de compilación GestCoop v1.0.0" "INFO"
+    Write-Log "Fecha/Hora: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" "INFO"
+    Write-Log "Usuario: $env:USERNAME" "INFO"
+    Write-Log "Máquina: $env:COMPUTERNAME" "INFO"
+    Write-Log "===========================================" "INFO"
+    
     if ($Help) {
         Show-Help
         return
@@ -568,6 +851,7 @@ function Main {
         $projectRoot = $PSScriptRoot
         Set-Location $projectRoot
         Write-Success "Directorio de trabajo: $projectRoot"
+        Write-Log "Directorio de trabajo establecido: $projectRoot" "INFO"
         
         # Verificar prerequisitos
         $tools = Test-Prerequisites
@@ -587,24 +871,29 @@ function Main {
         $distDir = "target\dist"
         if (-not (Test-Path $distDir)) {
             Write-Error "El directorio de distribución no se creó: $distDir"
+            Write-Log "ERROR: Directorio de distribución no creado: $distDir" "ERROR"
             exit 1
         }
         Write-Success "Directorio de distribución confirmado: $distDir"
+        Write-Log "Directorio de distribución confirmado: $distDir" "INFO"
         
         # Crear script lanzador
         Write-Host "? Iniciando creación del script lanzador..." -ForegroundColor Yellow
         $launcherPath = Create-LauncherScript
         Write-Host "? Script lanzador completado: $launcherPath" -ForegroundColor Green
+        Write-Log "Script lanzador creado exitosamente: $launcherPath" "INFO"
         
         # Generar ejecutable
         Write-Host "? Iniciando generación del ejecutable..." -ForegroundColor Yellow
         $exePath = Create-Executable -LauncherPath $launcherPath
         Write-Host "? Ejecutable completado: $exePath" -ForegroundColor Green
+        Write-Log "Ejecutable generado exitosamente: $exePath" "INFO"
         
         # Crear paquete de reportes
         Write-Host "? Iniciando creación del paquete de reportes..." -ForegroundColor Yellow
         $reportsDir = Create-ReportsPackage -DistDir $distDir
         Write-Host "? Paquete de reportes completado: $reportsDir" -ForegroundColor Green
+        Write-Log "Paquete de reportes creado exitosamente: $reportsDir" "INFO"
         
         # Verificar aplicación
         Test-Application -ExePath $exePath
@@ -613,10 +902,15 @@ function Main {
         Show-Summary -ExePath $exePath -StartTime $startTime
         
         Write-ColorOutput "`n?? ¡COMPILACIÓN COMPLETADA EXITOSAMENTE!" "Green"
+        Write-Log "Compilación completada exitosamente en $([math]::Round(((Get-Date) - $startTime).TotalSeconds, 1)) segundos" "INFO"
+        Write-Log "===========================================" "INFO"
         
     } catch {
         Write-Error "`n?? Error durante la compilación: $_"
         Write-ColorOutput "Revise los logs anteriores para más detalles." "Red"
+        Write-Log "ERROR CRÍTICO durante la compilación: $_" "ERROR"
+        Write-Log "Stack trace: $($_.ScriptStackTrace)" "ERROR"
+        Write-Log "===========================================" "ERROR"
         exit 1
     }
 }

@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns='http://jasperreports.sourceforge.net/jasperreports' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd' name='CartaCosecheros' language='groovy' pageWidth='595' pageHeight='842' columnWidth='555' leftMargin='20' rightMargin='20' topMargin='7' bottomMargin='7' uuid='cd36eb10-af74-4155-84b7-020a2a319436'>
+	<property name='ireport.zoom' value='1.0'/>
+	<property name='ireport.x' value='0'/>
+	<property name='ireport.y' value='0'/>
+	<style name='Title' forecolor='#FFFFFF' fontName='Arial' fontSize='26' isBold='true' pdfFontName='Helvetica-Bold'/>
+	<style name='SubTitle' forecolor='#666666' fontName='Arial' fontSize='18'/>
+	<style name='Column header' forecolor='#666666' fontName='Arial' fontSize='12' isBold='true'/>
+	<style name='Detail' fontName='Arial' fontSize='12'/>
+	<parameter name='Empresa' class='java.lang.Integer'/>
+	<parameter name='Ejercicio' class='java.lang.Integer'/>
+	<parameter name='LOGO_DIR' class='java.lang.String' isForPrompting='false'>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name='Saludo' class='java.lang.String'/>
+	<parameter name='Cuerpo' class='java.lang.String'/>
+	<parameter name='Despedida' class='java.lang.String'/>
+	<queryString>
+		<![CDATA[Select * from [db_aa764d_coopmanagerdb].[dbo].[cosecheros] co where co.Empresa = $P{Empresa} and co.Ejercicio = $P{Ejercicio};]]>
+	</queryString>
+	<field name='Empresa' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Ejercicio' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='IdCosechero' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Nombre' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Apellidos' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Direccion' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Poblacion' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='CodigoPostal' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='FAX' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Telefono1' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Telefono2' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='NIF' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='CuentaContable' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='TipoIGIC' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='TipoIRPF' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='IdZona' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='IdBanco' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='IdSucursal' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='DigitoControl' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='CuentaBancaria' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='OCM' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='GrupoPladimisa' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='CodigoINE' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='IdGrupo' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='CodigoAsesoria' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='NumKilosReferencia' class='java.lang.Float'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Email' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='SID' class='java.lang.String'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='LMD' class='java.sql.Timestamp'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name='Version' class='java.lang.Integer'>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name='Autorizado' class='java.lang.String'>
+		<variableExpression><![CDATA['Fdo. ' + $F{Nombre} + ' ' + $F{Apellidos}]]></variableExpression>
+	</variable>
+	<group name='Cosechero' isStartNewPage='true'>
+		<groupExpression><![CDATA[$F{IdCosechero}]]></groupExpression>
+		<groupHeader>
+			<band height='50'/>
+		</groupHeader>
+		<groupFooter>
+			<band height='13'/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType='Stretch'/>
+	</background>
+	<pageHeader>
+		<band height='120'>
+			<image>
+				<reportElement x='11' y='18' width='305' height='66' uuid='1dfab9d2-ba99-473d-8556-964efc1477c2'/>
+				<imageExpression><![CDATA[$P{LOGO_DIR}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style='Column header' x='254' y='84' width='280' height='15' uuid='0ecb1326-0606-4a84-8dfb-2c0ee53226b1'/>
+				<textElement>
+					<font fontName='Tahoma' size='10'/>
+				</textElement>
+				<text><![CDATA[San Juan de la Rambla, a]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height='50' splitType='Stretch'>
+			<textField isStretchWithOverflow='true' pattern="' isBlankWhenNull='true'>
+				<reportElement stretchType='RelativeToBandHeight' x='23' y='14' width='499' height='20' uuid='d2ffb423-8c21-4756-bd66-3ee8dab54e95'/>
+				<textElement textAlignment='Justified'/>
+				<textFieldExpression><![CDATA[$P{Saludo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height='50'>
+			<textField isStretchWithOverflow='true' isBlankWhenNull='true'>
+				<reportElement positionType='Float' stretchType='RelativeToBandHeight' x='23' y='16' width='499' height='20' uuid='4ce013e1-6941-4e2d-9ede-e46be47c3b37'/>
+				<textElement textAlignment='Justified'/>
+				<textFieldExpression><![CDATA[$P{Cuerpo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height='50'>
+			<textField isStretchWithOverflow='true' isBlankWhenNull='true'>
+				<reportElement positionType='Float' stretchType='RelativeToBandHeight' x='23' y='13' width='499' height='20' uuid='d5280d0f-f868-4489-aee7-ea44f95becba'/>
+				<textElement textAlignment='Justified'/>
+				<textFieldExpression><![CDATA[$P{Despedida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height='209' splitType='Stretch'>
+			<staticText>
+				<reportElement style='Column header' x='23' y='24' width='548' height='15' uuid='9625a44d-c718-4e0b-a7ef-bca03fec2cfc'/>
+				<textElement>
+					<font fontName='Tahoma' size='10'/>
+				</textElement>
+				<text><![CDATA[El Autorizante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style='Column header' x='326' y='24' width='149' height='15' uuid='98f1cc85-1f72-4da4-9c7f-c31fe661ede7'/>
+				<textElement>
+					<font fontName='Tahoma' size='10'/>
+				</textElement>
+				<text><![CDATA[S.A.T. Pladimsa]]></text>
+			</staticText>
+			<textField>
+				<reportElement x='23' y='104' width='678' height='20' uuid='3c2f8736-7b85-4fb7-9999-464633ba116e'/>
+				<textFieldExpression><![CDATA[$V{Autorizado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style='Column header' x='326' y='104' width='196' height='15' uuid='9b712c8a-79ac-4db5-a1b7-7873acae93e8'/>
+				<textElement>
+					<font fontName='Tahoma' size='10'/>
+				</textElement>
+				<text><![CDATA[Fdo. Jes�s Vicente D�az Falc�n]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType='Stretch"/>
+	</summary>
+</jasperReport>
+
+
