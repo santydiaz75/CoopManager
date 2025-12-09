@@ -2,6 +2,7 @@
 /GestCoopNB/GestCoop/build/
 /GestCoopNB/GestCoop/dist/
 /bin
+/target/
 
 # Archivos compilados de Java
 *.class
