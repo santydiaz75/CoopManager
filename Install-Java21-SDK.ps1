@@ -3,7 +3,7 @@
 # Autor: Script automatizado para GestCoop
 
 param(
-    [string]$InstallPath = "C:\Development\Java\jdk-21",
+    [string]$InstallPath = "C:\Program Files\Java",
     [switch]$SetJavaHome = $true,
     [switch]$UpdatePath = $true,
     [switch]$Verbose = $false
