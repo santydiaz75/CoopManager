@@ -166,7 +166,7 @@ public class FrmTipoGasto extends javax.swing.JPanel {
 		try {
 			if (txtDescTipoGasto.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar una descripciÃ³n para el tipo de gasto.");
+						"Debe indicar una descripción para el tipo de gasto.");
 				txtDescTipoGasto.requestFocus();
 				return (false);
 			}

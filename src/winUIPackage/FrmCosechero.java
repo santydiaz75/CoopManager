@@ -137,7 +137,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 			columns.add(new ColumnData("Paraje", "Paraje",
 					EntityType.MediumTextWidth, SwingConstants.LEFT,
 					NormalType, null, null));
-			columns.add(new ColumnData("Poligono", "Pol贸gono",
+			columns.add(new ColumnData("Poligono", "Pol韌ono",
 					EntityType.ShortTextWidth, SwingConstants.LEFT, NormalType,
 					null, null));
 			columns.add(new ColumnData("Parcela", "Parcela",
@@ -898,14 +898,14 @@ public class FrmCosechero extends javax.swing.JPanel {
 					txtIdCosechero.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v贸lido.");
+							"El tipo de datos indicado no esv醠ido.");
 					txtIdCosechero.requestFocus();
 					return (false);
 				}
 				if (entity.CosecheroFindByIdCosechero(this,
 						((Number) txtIdCosechero.getValue()).intValue()) != null) {
 					Message.ShowValidateMessage(pnlData,
-							"El C贸digo de cosechero especificado ya existe.");
+							"El c骴igo de cosechero especificado ya existe.");
 					TabCosechero.setSelectedIndex(0);
 					txtIdCosechero.requestFocus();
 					return (false);
@@ -923,7 +923,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 					txtIdZona.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v贸lido.");
+							"El tipo de datos indicado no esv醠ido.");
 					txtIdZona.requestFocus();
 					return (false);
 				}
@@ -933,7 +933,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 					txtTipoIGIC.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v贸lido.");
+							"El tipo de datos indicado no esv醠ido.");
 					txtTipoIGIC.requestFocus();
 					return (false);
 				}
@@ -943,7 +943,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 					txtTipoIRPF.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v贸lido.");
+							"El tipo de datos indicado no esv醠ido.");
 					txtTipoIRPF.requestFocus();
 					return (false);
 				}
@@ -953,7 +953,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 					txtIdGrupo.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v贸lido.");
+							"El tipo de datos indicado no esv醠ido.");
 					txtIdGrupo.requestFocus();
 					return (false);
 				}
@@ -963,7 +963,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 					txtCodigoAsesoria.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v贸lido.");
+							"El tipo de datos indicado no esv醠ido.");
 					txtCodigoAsesoria.requestFocus();
 					return (false);
 				}
@@ -988,7 +988,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 					if (tblParcelas.getValueAt(actualrow,
 							ParcelasTableModel.columnPoligono).equals("")) {
 						Message.ShowValidateMessage(tblParcelas,
-								"Debe indicar el Pol贸gono.");
+								"Debe indicar el Pol韌ono.");
 						tblParcelas
 								.changeSelection(tblParcelas.getSelectedRow(),
 										ParcelasTableModel.columnPoligono,
@@ -1223,7 +1223,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 
         lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDireccion.setText("Direcci贸n");
+        lblDireccion.setText("Direcci髇");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1250,7 +1250,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 
         lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPoblacion.setText("Poblaci贸n");
+        lblPoblacion.setText("Poblaci髇");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1266,7 +1266,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoPostal.setText("C贸digo postal");
+        lblCodigoPostal.setText("C骴igo postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1298,7 +1298,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 
         lblTelefono1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefono1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTelefono1.setText("Tel贸fono 1");
+        lblTelefono1.setText("Tel閒ono 1");
         lblTelefono1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtTelefono1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1314,7 +1314,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 
         lblTelefono2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefono2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTelefono2.setText("Tel贸fono 2");
+        lblTelefono2.setText("Tel閒ono 2");
         lblTelefono2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtTelefono2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1678,7 +1678,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 
         lblDigitoControl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDigitoControl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDigitoControl.setText("D贸gito control");
+        lblDigitoControl.setText("D韌ito control");
         lblDigitoControl.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         lblCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1688,7 +1688,7 @@ public class FrmCosechero extends javax.swing.JPanel {
 
         lblCodigoINE.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCodigoINE.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodigoINE.setText("C贸digo INE");
+        lblCodigoINE.setText("C骴igo INE");
         lblCodigoINE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtCodigoINE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1768,7 +1768,7 @@ public class FrmCosechero extends javax.swing.JPanel {
         });
 
         cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectAll.setText("Quitar selecci贸n");
+        cmdDeselectAll.setText("Quitar selecci髇");
         cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1778,8 +1778,8 @@ public class FrmCosechero extends javax.swing.JPanel {
         });
 
         cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeleteLinea.setText("Eliminar l贸nea");
-        cmdDeleteLinea.setToolTipText("Eliminar las l贸neas seleccionados");
+        cmdDeleteLinea.setText("Eliminar l韓ea");
+        cmdDeleteLinea.setToolTipText("Eliminar las l韓eas seleccionados");
         cmdDeleteLinea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeleteLinea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -1961,7 +1961,7 @@ public class FrmCosechero extends javax.swing.JPanel {
                     .addContainerGap(169, Short.MAX_VALUE)))
         );
 
-        TabCosechero.addTab("2. M贸s datos", pnlData2);
+        TabCosechero.addTab("2. M醩 datos", pnlData2);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png"))); // NOI18N
         btnCancel.setToolTipText("Cancelar");

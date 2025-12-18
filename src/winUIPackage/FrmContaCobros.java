@@ -104,7 +104,7 @@ public class FrmContaCobros extends javax.swing.JInternalFrame {
 			headerData.add("Concepto");
 			headerData.add("Debe=1;Haber=2");
 			headerData.add("Importe");
-			headerData.add("N贸mero diario");
+			headerData.add("N鷐ero diario");
 
 			Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
 
@@ -201,7 +201,7 @@ public class FrmContaCobros extends javax.swing.JInternalFrame {
 						EntityType.ShortTextWidth);
 				tblResult.getColumn("Importe").setPreferredWidth(
 						EntityType.NumberWidth);
-				tblResult.getColumn("N贸mero diario").setPreferredWidth(
+				tblResult.getColumn("N鷐ero diario").setPreferredWidth(
 						EntityType.ShortTextWidth);
 
 				txtTotalDebe.setValue(totalDebe);
@@ -231,7 +231,7 @@ public class FrmContaCobros extends javax.swing.JInternalFrame {
 					txtFechaCobroDesde.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v贸lido.");
+							"El tipo de datos indicado no esv醠ido.");
 					txtFechaCobroDesde.requestFocus();
 					return (false);
 				}
@@ -247,7 +247,7 @@ public class FrmContaCobros extends javax.swing.JInternalFrame {
 					txtFechaCobroHasta.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es v贸lido.");
+							"El tipo de datos indicado no esv醠ido.");
 					txtFechaCobroHasta.requestFocus();
 					return (false);
 				}
@@ -288,7 +288,7 @@ public class FrmContaCobros extends javax.swing.JInternalFrame {
 		lblAsiento = new javax.swing.JLabel();
 		txtAsiento = new javax.swing.JTextField();
 
-		setTitle("Contabilizaci贸n de cobros");
+		setTitle("Contabilizaci髇 de cobros");
 
 		pnlData.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

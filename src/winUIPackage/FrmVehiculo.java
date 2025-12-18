@@ -126,7 +126,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					.add(new ColumnData("IdGasto", "Id. gasto",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("IdGastoDesc", "DescripciÃ³n",
+			columns.add(new ColumnData("IdGastoDesc", "Descripción",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboTipoGastoDesc, null));
 			columns.add(new ColumnData("Importe", "Importe",

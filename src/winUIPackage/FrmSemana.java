@@ -120,7 +120,7 @@ public class FrmSemana extends javax.swing.JPanel {
 					.add(new ColumnData("IdCategoria", "Id. categoria",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("CategoriaDesc", "descripciÃ³n",
+			columns.add(new ColumnData("CategoriaDesc", "descripción",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboCategoriaDesc, null));
 			columns.add(new ColumnData("Precio", "Precio",
