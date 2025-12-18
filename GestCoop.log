@@ -1119,3 +1119,28 @@ at <ScriptBlock>, <No file>: line 1
 ? Creando paquete de reportes... target\dist\reportsPackage
 [2025-12-18 19:56:02] [INFO] Compilaci�n completada exitosamente en 15.1 segundos
 [2025-12-18 19:56:02] [INFO] ===========================================
+[2025-12-18 20:02:14] [INFO] ===========================================
+[2025-12-18 20:02:14] [INFO] Iniciando script de compilaci�n GestCoop v1.0.0
+[2025-12-18 20:02:14] [INFO] Fecha/Hora: 2025-12-18 20:02:14
+[2025-12-18 20:02:14] [INFO] Usuario: santy
+[2025-12-18 20:02:14] [INFO] M�quina: DESKTOP-VTJ5Q01
+[2025-12-18 20:02:14] [INFO] ===========================================
+[2025-12-18 20:02:14] [INFO] Directorio de trabajo establecido: C:\Development\CoopManager\CoopManager
+[2025-12-18 20:02:14] [INFO] Iniciando verificaci�n de prerequisitos
+[2025-12-18 20:02:14] [INFO] Java encontrado en b�squeda: C:\Program Files\Java\jdk-21\bin\java.exe
+[2025-12-18 20:02:14] [INFO] Java verificado exitosamente: C:\Program Files\Java\jdk-21\bin\java.exe
+[2025-12-18 20:02:14] [INFO] Maven encontrado en ubicaci�n conocida: C:\Users\santy\.maven\maven-3.9.11(1)\bin\mvn.cmd
+[2025-12-18 20:02:14] [INFO] Maven verificado exitosamente: C:\Users\santy\.maven\maven-3.9.11(1)\bin\mvn.cmd
+[2025-12-18 20:02:14] [INFO] ps2exe verificado exitosamente
+[2025-12-18 20:02:14] [INFO] Verificaci�n de prerequisitos completada exitosamente
+[2025-12-18 20:02:14] [INFO] Configurando variables de entorno para Java: C:\Program Files\Java\jdk-21\bin\java.exe
+[2025-12-18 20:02:14] [INFO] JAVA_HOME configurado: C:\Program Files\Java\jdk-21
+[2025-12-18 20:02:14] [INFO] Iniciando compilaci�n del proyecto
+[2025-12-18 20:02:29] [INFO] Compilaci�n del proyecto completada exitosamente
+[2025-12-18 20:02:29] [INFO] Directorio de distribuci�n confirmado: target\dist
+[2025-12-18 20:02:29] [INFO] Script lanzador creado exitosamente: target\dist\GestCoop_Launcher.ps1
+[2025-12-18 20:02:30] [INFO] Ejecutable generado exitosamente: target\dist\GestCoop.exe
+[2025-12-18 20:02:30] [INFO] Paquete de reportes creado exitosamente: 
+? Creando paquete de reportes... target\dist\reportsPackage
+[2025-12-18 20:02:30] [INFO] Compilaci�n completada exitosamente en 15.8 segundos
+[2025-12-18 20:02:30] [INFO] ===========================================

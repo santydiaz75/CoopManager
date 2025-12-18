@@ -24,7 +24,7 @@ public class Message {
 		Object[] options = { "Aceptar" };
 		JOptionPane.showOptionDialog(SwingUtilities
 				.getWindowAncestor((Component)parentFrame),
-				"El registro se ha grabado con Ã©xito.", "",
+				"El registro se ha grabado con éxito.", "",
 				JOptionPane.INFORMATION_MESSAGE,
 				JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 	}
