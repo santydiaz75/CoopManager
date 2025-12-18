@@ -556,7 +556,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 					}
 					updateStatus(cont++);
 					Message.ShowValidateMessage(parent,
-							"La liquidación se ha generado con ï¿½xito.");
+							"La liquidación se ha generado con éxito.");
 					return "Completado";
 				} else {
 					Message.ShowValidateMessage(parent,

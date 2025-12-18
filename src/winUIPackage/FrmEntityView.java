@@ -666,12 +666,33 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		}
 	}
 
+	private static String createOrderByClause() {
+		try {
+			int index = entitytype.getindex();
+			
+			switch (index) {
+			case EntityType.indexEntradas: {
+				// Ordenar por Vale (idEntrada) de forma ascendente
+				return "id.idEntrada ASC";
+			}
+			default: {
+				// Para otras entidades, sin ordenación específica
+				return "";
+			}
+			}
+		} catch (RuntimeException he) {
+			Message.ShowRuntimeError(parentFrame,
+					"FrmEntityView.createOrderByClause()", he);
+			return "";
+		}
+	}
+
 	public static void runSearchQuery() {
 		try {
 			entity.getSession().getSession().close();
 			List<?> resultList = entity.executeQueryView(
 					FrmEntityView.parentFrame, "*", tablename,
-					createSearchQueryWhere(), "");
+					createSearchQueryWhere(), createOrderByClause());
 			displayResult(resultList, headers, columnswidth, columnsalign);
 		} catch (RuntimeException he) {
 			Message.ShowRuntimeError(parentFrame,

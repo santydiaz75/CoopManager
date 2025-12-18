@@ -403,7 +403,7 @@ public class FrmImportarVales extends javax.swing.JDialog {
 			session.getSession().close();
 			bf.close();
 			Message.ShowInformationMessage(this,
-					"Importaciï¿½n realizada con ï¿½xito");
+					"Importaciï¿½n realizada con éxito");
 			return "Completado";
 
 		} catch (RuntimeException he) {
