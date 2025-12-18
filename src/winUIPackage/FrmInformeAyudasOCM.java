@@ -112,8 +112,6 @@ public class FrmInformeAyudasOCM extends javax.swing.JDialog {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		lblSemanaDesde = new javax.swing.JLabel();
@@ -162,7 +160,7 @@ public class FrmInformeAyudasOCM extends javax.swing.JDialog {
 		txtSemanaHasta.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cerrar.png"))); // NOI18N
+				"/imagesPackage/cerrar.png")));
 		btnCancel.setToolTipText("Cancelar");
 		btnCancel.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -173,7 +171,7 @@ public class FrmInformeAyudasOCM extends javax.swing.JDialog {
 		});
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -329,8 +327,7 @@ public class FrmInformeAyudasOCM extends javax.swing.JDialog {
 										.addContainerGap()));
 
 		pack();
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void btnOkMousePressed(java.awt.event.MouseEvent evt) {
 		try {
@@ -364,8 +361,6 @@ public class FrmInformeAyudasOCM extends javax.swing.JDialog {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnCancel;
 	private javax.swing.JButton btnOk;
 	private javax.swing.JLabel lblBimestre;
@@ -374,6 +369,5 @@ public class FrmInformeAyudasOCM extends javax.swing.JDialog {
 	private javax.swing.JTextField txtBimestre;
 	private javax.swing.JFormattedTextField txtSemanaDesde;
 	private javax.swing.JFormattedTextField txtSemanaHasta;
-	// End of variables declaration//GEN-END:variables
 
 }

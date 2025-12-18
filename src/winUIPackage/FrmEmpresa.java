@@ -259,11 +259,11 @@ public class FrmEmpresa extends javax.swing.JPanel {
                         editor.setClickCountToStart(1);
                         field.addFocusListener(new FocusAdapter() {
                             public void focusGained(FocusEvent e) {
-                                field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+                                field.selectAll();
                             }
 
                             public void focusLost(FocusEvent e) {
-                                field.select(0, 0);//De-selecciono el texto al perder el foco.
+                                field.select(0, 0);
                             }
                         });
                         break;
@@ -276,11 +276,11 @@ public class FrmEmpresa extends javax.swing.JPanel {
                         editor.setClickCountToStart(1);
                         field.addFocusListener(new FocusAdapter() {
                             public void focusGained(FocusEvent e) {
-                                field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+                                field.selectAll();
                             }
 
                             public void focusLost(FocusEvent e) {
-                                field.select(0, 0);//De-selecciono el texto al perder el foco.
+                                field.select(0, 0);
                             }
                         });
                         break;
@@ -293,11 +293,11 @@ public class FrmEmpresa extends javax.swing.JPanel {
                         editor.setClickCountToStart(1);
                         field.addFocusListener(new FocusAdapter() {
                             public void focusGained(FocusEvent e) {
-                                field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+                                field.selectAll();
                             }
 
                             public void focusLost(FocusEvent e) {
-                                field.select(0, 0);//De-selecciono el texto al perder el foco.
+                                field.select(0, 0);
                             }
                         });
                         break;
@@ -580,7 +580,6 @@ public class FrmEmpresa extends javax.swing.JPanel {
                 session.getSession().saveOrUpdate(empresa);
                 session.getSession().flush();
 
-				// Verificar que hay datos válidos en la tabla antes de borrar
 				boolean hasValidCuentas = false;
 				for (Integer k = 0; k < tblCuentas.getRowCount(); k++) {
 					if (tblCuentas.getValueAt(k, CuentasTableModel.columnState)
@@ -590,7 +589,6 @@ public class FrmEmpresa extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar cuentas si hay datos válidos para reemplazar
 				if (hasValidCuentas) {
 					String deletelinesquery = "Delete From Empresascuentas "
 							+ "Where id.empresas.idEmpresa = " + ((Number) txtIdEmpresa
@@ -718,7 +716,6 @@ public class FrmEmpresa extends javax.swing.JPanel {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlData = new javax.swing.JPanel();
@@ -758,95 +755,95 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         pnlData.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        TabEmpresa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TabEmpresa.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
         pnlData1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnlData1.setName("pnlData1"); // NOI18N
+        pnlData1.setName("pnlData1");
 
-        lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        lblProvincia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblProvincia.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblProvincia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblProvincia.setText("Provincia");
         lblProvincia.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNombre.setForeground(new java.awt.Color(255, 0, 0));
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombre.setText("Nombre");
 
-        lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDireccion.setText("Dirección");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombre.setAutoscrolls(false);
         txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNombre.setName("nombre"); // NOI18N
+        txtNombre.setName("nombre");
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
 
-        txtProvincia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtProvincia.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtProvincia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtProvincia.setAutoscrolls(false);
         txtProvincia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtProvincia.setName("apellidos"); // NOI18N
+        txtProvincia.setName("apellidos");
         txtProvincia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtProvinciaKeyTyped(evt);
             }
         });
 
-        lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDireccion.setAutoscrolls(false);
         txtDireccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtDireccion.setName("poblacion"); // NOI18N
+        txtDireccion.setName("poblacion");
         txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionKeyTyped(evt);
             }
         });
 
-        lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTelefono.setText("Teléfono");
         lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtTelefono.setAutoscrolls(false);
         txtTelefono.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtTelefono.setName("telefono1"); // NOI18N
+        txtTelefono.setName("telefono1");
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
             }
         });
 
-        lblNIF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNIF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNIF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNIF.setText("CIF");
         lblNIF.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtNIF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNIF.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNIF.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNIF.setAutoscrolls(false);
         txtNIF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNIF.setName("nif"); // NOI18N
+        txtNIF.setName("nif");
         txtNIF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNIFKeyTyped(evt);
@@ -855,41 +852,41 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         txtCodigoPostal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtCodigoPostal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCodigoPostal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoPostalKeyTyped(evt);
             }
         });
 
-        txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtPoblacion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtPoblacion.setAutoscrolls(false);
         txtPoblacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtPoblacion.setName("poblacion"); // NOI18N
+        txtPoblacion.setName("poblacion");
         txtPoblacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPoblacionKeyTyped(evt);
             }
         });
 
-        lblFax.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFax.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblFax.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFax.setText("Fax");
         lblFax.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtFAX.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFAX.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtFAX.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtFAX.setAutoscrolls(false);
         txtFAX.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtFAX.setName("telefono1"); // NOI18N
+        txtFAX.setName("telefono1");
         txtFAX.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtFAXKeyTyped(evt);
             }
         });
 
-        lblIdEmpresa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdEmpresa.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdEmpresa.setForeground(new java.awt.Color(255, 0, 0));
         lblIdEmpresa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdEmpresa.setText("Id empresa");
@@ -898,18 +895,18 @@ public class FrmEmpresa extends javax.swing.JPanel {
         txtIdEmpresa.setEditable(false);
         txtIdEmpresa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdEmpresa.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIdEmpresa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdEmpresa.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
-        lblCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCorreoElectronico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCorreoElectronico.setText("E-mail");
         lblCorreoElectronico.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCorreoElectronico.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCorreoElectronico.setAutoscrolls(false);
         txtCorreoElectronico.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCorreoElectronico.setName("apellidos"); // NOI18N
+        txtCorreoElectronico.setName("apellidos");
         txtCorreoElectronico.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCorreoElectronicoKeyTyped(evt);
@@ -918,7 +915,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblCuentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblCuentas.setFont(new java.awt.Font("Segoe UI", 0, 14));
         tblCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -937,7 +934,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCuentas);
 
-        cmdSelectAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSelectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdSelectAll.setText("Seleccionar todo");
         cmdSelectAll.setToolTipText("Seleccionar todas las filas");
         cmdSelectAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -947,7 +944,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
             }
         });
 
-        cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdDeselectAll.setText("Quitar selección");
         cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -957,7 +954,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
             }
         });
 
-        cmdDeleteCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDeleteCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdDeleteCuenta.setText("Eliminar cuentas");
         cmdDeleteCuenta.setToolTipText("Eliminar cuentas seleccionados");
         cmdDeleteCuenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1083,7 +1080,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         TabEmpresa.addTab("1. Datos Generales", pnlData1);
 
-        lblLopd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblLopd.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblLopd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblLopd.setText("Texto LOPD");
         lblLopd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1116,9 +1113,9 @@ public class FrmEmpresa extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        TabEmpresa.addTab("2. Ley Orgánica de Protección de Datos", jPanel1);
+        TabEmpresa.addTab("2. Ley Orgánica de Protecciï¿½n de Datos", jPanel1);
 
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png"))); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png")));
         btnCancel.setToolTipText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1127,7 +1124,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
             }
         });
 
-        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png"))); // NOI18N
+        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png")));
         btnOk.setToolTipText("Aceptar");
         btnOk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1179,7 +1176,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
                     .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(8, 8, 8)))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void cmdDeleteCuentaMousePressed(java.awt.event.MouseEvent evt) {
         try {
@@ -1364,7 +1361,6 @@ public class FrmEmpresa extends javax.swing.JPanel {
         }
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabEmpresa;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOk;
@@ -1399,6 +1395,5 @@ public class FrmEmpresa extends javax.swing.JPanel {
     private javax.swing.JTextField txtPoblacion;
     private javax.swing.JTextField txtProvincia;
     private javax.swing.JTextField txtTelefono;
-    // End of variables declaration//GEN-END:variables
 
 }

@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 
 public class Conceptospago implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -21,7 +20,6 @@ public class Conceptospago implements java.io.Serializable {
 	private Timestamp lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Conceptospago() {
@@ -43,7 +41,6 @@ public class Conceptospago implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public ConceptospagoId getId() {
 		return this.id;

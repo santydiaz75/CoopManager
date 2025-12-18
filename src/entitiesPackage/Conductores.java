@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Conductores implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -32,7 +31,6 @@ public class Conductores implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Conductores() {
@@ -68,7 +66,6 @@ public class Conductores implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public ConductoresId getId() {
 		return this.id;

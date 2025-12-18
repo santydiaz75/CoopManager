@@ -12,7 +12,6 @@ public class Ventaslineas implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private VentaslineasId id;
 	private Integer numCajas;
@@ -23,7 +22,6 @@ public class Ventaslineas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Ventaslineas() {
@@ -48,7 +46,6 @@ public class Ventaslineas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public VentaslineasId getId() {
 		return this.id;

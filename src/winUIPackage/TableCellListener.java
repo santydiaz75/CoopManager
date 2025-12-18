@@ -102,13 +102,9 @@ public class TableCellListener implements PropertyChangeListener, Runnable
 	{
 		return table;
 	}
-//
-//  Implement the PropertyChangeListener interface
-//
 	@Override
 	public void propertyChange(PropertyChangeEvent e)
 	{
-		//  A cell has started/stopped editing
 
 		if ("tableCellEditor".equals(e.getPropertyName()))
 		{
@@ -124,10 +120,6 @@ public class TableCellListener implements PropertyChangeListener, Runnable
 	 */
 	private void processEditingStarted()
 	{
-		//  The invokeLater is necessary because the editing row and editing
-		//  column of the table have not been set when the "tableCellEditor"
-		//  PropertyChangeEvent is fired.
-		//  This results in the "run" method being invoked
 
 		SwingUtilities.invokeLater( this );
 	}
@@ -150,12 +142,9 @@ public class TableCellListener implements PropertyChangeListener, Runnable
 	{
 		newValue = table.getModel().getValueAt(row, column);
 
-		//  The data has changed, invoke the supplied Action
 
 		if (! newValue.equals(oldValue))
 		{
-			//  Make a copy of the data in case another cell starts editing
-			//  while processing this change
 
 			TableCellListener tcl = new TableCellListener(
 				getTable(), getRow(), getColumn(), getOldValue(), getNewValue());

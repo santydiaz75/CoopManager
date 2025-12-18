@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class ConceptosId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -16,7 +15,6 @@ public class ConceptosId implements java.io.Serializable {
 	private Ejercicios ejercicios;
 	private Integer concepto;
 
-	// Constructors
 
 	/** default constructor */
 	public ConceptosId() {
@@ -30,7 +28,6 @@ public class ConceptosId implements java.io.Serializable {
 		this.concepto = concepto;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

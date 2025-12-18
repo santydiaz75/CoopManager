@@ -9,7 +9,6 @@ package entitiesPackage;
 public class CobrosId  implements java.io.Serializable {
 
 
-    // Fields    
 
      /**
 	 * 
@@ -21,7 +20,6 @@ public class CobrosId  implements java.io.Serializable {
      private Integer cobro;
 
 
-    // Constructors
 
     /** default constructor */
     public CobrosId() {
@@ -37,7 +35,6 @@ public class CobrosId  implements java.io.Serializable {
     }
 
    
-    // Property accessors
 
     public Empresas getEmpresas() {
         return this.empresas;

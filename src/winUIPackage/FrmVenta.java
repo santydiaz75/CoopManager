@@ -344,11 +344,11 @@ public class FrmVenta extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -361,11 +361,11 @@ public class FrmVenta extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -378,11 +378,11 @@ public class FrmVenta extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -724,7 +724,6 @@ public class FrmVenta extends javax.swing.JPanel {
 		try {
 			if (validateData()) {
 				
-				// Primero generar el ID si es un nuevo registro, antes de la transacción
 				if (OnNew) {
 					txtIdVenta.setValue(entity.newId(this, "Ventascabecera",
 							"id.idVenta"));
@@ -736,15 +735,11 @@ public class FrmVenta extends javax.swing.JPanel {
 					venta.setId(ventaid);
 				}
 				
-				// Manejo minimalista de transacciones para Hibernate 3.x
-				// Usar lo que esté disponible sin manipulaciones complejas
 				transaction = session.getSession().getTransaction();
 				if (transaction == null || !transaction.isActive()) {
-					// Solo crear nueva transacción si realmente no hay ninguna
 					transaction = session.getSession().beginTransaction();
 					weStartedTransaction = true;
 				} else {
-					// Usar transacción existente
 					weStartedTransaction = false;
 				}
 				if (!txtSemana.getText().equals(""))
@@ -800,7 +795,6 @@ public class FrmVenta extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(venta);
 				session.getSession().flush();
 
-				// Verificar que hay datos válidos en la tabla antes de borrar
 				boolean hasValidLines = false;
 				for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
 					if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
@@ -810,7 +804,6 @@ public class FrmVenta extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar líneas si hay datos válidos para reemplazar
 				if (hasValidLines) {
 					String deletelinesquery = "Delete From Ventaslineas "
 							+ "Where id.idVenta = "
@@ -865,7 +858,6 @@ public class FrmVenta extends javax.swing.JPanel {
 						session.getSession().flush();
 					}
 				}
-				// Hacer commit solo si nosotros iniciamos la transacción
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.commit();
 				}
@@ -879,28 +871,23 @@ public class FrmVenta extends javax.swing.JPanel {
 			} else
 				return false;
 		} catch (RuntimeException he) {
-			// En caso de error, hacer rollback solo si nosotros iniciamos la transacción
 			try {
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.rollback();
 				}
 			} catch (Exception rollbackError) {
-				// Log rollback error but don't mask original error
 				System.err.println("Error during rollback: " + rollbackError.getMessage());
 			}
 			Message.ShowRuntimeError(parentFrame, "FrmVenta.saveData()", he);
 			return false;
 		} catch (ParseException e) {
-			// En caso de error de parseo, hacer rollback solo si nosotros iniciamos la transacción
 			try {
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.rollback();
 				}
 			} catch (Exception rollbackError) {
-				// Log rollback error but don't mask original error
 				System.err.println("Error during rollback: " + rollbackError.getMessage());
 			}
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -919,7 +906,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtSemana.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no esválido.");
+							"El tipo de datos indicado no es válido.");
 					txtSemana.requestFocus();
 					return (false);
 				}
@@ -933,7 +920,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no esválido.");
+							"El tipo de datos indicado no es válido.");
 					txtFecha.requestFocus();
 					return (false);
 				}
@@ -948,7 +935,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdReceptor.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no esválido.");
+							"El tipo de datos indicado no es válido.");
 					txtIdReceptor.requestFocus();
 					return (false);
 				}
@@ -958,7 +945,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdBarco.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no esválido.");
+							"El tipo de datos indicado no es válido.");
 					txtIdBarco.requestFocus();
 					return (false);
 				}
@@ -968,7 +955,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdVehiculo.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no esválido.");
+							"El tipo de datos indicado no es válido.");
 					txtIdVehiculo.requestFocus();
 					return (false);
 				}
@@ -978,7 +965,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdConductor.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no esválido.");
+							"El tipo de datos indicado no es válido.");
 					txtIdConductor.requestFocus();
 					return (false);
 				}
@@ -988,7 +975,7 @@ public class FrmVenta extends javax.swing.JPanel {
 					txtIdPuerto.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no esválido.");
+							"El tipo de datos indicado no es válido.");
 					txtIdPuerto.requestFocus();
 					return (false);
 				}
@@ -1362,8 +1349,6 @@ public class FrmVenta extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		pnlData = new javax.swing.JPanel();
@@ -1428,7 +1413,7 @@ public class FrmVenta extends javax.swing.JPanel {
 		txtIdVenta.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1439,7 +1424,7 @@ public class FrmVenta extends javax.swing.JPanel {
 		});
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cancel.png"))); // NOI18N
+				"/imagesPackage/cancel.png")));
 		btnCancel.setToolTipText("Cancelar");
 		btnCancel.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2480,8 +2465,7 @@ public class FrmVenta extends javax.swing.JPanel {
 				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
 				pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 544,
 				Short.MAX_VALUE));
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void txtFechaKeyReleased(java.awt.event.KeyEvent evt) {
 		try {
@@ -2789,8 +2773,6 @@ public class FrmVenta extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnCancel;
 	private javax.swing.JButton btnOk;
 	private static javax.swing.JComboBox cboBarcos;
@@ -2835,6 +2817,5 @@ public class FrmVenta extends javax.swing.JPanel {
 	private javax.swing.JFormattedTextField txtTotalImporte;
 	private javax.swing.JFormattedTextField txtTotalNumCajas;
 	private javax.swing.JFormattedTextField txtTotalNumKilos;
-	// End of variables declaration//GEN-END:variables
 
 }

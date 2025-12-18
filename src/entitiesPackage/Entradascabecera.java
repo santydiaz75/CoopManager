@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Entradascabecera implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -29,7 +28,6 @@ public class Entradascabecera implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Entradascabecera() {
@@ -60,7 +58,6 @@ public class Entradascabecera implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public EntradascabeceraId getId() {
 		return this.id;

@@ -101,7 +101,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtCuotaAgriten.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+						"El tipo de datos indicado no es válido.");
 					txtCuotaAgriten.requestFocus();
 					return (false);
 				}
@@ -113,7 +113,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtComisiones.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+						"El tipo de datos indicado no es válido.");
 					txtComisiones.requestFocus();
 					return (false);
 				}
@@ -125,7 +125,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 					txtSubvenciones.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(parent,
-							"El tipo de datos indicado no es válido.");
+						"El tipo de datos indicado no es válido.");
 					txtSubvenciones.requestFocus();
 					return (false);
 				}
@@ -165,8 +165,6 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		lblComisiones = new javax.swing.JLabel();
@@ -206,7 +204,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 		txtComisiones.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cerrar.png"))); // NOI18N
+				"/imagesPackage/cerrar.png")));
 		btnCancel.setToolTipText("Cancelar");
 		btnCancel.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -217,7 +215,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 		});
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -565,8 +563,7 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 				.setAccessibleName("Fecha de incio");
 
 		pack();
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void btnOkMousePressed(java.awt.event.MouseEvent evt) {
 		try {
@@ -621,8 +618,6 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnCancel;
 	private javax.swing.JButton btnOk;
 	private javax.swing.JLabel lblAmortizaciones;
@@ -639,6 +634,5 @@ public class FrmInformeRentabilidad extends javax.swing.JDialog {
 	private javax.swing.JFormattedTextField txtFechaHasta;
 	private javax.swing.JFormattedTextField txtGastosFinancieros;
 	private javax.swing.JFormattedTextField txtSubvenciones;
-	// End of variables declaration//GEN-END:variables
 
 }

@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 
 public class ViewventasqueryId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -27,7 +26,6 @@ public class ViewventasqueryId implements java.io.Serializable {
 	private Double numKilos;
 	private Double importe;
 
-	// Constructors
 
 	/** default constructor */
 	public ViewventasqueryId() {
@@ -58,7 +56,6 @@ public class ViewventasqueryId implements java.io.Serializable {
 		this.importe = importe;
 	}
 
-	// Property accessors
 
 	public Integer getIdVenta() {
 		return this.idVenta;

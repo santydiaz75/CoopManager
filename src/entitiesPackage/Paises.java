@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Paises implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -20,7 +19,6 @@ public class Paises implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Paises() {
@@ -41,7 +39,6 @@ public class Paises implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public PaisesId getId() {
 		return this.id;

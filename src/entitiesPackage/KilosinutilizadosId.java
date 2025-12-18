@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class KilosinutilizadosId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -18,7 +17,6 @@ public class KilosinutilizadosId implements java.io.Serializable {
 	private Integer semana;
 	private Integer idCategoria;
 
-	// Constructors
 
 	/** default constructor */
 	public KilosinutilizadosId() {
@@ -34,7 +32,6 @@ public class KilosinutilizadosId implements java.io.Serializable {
 		this.idCategoria = idCategoria;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

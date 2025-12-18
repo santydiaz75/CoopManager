@@ -179,13 +179,13 @@ public class FrmBanco extends javax.swing.JPanel {
 		try {
 			if (txtIdBanco.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un cÃ¯�digo para el banco.");
+						"Debe indicar un c�digo para el banco.");
 				txtIdBanco.requestFocus();
 				return (false);
 			}
 			if (txtIdSucursal.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un cÃ¯�digo para la sucursal.");
+						"Debe indicar un c�digo para la sucursal.");
 				txtIdSucursal.requestFocus();
 				return (false);
 			}
@@ -211,8 +211,6 @@ public class FrmBanco extends javax.swing.JPanel {
 
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		pnlData = new javax.swing.JPanel();
@@ -310,7 +308,7 @@ public class FrmBanco extends javax.swing.JPanel {
 		});
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -321,7 +319,7 @@ public class FrmBanco extends javax.swing.JPanel {
 		});
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cancel.png"))); // NOI18N
+				"/imagesPackage/cancel.png")));
 		btnCancel.setToolTipText("Cancelar");
 		btnCancel.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -548,8 +546,7 @@ public class FrmBanco extends javax.swing.JPanel {
 				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
 				pnlData, javax.swing.GroupLayout.DEFAULT_SIZE,
 				javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void txtCuentaContableKeyTyped(java.awt.event.KeyEvent evt) {
 		try {
@@ -625,8 +622,6 @@ public class FrmBanco extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnCancel;
 	private javax.swing.JButton btnOk;
 	private javax.swing.JLabel lblCuentaContable;
@@ -640,6 +635,5 @@ public class FrmBanco extends javax.swing.JPanel {
 	private javax.swing.JTextField txtIdSucursal;
 	private javax.swing.JTextField txtNombreBanco;
 	private javax.swing.JTextField txtNombreSucursal;
-	// End of variables declaration//GEN-END:variables
 
 }

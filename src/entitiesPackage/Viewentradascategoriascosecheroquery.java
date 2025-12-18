@@ -8,7 +8,6 @@ package entitiesPackage;
 public class Viewentradascategoriascosecheroquery implements
 		java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -16,7 +15,6 @@ public class Viewentradascategoriascosecheroquery implements
 	private static final long serialVersionUID = 1L;
 	private ViewentradascategoriascosecheroqueryId id;
 
-	// Constructors
 
 	/** default constructor */
 	public Viewentradascategoriascosecheroquery() {
@@ -28,7 +26,6 @@ public class Viewentradascategoriascosecheroquery implements
 		this.id = id;
 	}
 
-	// Property accessors
 
 	public ViewentradascategoriascosecheroqueryId getId() {
 		return this.id;

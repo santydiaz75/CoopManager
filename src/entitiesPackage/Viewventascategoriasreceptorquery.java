@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class Viewventascategoriasreceptorquery implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -14,7 +13,6 @@ public class Viewventascategoriasreceptorquery implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private ViewventascategoriasreceptorqueryId id;
 
-	// Constructors
 
 	/** default constructor */
 	public Viewventascategoriasreceptorquery() {
@@ -26,7 +24,6 @@ public class Viewventascategoriasreceptorquery implements java.io.Serializable {
 		this.id = id;
 	}
 
-	// Property accessors
 
 	public ViewventascategoriasreceptorqueryId getId() {
 		return this.id;

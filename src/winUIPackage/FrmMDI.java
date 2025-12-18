@@ -91,7 +91,6 @@ public class FrmMDI extends javax.swing.JFrame {
 			initComponents();
 			desktopPane.setBackground(PreferencesUI.DesktopBackgroundColor);
 			session = new MySession(new Ejercicios(), new Empresas());
-			//inicializamos el objeto para agilizar la carga
 			FrmEntityView f = new FrmEntityView();
 			f.dispose();
 			entity.setSession(session);
@@ -155,7 +154,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		}
 	}
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
@@ -241,7 +239,7 @@ public class FrmMDI extends javax.swing.JFrame {
         desktopPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         desktopPane.setAutoscrolls(true);
 
-        cboEmpresas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboEmpresas.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cboEmpresas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboEmpresas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cboEmpresas.setFocusable(false);
@@ -251,13 +249,13 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
 
-        lnlEmpresa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnlEmpresa.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lnlEmpresa.setText("Empresa");
 
-        lnlEmpresa1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnlEmpresa1.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lnlEmpresa1.setText("Ejercicio");
 
-        cboEjercicios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboEjercicios.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cboEjercicios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboEjercicios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cboEjercicios.setFocusable(false);
@@ -268,7 +266,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
 
         EmpresasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        EmpresasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Empresas.png"))); // NOI18N
+        EmpresasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Empresas.png")));
         EmpresasMenuItem.setToolTipText("Empresas");
         EmpresasMenuItem.setBorderPainted(true);
         EmpresasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -279,7 +277,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(EmpresasMenuItem);
 
         EjercicioMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        EjercicioMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ejercicio.png"))); // NOI18N
+        EjercicioMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ejercicio.png")));
         EjercicioMenuItem.setToolTipText("Ejercicios");
         EjercicioMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -289,7 +287,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(EjercicioMenuItem);
 
         CalendarioMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CalendarioMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/calendario.png"))); // NOI18N
+        CalendarioMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/calendario.png")));
         CalendarioMenuItem.setToolTipText("Calendario y precios");
         CalendarioMenuItem.setBorderPainted(true);
         CalendarioMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -300,7 +298,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(CalendarioMenuItem);
 
         BimestresMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        BimestresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/bimestre.png"))); // NOI18N
+        BimestresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/bimestre.png")));
         BimestresMenuItem.setToolTipText("Bimestres");
         BimestresMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -310,7 +308,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(BimestresMenuItem);
 
         CategoriasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CategoriasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/categoria.png"))); // NOI18N
+        CategoriasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/categoria.png")));
         CategoriasMenuItem.setToolTipText("Categorías");
         CategoriasMenuItem.setBorderPainted(true);
         CategoriasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,7 +319,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(CategoriasMenuItem);
         
         ConceptosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ConceptosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/concepto.png"))); // NOI18N
+        ConceptosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/concepto.png")));
         ConceptosMenuItem.setToolTipText("Conceptos");
         ConceptosMenuItem.setBorderPainted(true);
         ConceptosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -332,7 +330,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(ConceptosMenuItem);
 
         CosecherosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CosecherosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Cosecheros.png"))); // NOI18N
+        CosecherosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Cosecheros.png")));
         CosecherosMenuItem.setToolTipText("Cosecheros");
         CosecherosMenuItem.setBorderPainted(true);
         CosecherosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -343,7 +341,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(CosecherosMenuItem);
 
         ReceptoresMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ReceptoresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Receptores.png"))); // NOI18N
+        ReceptoresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Receptores.png")));
         ReceptoresMenuItem.setToolTipText("Receptores");
         ReceptoresMenuItem.setBorderPainted(true);
         ReceptoresMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -354,7 +352,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(ReceptoresMenuItem);
 
         bancosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        bancosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Banco.png"))); // NOI18N
+        bancosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Banco.png")));
         bancosMenuItem.setToolTipText("Bancos");
         bancosMenuItem.setBorderPainted(true);
         bancosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -365,7 +363,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(bancosMenuItem);
 
         barcosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        barcosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Barco.png"))); // NOI18N
+        barcosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Barco.png")));
         barcosMenuItem.setToolTipText("Barcos");
         barcosMenuItem.setBorderPainted(true);
         barcosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -376,7 +374,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(barcosMenuItem);
 
         ConductoresMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ConductoresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Conductores.png"))); // NOI18N
+        ConductoresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Conductores.png")));
         ConductoresMenuItem.setToolTipText("Conductores");
         ConductoresMenuItem.setBorderPainted(true);
         ConductoresMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -387,7 +385,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(ConductoresMenuItem);
 
         VehiculosMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        VehiculosMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Vehiculos.png"))); // NOI18N
+        VehiculosMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Vehiculos.png")));
         VehiculosMenu.setToolTipText("Vehículos");
         VehiculosMenu.setBorderPainted(true);
 
@@ -410,7 +408,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(VehiculosMenu);
 
         IdentidadesMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        IdentidadesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/identity.png"))); // NOI18N
+        IdentidadesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/identity.png")));
         IdentidadesMenuItem.setToolTipText("Identidades");
         IdentidadesMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -420,7 +418,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(IdentidadesMenuItem);
 
         ZonasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ZonasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Zonas.png"))); // NOI18N
+        ZonasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Zonas.png")));
         ZonasMenuItem.setToolTipText("Zonas");
         ZonasMenuItem.setBorderPainted(true);
         ZonasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -431,7 +429,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(ZonasMenuItem);
 
         EmpleadosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        EmpleadosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/empleado.png"))); // NOI18N
+        EmpleadosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/empleado.png")));
         EmpleadosMenuItem.setToolTipText("Empleados");
         EmpleadosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -441,7 +439,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(EmpleadosMenuItem);
 
         EntradasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        EntradasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/entradas.png"))); // NOI18N
+        EntradasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/entradas.png")));
         EntradasMenuItem.setToolTipText("Entradas");
         EntradasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -451,7 +449,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(EntradasMenuItem);
 
         VentasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        VentasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/salidas.png"))); // NOI18N
+        VentasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/salidas.png")));
         VentasMenuItem.setToolTipText("Ventas");
         VentasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -461,7 +459,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(VentasMenuItem);
 
         QueryMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        QueryMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Consulta.png"))); // NOI18N
+        QueryMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Consulta.png")));
         QueryMenuItem.setToolTipText("Consultas");
         QueryMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -471,7 +469,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(QueryMenuItem);
 
         LiquidacionesMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        LiquidacionesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/liquidacion.png"))); // NOI18N
+        LiquidacionesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/liquidacion.png")));
         LiquidacionesMenuItem.setToolTipText("Liquidaciones");
 
         GeneraLiquidacionMenuiItem.setText("Generar liquidación");
@@ -509,7 +507,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(LiquidacionesMenuItem);
 
         FacturasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        FacturasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Factura.png"))); // NOI18N
+        FacturasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Factura.png")));
         FacturasMenuItem.setToolTipText("Facturas de ventas y servicios");
         FacturasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -519,7 +517,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(FacturasMenuItem);
 
         FacturasPagoMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        FacturasPagoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/FacturaPago.png"))); // NOI18N
+        FacturasPagoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/FacturaPago.png")));
         FacturasPagoMenuItem.setToolTipText("Facturas de compras y gastos");
         FacturasPagoMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -529,7 +527,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(FacturasPagoMenuItem);
 
         InformesMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        InformesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Informes.png"))); // NOI18N
+        InformesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Informes.png")));
         InformesMenu.setToolTipText("Informes");
         InformesMenu.setBorderPainted(true);
 
@@ -720,7 +718,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(InformesMenu);
 
         ToolsMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ToolsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/tools.png"))); // NOI18N
+        ToolsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/tools.png")));
         ToolsMenuItem.setToolTipText("Herramientas");
 
         BackupManuItem.setText("Copia de seguridad");
@@ -795,7 +793,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(ToolsMenuItem);
 
         helpMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        helpMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Ayuda.png"))); // NOI18N
+        helpMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Ayuda.png")));
         helpMenu.setToolTipText("Ayuda");
         helpMenu.setBorderPainted(true);
 
@@ -808,7 +806,7 @@ public class FrmMDI extends javax.swing.JFrame {
         menuBar.add(helpMenu);
 
         ExitMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ExitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Salir.png"))); // NOI18N
+        ExitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Salir.png")));
         ExitMenuItem.setToolTipText("Salir de la aplicación");
         ExitMenuItem.setBorderPainted(true);
         ExitMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -856,49 +854,43 @@ public class FrmMDI extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cboEjercicios, cboEmpresas});
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void GenerarLiquidacionRetornoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarLiquidacionRetornoMenuItemActionPerformed
-        // TODO add your handling code here:
+    private void GenerarLiquidacionRetornoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
 
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormGeneraLiquidacionRetorno();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
-    }//GEN-LAST:event_GenerarLiquidacionRetornoMenuItemActionPerformed
+    }
 
-    private void GenerarLiquidacionRetornoPorCosecheroMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarLiquidacionRetornoPorCosecheroMenuItemActionPerformed
-        // TODO add your handling code here:
+    private void GenerarLiquidacionRetornoPorCosecheroMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
 
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormGeneraLiquidacionRetornoPorCosechero();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
-    }//GEN-LAST:event_GenerarLiquidacionRetornoPorCosecheroMenuItemActionPerformed
+    }
     
-    private void PrintFacturaLiquidacionRetornoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintFacturaLiquidacionRetornoItemActionPerformed
-        // TODO add your handling code here:
+    private void PrintFacturaLiquidacionRetornoItemActionPerformed(java.awt.event.ActionEvent evt) {
         Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openInformeFacturaLiquidacionRetorno();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
-    }//GEN-LAST:event_PrintFacturaLiquidacionRetornoItemActionPerformed
+    }
 
-    private void PrintCartaCosecherosItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintCartaCosecherosItemActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
+    private void PrintCartaCosecherosItemActionPerformed(java.awt.event.ActionEvent evt) {
         Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openCartaCosecheros();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
-    }//GEN-LAST:event_PrintCartaCosecherosItemActionPerformed
+    }
 
 	private void VehiculosMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		//Create a panel and add components to it.
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormVehiculos();
@@ -907,7 +899,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void TipoGastoMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		//Create a panel and add components to it.
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormTiposGastoVehiculo();
@@ -1062,7 +1053,6 @@ public class FrmMDI extends javax.swing.JFrame {
         
 
 	private void FacturasMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		//Create a panel and add components to it.
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormFacturas();
@@ -1071,7 +1061,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void FacturasPagoMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		//Create a panel and add components to it.
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormFacturasPago();
@@ -1080,7 +1069,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void EmpleadosMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		//Create a panel and add components to it.
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormEmpleados();
@@ -1089,7 +1077,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void BimestresMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		//Create a panel and add components to it.
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormBimestres();
@@ -1402,7 +1389,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormBancos() {
-		//Create a panel and add components to it.
 		if (fBancos != null) {
 			fBancos.dispose();
 		}
@@ -1415,7 +1401,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormBarcos() {
-		//Create a panel and add components to it.
 		if (fBarcos != null) {
 			fBarcos.dispose();
 		}
@@ -1428,7 +1413,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormCalendario() {
-		//Create a panel and add components to it.
 		if (fCalendario != null) {
 			fCalendario.dispose();
 		}
@@ -1441,7 +1425,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormBimestres() {
-		//Create a panel and add components to it.
 		if (fBimestre != null) {
 			fBimestre.dispose();
 		}
@@ -1454,7 +1437,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormCategorias() {
-		//Create a panel and add components to it.
 		if (fCategoria != null) {
 			fCategoria.dispose();
 		}
@@ -1467,7 +1449,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 	
 	private void openFormConceptos() {
-		//Create a panel and add components to it.
 		if (fConcepto != null) {
 			fConcepto.dispose();
 		}
@@ -1480,7 +1461,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormConductores() {
-		//Create a panel and add components to it.
 		if (fConductor != null) {
 			fConductor.dispose();
 		}
@@ -1493,7 +1473,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormCosecheros() {
-		//Create a panel and add components to it.
 		if (fCosechero != null) {
 			fCosechero.dispose();
 		}
@@ -1506,7 +1485,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormIdentidades() {
-		//Create a panel and add components to it.
 		if (fIdentidad != null) {
 			fIdentidad.dispose();
 		}
@@ -1519,7 +1497,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormEmpresas() {
-		//Create a panel and add components to it.
 		if (fEmpresa != null) {
 			fEmpresa.dispose();
 		}
@@ -1532,7 +1509,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormEjercicios() {
-		//Create a panel and add components to it.
 		if (fEjercicio != null) {
 			fEjercicio.dispose();
 		}
@@ -1545,7 +1521,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormReceptores() {
-		//Create a panel and add components to it.
 		if (fReceptor != null) {
 			fReceptor.dispose();
 		}
@@ -1558,7 +1533,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormZonas() {
-		//Create a panel and add components to it.
 		if (fZonas != null) {
 			fZonas.dispose();
 		}
@@ -1571,7 +1545,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormVehiculos() {
-		//Create a panel and add components to it.
 		if (fVehiculos != null) {
 			fVehiculos.dispose();
 		}
@@ -1584,7 +1557,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormEntradas() {
-		//Create a panel and add components to it.
 		if (fEntradas != null) {
 			fEntradas.dispose();
 		}
@@ -1597,7 +1569,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormVentas() {
-		//Create a panel and add components to it.
 		if (fVentas != null) {
 			fVentas.dispose();
 		}
@@ -1610,7 +1581,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormEmpleados() {
-		//Create a panel and add components to it.
 		if (fEmpleado != null) {
 			fEmpleado.dispose();
 		}
@@ -1623,7 +1593,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormFacturas() {
-		//Create a panel and add components to it.
 		if (fFactura != null) {
 			fFactura.dispose();
 		}
@@ -1636,7 +1605,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormTiposGastoVehiculo() {
-		//Create a panel and add components to it.
 		if (fTipogasto != null) {
 			fTipogasto.dispose();
 		}
@@ -1649,7 +1617,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormFacturasPago() {
-		//Create a panel and add components to it.
 		if (fFacturaPago != null) {
 			fFacturaPago.dispose();
 		}
@@ -1662,7 +1629,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormLiquidaciones() {
-		//Create a panel and add components to it.
 		if (fLiquidacion != null) {
 			fLiquidacion.dispose();
 		}
@@ -1675,7 +1641,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormDataQuery() {
-		//Create a panel and add components to it.
 		if (fDataQuery != null) {
 			fDataQuery.dispose();
 		}
@@ -1688,7 +1653,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormGeneraLiquidacion() {
-		//Create a panel and add components to it.
 		if (fGeneraLiquidacion != null) {
 			fGeneraLiquidacion.dispose();
 		}
@@ -1698,7 +1662,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
         
     private void openFormGeneraLiquidacionRetorno() {
-		//Create a panel and add components to it.
 		if (fGeneraLiquidacionRetorno != null) {
 			fGeneraLiquidacionRetorno.dispose();
 		}
@@ -1708,7 +1671,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
     
     private void openFormGeneraLiquidacionRetornoPorCosechero() {
-		//Create a panel and add components to it.
 		if (fGeneraLiquidacionRetornoPorCosechero != null) {
 			fGeneraLiquidacionRetornoPorCosechero.dispose();
 		}
@@ -1718,7 +1680,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openListadoCosecherosKilos() {
-		//Create a panel and add components to it.
 		if (fListadoCosecherosKilos != null) {
 			fListadoCosecherosKilos.dispose();
 		}
@@ -1729,7 +1690,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 	
 	private void openListadoCategoriasKilosPorCosechero() {
-		//Create a panel and add components to it.
 		if (fListadoCategoriasKilosPorCosechero != null) {
 			fListadoCategoriasKilosPorCosechero.dispose();
 		}
@@ -1740,7 +1700,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openListadoNominas() {
-		//Create a panel and add components to it.
 		if (fListadoNominas != null) {
 			fListadoNominas.dispose();
 		}
@@ -1750,7 +1709,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeVale() {
-		//Create a panel and add components to it.
 		if (fInformeVale != null) {
 			fInformeVale.dispose();
 		}
@@ -1760,7 +1718,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeFactura() {
-		//Create a panel and add components to it.
 		if (fInformeFactura != null) {
 			fInformeFactura.dispose();
 		}
@@ -1770,7 +1727,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformePreLiquidacion() {
-		//Create a panel and add components to it.
 		if (fInformePreLiquidacion != null) {
 			fInformePreLiquidacion.dispose();
 		}
@@ -1781,7 +1737,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeFacturaLiquidacion() {
-		//Create a panel and add components to it.
 		if (fInformeFacturaLiquidacion != null) {
 			fInformeFacturaLiquidacion.dispose();
 		}
@@ -1792,7 +1747,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
         
         private void openInformeFacturaLiquidacionRetorno() {
-		//Create a panel and add components to it.
 		if (fInformeFacturaLiquidacionRetorno != null) {
 			fInformeFacturaLiquidacionRetorno.dispose();
 		}
@@ -1803,7 +1757,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
         
         private void openCartaCosecheros() {
-		//Create a panel and add components to it.
 		if (fCartaCosecheros != null) {
 			fCartaCosecheros.dispose();
 		}
@@ -1814,7 +1767,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
         
 	private void openInformeResumenLiquidacion() {
-		//Create a panel and add components to it.
 		if (fInformeResumenLiquidacion != null) {
 			fInformeResumenLiquidacion.dispose();
 		}
@@ -1825,7 +1777,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeKilosInutilizados() {
-		//Create a panel and add components to it.
 		if (fInformeKilosInutilizados != null) {
 			fInformeKilosInutilizados.dispose();
 		}
@@ -1836,7 +1787,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeIGIC() {
-		//Create a panel and add components to it.
 		if (fInformeIGIC != null) {
 			fInformeIGIC.dispose();
 		}
@@ -1846,7 +1796,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeIRPF() {
-		//Create a panel and add components to it.
 		if (fInformeIRPF != null) {
 			fInformeIRPF.dispose();
 		}
@@ -1856,7 +1805,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeAyudasOCM() {
-		//Create a panel and add components to it.
 		if (fInformeAyudasOCM != null) {
 			fInformeAyudasOCM.dispose();
 		}
@@ -1866,7 +1814,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openControlCalidad() {
-		//Create a panel and add components to it.
 		if (fControlCalidad != null) {
 			fControlCalidad.dispose();
 		}
@@ -1876,7 +1823,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeControlESAlmacen() {
-		//Create a panel and add components to it.
 		if (fControlESAlmacen != null) {
 			fControlESAlmacen.dispose();
 		}
@@ -1886,7 +1832,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeControlProduccionZonas() {
-		//Create a panel and add components to it.
 		if (fControlProduccionZonas != null) {
 			fControlProduccionZonas.dispose();
 		}
@@ -1897,7 +1842,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeListadoPersonalBanco() {
-		//Create a panel and add components to it.
 		if (fListadoPersonalBanco != null) {
 			fListadoPersonalBanco.dispose();
 		}
@@ -1908,7 +1852,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openInformeRentabilidad() {
-		//Create a panel and add components to it.
 		if (fInformeRentabilidad != null) {
 			fInformeRentabilidad.dispose();
 		}
@@ -1919,7 +1862,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormBackup() {
-		//Create a panel and add components to it.
 		if (fBackup != null) {
 			fBackup.dispose();
 		}
@@ -1929,7 +1871,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormImportarVales() {
-		//Create a panel and add components to it.
 		if (fImportarVales != null) {
 			fImportarVales.dispose();
 		}
@@ -1939,7 +1880,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormContaLiquidaciones() {
-		//Create a panel and add components to it.
 		if (fContaLiquidaciones != null) {
 			fContaLiquidaciones.dispose();
 		}
@@ -1953,7 +1893,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormContaNominas() {
-		//Create a panel and add components to it.
 		if (fContaNominas != null) {
 			fContaNominas.dispose();
 		}
@@ -1966,7 +1905,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormContaFacturas() {
-		//Create a panel and add components to it.
 		if (fContaFacturas != null) {
 			fContaFacturas.dispose();
 		}
@@ -1979,7 +1917,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormContaPagos() {
-		//Create a panel and add components to it.
 		if (fContaPagos != null) {
 			fContaPagos.dispose();
 		}
@@ -1992,7 +1929,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormContaCobros() {
-		//Create a panel and add components to it.
 		if (fContaCobros != null) {
 			fContaCobros.dispose();
 		}
@@ -2005,7 +1941,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 	private void openFormContaLiquidacionesPagos() {
-		//Create a panel and add components to it.
 		if (fContaLiquidacionesPagos != null) {
 			fContaLiquidacionesPagos.dispose();
 		}
@@ -2019,7 +1954,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fContaLiquidacionesPagos.setVisible(true);
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem BackupManuItem;
     private javax.swing.JMenu BimestresMenuItem;
     private javax.swing.JMenu CalendarioMenuItem;
@@ -2096,6 +2030,5 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JLabel lnlEmpresa;
     private javax.swing.JLabel lnlEmpresa1;
     private javax.swing.JMenuBar menuBar;
-    // End of variables declaration//GEN-END:variables
 
 }

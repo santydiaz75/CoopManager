@@ -42,11 +42,11 @@ public class ControlESAlmacen
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -115,8 +115,6 @@ public class ControlESAlmacen
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el par√°metro, se pueden agregar m√°s par√°metros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -125,9 +123,6 @@ public class ControlESAlmacen
 	            parameters.put("LOGO_DIR", workDirectory +  
     			"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	
-	            // === SOLUCION: Usar consulta SQL corregida para SQL Server ===
-	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-	            // ejecutamos una consulta corregida que evita las referencias hardcodeadas
 	            
 	            String sqlQuery = "SELECT c.semana, ca.IdCategoria, ca.NombreCategoria, " +
 	                "COALESCE(dbo.EntradasKilosSemana(?, ?, c.semana, ca.IdCategoria), 0) as EntradaKilosSemana, " +
@@ -145,39 +140,34 @@ public class ControlESAlmacen
 	            
 	            System.out.println("DEBUG: Executing corrected SQL Server query for ControlESAlmacen...");
 	            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-	            // Setear par·metros m˙ltiples veces seg˙n se necesite en la consulta
-	            pstmt.setInt(1, empresa);    // EntradasKilosSemana - par·metro 1
-	            pstmt.setInt(2, ejercicio);  // EntradasKilosSemana - par·metro 2
-	            pstmt.setInt(3, empresa);    // VentasKilosSemana - par·metro 1
-	            pstmt.setInt(4, ejercicio);  // VentasKilosSemana - par·metro 2
-	            pstmt.setInt(5, empresa);    // EntradasGetFecha - par·metro 1
-	            pstmt.setInt(6, ejercicio);  // EntradasGetFecha - par·metro 2
-	            pstmt.setInt(7, empresa);    // EntradasKilosInutilizadosSemana - par·metro 1
-	            pstmt.setInt(8, ejercicio);  // EntradasKilosInutilizadosSemana - par·metro 2
-	            pstmt.setInt(9, SemanaDesde);   // WHERE semana >=
-	            pstmt.setInt(10, SemanaHasta);  // WHERE semana <=
-	            pstmt.setInt(11, ejercicio);    // WHERE ejercicio =
-	            pstmt.setInt(12, empresa);      // WHERE empresa =
-	            pstmt.setInt(13, empresa);   // EntradasKilosSemana en HAVING - par·metro 1
-	            pstmt.setInt(14, ejercicio); // EntradasKilosSemana en HAVING - par·metro 2
-	            pstmt.setInt(15, empresa);   // VentasKilosSemana en HAVING - par·metro 1
-	            pstmt.setInt(16, ejercicio); // VentasKilosSemana en HAVING - par·metro 2
+	            pstmt.setInt(1, empresa);
+	            pstmt.setInt(2, ejercicio);
+	            pstmt.setInt(3, empresa);
+	            pstmt.setInt(4, ejercicio);
+	            pstmt.setInt(5, empresa);
+	            pstmt.setInt(6, ejercicio);
+	            pstmt.setInt(7, empresa);
+	            pstmt.setInt(8, ejercicio);
+	            pstmt.setInt(9, SemanaDesde);
+	            pstmt.setInt(10, SemanaHasta);
+	            pstmt.setInt(11, ejercicio);
+	            pstmt.setInt(12, empresa);
+	            pstmt.setInt(13, empresa);
+	            pstmt.setInt(14, ejercicio);
+	            pstmt.setInt(15, empresa);
+	            pstmt.setInt(16, ejercicio);
 	            
 	            ResultSet rs = pstmt.executeQuery();
 	            
-	            // Crear data source from ResultSet
 	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 	
 	            System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseÒado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 	            
-	            //Se lanza el Viewer de Jasper, no termina aplicaciÛn al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - ControlESAlmacen (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

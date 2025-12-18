@@ -273,7 +273,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 			headerDataEntradas.add("Cosechero");
 			headerDataEntradas.add("Semana");
 			headerDataEntradas.add("Fecha");
-			headerDataEntradas.add("Piï¿½as");
+			headerDataEntradas.add("Piñas");
 			headerDataEntradas.add("Kilos");
 
 			Vector<Vector<Object>> tableDataEntradas = new Vector<Vector<Object>>();
@@ -337,18 +337,18 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 						EntityType.NumberWidth);
 				tblEntradas.getColumn("Fecha").setPreferredWidth(
 						EntityType.DateWidth);
-				tblEntradas.getColumn("Piï¿½as").setPreferredWidth(
+				tblEntradas.getColumn("Piñas").setPreferredWidth(
 						EntityType.NumberWidth);
 				tblEntradas.getColumn("Kilos").setPreferredWidth(
 						EntityType.NumberWidth);
-				tblEntradas.getColumn("Piï¿½as").setPreferredWidth(
+				tblEntradas.getColumn("Piñas").setPreferredWidth(
 						EntityType.NumberWidth);
 				tblEntradas.getColumn("Kilos").setPreferredWidth(
 						EntityType.NumberWidth);
 				DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
 				rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
 				tblEntradas.getColumn("Semana").setCellRenderer(rightRenderer);
-				tblEntradas.getColumn("Piï¿½as").setCellRenderer(rightRenderer);
+				tblEntradas.getColumn("Piñas").setCellRenderer(rightRenderer);
 				tblEntradas.getColumn("Kilos").setCellRenderer(rightRenderer);
 
 				txtTotalKilosEntradas.setValue(totalKilos);
@@ -358,7 +358,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 			}
 
 			Vector<String> headerDataEntCategorias = new Vector<String>();
-			headerDataEntCategorias.add("Categorï¿½as");
+			headerDataEntCategorias.add("Categorías");
 			headerDataEntCategorias.add("Kilos");
 			headerDataEntCategorias.add("Porcentaje");
 
@@ -472,7 +472,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 
 				tblEntCategorias.setModel(new MyViewTableModel(
 						tableDataEntCategorias, headerDataEntCategorias));
-				tblEntCategorias.getColumn("Categorï¿½as").setPreferredWidth(
+				tblEntCategorias.getColumn("Categorías").setPreferredWidth(
 						EntityType.TextWidth);
 				tblEntCategorias.getColumn("Kilos").setPreferredWidth(
 						EntityType.NumberWidth);
@@ -621,7 +621,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 			}
 
 			Vector<String> headerDataVenCategorias = new Vector<String>();
-			headerDataVenCategorias.add("Categorï¿½as");
+			headerDataVenCategorias.add("Categorías");
 			headerDataVenCategorias.add("Cajas");
 			headerDataVenCategorias.add("Kilos");
 			headerDataVenCategorias.add("Importe");
@@ -782,7 +782,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 				}
 				tblVenCategorias.setModel(new MyViewTableModel(
 						tableDataVenCategorias, headerDataVenCategorias));
-				tblVenCategorias.getColumn("Categorï¿½as").setPreferredWidth(
+				tblVenCategorias.getColumn("Categorías").setPreferredWidth(
 						EntityType.TextWidth);
 				tblVenCategorias.getColumn("Kilos").setPreferredWidth(
 						EntityType.NumberWidth);
@@ -815,8 +815,6 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		lblTitle = new javax.swing.JLabel();
@@ -988,7 +986,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		lblTotalPinasEntradas.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblTotalPinasEntradas
 				.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblTotalPinasEntradas.setText("Total piï¿½as");
+		lblTotalPinasEntradas.setText("Total piñas");
 
 		txtTotalPinasEntradas.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1004,7 +1002,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		lblKilosvsPinas.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblKilosvsPinas
 				.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblKilosvsPinas.setText("Kilos/Piï¿½as");
+		lblKilosvsPinas.setText("Kilos/Piñas");
 
 		txtKilosvsPinas.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1017,7 +1015,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		txtKilosvsPinas.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
 		btnPrintEntradas.setIcon(new javax.swing.ImageIcon(getClass()
-				.getResource("/imagesPackage/Print.png"))); // NOI18N
+				.getResource("/imagesPackage/Print.png")));
 		btnPrintEntradas.setToolTipText("Imprimir");
 		btnPrintEntradas.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1410,7 +1408,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
 		btnPrintVentas.setIcon(new javax.swing.ImageIcon(getClass()
-				.getResource("/imagesPackage/Print.png"))); // NOI18N
+				.getResource("/imagesPackage/Print.png")));
 		btnPrintVentas.setToolTipText("Imprimir");
 		btnPrintVentas.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1761,8 +1759,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		tabQuery.getAccessibleContext().setAccessibleName("tabEntity");
 
 		pack();
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void btnPrintEntradasMousePressed(java.awt.event.MouseEvent evt) {
 		try {
@@ -2016,8 +2013,6 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnPrintEntradas;
 	private javax.swing.JButton btnPrintVentas;
 	private static javax.swing.JComboBox cboCosecheros;
@@ -2063,6 +2058,5 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 	private javax.swing.JFormattedTextField txtTotalKilosEntradas;
 	private javax.swing.JFormattedTextField txtTotalKilosVentas;
 	private javax.swing.JFormattedTextField txtTotalPinasEntradas;
-	// End of variables declaration//GEN-END:variables
 
 }

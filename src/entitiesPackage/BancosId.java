@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class BancosId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -17,7 +16,6 @@ public class BancosId implements java.io.Serializable {
 	private Empresas empresas;
 	private Ejercicios ejercicios;
 
-	// Constructors
 
 	/** default constructor */
 	public BancosId() {
@@ -32,7 +30,6 @@ public class BancosId implements java.io.Serializable {
 		this.ejercicios = ejercicios;
 	}
 
-	// Property accessors
 
 	public String getIdBanco() {
 		return this.idBanco;

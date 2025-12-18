@@ -12,14 +12,12 @@ public class EmpleadoscontratosId implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private Empresas empresas;
 	private Ejercicios ejercicios;
 	private Integer idEmpleado;
 	private Date fechaAlta;
 
-	// Constructors
 
 	/** default constructor */
 	public EmpleadoscontratosId() {
@@ -34,7 +32,6 @@ public class EmpleadoscontratosId implements java.io.Serializable {
 		this.fechaAlta = fechaAlta;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

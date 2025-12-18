@@ -12,7 +12,6 @@ public class Cosecherosparcelas implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private CosecherosparcelasId id;
 	private String municipio;
@@ -26,7 +25,6 @@ public class Cosecherosparcelas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Cosecherosparcelas() {
@@ -55,7 +53,6 @@ public class Cosecherosparcelas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public CosecherosparcelasId getId() {
 		return this.id;

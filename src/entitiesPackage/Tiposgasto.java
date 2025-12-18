@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Tiposgasto implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -20,7 +19,6 @@ public class Tiposgasto implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Tiposgasto() {
@@ -41,7 +39,6 @@ public class Tiposgasto implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public TiposgastoId getId() {
 		return this.id;

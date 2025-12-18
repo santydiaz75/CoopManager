@@ -10,7 +10,6 @@ import java.util.Set;
 
 public class Empresas implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -70,7 +69,6 @@ public class Empresas implements java.io.Serializable {
 	private Set<Object> empleadosvacacioneses = new HashSet<Object>(0);
 	private Set<Object> zonases = new HashSet<Object>(0);
 
-	// Constructors
 
 	/** default constructor */
 	public Empresas() {
@@ -155,7 +153,6 @@ public class Empresas implements java.io.Serializable {
 		this.zonases = zonases;
 	}
 
-	// Property accessors
 
 	public Integer getIdEmpresa() {
 		return this.idEmpresa;

@@ -253,21 +253,21 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtIdCategoria.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vÃ¯�lido.");
+								"El tipo de datos indicado no es v�lido.");
 					txtIdCategoria.requestFocus();
 					return (false);
 				}
 				if (entity.CategoriaFindByIdCategoria(this,
 						((Number) txtIdCategoria.getValue()).intValue()) != null) {
 					Message.ShowValidateMessage(pnlData,
-							"El cÃ¯�digo de categorÃ¯�a especificado ya existe.");
+								"El c�digo de categor�a especificado ya existe.");
 					txtIdCategoria.requestFocus();
 					return (false);
 				}
 			}
 			if (txtNombreCategoria.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un nombre para la categorÃ¯�a.");
+						"Debe indicar un nombre para la categor�a.");
 				txtNombreCategoria.requestFocus();
 				return (false);
 			}
@@ -277,7 +277,7 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtNumKilosCaja.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vÃ¯�lido.");
+								"El tipo de datos indicado no es v�lido.");
 					txtNumKilosCaja.requestFocus();
 					return (false);
 				}
@@ -287,7 +287,7 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtIdSubcategoria.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vÃ¯�lido.");
+								"El tipo de datos indicado no es v�lido.");
 					txtIdSubcategoria.requestFocus();
 					return (false);
 				}
@@ -297,7 +297,7 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtOrden.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vÃ¯�lido.");
+							"El tipo de datos indicado no es v�lido.");
 					txtOrden.requestFocus();
 					return (false);
 				}
@@ -307,7 +307,7 @@ public class FrmCategoria extends javax.swing.JPanel {
 					txtIdGrupo.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vÃ¯�lido.");
+							"El tipo de datos indicado no es v�lido.");
 					txtIdGrupo.requestFocus();
 					return (false);
 				}
@@ -353,7 +353,6 @@ public class FrmCategoria extends javax.swing.JPanel {
 		}
 	}
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlData = new javax.swing.JPanel();
@@ -382,9 +381,9 @@ public class FrmCategoria extends javax.swing.JPanel {
         txtIdGrupo = new javax.swing.JFormattedTextField();
 
         pnlData.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnlData.setName("pnlData"); // NOI18N
+        pnlData.setName("pnlData");
 
-        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png"))); // NOI18N
+        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png")));
         btnOk.setToolTipText("Aceptar");
         btnOk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -393,7 +392,7 @@ public class FrmCategoria extends javax.swing.JPanel {
             }
         });
 
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png"))); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png")));
         btnCancel.setToolTipText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -402,61 +401,61 @@ public class FrmCategoria extends javax.swing.JPanel {
             }
         });
 
-        lblIdCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdCategoria.setForeground(new java.awt.Color(255, 0, 0));
         lblIdCategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblIdCategoria.setText("Id categorÃ¯�a");
+        lblIdCategoria.setText("Id categor�a");
 
-        lblNombreCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombreCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNombreCategoria.setForeground(new java.awt.Color(255, 0, 0));
         lblNombreCategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNombreCategoria.setText("DescripciÃ¯�n");
+        lblNombreCategoria.setText("Descripci�n");
 
-        txtNombreCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombreCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNombreCategoria.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombreCategoria.setAutoscrolls(false);
         txtNombreCategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNombreCategoria.setName("nombreCategoria"); // NOI18N
+        txtNombreCategoria.setName("nombreCategoria");
         txtNombreCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreCategoriaKeyTyped(evt);
             }
         });
 
-        lblNumKilosCaja.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNumKilosCaja.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNumKilosCaja.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNumKilosCaja.setText("NÃ¯�kilos caja");
+        lblNumKilosCaja.setText("N� kilos caja");
 
-        lblIdSubcategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdSubcategoria.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdSubcategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblIdSubcategoria.setText("SubcategorÃ¯�a");
+        lblIdSubcategoria.setText("Subcategor�a");
 
-        cboSubcategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboSubcategoria.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cboSubcategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboSubcategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboSubcategoria.setName("Id subcategoria"); // NOI18N
+        cboSubcategoria.setName("Id subcategoria");
         cboSubcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSubcategoriaActionPerformed(evt);
             }
         });
 
-        lblPrivada.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPrivada.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblPrivada.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPrivada.setText("Privada");
 
         chkPrivada.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         chkPrivada.setMargin(new java.awt.Insets(0, 0, 2, 2));
-        chkPrivada.setName("privada"); // NOI18N
+        chkPrivada.setName("privada");
 
-        lblOrden.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblOrden.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblOrden.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblOrden.setText("Orden");
 
         txtOrden.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtOrden.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtOrden.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtOrden.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtOrden.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtOrden.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtOrdenFocusLost(evt);
@@ -466,7 +465,7 @@ public class FrmCategoria extends javax.swing.JPanel {
         txtNumKilosCaja.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtNumKilosCaja.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtNumKilosCaja.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtNumKilosCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNumKilosCaja.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNumKilosCaja.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNumKilosCajaFocusLost(evt);
@@ -477,7 +476,7 @@ public class FrmCategoria extends javax.swing.JPanel {
         txtIdSubcategoria.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtIdSubcategoria.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIdSubcategoria.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        txtIdSubcategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdSubcategoria.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIdSubcategoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIdSubcategoriaKeyReleased(evt);
@@ -487,23 +486,23 @@ public class FrmCategoria extends javax.swing.JPanel {
         txtIdCategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdCategoria.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtIdCategoria.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIdCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
-        lblCodAgriten.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCodAgriten.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCodAgriten.setForeground(new java.awt.Color(255, 0, 0));
         lblCodAgriten.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCodAgriten.setText("Cod. Agriten");
 
-        lblIdGrupo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdGrupo.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdGrupo.setForeground(new java.awt.Color(255, 0, 0));
         lblIdGrupo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdGrupo.setText("Id. Grupo");
 
-        txtCodCategoriaAgriten.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodCategoriaAgriten.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCodCategoriaAgriten.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCodCategoriaAgriten.setAutoscrolls(false);
         txtCodCategoriaAgriten.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCodCategoriaAgriten.setName("nombreCategoria"); // NOI18N
+        txtCodCategoriaAgriten.setName("nombreCategoria");
         txtCodCategoriaAgriten.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodCategoriaAgritenKeyTyped(evt);
@@ -513,7 +512,7 @@ public class FrmCategoria extends javax.swing.JPanel {
         txtIdGrupo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdGrupo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtIdGrupo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIdGrupo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdGrupo.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIdGrupo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtIdGrupoFocusLost(evt);
@@ -521,21 +520,21 @@ public class FrmCategoria extends javax.swing.JPanel {
         });
 
 
-        lblActiva.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblActiva.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblActiva.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblActiva.setText("Activa");
 
         chkActiva.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         chkActiva.setMargin(new java.awt.Insets(0, 0, 2, 2));
-        chkActiva.setName("privada"); // NOI18N
+        chkActiva.setName("privada");
 
-        lblRetorno.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRetorno.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblRetorno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblRetorno.setText("Retorno");
 
         chkRetorno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         chkRetorno.setMargin(new java.awt.Insets(0, 0, 2, 2));
-        chkRetorno.setName("privada"); // NOI18N
+        chkRetorno.setName("privada");
 
         javax.swing.GroupLayout pnlDataLayout = new javax.swing.GroupLayout(pnlData);
         pnlData.setLayout(pnlDataLayout);
@@ -664,7 +663,7 @@ public class FrmCategoria extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
 	private void cboSubcategoriaActionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -776,7 +775,6 @@ public class FrmCategoria extends javax.swing.JPanel {
 	}
 	
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOk;
     private static javax.swing.JComboBox cboSubcategoria;
@@ -801,6 +799,5 @@ public class FrmCategoria extends javax.swing.JPanel {
     private javax.swing.JTextField txtNombreCategoria;
     private javax.swing.JFormattedTextField txtNumKilosCaja;
     private javax.swing.JFormattedTextField txtOrden;
-    // End of variables declaration//GEN-END:variables
 
 }

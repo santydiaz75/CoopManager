@@ -42,11 +42,11 @@ public class ListadoPersonalBanco
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -115,7 +115,6 @@ public class ListadoPersonalBanco
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            // Parámetros del reporte
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -123,7 +122,6 @@ public class ListadoPersonalBanco
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-                // === SOLUCION: Usar consulta SQL corregida ===
                 String sqlQuery = "SELECT e.empresa, em.Nombre AS NombreEmpresa, e.ejercicio, en.CuentaBancariaPago, " +
                                  "b.nombreBanco, e.idEmpleado, (e.nombre + ' ' + coalesce(e.apellidos, '')) AS NombreCompleto, " +
                                  "e.IdBanco, e.IdSucursal, e.DigitoControl, e.CuentaBancaria, en.TotalLiquido, em.Lopd " +
@@ -145,22 +143,17 @@ public class ListadoPersonalBanco
                 pstmt.setInt(3, mes);
                 ResultSet rs = pstmt.executeQuery();
                 
-                // Crear data source from ResultSet
                 JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
 	            System.out.println("INFO: ListadoPersonalBanco - usando consulta SQL corregida");
 
                 System.out.println("DEBUG: Filling report with corrected data source...");
-	            // Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 	
-	            // Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
 	            jviewer.setTitle("GestCoop - ListadoPersonalBanco (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

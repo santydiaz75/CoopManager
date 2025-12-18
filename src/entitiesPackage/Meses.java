@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 
 public class Meses implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -20,7 +19,6 @@ public class Meses implements java.io.Serializable {
 	private Timestamp lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Meses() {
@@ -41,7 +39,6 @@ public class Meses implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public Integer getMes() {
 		return this.mes;

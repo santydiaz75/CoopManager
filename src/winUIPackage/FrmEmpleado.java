@@ -144,7 +144,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			columns.add(new ColumnData("FechaBaja", "Fecha de baja",
 					EntityType.DateWidth, SwingConstants.RIGHT, DateType,
 					txtFechaBaja, null));
-			columns.add(new ColumnData("Duracion", "Duraciï¿½n",
+			columns.add(new ColumnData("Duracion", "Duración",
 					EntityType.TextWidth, SwingConstants.LEFT, NormalType,
 					null, null));
 			columns.add(new ColumnData("ImporteLiquidacion", "liquidación",
@@ -338,7 +338,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
 			columns
-					.add(new ColumnData("Ejercicio", "Aï¿½o",
+					.add(new ColumnData("Ejercicio", "Año",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
 			columns.add(new ColumnData("Mes", "Mes", EntityType.NumberWidth,
@@ -352,16 +352,16 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			columns.add(new ColumnData("ImporteSegSoc", "Seguridad social",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteSegSoc, "#,##0.00"));
-			columns.add(new ColumnData("ImporteSegAutonomo", "Autï¿½nomo",
+			columns.add(new ColumnData("ImporteSegAutonomo", "Autónomo",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteSegAutonomo, "#,##0.00"));
 			columns.add(new ColumnData("ImporteEmbargo", "Embargo",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImporteEmbargo, "#,##0.00"));
-			columns.add(new ColumnData("TotalLiquido", "Total lï¿½quido",
+			columns.add(new ColumnData("TotalLiquido", "Total líquido",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtTotalLiquido, "#,##0.00"));
-			columns.add(new ColumnData("ImporteBonificacion", "Bonificaciï¿½n",
+			columns.add(new ColumnData("ImporteBonificacion", "Bonificación",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtBonificacion, "#,##0.00"));
 			columns.add(new ColumnData("CuentaBancariaPago", "Cuenta bancaria",
@@ -634,7 +634,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
 			columns
-					.add(new ColumnData("Ejercicio", "Aï¿½o",
+					.add(new ColumnData("Ejercicio", "Año",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
 			columns
@@ -653,7 +653,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			columns.add(new ColumnData("Importe", "Importe",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtImportehe, "#,##0.00"));
-			columns.add(new ColumnData("Sabado", "Sï¿½bado",
+			columns.add(new ColumnData("Sabado", "Sábado",
 					EntityType.NumberWidth, SwingConstants.CENTER, CheckType,
 					null, null));
 			columns.add(new ColumnData("Comentarios", "Comentarios",
@@ -855,10 +855,10 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					EntityType.SelectStateWidth, SwingConstants.CENTER,
 					StateType, null, null));
 			columns
-					.add(new ColumnData("Ejercicio", "Aï¿½o",
+					.add(new ColumnData("Ejercicio", "Año",
 							EntityType.NumberWidth, SwingConstants.RIGHT, 0,
 							null, null));
-			columns.add(new ColumnData("NumDias", "Nï¿½mero de dï¿½as",
+			columns.add(new ColumnData("NumDias", "Número de días",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtNumDias, "#,##0.00"));
 			columns.add(new ColumnData("Comentarios", "Comentarios",
@@ -1014,11 +1014,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1034,11 +1034,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1050,11 +1050,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1066,11 +1066,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1172,11 +1172,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1191,11 +1191,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1207,11 +1207,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1223,11 +1223,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1328,11 +1328,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1348,11 +1348,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1364,11 +1364,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1380,11 +1380,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1490,11 +1490,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1510,11 +1510,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1526,11 +1526,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -1542,11 +1542,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -2167,7 +2167,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 		try {
 			if (validateData()) {
 				
-				// Primero generar el ID si es un nuevo registro, antes de la transacción
 				if (OnNew) {
 					txtIdEmpleado.setValue(entity.newId(this, "Empleados",
 							"id.idEmpleado"));
@@ -2179,15 +2178,11 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					empleado.setId(empleadoid);
 				}
 				
-				// Manejo minimalista de transacciones para Hibernate 3.x
-				// Usar lo que esté disponible sin manipulaciones complejas
 				transaction = session.getSession().getTransaction();
 				if (transaction == null || !transaction.isActive()) {
-					// Solo crear nueva transacción si realmente no hay ninguna
 					transaction = session.getSession().beginTransaction();
 					weStartedTransaction = true;
 				} else {
-					// Usar transacción existente
 					weStartedTransaction = false;
 				}
 				if (!txtNIF.getText().equals(""))
@@ -2278,11 +2273,9 @@ public class FrmEmpleado extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(empleado);
 				session.getSession().flush();
 
-				// Declarar variables para reutilizar en las operaciones de borrado
 				String deletelinesquery;
 				Query q;
 
-				// Verificar que hay datos válidos en la tabla de contratos antes de borrar
 				boolean hasValidContratos = false;
 				for (Integer k = 0; k < tblContratos.getRowCount(); k++) {
 					if (tblContratos.getValueAt(k,
@@ -2293,7 +2286,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar contratos si hay datos válidos para reemplazar
 				if (hasValidContratos) {
 					deletelinesquery = "Delete From Empleadoscontratos "
 							+ "Where id.idEmpleado = "
@@ -2406,7 +2398,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				// Verificar que hay datos válidos en la tabla de nóminas antes de borrar
 				boolean hasValidNominas = false;
 				for (Integer k = 0; k < tblNominas.getRowCount(); k++) {
 					if (tblNominas.getValueAt(k,
@@ -2417,7 +2408,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar nóminas si hay datos válidos para reemplazar
 				if (hasValidNominas) {
 					deletelinesquery = "Delete From Empleadosnominas "
 							+ "Where id.idEmpleado = "
@@ -2439,7 +2429,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 						empleadonominaId.setIdEmpleado((Integer) txtIdEmpleado
 								.getValue());
 						empleadonominaId.setEmpresas(session.getEmpresa());
-						// Verificar si hay un ejercicio específico en la tabla, sino usar el actual
 						Object ejercicioValue = tblNominas.getValueAt(k, NominasTableModel.columnEjercicio);
 						if (ejercicioValue != null && !ejercicioValue.equals("")) {
 							empleadonominaId
@@ -2448,7 +2437,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 													this,
 													(Integer) ejercicioValue));
 						} else {
-							// Si no hay ejercicio específico, usar el ejercicio actual de la sesión
 							empleadonominaId.setEjercicios(session.getEjercicio());
 						}
 						if (!tblNominas.getValueAt(k,
@@ -2568,7 +2556,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				// Verificar que hay datos válidos en la tabla de horas extras antes de borrar
 				boolean hasValidHorasExtras = false;
 				for (Integer k = 0; k < tblHorasExtras.getRowCount(); k++) {
 					if (tblHorasExtras.getValueAt(k,
@@ -2579,7 +2566,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar horas extras si hay datos válidos para reemplazar
 				if (hasValidHorasExtras) {
 					deletelinesquery = "Delete From Empleadoshorasextras "
 							+ "Where id.idEmpleado = "
@@ -2603,7 +2589,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 								.setIdEmpleado((Integer) txtIdEmpleado
 										.getValue());
 						empleadohoraextraId.setEmpresas(session.getEmpresa());
-						// Verificar si hay un ejercicio específico en la tabla, sino usar el actual
 						Object ejercicioValue = tblHorasExtras.getValueAt(k, HorasExtrasTableModel.columnEjercicio);
 						if (ejercicioValue != null && !ejercicioValue.equals("")) {
 							empleadohoraextraId
@@ -2612,7 +2597,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 													this,
 													(Integer) ejercicioValue));
 						} else {
-							// Si no hay ejercicio específico, usar el ejercicio actual de la sesión
 							empleadohoraextraId.setEjercicios(session.getEjercicio());
 						}
 						if (!tblHorasExtras.getValueAt(k,
@@ -2696,7 +2680,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				// Verificar que hay datos válidos en la tabla de vacaciones antes de borrar
 				boolean hasValidVacaciones = false;
 				for (Integer k = 0; k < tblVacaciones.getRowCount(); k++) {
 					if (tblVacaciones.getValueAt(k,
@@ -2707,7 +2690,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar vacaciones si hay datos válidos para reemplazar
 				if (hasValidVacaciones) {
 					deletelinesquery = "Delete From Empleadosvacaciones "
 							+ "Where id.idEmpleado = "
@@ -2731,7 +2713,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 								.setIdEmpleado((Integer) txtIdEmpleado
 										.getValue());
 						empleadovacacionesId.setEmpresas(session.getEmpresa());
-						// Verificar si hay un ejercicio específico en la tabla, sino usar el actual
 						Object ejercicioValue = tblVacaciones.getValueAt(k, VacacionesTableModel.columnEjercicio);
 						if (ejercicioValue != null && !ejercicioValue.equals("")) {
 							empleadovacacionesId
@@ -2740,7 +2721,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 													this,
 													(Integer) ejercicioValue));
 						} else {
-							// Si no hay ejercicio específico, usar el ejercicio actual de la sesión
 							empleadovacacionesId.setEjercicios(session.getEjercicio());
 						}
 						empleadovacacionesId.setLinea(k + 1);
@@ -2775,7 +2755,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				// Hacer commit solo si nosotros iniciamos la transacción
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.commit();
 				}
@@ -2790,26 +2769,22 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			} else
 				return false;
 		} catch (RuntimeException he) {
-			// En caso de error, hacer rollback solo si nosotros iniciamos la transacción
 			try {
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.rollback();
 				}
 			} catch (Exception rollbackError) {
-				// Log rollback error but don't mask original error
 				System.err.println("Error during rollback: " + rollbackError.getMessage());
 			}
 			Message.ShowRuntimeError(getParentFrame(),
 					"FrmEmpleado.saveData()", he);
 			return false;
 		} catch (ParseException e) {
-			// En caso de error de parseo, hacer rollback solo si nosotros iniciamos la transacción
 			try {
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.rollback();
 				}
 			} catch (Exception rollbackError) {
-				// Log rollback error but don't mask original error
 				System.err.println("Error during rollback: " + rollbackError.getMessage());
 			}
 			Message.ShowParseError(getParentFrame(),
@@ -2899,7 +2874,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 								.toString());
 					} catch (ParseException nfe) {
 						Message.ShowValidateMessage(tblContratos,
-								"La fecha de alta indicada no es vï¿½lida.");
+								"La fecha de alta indicada no es válida.");
 						tblContratos.changeSelection(tblContratos
 								.getSelectedRow(),
 								ContratosTableModel.columnFechaAlta, false,
@@ -2923,7 +2898,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 											.toString());
 						} catch (ParseException nfe) {
 							Message.ShowValidateMessage(tblContratos,
-									"La fecha de baja indicada no es vï¿½lida.");
+									"La fecha de baja indicada no es válida.");
 							tblContratos.changeSelection(tblContratos
 									.getSelectedRow(),
 									ContratosTableModel.columnFechaBaja, false,
@@ -2955,7 +2930,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblNominas.getValueAt(actualrow,
 							NominasTableModel.columnEjercicio).equals("")) {
 						Message.ShowValidateMessage(tblNominas,
-								"Debe indicar un aï¿½o.");
+								"Debe indicar un año.");
 						tblNominas
 								.changeSelection(tblNominas.getSelectedRow(),
 										NominasTableModel.columnEjercicio,
@@ -2998,7 +2973,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblHorasExtras.getValueAt(actualrow,
 							HorasExtrasTableModel.columnEjercicio).equals("")) {
 						Message.ShowValidateMessage(tblHorasExtras,
-								"Debe indicar un aï¿½o.");
+								"Debe indicar un año.");
 						tblHorasExtras.changeSelection(tblHorasExtras
 								.getSelectedRow(),
 								HorasExtrasTableModel.columnEjercicio, false,
@@ -3042,7 +3017,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblVacaciones.getValueAt(actualrow,
 							VacacionesTableModel.columnEjercicio).equals("")) {
 						Message.ShowValidateMessage(tblVacaciones,
-								"Debe indicar un aï¿½o.");
+								"Debe indicar un año.");
 						tblVacaciones.changeSelection(tblVacaciones
 								.getSelectedRow(),
 								VacacionesTableModel.columnEjercicio, false,
@@ -3055,7 +3030,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					if (tblVacaciones.getValueAt(actualrow,
 							VacacionesTableModel.columnNumDias).equals("")) {
 						Message.ShowValidateMessage(tblVacaciones,
-								"Debe indicar un Nï¿½mero de dï¿½as.");
+								"Debe indicar un Número de días.");
 						tblVacaciones.changeSelection(tblVacaciones
 								.getSelectedRow(),
 								VacacionesTableModel.columnNumDias, false,
@@ -3414,7 +3389,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 		}
 	}
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlData = new javax.swing.JPanel();
@@ -3529,112 +3503,112 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         pnlData.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        TabEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TabEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
         pnlData1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnlData1.setName("pnlData1"); // NOI18N
+        pnlData1.setName("pnlData1");
 
-        lblIdEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdEmpleado.setForeground(new java.awt.Color(255, 0, 0));
         lblIdEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdEmpleado.setText("Id empleado");
         lblIdEmpleado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblApellidos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblApellidos.setText("Apellidos");
         lblApellidos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNombre.setForeground(new java.awt.Color(255, 0, 0));
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombre.setText("Nombre");
 
-        lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDireccion.setText("Dirección");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombre.setAutoscrolls(false);
         txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNombre.setName("nombre"); // NOI18N
+        txtNombre.setName("nombre");
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
 
-        txtApellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtApellidos.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtApellidos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidos.setAutoscrolls(false);
         txtApellidos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtApellidos.setName("apellidos"); // NOI18N
+        txtApellidos.setName("apellidos");
         txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidosKeyTyped(evt);
             }
         });
 
-        lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDireccion.setAutoscrolls(false);
         txtDireccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtDireccion.setName("poblacion"); // NOI18N
+        txtDireccion.setName("poblacion");
         txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionKeyTyped(evt);
             }
         });
 
-        lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCodigoPostal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCodigoPostal.setAutoscrolls(false);
         txtCodigoPostal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCodigoPostal.setName("codigoPostal"); // NOI18N
+        txtCodigoPostal.setName("codigoPostal");
         txtCodigoPostal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoPostalKeyTyped(evt);
             }
         });
 
-        lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTelefono.setText("Teléfono");
         lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtTelefono.setAutoscrolls(false);
         txtTelefono.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtTelefono.setName("telefono1"); // NOI18N
+        txtTelefono.setName("telefono1");
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
             }
         });
 
-        lblNIF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNIF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNIF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNIF.setText("NIF");
         lblNIF.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtNIF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNIF.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNIF.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNIF.setAutoscrolls(false);
         txtNIF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNIF.setName("nif"); // NOI18N
+        txtNIF.setName("nif");
         txtNIF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNIFKeyTyped(evt);
@@ -3644,58 +3618,58 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtIdEmpleado.setEditable(false);
         txtIdEmpleado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdEmpleado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIdEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
-        txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtPoblacion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtPoblacion.setAutoscrolls(false);
         txtPoblacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtPoblacion.setName("poblacion"); // NOI18N
+        txtPoblacion.setName("poblacion");
         txtPoblacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPoblacionKeyTyped(evt);
             }
         });
 
-        lblCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCorreoElectronico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCorreoElectronico.setText("E-mail");
         lblCorreoElectronico.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCorreoElectronico.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCorreoElectronico.setAutoscrolls(false);
         txtCorreoElectronico.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCorreoElectronico.setName("correoElectronico"); // NOI18N
+        txtCorreoElectronico.setName("correoElectronico");
         txtCorreoElectronico.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
             	txtCorreoElectronicoKeyTyped(evt);
             }
         });
         
-        lblCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCategoria.setText("Categoria");
         lblCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCategoria.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCategoria.setAutoscrolls(false);
         txtCategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCategoria.setName("categoria"); // NOI18N
+        txtCategoria.setName("categoria");
         txtCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCategoriaKeyTyped(evt);
             }
         });
 
-        lblIdBanco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdBanco.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdBanco.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdBanco.setText("Banco");
 
         txtIdBanco.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdBanco.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtIdBanco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdBanco.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIdBanco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIdBancoKeyReleased(evt);
@@ -3707,20 +3681,20 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         cboBancos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboBancos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboBancos.setName("Id subcategoria"); // NOI18N
+        cboBancos.setName("Id subcategoria");
         cboBancos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboBancosActionPerformed(evt);
             }
         });
 
-        lblIdSucursal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdSucursal.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdSucursal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdSucursal.setText("Sucursal");
 
         txtIdSucursal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdSucursal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtIdSucursal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdSucursal.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIdSucursal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIdSucursalKeyReleased(evt);
@@ -3732,52 +3706,52 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         cboSucursales.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboSucursales.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboSucursales.setName("Id subcategoria"); // NOI18N
+        cboSucursales.setName("Id subcategoria");
         cboSucursales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSucursalesActionPerformed(evt);
             }
         });
 
-        lblDigitoControl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDigitoControl.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblDigitoControl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDigitoControl.setText("Dï¿½gito control");
+        lblDigitoControl.setText("Dígito control");
         lblDigitoControl.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDigitoControl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtDigitoControl.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtDigitoControl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDigitoControl.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtDigitoControl.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDigitoControlKeyTyped(evt);
             }
         });
 
-        lblCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCuentaBancaria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCuentaBancaria.setText("Cuenta bancaria");
         lblCuentaBancaria.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCuentaBancaria.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCuentaBancaria.setAutoscrolls(false);
         txtCuentaBancaria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCuentaBancaria.setName("telefono2"); // NOI18N
+        txtCuentaBancaria.setName("telefono2");
         txtCuentaBancaria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCuentaBancariaKeyTyped(evt);
             }
         });
 
-        lblFijo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFijo.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblFijo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFijo.setText("Fijo");
 
         chkFijo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         chkFijo.setMargin(new java.awt.Insets(0, 0, 2, 2));
-        chkFijo.setName("privada"); // NOI18N
+        chkFijo.setName("privada");
 
-        lblFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblFechaNacimiento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFechaNacimiento.setText("F. nacimiento");
 
@@ -3788,16 +3762,16 @@ public class FrmEmpleado extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         txtFechaNacimiento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtFechaNacimiento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtFechaNacimientoFocusLost(evt);
             }
         });
 
-        lblFechaAntiguedad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFechaAntiguedad.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblFechaAntiguedad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFechaAntiguedad.setText("F. antigï¿½edad");
+        lblFechaAntiguedad.setText("F. antigüedad");
 
         txtFechaAntiguedad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         try {
@@ -3806,23 +3780,23 @@ public class FrmEmpleado extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         txtFechaAntiguedad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtFechaAntiguedad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFechaAntiguedad.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtFechaAntiguedad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtFechaAntiguedadFocusLost(evt);
             }
         });
 
-        lblIBAN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIBAN.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIBAN.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIBAN.setText("IBAN");
         lblIBAN.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtIBAN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIBAN.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIBAN.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtIBAN.setAutoscrolls(false);
         txtIBAN.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtIBAN.setName("iban"); // NOI18N
+        txtIBAN.setName("iban");
         txtIBAN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIBANKeyTyped(evt);
@@ -3997,7 +3971,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         TabEmpleado.addTab("1. Datos Generales", pnlData1);
 
-        lblComentarios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblComentarios.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblComentarios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblComentarios.setText("Comentarios");
 
@@ -4034,7 +4008,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblContratos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblContratos.setFont(new java.awt.Font("Segoe UI", 0, 14));
         tblContratos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -4056,7 +4030,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtImporteLiquidacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtImporteLiquidacion.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        cmdSelectContratosAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSelectContratosAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdSelectContratosAll.setText("Seleccionar todo");
         cmdSelectContratosAll.setToolTipText("Seleccionar todas las filas");
         cmdSelectContratosAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -4066,8 +4040,8 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        cmdDeselectContratosAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectContratosAll.setText("Quitar selecciï¿½n");
+        cmdDeselectContratosAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        cmdDeselectContratosAll.setText("Quitar selección");
         cmdDeselectContratosAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectContratosAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectContratosAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4076,7 +4050,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        cmdDeleteContratos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDeleteContratos.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdDeleteContratos.setText("Eliminar contratos");
         cmdDeleteContratos.setToolTipText("Eliminar contratos seleccionados");
         cmdDeleteContratos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -4090,14 +4064,14 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSumaTotalLiquidado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSumaTotalLiquidado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSumaTotalLiquidado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSumaTotalLiquidado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSumaTotalLiquidado.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblTotalImporteLiquidado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalImporteLiquidado.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTotalImporteLiquidado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalImporteLiquidado.setText("Tot. importe liquidado");
 
         cboCuentaBancariaLiquidacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboCuentaBancariaLiquidacion.setName("Id subcategoria"); // NOI18N
+        cboCuentaBancariaLiquidacion.setName("Id subcategoria");
 
         txtImporteLiquidacionIrpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtImporteLiquidacionIrpf.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -4109,7 +4083,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         txtFechaAlta.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtFechaAlta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFechaAlta.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
         txtFechaBaja.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         try {
@@ -4118,7 +4092,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         txtFechaBaja.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtFechaBaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFechaBaja.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
         javax.swing.GroupLayout pnlData3Layout = new javax.swing.GroupLayout(pnlData3);
         pnlData3.setLayout(pnlData3Layout);
@@ -4192,7 +4166,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblNominas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblNominas.setFont(new java.awt.Font("Segoe UI", 0, 14));
         tblNominas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -4226,7 +4200,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtTotalLiquido.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtTotalLiquido.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        cmdSelectNominasAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSelectNominasAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdSelectNominasAll.setText("Seleccionar todo");
         cmdSelectNominasAll.setToolTipText("Seleccionar todas las filas");
         cmdSelectNominasAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -4236,8 +4210,8 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        cmdDeselectNominasAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectNominasAll.setText("Quitar selecciï¿½n");
+        cmdDeselectNominasAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        cmdDeselectNominasAll.setText("Quitar selección");
         cmdDeselectNominasAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectNominasAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectNominasAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4246,7 +4220,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        cmdDeleteNominas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDeleteNominas.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdDeleteNominas.setText("Eliminar nominas");
         cmdDeleteNominas.setToolTipText("Eliminar nominas seleccionadas");
         cmdDeleteNominas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -4256,7 +4230,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        lblTotalDevengado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalDevengado.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTotalDevengado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalDevengado.setText("Tot. devengado");
 
@@ -4264,9 +4238,9 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSumaTotalDevengado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSumaTotalDevengado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSumaTotalDevengado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSumaTotalDevengado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSumaTotalDevengado.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIRPF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIRPF.setText("I.R.P.F.");
 
@@ -4274,9 +4248,9 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSumaIRPF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSumaIRPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSumaIRPF.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSumaIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSumaIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblSegSoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSegSoc.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblSegSoc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSegSoc.setText("S. Social");
 
@@ -4284,9 +4258,9 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSumaSegSoc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSumaSegSoc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSumaSegSoc.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSumaSegSoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSumaSegSoc.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblTipoIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTipoIRPF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipoIRPF.setText("Otros");
 
@@ -4294,9 +4268,9 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSumaOtros.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSumaOtros.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSumaOtros.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSumaOtros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSumaOtros.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblImporteIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblImporteIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblImporteIRPF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblImporteIRPF.setText("Tot. liquido");
 
@@ -4304,18 +4278,18 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSumaTotalLiquido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSumaTotalLiquido.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSumaTotalLiquido.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSumaTotalLiquido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSumaTotalLiquido.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
         txtBonificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtBonificacion.setPreferredSize(new java.awt.Dimension(0, 0));
 
         cboCuentaBancaria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboCuentaBancaria.setName("Id subcategoria"); // NOI18N
+        cboCuentaBancaria.setName("Id subcategoria");
 
         txtImporteEmbargo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtImporteEmbargo.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        lblImporteIRPF1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblImporteIRPF1.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblImporteIRPF1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblImporteIRPF1.setText("Sueldo medio");
 
@@ -4323,7 +4297,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSalarioMedio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSalarioMedio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSalarioMedio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSalarioMedio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSalarioMedio.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
         javax.swing.GroupLayout pnlData4Layout = new javax.swing.GroupLayout(pnlData4);
         pnlData4.setLayout(pnlData4Layout);
@@ -4488,7 +4462,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         jScrollPane4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblHorasExtras.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblHorasExtras.setFont(new java.awt.Font("Segoe UI", 0, 14));
         tblHorasExtras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -4507,7 +4481,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(tblHorasExtras);
 
-        cmdSelectHorasExtrasAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSelectHorasExtrasAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdSelectHorasExtrasAll.setText("Seleccionar todo");
         cmdSelectHorasExtrasAll.setToolTipText("Seleccionar todas las filas");
         cmdSelectHorasExtrasAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -4517,8 +4491,8 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        cmdDeselectHorasExtrasAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectHorasExtrasAll.setText("Quitar selecciï¿½n");
+        cmdDeselectHorasExtrasAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        cmdDeselectHorasExtrasAll.setText("Quitar selección");
         cmdDeselectHorasExtrasAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectHorasExtrasAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectHorasExtrasAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4527,7 +4501,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        cmdDeleteHorasExtras.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDeleteHorasExtras.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdDeleteHorasExtras.setText("Eliminar horas extras");
         cmdDeleteHorasExtras.setToolTipText("Eliminar horas extras seleccionadas");
         cmdDeleteHorasExtras.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -4549,7 +4523,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtImportehe.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtImportehe.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        lblTotalHorasExtras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalHorasExtras.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTotalHorasExtras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalHorasExtras.setText("Tot. horas extras");
 
@@ -4557,9 +4531,9 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSumaTotalHorasExtras.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSumaTotalHorasExtras.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSumaTotalHorasExtras.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSumaTotalHorasExtras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSumaTotalHorasExtras.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblTotalImporteHorasExtras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalImporteHorasExtras.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTotalImporteHorasExtras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalImporteHorasExtras.setText("Importe total");
 
@@ -4567,7 +4541,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtSumaImporteHorasExtras.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtSumaImporteHorasExtras.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtSumaImporteHorasExtras.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtSumaImporteHorasExtras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSumaImporteHorasExtras.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
         javax.swing.GroupLayout pnlData5Layout = new javax.swing.GroupLayout(pnlData5);
         pnlData5.setLayout(pnlData5Layout);
@@ -4651,7 +4625,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         jScrollPane5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblVacaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblVacaciones.setFont(new java.awt.Font("Segoe UI", 0, 14));
         tblVacaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -4670,7 +4644,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(tblVacaciones);
 
-        cmdSelectVacacionesAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSelectVacacionesAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdSelectVacacionesAll.setText("Seleccionar todo");
         cmdSelectVacacionesAll.setToolTipText("Seleccionar todas las filas");
         cmdSelectVacacionesAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -4680,8 +4654,8 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        cmdDeselectVacacionesAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectVacacionesAll.setText("Quitar selecciï¿½n");
+        cmdDeselectVacacionesAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        cmdDeselectVacacionesAll.setText("Quitar selección");
         cmdDeselectVacacionesAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectVacacionesAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectVacacionesAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4690,7 +4664,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        cmdDeleteVacaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDeleteVacaciones.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdDeleteVacaciones.setText("Eliminar vacaciones");
         cmdDeleteVacaciones.setToolTipText("Eliminar vacaciones seleccionadas");
         cmdDeleteVacaciones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -4703,15 +4677,15 @@ public class FrmEmpleado extends javax.swing.JPanel {
         txtNumDias.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtNumDias.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        lblTotalDias.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalDias.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTotalDias.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalDias.setText("Total dï¿½as");
+        lblTotalDias.setText("Total días");
 
         txtTotalDiasVacaciones.setEditable(false);
         txtTotalDiasVacaciones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTotalDiasVacaciones.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         txtTotalDiasVacaciones.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTotalDiasVacaciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTotalDiasVacaciones.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
         javax.swing.GroupLayout pnlData6Layout = new javax.swing.GroupLayout(pnlData6);
         pnlData6.setLayout(pnlData6Layout);
@@ -4761,7 +4735,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
         TabEmpleado.addTab("6. Vacaciones", pnlData6);
 
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png"))); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png")));
         btnCancel.setToolTipText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4770,7 +4744,7 @@ public class FrmEmpleado extends javax.swing.JPanel {
             }
         });
 
-        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png"))); // NOI18N
+        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png")));
         btnOk.setToolTipText("Aceptar");
         btnOk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4822,16 +4796,16 @@ public class FrmEmpleado extends javax.swing.JPanel {
                     .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(0, 0, 0)))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void txtIBANKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIBANKeyTyped
+    private void txtIBANKeyTyped(java.awt.event.KeyEvent evt) {
         try {
                 Util.keyTyped(txtIBAN, evt, 4);
         } catch (RuntimeException he) {
                 Message.ShowRuntimeError(getParentFrame(),
                                 "FrmEmpleado.txtIBANKeyTyped()", he);
         }
-    }//GEN-LAST:event_txtIBANKeyTyped
+    }
 
 	private void txtFechaAntiguedadFocusLost(java.awt.event.FocusEvent evt) {
 		try {
@@ -5352,7 +5326,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
 		}
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabEmpleado;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOk;
@@ -5462,7 +5435,6 @@ public class FrmEmpleado extends javax.swing.JPanel {
     private static javax.swing.JFormattedTextField txtTotalDevengado;
     private javax.swing.JFormattedTextField txtTotalDiasVacaciones;
     private static javax.swing.JFormattedTextField txtTotalLiquido;
-    // End of variables declaration//GEN-END:variables
 
 }
 

@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Conceptos implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -22,7 +21,6 @@ public class Conceptos implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Conceptos() {
@@ -47,7 +45,6 @@ public class Conceptos implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public ConceptosId getId() {
 		return this.id;

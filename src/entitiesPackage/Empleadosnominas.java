@@ -12,7 +12,6 @@ public class Empleadosnominas implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private EmpleadosnominasId id;
 	private Float totalDevengado;
@@ -28,7 +27,6 @@ public class Empleadosnominas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Empleadosnominas() {
@@ -69,7 +67,6 @@ public class Empleadosnominas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public EmpleadosnominasId getId() {
 		return this.id;

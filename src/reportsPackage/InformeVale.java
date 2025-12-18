@@ -42,11 +42,11 @@ public class InformeVale
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -114,9 +114,6 @@ public class InformeVale
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-                // === SOLUCION: Usar consulta SQL corregida ===
-                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
                 
                 String sqlQuery = "SELECT ec.Empresa, ec.Ejercicio, " +
                                  "case when ? = 0 then 0 else co.IdCosechero end as IdCosechero, " +
@@ -145,37 +142,33 @@ public class InformeVale
                 System.out.println("DEBUG: Executing corrected SQL query...");
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
                 
-                // Set parameters (multiple references to same values due to CASE statements and subqueries)
                 int paramIndex = 1;
-                pstmt.setInt(paramIndex++, Cosechero);  // case when ? = 0 then 0 else co.IdCosechero
-                pstmt.setInt(paramIndex++, Cosechero);  // case when ? = 0 then 'Todos' else...
-                pstmt.setInt(paramIndex++, Cosechero);  // case when ? = 0 then 'Todas' else...
-                pstmt.setInt(paramIndex++, Cosechero);  // first subquery WHERE (ec1.IdCosechero = ? or ? = 0)
                 pstmt.setInt(paramIndex++, Cosechero);
-                pstmt.setInt(paramIndex++, empresa);    // first subquery empresa
-                pstmt.setInt(paramIndex++, ejercicio);  // first subquery ejercicio  
-                pstmt.setInt(paramIndex++, SemanaDesde); // first subquery semana desde
-                pstmt.setInt(paramIndex++, SemanaHasta); // first subquery semana hasta
-                pstmt.setInt(paramIndex++, Cosechero);  // second subquery WHERE (ec1.IdCosechero = ? or ? = 0)
                 pstmt.setInt(paramIndex++, Cosechero);
-                pstmt.setInt(paramIndex++, empresa);    // second subquery empresa
-                pstmt.setInt(paramIndex++, ejercicio);  // second subquery ejercicio
-                pstmt.setInt(paramIndex++, SemanaDesde); // second subquery semana desde
-                pstmt.setInt(paramIndex++, SemanaHasta); // second subquery semana hasta
-                pstmt.setInt(paramIndex++, Cosechero);  // main query WHERE (ec.IdCosechero = ? or ? = 0)
                 pstmt.setInt(paramIndex++, Cosechero);
-                pstmt.setInt(paramIndex++, empresa);    // main query empresa
-                pstmt.setInt(paramIndex++, ejercicio);  // main query ejercicio
-                pstmt.setInt(paramIndex++, SemanaDesde); // main query semana desde
-                pstmt.setInt(paramIndex++, SemanaHasta); // main query semana hasta
+                pstmt.setInt(paramIndex++, Cosechero);
+                pstmt.setInt(paramIndex++, Cosechero);
+                pstmt.setInt(paramIndex++, empresa);
+                pstmt.setInt(paramIndex++, ejercicio);
+                pstmt.setInt(paramIndex++, SemanaDesde);
+                pstmt.setInt(paramIndex++, SemanaHasta);
+                pstmt.setInt(paramIndex++, Cosechero);
+                pstmt.setInt(paramIndex++, Cosechero);
+                pstmt.setInt(paramIndex++, empresa);
+                pstmt.setInt(paramIndex++, ejercicio);
+                pstmt.setInt(paramIndex++, SemanaDesde);
+                pstmt.setInt(paramIndex++, SemanaHasta);
+                pstmt.setInt(paramIndex++, Cosechero);
+                pstmt.setInt(paramIndex++, Cosechero);
+                pstmt.setInt(paramIndex++, empresa);
+                pstmt.setInt(paramIndex++, ejercicio);
+                pstmt.setInt(paramIndex++, SemanaDesde);
+                pstmt.setInt(paramIndex++, SemanaHasta);
                 
                 ResultSet rs = pstmt.executeQuery();
                 
-                // Crear data source from ResultSet
                 JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -183,21 +176,15 @@ public class InformeVale
 	            parameters.put("SemanaDesde", SemanaDesde);
 	            parameters.put("SemanaHasta", SemanaHasta);
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
-	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
 	            System.out.println("INFO: InformeVale - usando consulta SQL corregida");
 
                 System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - InformeVale (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

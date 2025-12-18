@@ -43,10 +43,10 @@ public class PreLiquidacion
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -116,7 +116,6 @@ public class PreLiquidacion
 
 	        JasperReport masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);
 	        
-	        // Preparar consulta SQL sin referencias hardcodeadas
 	        String sql = "SELECT co.Empresa, co.Ejercicio, m.NombreMes, co.IdCosechero, " +
 	        		     "(co.Apellidos + ', ' + co.Nombre) as NombreApellidos, " +
 	        		     "coalesce(co.TipoIgic,0) as TipoIgic, coalesce(co.TipoIrpf, 0) as TipoIrpf, " +
@@ -134,36 +133,33 @@ public class PreLiquidacion
 	        
 	        PreparedStatement pstmt = conn.prepareStatement(sql);
 	        
-	        // Establecer parametros (multiples veces para las funciones)
-	        pstmt.setInt(1, empresa);   // PreLiquidacionGetBaseImponible
+	        pstmt.setInt(1, empresa);
 	        pstmt.setInt(2, ejercicio);
 	        pstmt.setInt(3, semanaDesde);
 	        pstmt.setInt(4, semanaHasta);
-	        pstmt.setInt(5, empresa);   // PreLiquidacionGetNumKilos
+	        pstmt.setInt(5, empresa);
 	        pstmt.setInt(6, ejercicio);
 	        pstmt.setInt(7, semanaDesde);
 	        pstmt.setInt(8, semanaHasta);
-	        pstmt.setInt(9, empresa);   // PreLiquidacionKilosInutilizadosCosechero
+	        pstmt.setInt(9, empresa);
 	        pstmt.setInt(10, ejercicio);
 	        pstmt.setInt(11, semanaDesde);
 	        pstmt.setInt(12, semanaHasta);
-	        pstmt.setInt(13, empresa);  // PreLiquidacionGetNumPinas
+	        pstmt.setInt(13, empresa);
 	        pstmt.setInt(14, ejercicio);
 	        pstmt.setInt(15, semanaDesde);
 	        pstmt.setInt(16, semanaHasta);
-	        pstmt.setInt(17, mes);      // meses join
-	        pstmt.setInt(18, ejercicio); // where ejercicio
-	        pstmt.setInt(19, empresa);  // where empresa
+	        pstmt.setInt(17, mes);
+	        pstmt.setInt(18, ejercicio);
+	        pstmt.setInt(19, empresa);
 	        
 	        System.out.println("PreLiquidacion - Parameters: empresa=" + empresa + ", ejercicio=" + ejercicio + 
 	        		           ", mes=" + mes + ", semanaDesde=" + semanaDesde + ", semanaHasta=" + semanaHasta);
 	        
 	        ResultSet rs = pstmt.executeQuery();
 	        
-	        // Crear datasource con los resultados
 	        JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 	        
-	        // Preparar parametros
 	        Map<String, Object> parameters = new HashMap<String, Object>();
 	        parameters.put("Empresa", empresa);
 	        parameters.put("Ejercicio", ejercicio);
@@ -175,15 +171,12 @@ public class PreLiquidacion
 	        parameters.put("LOGO_DIR", workDirectory + "\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	        parameters.put("SUBREPORT_DIR", workDirectory + "\\reportsPackage\\");
 	        
-	        // Generar reporte
 	        JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 
-	        // Mostrar reporte
 	        JasperViewer jviewer = new JasperViewer(jasperPrint, false);
 	        jviewer.setTitle("GestCoop - PreLiquidacion");
 	        jviewer.setVisible(true);
 	        
-	        // Limpiar recursos
 	        rs.close();
 	        pstmt.close();
         }

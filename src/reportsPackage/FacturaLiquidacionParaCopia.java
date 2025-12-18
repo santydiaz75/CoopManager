@@ -41,10 +41,10 @@ public class FacturaLiquidacionParaCopia
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -101,8 +101,6 @@ public class FacturaLiquidacionParaCopia
     public void runReporte(int empresa, int ejercicio, int mes, int semanaDesde, int semanaHasta, 
     		Date fechaDesde, Date fechaHasta, Integer numerofacturadesde, Integer numerofacturahasta)
     {
-        //this.id_contact="";
-        //this.id_contact = id;
         
         try
         {       
@@ -117,8 +115,6 @@ public class FacturaLiquidacionParaCopia
 	            JasperReport masterReport = null;
 	            masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);              
 	            
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -136,22 +132,18 @@ public class FacturaLiquidacionParaCopia
 	            
 	            
 	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
 
 	            
 	            
 	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
 
 	            
 	            
 	
-	            // En archivo FacturaLiquidacionParaCopia.jrxml
 
 	            
 	            
 	
-	            // TODO: Implementar solucion especifica si hay errores SQL
 
 	            
 	            
@@ -161,10 +153,8 @@ public class FacturaLiquidacionParaCopia
 	            
 	            
 	
-	            //Informe diseñado y compilado con iReport
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - FacturaLiquidacionParaCopia (CHECK SQL)");
 	            jviewer.setVisible(true);

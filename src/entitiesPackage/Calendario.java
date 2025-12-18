@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Calendario implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -23,7 +22,6 @@ public class Calendario implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Calendario() {
@@ -49,7 +47,6 @@ public class Calendario implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public CalendarioId getId() {
 		return this.id;

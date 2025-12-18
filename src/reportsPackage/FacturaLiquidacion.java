@@ -43,10 +43,10 @@ public class FacturaLiquidacion
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -103,8 +103,6 @@ public class FacturaLiquidacion
     public void runReporte(int empresa, int ejercicio, int mes, int semanaDesde, int semanaHasta, 
     		Date fechaDesde, Date fechaHasta, int numerofacturadesde, int numerofacturahasta)
     {
-        //this.id_contact="";
-        //this.id_contact = id;
         
         try
         {       
@@ -119,8 +117,6 @@ public class FacturaLiquidacion
 	            JasperReport masterReport = null;
 	            masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);              
 	            
-	            //este es el parÃ¡metro, se pueden agregar mÃ¡s parÃ¡metros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -136,25 +132,13 @@ public class FacturaLiquidacion
 	            parameters.put("SUBREPORT_DIR", workDirectory +  
     			"\\reportsPackage\\");
 	            
-	            // === SOLUCION IMPLEMENTADA: Consultas SQL corregidas ===
-                // Se han corregido las consultas SQL en todos los archivos .jrxml:
-                // - FacturaLiquidacion.jrxml (reporte principal)
-                // - FacturaLiquidacionPrecios.jrxml (subreporte precios)
-                // - FacturaLiquidacionBonificacion.jrxml (subreporte bonificaciones)
-                // - FacturaLiquidacionAcumulado.jrxml (subreporte acumulados)
-                // Eliminadas todas las referencias hardcodeadas [db_aa764d_coopmanagerdb].[dbo]
                 System.out.println("INFO: FacturaLiquidacion - consultas SQL corregidas en archivos .jrxml");
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Los subreportes requieren conexión directa para funcionar correctamente
-	            // Por ello, usamos la conexión directa pero con consulta SQL corregida en el .jrxml
-	            System.out.println("INFO: FacturaLiquidacion - usando conexión directa para subreportes");
+	            System.out.println("INFO: FacturaLiquidacion - usando conexiï¿½n directa para subreportes");
 
                 System.out.println("DEBUG: Filling report with connection for subreports...");
-	            //Informe diseñado y compilado con iReport - usando conexión para subreportes
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - FacturaLiquidacion (SQL Corregido)");
 	            jviewer.setVisible(true);

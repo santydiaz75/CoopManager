@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 
 public class ViewliquidacionesId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -27,7 +26,6 @@ public class ViewliquidacionesId implements java.io.Serializable {
 	private Float importeIgic;
 	private Float importeIrpf;
 
-	// Constructors
 
 	/** default constructor */
 	public ViewliquidacionesId() {
@@ -64,7 +62,6 @@ public class ViewliquidacionesId implements java.io.Serializable {
 		this.importeIrpf = importeIrpf;
 	}
 
-	// Property accessors
 
 	public Integer getNumerofactura() {
 		return this.numerofactura;

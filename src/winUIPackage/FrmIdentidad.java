@@ -412,7 +412,6 @@ public class FrmIdentidad extends javax.swing.JPanel {
 		}
 	}
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlData = new javax.swing.JPanel();
@@ -463,96 +462,96 @@ public class FrmIdentidad extends javax.swing.JPanel {
 
         pnlData.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        TabCosechero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TabCosechero.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
         pnlData1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnlData1.setName("pnlData1"); // NOI18N
+        pnlData1.setName("pnlData1");
 
-        lblIdentidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdentidad.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdentidad.setForeground(new java.awt.Color(255, 0, 0));
         lblIdentidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdentidad.setText("Id");
         lblIdentidad.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        lblNombreIdentidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombreIdentidad.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNombreIdentidad.setForeground(new java.awt.Color(255, 0, 0));
         lblNombreIdentidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombreIdentidad.setText("Nombre");
 
-        lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDireccion.setText("Dirección");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtNombreIdentidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombreIdentidad.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNombreIdentidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombreIdentidad.setAutoscrolls(false);
         txtNombreIdentidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNombreIdentidad.setName("nombre"); // NOI18N
+        txtNombreIdentidad.setName("nombre");
         txtNombreIdentidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreIdentidadKeyTyped(evt);
             }
         });
 
-        lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDireccion.setAutoscrolls(false);
         txtDireccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtDireccion.setName("poblacion"); // NOI18N
+        txtDireccion.setName("poblacion");
         txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionKeyTyped(evt);
             }
         });
 
-        lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCodigoPostal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCodigoPostal.setAutoscrolls(false);
         txtCodigoPostal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCodigoPostal.setName("codigoPostal"); // NOI18N
+        txtCodigoPostal.setName("codigoPostal");
         txtCodigoPostal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoPostalKeyTyped(evt);
             }
         });
 
-        lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTelefono.setText("Teléfono");
         lblTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtTelefono.setAutoscrolls(false);
         txtTelefono.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtTelefono.setName("telefono1"); // NOI18N
+        txtTelefono.setName("telefono1");
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
             }
         });
 
-        lblNIF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNIF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNIF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNIF.setText("NIF");
         lblNIF.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtNIF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNIF.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNIF.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNIF.setAutoscrolls(false);
         txtNIF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNIF.setName("nif"); // NOI18N
+        txtNIF.setName("nif");
         txtNIF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNIFKeyTyped(evt);
@@ -562,42 +561,42 @@ public class FrmIdentidad extends javax.swing.JPanel {
         txtIdentidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdentidad.setEditable(false);
         txtIdentidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIdentidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdentidad.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
-        txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtPoblacion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtPoblacion.setAutoscrolls(false);
         txtPoblacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtPoblacion.setName("poblacion"); // NOI18N
+        txtPoblacion.setName("poblacion");
         txtPoblacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPoblacionKeyTyped(evt);
             }
         });
 
-        lblCuentaContable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCuentaContable.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCuentaContable.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCuentaContable.setText("Cuenta contable");
         lblCuentaContable.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCuentaContable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCuentaContable.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCuentaContable.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCuentaContable.setAutoscrolls(false);
         txtCuentaContable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCuentaContable.setName("telefono2"); // NOI18N
+        txtCuentaContable.setName("telefono2");
         txtCuentaContable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCuentaContableKeyTyped(evt);
             }
         });
 
-        lblIdBanco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdBanco.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdBanco.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdBanco.setText("Banco");
 
         txtIdBanco.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdBanco.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtIdBanco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdBanco.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIdBanco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIdBancoKeyReleased(evt);
@@ -609,20 +608,20 @@ public class FrmIdentidad extends javax.swing.JPanel {
 
         cboBancos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboBancos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboBancos.setName("Id subcategoria"); // NOI18N
+        cboBancos.setName("Id subcategoria");
         cboBancos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboBancosActionPerformed(evt);
             }
         });
 
-        lblIdSucursal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdSucursal.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdSucursal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdSucursal.setText("Sucursal");
 
         txtIdSucursal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdSucursal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtIdSucursal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdSucursal.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIdSucursal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIdSucursalKeyReleased(evt);
@@ -634,76 +633,76 @@ public class FrmIdentidad extends javax.swing.JPanel {
 
         cboSucursales.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboSucursales.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboSucursales.setName("Id subcategoria"); // NOI18N
+        cboSucursales.setName("Id subcategoria");
         cboSucursales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSucursalesActionPerformed(evt);
             }
         });
 
-        lblDigitoControl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDigitoControl.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblDigitoControl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDigitoControl.setText("Dï¿½gito control");
+        lblDigitoControl.setText("Dígito control");
         lblDigitoControl.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         txtDigitoControl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtDigitoControl.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtDigitoControl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDigitoControl.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtDigitoControl.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDigitoControlKeyTyped(evt);
             }
         });
 
-        lblCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCuentaBancaria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCuentaBancaria.setText("Cuenta bancaria");
         lblCuentaBancaria.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCuentaBancaria.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCuentaBancaria.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCuentaBancaria.setAutoscrolls(false);
         txtCuentaBancaria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCuentaBancaria.setName("telefono2"); // NOI18N
+        txtCuentaBancaria.setName("telefono2");
         txtCuentaBancaria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCuentaBancariaKeyTyped(evt);
             }
         });
 
-        lblCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCliente.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCliente.setText("Cliente");
 
         chkCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         chkCliente.setMargin(new java.awt.Insets(0, 0, 2, 2));
-        chkCliente.setName("privada"); // NOI18N
+        chkCliente.setName("privada");
 
-        lblProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblProveedor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblProveedor.setText("Proveedor");
 
         chkProveedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         chkProveedor.setMargin(new java.awt.Insets(0, 0, 2, 2));
-        chkProveedor.setName("privada"); // NOI18N
+        chkProveedor.setName("privada");
 
-        lblProvincia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblProvincia.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblProvincia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblProvincia.setText("Provincia");
         lblProvincia.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtProvincia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtProvincia.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtProvincia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtProvincia.setAutoscrolls(false);
         txtProvincia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtProvincia.setName("poblacion"); // NOI18N
+        txtProvincia.setName("poblacion");
         txtProvincia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtProvinciaKeyTyped(evt);
             }
         });
 
-        lblTipoIGIC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoIGIC.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTipoIGIC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipoIGIC.setText("Tipo de IGIC");
         lblTipoIGIC.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -711,14 +710,14 @@ public class FrmIdentidad extends javax.swing.JPanel {
         txtTipoIGIC.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTipoIGIC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtTipoIGIC.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTipoIGIC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTipoIGIC.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTipoIGIC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtTipoIGICFocusLost(evt);
             }
         });
 
-        lblTipoIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTipoIRPF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipoIRPF.setText("Tipo de IRPF");
         lblTipoIRPF.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -726,23 +725,23 @@ public class FrmIdentidad extends javax.swing.JPanel {
         txtTipoIRPF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTipoIRPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtTipoIRPF.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTipoIRPF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTipoIRPF.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTipoIRPF.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtTipoIRPFFocusLost(evt);
             }
         });
 
-        lblIBAN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIBAN.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIBAN.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIBAN.setText("IBAN");
         lblIBAN.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtIBAN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIBAN.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIBAN.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtIBAN.setAutoscrolls(false);
         txtIBAN.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtIBAN.setName("iban"); // NOI18N
+        txtIBAN.setName("iban");
         txtIBAN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIBANKeyTyped(evt);
@@ -913,7 +912,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
 
         TabCosechero.addTab("1. Datos Generales", pnlData1);
 
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png"))); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png")));
         btnCancel.setToolTipText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -922,7 +921,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
             }
         });
 
-        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png"))); // NOI18N
+        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png")));
         btnOk.setToolTipText("Aceptar");
         btnOk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -931,7 +930,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
             }
         });
 
-        btnCobro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cobros.png"))); // NOI18N
+        btnCobro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cobros.png")));
         btnCobro.setToolTipText("Cobrar");
         btnCobro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCobro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -940,7 +939,7 @@ public class FrmIdentidad extends javax.swing.JPanel {
             }
         });
 
-        btnPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/pagos.png"))); // NOI18N
+        btnPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/pagos.png")));
         btnPago.setToolTipText("Pagar");
         btnPago.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnPago.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -998,16 +997,16 @@ public class FrmIdentidad extends javax.swing.JPanel {
                     .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(0, 0, 0)))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void txtIBANKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIBANKeyTyped
+    private void txtIBANKeyTyped(java.awt.event.KeyEvent evt) {
        try {
 			Util.keyTyped(txtIBAN, evt, 4);
 		} catch (RuntimeException he) {
 			Message.ShowRuntimeError(this.parentFrame,
 					"FrmIdentidadtxtIBANKeyTyped()", he);
 		}
-    }//GEN-LAST:event_txtIBANKeyTyped
+    }
 
 	private void btnPagoMousePressed(java.awt.event.MouseEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -1255,7 +1254,6 @@ public class FrmIdentidad extends javax.swing.JPanel {
 		}
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabCosechero;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCobro;
@@ -1301,7 +1299,6 @@ public class FrmIdentidad extends javax.swing.JPanel {
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JFormattedTextField txtTipoIGIC;
     private javax.swing.JFormattedTextField txtTipoIRPF;
-    // End of variables declaration//GEN-END:variables
 
 }
 

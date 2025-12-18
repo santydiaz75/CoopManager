@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class ViewcontanominasId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -25,7 +24,6 @@ public class ViewcontanominasId implements java.io.Serializable {
 	private Double importeSegSoc;
 	private Double totalLiquido;
 
-	// Constructors
 
 	/** default constructor */
 	public ViewcontanominasId() {
@@ -60,7 +58,6 @@ public class ViewcontanominasId implements java.io.Serializable {
 		this.totalLiquido = totalLiquido;
 	}
 
-	// Property accessors
 
 	public Integer getEmpresa() {
 		return this.empresa;

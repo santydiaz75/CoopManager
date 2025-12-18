@@ -12,7 +12,6 @@ public class Cosecheros implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private CosecherosId id;
 	private String nombre;
@@ -44,7 +43,6 @@ public class Cosecheros implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Cosecheros() {
@@ -99,7 +97,6 @@ public class Cosecheros implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public CosecherosId getId() {
 		return this.id;

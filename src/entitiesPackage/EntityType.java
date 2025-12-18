@@ -2,7 +2,6 @@ package entitiesPackage;
 
 public class EntityType {
 	
-	//Indices de entidades
 	final public static int indexBancos = 1;
 	final public static int indexBarcos = 2;
 	final public static int indexCalendario = 3;
@@ -26,7 +25,6 @@ public class EntityType {
 	final public static int indexConceptos = 21;
 	
 	
-	//Anchos de columnas
 	final public static int SelectStateWidth = 25;
 	final public static int DateWidth = 100;
 	final public static int IdWidth = 50;
@@ -36,12 +34,10 @@ public class EntityType {
 	final public static int MediumTextWidth = 250;
 	final public static int TextWidth = 400;
 	
-	//Alineación de columnas
 	final public static int Left = 1;
 	final public static int Center = 2;
 	final public static int Right = 3;
 	
-	//Tipos de datos
 	final public static String DateType = "Date";
 	final public static String NumberType = "Number";
 	final public static String TextType = "Text";
@@ -61,43 +57,43 @@ public class EntityType {
 				new int[] {IdWidth, TextWidth},
 				new int[] {Left, Left}), 
 		Calendario(indexCalendario,"Calendario", "Calendario", 
-				new String[] {"Año", "Semana", "Desde", "Hasta"}, 
+				new String[] {"Aï¿½o", "Semana", "Desde", "Hasta"}, 
 				new String[] {"id.ejercicios.ejercicio", "id.semana", "desdeFecha", "hastaFecha"},
 				new String[] {NumberType, NumberType, DateType, DateType},
 				new int[] {NumberWidth, NumberWidth, DateWidth, DateWidth},
 				new int[] {Left, Left, Right, Right}), 
-		Categorias(indexCategorias,"Categorias", "Ficha de categorías", 
+		Categorias(indexCategorias,"Categorias", "Ficha de categorï¿½as", 
 				new String[] {"Id", "Nombre categoria", "N\u00ba kilos caja", "Id subcategoria", "Privada", "Orden"}, 
 				new String[] {"id.idCategoria", "nombreCategoria", "numKilosCaja", "idSubcategoria", "privada", "orden"},
 				new String[] {NumberType, TextType, NumberType, NumberType, NumberType, NumberType},
 				new int[] {IdWidth, MediumTextWidth, NumberWidth, IdWidth, NumberWidth, NumberWidth},
 				new int[] {Left, Left, Right, Left, Left, Left}), 
 		Conceptos(indexConceptos,"Conceptos", "Ficha de conceptos", 
-				new String[] {"Id", "Descripción"}, 
+				new String[] {"Id", "Descripciï¿½n"}, 
 				new String[] {"id.idConcepto", "conceptoDesc"},
 				new String[] {NumberType, TextType},
 				new int[] {IdWidth, MediumTextWidth},
 				new int[] {Left, Left}), 
 		Cosecheros(indexCosecheros,"Cosecheros", "Ficha de cosecheros", 
-				new String[] {"Id", "Nombre", "Apellidos", "NIF", "Teléfono", "Población"}, 
+				new String[] {"Id", "Nombre", "Apellidos", "NIF", "Telï¿½fono", "Poblaciï¿½n"}, 
 				new String[] {"id.idCosechero", "nombre", "apellidos", "nif", "telefono1", "poblacion"},
 				new String[] {NumberType, TextType, TextType, TextType, TextType, TextType},
 				new int[] {IdWidth, MediumTextWidth, MediumTextWidth, ShortTextWidth, ShortTextWidth, MediumTextWidth},
 				new int[] {Left, Left, Left, Left, Left, Left}), 
 		Conductores(indexConductores,"Conductores", "Ficha de conductores", 
-				new String[] {"Id", "Nombre", "Apellidos", "NIF", "Teléfono", "Población"}, 
+				new String[] {"Id", "Nombre", "Apellidos", "NIF", "Telï¿½fono", "Poblaciï¿½n"}, 
 				new String[] {"id.idConductor", "nombre", "apellidos", "nif", "telefono", "poblacion"},
 				new String[] {NumberType, TextType, TextType, TextType, TextType, TextType},
 				new int[] {IdWidth, MediumTextWidth, MediumTextWidth, ShortTextWidth, ShortTextWidth, MediumTextWidth},
 				new int[] {Left, Left, Left, Left, Left, Left}), 
 		Empresas(indexEmpresas,"Empresas", "Ficha de empresas", 
-				new String[] {"Id", "Nombre", "CIF", "Teléfono", "Población", "Provincia"}, 
+				new String[] {"Id", "Nombre", "CIF", "Telï¿½fono", "Poblaciï¿½n", "Provincia"}, 
 				new String[] {"idEmpresa", "nombre", "nif", "telefono", "poblacion", "provincia"},
 				new String[] {NumberType, TextType, TextType, TextType, TextType, TextType},
 				new int[] {IdWidth, MediumTextWidth, ShortTextWidth, ShortTextWidth, MediumTextWidth, MediumTextWidth},
 				new int[] {Left, Left, Left, Left, Left, Left}),
 		Receptores(indexReceptores,"Receptores", "Ficha de receptores", 
-				new String[] {"Id", "Nombre", "NIF", "Teléfono", "Población"}, 
+				new String[] {"Id", "Nombre", "NIF", "Telï¿½fono", "Poblaciï¿½n"}, 
 				new String[] {"id.idReceptor", "nombre", "nif", "telefono", "poblacion"},
 				new String[] {NumberType, TextType, TextType, TextType, TextType},
 				new int[] {IdWidth, MediumTextWidth, ShortTextWidth, ShortTextWidth, MediumTextWidth},
@@ -108,14 +104,14 @@ public class EntityType {
 				new String[] {NumberType, TextType},
 				new int[] {IdWidth, TextWidth},
 				new int[] {Left, Left}),
-		Vehiculos(indexVehiculos, "Vehiculos", "Ficha de vehículos", 
-				new String[] {"Id", "Matrícula", "Marca"}, 
+		Vehiculos(indexVehiculos, "Vehiculos", "Ficha de vehï¿½culos", 
+				new String[] {"Id", "Matrï¿½cula", "Marca"}, 
 				new String[] {"id.idVehiculo", "matricula", "marca"},
 				new String[] {NumberType, TextType, TextType},
 				new int[] {IdWidth, ShortTextWidth, MediumTextWidth},
 				new int[] {Left, Left, Left}),
 		Entradas(indexEntradas, "Viewentradasquery", "Entradas", 
-				new String[] {"Vale", "Año", "Semana", "Fecha", "Id. Cosechero", "Nombre", "Apellidos", "Piñas", "Kilos"}, 
+				new String[] {"Vale", "Aï¿½o", "Semana", "Fecha", "Id. Cosechero", "Nombre", "Apellidos", "Piï¿½as", "Kilos"}, 
 				new String[] {"id.idEntrada", "id.ejercicio", "id.semana", "id.fecha", "id.idCosechero", "id.nombre", "id.apellidos", "id.numPinas", "id.numKilos"},
 				new String[] {NumberType, NumberType, NumberType, DateType, NumberType, TextType, TextType, NumberType, NumberType},
 				new int[] {NumberWidth, NumberWidth, NumberWidth, DateWidth, NumberWidth, MediumTextWidth, MediumTextWidth, NumberWidth, NumberWidth},
@@ -127,25 +123,25 @@ public class EntityType {
 				new int[] {IdWidth, NumberWidth, NumberWidth, DateWidth, MediumTextWidth, NumberWidth, NumberWidth, NumberWidth},
 				new int[] {Left, Right, Right, Right, Left, Right, Right, Right}),
 		Identidades(indexIdentidades, "Identidades", "Ficha de identidades", 
-				new String[] {"Id", "Nombre", "NIF/CIF", "Teléfono", "Población"}, 
+				new String[] {"Id", "Nombre", "NIF/CIF", "Telï¿½fono", "Poblaciï¿½n"}, 
 				new String[] {"id.identidad", "nombreIdentidad", "nif", "telefono", "poblacion"},
 				new String[] {NumberType, TextType,  TextType, TextType, TextType},
 				new int[] {IdWidth, MediumTextWidth,  ShortTextWidth, ShortTextWidth, MediumTextWidth},
 				new int[] {Left, Left, Left, Left, Left}),
 		Ejercicios(indexEjercicios,"Ejercicios", "Ejercicios", 
-				new String[] {"Año", "Desde", "Hasta"}, 
+				new String[] {"Aï¿½o", "Desde", "Hasta"}, 
 				new String[] {"ejercicio", "desdeFecha", "hastaFecha"},
 				new String[] {NumberType, DateType, DateType},
 				new int[] {NumberWidth, DateWidth, DateWidth},
 				new int[] {Left, Right, Right}),
 		Bimestres(indexBimestres,"Bimestres", "Bimestres", 
-				new String[] {"Año", "Bimestre", "Desde", "Hasta"}, 
+				new String[] {"Aï¿½o", "Bimestre", "Desde", "Hasta"}, 
 				new String[] {"id.ejercicios.ejercicio", "id.bimestre", "desdeFecha", "hastaFecha"},
 				new String[] {NumberType, NumberType, DateType, DateType},
 				new int[] {NumberWidth, NumberWidth, DateWidth, DateWidth},
 				new int[] {Left, Left, Right, Right}),
 		Empleados(indexEmpleados,"Empleados", "Ficha de empleados", 
-				new String[] {"Id", "Nombre", "Apellidos", "NIF", "Teléfono", "Población"}, 
+				new String[] {"Id", "Nombre", "Apellidos", "NIF", "Telï¿½fono", "Poblaciï¿½n"}, 
 				new String[] {"id.idEmpleado", "nombre", "apellidos", "nif", "telefono", "poblacion"},
 				new String[] {NumberType, TextType, TextType, TextType, TextType, TextType},
 				new int[] {IdWidth, MediumTextWidth, MediumTextWidth, ShortTextWidth, ShortTextWidth, MediumTextWidth},

@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class VentascabeceraId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -16,7 +15,6 @@ public class VentascabeceraId implements java.io.Serializable {
 	private Ejercicios ejercicios;
 	private Integer idVenta;
 
-	// Constructors
 
 	/** default constructor */
 	public VentascabeceraId() {
@@ -30,7 +28,6 @@ public class VentascabeceraId implements java.io.Serializable {
 		this.idVenta = idVenta;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

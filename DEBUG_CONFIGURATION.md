@@ -1,4 +1,4 @@
-# Configuraciï¿½n de debugging para IDEs
+# Configuración de debugging para IDEs
 # GestCoop Debug Configuration
 
 ## IntelliJ IDEA / Android Studio

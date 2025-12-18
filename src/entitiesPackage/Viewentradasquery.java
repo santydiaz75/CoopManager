@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class Viewentradasquery implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -14,7 +13,6 @@ public class Viewentradasquery implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private ViewentradasqueryId id;
 
-	// Constructors
 
 	/** default constructor */
 	public Viewentradasquery() {
@@ -25,7 +23,6 @@ public class Viewentradasquery implements java.io.Serializable {
 		this.id = id;
 	}
 
-	// Property accessors
 
 	public ViewentradasqueryId getId() {
 		return this.id;

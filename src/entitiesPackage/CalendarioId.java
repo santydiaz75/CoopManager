@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class CalendarioId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -16,7 +15,6 @@ public class CalendarioId implements java.io.Serializable {
 	private Ejercicios ejercicios;
 	private Integer semana;
 
-	// Constructors
 
 	/** default constructor */
 	public CalendarioId() {
@@ -29,7 +27,6 @@ public class CalendarioId implements java.io.Serializable {
 		this.semana = semana;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

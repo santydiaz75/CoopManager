@@ -12,7 +12,6 @@ public class Pagos implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private PagosId id;
 	private Date fechaPago;
@@ -27,7 +26,6 @@ public class Pagos implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Pagos() {
@@ -57,7 +55,6 @@ public class Pagos implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public PagosId getId() {
 		return this.id;

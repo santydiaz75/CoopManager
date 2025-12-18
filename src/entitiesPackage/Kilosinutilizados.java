@@ -12,7 +12,6 @@ public class Kilosinutilizados implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private KilosinutilizadosId id;
 	private Float numKilos;
@@ -20,7 +19,6 @@ public class Kilosinutilizados implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Kilosinutilizados() {
@@ -41,7 +39,6 @@ public class Kilosinutilizados implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public KilosinutilizadosId getId() {
 		return this.id;

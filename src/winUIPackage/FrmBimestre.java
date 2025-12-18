@@ -184,7 +184,6 @@ public class FrmBimestre extends javax.swing.JPanel {
 					"FrmBimestre.saveData()", he);
 			return false;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -203,7 +202,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 					txtBimestre.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vÃƒÂ¯ï¿½lido.");
+								"El tipo de datos indicado no es válido.");
 					txtBimestre.requestFocus();
 					return (false);
 				}
@@ -211,7 +210,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 
 			if (txtDescripcion.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar una descripciÃƒÂ¯ï¿½n.");
+						"Debe indicar una descripción.");
 				txtDescripcion.requestFocus();
 				return (false);
 			}
@@ -221,7 +220,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 					txtDesdeFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vÃƒÂ¯ï¿½lido.");
+								"El tipo de datos indicado no es válido.");
 					txtDesdeFecha.requestFocus();
 					return (false);
 				}
@@ -232,7 +231,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 					txtHastaFecha.commitEdit();
 				} catch (ParseException e) {
 					Message.ShowValidateMessage(pnlData,
-							"El tipo de datos indicado no es vÃƒÂ¯ï¿½lido.");
+							"El tipo de datos indicado no es válido.");
 					txtHastaFecha.requestFocus();
 					return (false);
 				}
@@ -246,8 +245,6 @@ public class FrmBimestre extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		pnlData = new javax.swing.JPanel();
@@ -271,7 +268,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 		lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblAno.setForeground(new java.awt.Color(255, 0, 0));
 		lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblAno.setText("Aï¿½o");
+		lblAno.setText("Año");
 
 		lblBimestre.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblBimestre.setForeground(new java.awt.Color(255, 0, 0));
@@ -279,7 +276,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 		lblBimestre.setText("Bimestre");
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -290,7 +287,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 		});
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cancel.png"))); // NOI18N
+				"/imagesPackage/cancel.png")));
 		btnCancel.setToolTipText("Cancelar");
 		btnCancel.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -370,7 +367,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 		lblDescripcion.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblDescripcion.setForeground(new java.awt.Color(255, 0, 0));
 		lblDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblDescripcion.setText("Descripciï¿½n");
+		lblDescripcion.setText("Descripción");
 
 		txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14));
 		txtDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -568,8 +565,7 @@ public class FrmBimestre extends javax.swing.JPanel {
 				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
 				pnlData, javax.swing.GroupLayout.DEFAULT_SIZE,
 				javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {
 
@@ -646,8 +642,6 @@ public class FrmBimestre extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnCancel;
 	private javax.swing.JButton btnOk;
 	private javax.swing.JLabel lblAno;
@@ -661,6 +655,8 @@ public class FrmBimestre extends javax.swing.JPanel {
 	private javax.swing.JTextField txtDescripcion;
 	private javax.swing.JFormattedTextField txtDesdeFecha;
 	private javax.swing.JFormattedTextField txtHastaFecha;
-	// End of variables declaration//GEN-END:variables
 
 }
+
+
+

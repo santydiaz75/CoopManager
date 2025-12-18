@@ -319,11 +319,11 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -336,11 +336,11 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -353,11 +353,11 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -597,7 +597,6 @@ public class FrmVehiculo extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(vehiculo);
 				session.getSession().flush();
 
-				// Verificar que hay datos v�lidos en la tabla antes de borrar
 				boolean hasValidGastos = false;
 				for (Integer k = 0; k < tblGastos.getRowCount(); k++) {
 					if (tblGastos.getValueAt(k, GastosTableModel.columnState)
@@ -607,7 +606,6 @@ public class FrmVehiculo extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar gastos si hay datos v�lidos para reemplazar
 				if (hasValidGastos) {
 					String deletelinesquery = "Delete From Vehiculosgastos "
 							+ "Where id.idVehiculo = "
@@ -819,8 +817,6 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		pnlData = new javax.swing.JPanel();
@@ -847,7 +843,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		pnlData.setName("pnlData");
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -858,7 +854,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		});
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cancel.png"))); // NOI18N
+				"/imagesPackage/cancel.png")));
 		btnCancel.setToolTipText("Cancelar");
 		btnCancel.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -903,7 +899,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 
 		lblMatricula.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblMatricula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblMatricula.setText("Matrï¿½cula");
+		lblMatricula.setText("Matrícula");
 
 		txtMatricula.setFont(new java.awt.Font("Segoe UI", 0, 14));
 		txtMatricula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -964,7 +960,7 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		});
 
 		cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeselectAll.setText("Quitar selecciï¿½n");
+		cmdDeselectAll.setText("Quitar selección");
 		cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
 		cmdDeselectAll.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1266,11 +1262,9 @@ public class FrmVehiculo extends javax.swing.JPanel {
 				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
 				pnlData, javax.swing.GroupLayout.DEFAULT_SIZE,
 				javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
 	}
 
 	void cmdDeleteGastosMousePressed(java.awt.event.MouseEvent evt) {
@@ -1418,8 +1412,6 @@ public class FrmVehiculo extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnCancel;
 	private javax.swing.JButton btnOk;
 	private static javax.swing.JComboBox cboTipoGastoDesc;
@@ -1438,6 +1430,5 @@ public class FrmVehiculo extends javax.swing.JPanel {
 	private javax.swing.JTextField txtMarca;
 	private javax.swing.JTextField txtMatricula;
 	private javax.swing.JFormattedTextField txtTotalGastos;
-	// End of variables declaration//GEN-END:variables
 
 }

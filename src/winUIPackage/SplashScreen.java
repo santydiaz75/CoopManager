@@ -56,7 +56,6 @@ public class SplashScreen  extends Frame {
 	SplashWindow splashWindow = new SplashWindow(this,fImage);
   }
   
-  // PRIVATE//
   private String fImageId;
   private MediaTracker fMediaTracker;
   private Image fImage;

@@ -12,7 +12,6 @@ public class Categorias implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private CategoriasId id;
 	private String nombreCategoria;
@@ -28,7 +27,6 @@ public class Categorias implements java.io.Serializable {
     private Short retorno;
     private Integer idGrupo;
 
-	// Constructors
 
 	/** default constructor */
 	public Categorias() {
@@ -63,7 +61,6 @@ public class Categorias implements java.io.Serializable {
         this.idGrupo = idGrupo;
 	}
 
-	// Property accessors
 
 	public CategoriasId getId() {
 		return this.id;

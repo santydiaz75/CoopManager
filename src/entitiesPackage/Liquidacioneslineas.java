@@ -12,7 +12,6 @@ public class Liquidacioneslineas implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private LiquidacioneslineasId id;
 	private Float pinasSemana1;
@@ -39,7 +38,6 @@ public class Liquidacioneslineas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Liquidacioneslineas() {
@@ -113,7 +111,6 @@ public class Liquidacioneslineas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public LiquidacioneslineasId getId() {
 		return this.id;

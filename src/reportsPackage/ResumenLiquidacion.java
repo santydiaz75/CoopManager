@@ -43,10 +43,10 @@ public class ResumenLiquidacion
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -103,8 +103,6 @@ public class ResumenLiquidacion
     public void runReporte(int empresa, int ejercicio, int mes, int semanaDesde, int semanaHasta, 
     		Date fechaDesde, Date fechaHasta)
     {
-        //this.id_contact="";
-        //this.id_contact = id;
         
         try
         {       
@@ -119,8 +117,6 @@ public class ResumenLiquidacion
 	            JasperReport masterReport = null;
 	            masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);              
 	            
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -135,9 +131,6 @@ public class ResumenLiquidacion
     			"\\reportsPackage\\");
 	            
 	            
-	            // === SOLUCION: Usar consulta SQL corregida ===
-                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
                 
                 String sqlQuery = "SELECT l.empresa, l.ejercicio, l.mes, m.NombreMes, l.NumeroFactura, l.fecha, " +
                                  "l.IdCosechero, (co.Apellidos + ', ' + co.Nombre) as NombreApellidos, " +
@@ -182,33 +175,25 @@ public class ResumenLiquidacion
                 System.out.println("DEBUG: Executing corrected SQL query for ResumenLiquidacion...");
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
                 
-                // Set parameters 
-                pstmt.setInt(1, ejercicio);  // co.Ejercicio = ?
-                pstmt.setInt(2, empresa);    // co.Empresa = ?
-                pstmt.setInt(3, mes);        // l.mes = ?
-                pstmt.setInt(4, ejercicio);  // l.ejercicio = ?
-                pstmt.setInt(5, empresa);    // l.empresa = ?
+                pstmt.setInt(1, ejercicio);
+                pstmt.setInt(2, empresa);
+                pstmt.setInt(3, mes);
+                pstmt.setInt(4, ejercicio);
+                pstmt.setInt(5, empresa);
                 
                 ResultSet rs = pstmt.executeQuery();
                 
-                // Crear data source from ResultSet
                 JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
-	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
 	            System.out.println("INFO: ResumenLiquidacion - usando consulta SQL corregida");
 
                 System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - ResumenLiquidacion (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

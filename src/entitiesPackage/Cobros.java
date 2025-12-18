@@ -14,7 +14,6 @@ public class Cobros  implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields    
 
      private CobrosId id;
      private Date fechaCobro;
@@ -26,7 +25,6 @@ public class Cobros  implements java.io.Serializable {
      private Integer version;
 
 
-    // Constructors
 
     /** default constructor */
     public Cobros() {
@@ -50,7 +48,6 @@ public class Cobros  implements java.io.Serializable {
     }
 
    
-    // Property accessors
 
     public CobrosId getId() {
         return this.id;

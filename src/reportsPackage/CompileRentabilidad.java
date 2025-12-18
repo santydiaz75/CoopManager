@@ -12,7 +12,6 @@ public class CompileRentabilidad {
             JasperCompileManager.compileReportToFile(sourceFile, destFile);
             System.out.println("Reporte compilado exitosamente!");
             
-            // Tambien compilar la copia en target
             String targetSourceFile = "target/classes/reportsPackage/Rentabilidad.jrxml";
             String targetDestFile = "target/classes/reportsPackage/Rentabilidad.jasper";
             

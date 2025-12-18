@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class LiquidacionesId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -16,7 +15,6 @@ public class LiquidacionesId implements java.io.Serializable {
 	private Ejercicios ejercicios;
 	private Integer numeroFactura;
 
-	// Constructors
 
 	/** default constructor */
 	public LiquidacionesId() {
@@ -30,7 +28,6 @@ public class LiquidacionesId implements java.io.Serializable {
 		this.numeroFactura = numeroFactura;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

@@ -42,11 +42,11 @@ public class InformeValeVentas
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -114,8 +114,6 @@ public class InformeValeVentas
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -129,25 +127,19 @@ public class InformeValeVentas
 	            if (TipoMercado == 2)
 	            	parameters.put("TipoMercado", 0);
 	
-	            // === ADVERTENCIA: CONSULTA SQL SIN CORREGIR ===
 
 	
-	            // Este reporte puede tener referencias hardcodeadas a la base de datos
 
 	
-	            // En archivo InformeValeVentas.jrxml
 
 	
-	            // TODO: Implementar solucion especifica si hay errores SQL
 
 	
 	            System.out.println("WARNING: InformeValeVentas - verificar referencias DB en .jrxml");
 
 	
-	            //Informe diseñado y compilado con iReport
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - InformeValeVentas (CHECK SQL)");
 	            jviewer.setVisible(true);

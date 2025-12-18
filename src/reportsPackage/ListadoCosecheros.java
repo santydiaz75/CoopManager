@@ -43,11 +43,11 @@ public class ListadoCosecheros
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -108,7 +108,6 @@ public class ListadoCosecheros
             JasperReport masterReport = null;
             String workDirectory = getDirectory().getPath();
             
-            // Try loading from file system first (more reliable for compatibility)
             String master = workDirectory + "\\reportsPackage\\ListadoCosecheros.jasper";
             System.out.println("DEBUG: Trying to load from file: " + master);
             
@@ -116,11 +115,9 @@ public class ListadoCosecheros
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);
                 System.out.println("DEBUG: Successfully loaded from file system");
             } else {
-                // Fallback to classpath
                 System.out.println("DEBUG: File not found, trying classpath...");
                 URL reportUrl = ListadoCosecheros.class.getResource("/reportsPackage/ListadoCosecheros.jasper");
                 if (reportUrl != null) {
-                    // Try converting URL to file path for better compatibility
                     if (reportUrl.getProtocol().equals("file")) {
                         String filePath = reportUrl.getPath();
                         masterReport = (JasperReport) JRLoader.loadObjectFromFile(filePath);
@@ -137,11 +134,6 @@ public class ListadoCosecheros
             	Message.ShowErrorMessage(parent, "ListadoCosecheros", "No encuentro el archivo del informe maestro.");
             else {
             
-                // === SOLUCION: Usar consulta SQL corregida ===
-                // El archivo .jasper original contiene una consulta con referencias hardcodeadas:
-                // FROM [db_aa764d_coopmanagerdb].[dbo].[cosecheros] 
-                // Esto causa errores. En su lugar, ejecutamos una consulta corregida
-                // y pasamos los datos como JRResultSetDataSource
                 
                 String sqlQuery = "SELECT c.Empresa, c.Ejercicio, c.IdCosechero, c.Apellidos, c.Nombre, " +
                                  "c.Nif, c.Telefono1, c.Email, e.Lopd " +
@@ -156,29 +148,22 @@ public class ListadoCosecheros
                 pstmt.setInt(2, empresa);
                 ResultSet rs = pstmt.executeQuery();
                 
-                // Crear data source from ResultSet
                 JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            //este es el parametro, se pueden agregar mas parametros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
 	            
-	            // Use workDirectory for logo path
 	            String logoPath = workDirectory + "\\reportsPackage\\Anagrama" + empresa + ".jpg";
 	            parameters.put("LOGO_DIR", logoPath);
 	            
                 System.out.println("DEBUG: Generando reporte con consulta corregida...");
-	            //Informe disenado y compilado con iReport - usando dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicacion al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - Listado Cosecheros (FIXED)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

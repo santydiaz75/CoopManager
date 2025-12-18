@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Bimestres implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -22,7 +21,6 @@ public class Bimestres implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Bimestres() {
@@ -45,7 +43,6 @@ public class Bimestres implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public BimestresId getId() {
 		return this.id;

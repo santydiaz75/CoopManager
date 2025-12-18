@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Facturaspagocabecera implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -36,7 +35,6 @@ public class Facturaspagocabecera implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Facturaspagocabecera() {
@@ -78,7 +76,6 @@ public class Facturaspagocabecera implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public FacturaspagocabeceraId getId() {
 		return this.id;

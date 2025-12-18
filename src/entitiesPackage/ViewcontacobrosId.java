@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class ViewcontacobrosId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -26,7 +25,6 @@ public class ViewcontacobrosId implements java.io.Serializable {
 	private String cuentaContableBanco;
 	private Double importeCobro;
 
-	// Constructors
 
 	/** default constructor */
 	public ViewcontacobrosId() {
@@ -57,7 +55,6 @@ public class ViewcontacobrosId implements java.io.Serializable {
 		this.importeCobro = importeCobro;
 	}
 
-	// Property accessors
 
 	public Integer getEmpresa() {
 		return this.empresa;

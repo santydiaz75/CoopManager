@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class ViewentradascategoriasqueryId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -19,7 +18,6 @@ public class ViewentradascategoriasqueryId implements java.io.Serializable {
 	private String nombreCategoria;
 	private Double numKilos;
 
-	// Constructors
 
 	/** default constructor */
 	public ViewentradascategoriasqueryId() {
@@ -45,7 +43,6 @@ public class ViewentradascategoriasqueryId implements java.io.Serializable {
 		this.numKilos = numKilos;
 	}
 
-	// Property accessors
 
 	public Integer getEmpresa() {
 		return this.empresa;

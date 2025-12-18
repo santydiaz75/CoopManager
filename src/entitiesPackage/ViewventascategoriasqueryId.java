@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 public class ViewventascategoriasqueryId  implements java.io.Serializable {
 
 
-    // Fields    
 
      /**
 	 * 
@@ -26,7 +25,6 @@ public class ViewventascategoriasqueryId  implements java.io.Serializable {
      private Double impore;
 
 
-    // Constructors
 
     /** default constructor */
     public ViewventascategoriasqueryId() {
@@ -52,7 +50,6 @@ public class ViewventascategoriasqueryId  implements java.io.Serializable {
     }
 
    
-    // Property accessors
 
     public Integer getEmpresa() {
         return this.empresa;

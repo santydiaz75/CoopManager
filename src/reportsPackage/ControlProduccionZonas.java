@@ -42,10 +42,10 @@ public class ControlProduccionZonas
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -101,8 +101,6 @@ public class ControlProduccionZonas
     
     public void runReporte(int empresa, int ejercicio, int idZonaDesde, int idZonaHasta)
     {
-        //this.id_contact="";
-        //this.id_contact = id;
         
         try
         {   
@@ -117,8 +115,6 @@ public class ControlProduccionZonas
 	            JasperReport masterReport = null;
 	            masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);              
 	            
-	            //este es el par√°metro, se pueden agregar m√°s par√°metros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -129,9 +125,6 @@ public class ControlProduccionZonas
 	            parameters.put("LOGO2_DIR", workDirectory +  
     			"\\reportsPackage\\AnagramaAgriten.jpg");
 	
-	            // === SOLUCION: Usar consulta SQL corregida para SQL Server ===
-	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-	            // ejecutamos una consulta corregida sin referencias a base de datos especÌfica
 	            
 	            String sqlQuery = "SELECT ec.IdZona, z.NombreZona, DATEPART(MONTH, ec.Fecha) as mes, m.NombreMes, " +
 	                "COALESCE(dbo.EntradasKilosMesZona(?, ?, DATEPART(MONTH, ec.Fecha), ec.IdZona), 0) as Kilos, " +
@@ -149,36 +142,31 @@ public class ControlProduccionZonas
 	            
 	            System.out.println("DEBUG: Executing corrected SQL Server query for ControlProduccionZonas...");
 	            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-	            // Setear par·metros m˙ltiples veces seg˙n se necesite en la consulta
-	            pstmt.setInt(1, empresa);     // EntradasKilosMesZona - primera llamada empresa
-	            pstmt.setInt(2, ejercicio);   // EntradasKilosMesZona - primera llamada ejercicio
-	            pstmt.setInt(3, empresa);     // EntradasNumPinasMesZona - primera llamada empresa
-	            pstmt.setInt(4, ejercicio);   // EntradasNumPinasMesZona - primera llamada ejercicio
-	            pstmt.setInt(5, empresa);     // EntradasNumPinasMesZona - CASE WHEN empresa
-	            pstmt.setInt(6, ejercicio);   // EntradasNumPinasMesZona - CASE WHEN ejercicio
-	            pstmt.setInt(7, empresa);     // EntradasKilosMesZona - THEN empresa
-	            pstmt.setInt(8, ejercicio);   // EntradasKilosMesZona - THEN ejercicio
-	            pstmt.setInt(9, empresa);     // EntradasNumPinasMesZona - denominador empresa
-	            pstmt.setInt(10, ejercicio);  // EntradasNumPinasMesZona - denominador ejercicio
-	            pstmt.setInt(11, ejercicio);  // WHERE ec.ejercicio
-	            pstmt.setInt(12, empresa);    // WHERE ec.empresa
-	            pstmt.setInt(13, idZonaDesde); // WHERE ec.IdZona >=
-	            pstmt.setInt(14, idZonaHasta); // WHERE ec.IdZona <=
+	            pstmt.setInt(1, empresa);
+	            pstmt.setInt(2, ejercicio);
+	            pstmt.setInt(3, empresa);
+	            pstmt.setInt(4, ejercicio);
+	            pstmt.setInt(5, empresa);
+	            pstmt.setInt(6, ejercicio);
+	            pstmt.setInt(7, empresa);
+	            pstmt.setInt(8, ejercicio);
+	            pstmt.setInt(9, empresa);
+	            pstmt.setInt(10, ejercicio);
+	            pstmt.setInt(11, ejercicio);
+	            pstmt.setInt(12, empresa);
+	            pstmt.setInt(13, idZonaDesde);
+	            pstmt.setInt(14, idZonaHasta);
 	            ResultSet rs = pstmt.executeQuery();
 	            
-	            // Crear data source from ResultSet
 	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
 	            System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseÒado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicaciÛn al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - ControlProduccionZonas (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

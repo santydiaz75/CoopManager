@@ -9,7 +9,6 @@ package entitiesPackage;
 public class Viewventascategoriasquery  implements java.io.Serializable {
 
 
-    // Fields    
 
      /**
 	 * 
@@ -18,7 +17,6 @@ public class Viewventascategoriasquery  implements java.io.Serializable {
 	private ViewventascategoriasqueryId id;
 
 
-    // Constructors
 
     /** default constructor */
     public Viewventascategoriasquery() {
@@ -31,7 +29,6 @@ public class Viewventascategoriasquery  implements java.io.Serializable {
     }
 
    
-    // Property accessors
 
     public ViewventascategoriasqueryId getId() {
         return this.id;

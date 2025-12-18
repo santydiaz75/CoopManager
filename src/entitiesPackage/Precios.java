@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Precios implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -20,7 +19,6 @@ public class Precios implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Precios() {
@@ -42,7 +40,6 @@ public class Precios implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public PreciosId getId() {
 		return this.id;

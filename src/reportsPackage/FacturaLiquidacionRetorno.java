@@ -43,10 +43,10 @@ public class FacturaLiquidacionRetorno
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -102,8 +102,6 @@ public class FacturaLiquidacionRetorno
     
     public void runReporte(int empresa, int ejercicio)
     {
-        //this.id_contact="";
-        //this.id_contact = id;
         
         try
         {       
@@ -118,8 +116,6 @@ public class FacturaLiquidacionRetorno
 	            JasperReport masterReport = null;
 	            masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);              
 	            
-	            //este es el parÃ¡metro, se pueden agregar mÃ¡s parÃ¡metros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -130,9 +126,6 @@ public class FacturaLiquidacionRetorno
 	            
 	            
 	
-	            // === SOLUCION: Usar consulta SQL corregida para SQL Server ===
-	            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-	            // ejecutamos una consulta corregida sin referencias a base de datos específica
 	            
 	            String sqlQuery = "SELECT l.empresa, l.ejercicio, l.NumeroFactura, l.fecha, l.IdCosechero, " +
 	                "(COALESCE(co.Apellidos + ', ', '') + COALESCE(co.Nombre, '')) as NombreApellidos, " +
@@ -158,19 +151,15 @@ public class FacturaLiquidacionRetorno
 	            pstmt.setInt(2, empresa);
 	            ResultSet rs = pstmt.executeQuery();
 	            
-	            // Crear data source from ResultSet
 	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
 	            System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters, dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - FacturaLiquidacionRetorno (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

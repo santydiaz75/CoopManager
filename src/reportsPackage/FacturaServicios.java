@@ -42,10 +42,10 @@ public class FacturaServicios
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -101,8 +101,6 @@ public class FacturaServicios
     
     public void runReporte(int empresa, int ejercicio, int idFacturaDesde, int idFacturaHasta, String cuentaBancaria)
     {
-        //this.id_contact="";
-        //this.id_contact = id;
         
         try
         {   
@@ -117,8 +115,6 @@ public class FacturaServicios
 	            JasperReport masterReport = null;
 	            masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);              
 	            
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -128,9 +124,6 @@ public class FacturaServicios
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	
-            // === SOLUCION: Usar consulta SQL corregida para SQL Server ===
-            // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-            // ejecutamos una consulta corregida que hace JOIN entre facturascabecera y facturaslineas
             
             String sqlQuery = "SELECT " +
                 "fc.Empresa AS facturascabecera_Empresa, " +
@@ -188,24 +181,18 @@ public class FacturaServicios
             pstmt.setInt(2, ejercicio);
             pstmt.setInt(3, idFacturaDesde);
             pstmt.setInt(4, idFacturaHasta);
-            ResultSet rs = pstmt.executeQuery();	            // Crear data source from ResultSet
+            ResultSet rs = pstmt.executeQuery();
 	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
-	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
 	            System.out.println("INFO: FacturaServicios - usando consulta SQL corregida");
 
 	            System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - FacturaServicios (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

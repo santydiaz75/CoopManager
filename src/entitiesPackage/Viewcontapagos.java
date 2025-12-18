@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class Viewcontapagos implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -14,7 +13,6 @@ public class Viewcontapagos implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private ViewcontapagosId id;
 
-	// Constructors
 
 	/** default constructor */
 	public Viewcontapagos() {
@@ -25,7 +23,6 @@ public class Viewcontapagos implements java.io.Serializable {
 		this.id = id;
 	}
 
-	// Property accessors
 
 	public ViewcontapagosId getId() {
 		return this.id;

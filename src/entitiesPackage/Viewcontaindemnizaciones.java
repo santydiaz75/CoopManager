@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class Viewcontaindemnizaciones implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -14,7 +13,6 @@ public class Viewcontaindemnizaciones implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private ViewcontaindemnizacionesId id;
 
-	// Constructors
 
 	/** default constructor */
 	public Viewcontaindemnizaciones() {
@@ -25,7 +23,6 @@ public class Viewcontaindemnizaciones implements java.io.Serializable {
 		this.id = id;
 	}
 
-	// Property accessors
 
 	public ViewcontaindemnizacionesId getId() {
 		return this.id;

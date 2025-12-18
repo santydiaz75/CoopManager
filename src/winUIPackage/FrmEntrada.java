@@ -122,10 +122,10 @@ public class FrmEntrada extends javax.swing.JPanel {
 			columns.add(new ColumnData("IdCategoria", "Id. categorï¿½a",
 					EntityType.NumberWidth, SwingConstants.RIGHT, NormalType,
 					null, null));
-			columns.add(new ColumnData("CategoriaDesc", "Descripciï¿½n",
+			columns.add(new ColumnData("CategoriaDesc", "Descripción",
 					EntityType.ComboWidth, SwingConstants.LEFT, ComboType,
 					cboCategoriaDesc, null));
-			columns.add(new ColumnData("NumKilos", "Nï¿½mero de Kilos",
+			columns.add(new ColumnData("NumKilos", "Número de Kilos",
 					EntityType.NumberWidth, SwingConstants.RIGHT, Float2Type,
 					txtNumKilos, "#0"));
 
@@ -266,11 +266,11 @@ public class FrmEntrada extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -283,11 +283,11 @@ public class FrmEntrada extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -300,11 +300,11 @@ public class FrmEntrada extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -567,7 +567,6 @@ public class FrmEntrada extends javax.swing.JPanel {
 		try {
 			if (validateData()) {
 				
-				// Primero generar el ID si es un nuevo registro, antes de la transacción
 				if (OnNew) {
 					txtIdEntrada.setValue(entity.newId(this,
 							"Entradascabecera", "id.idEntrada"));
@@ -579,15 +578,11 @@ public class FrmEntrada extends javax.swing.JPanel {
 					entrada.setId(entradaid);
 				}
 				
-				// Manejo minimalista de transacciones para Hibernate 3.x
-				// Usar lo que esté disponible sin manipulaciones complejas
 				transaction = session.getSession().getTransaction();
 				if (transaction == null || !transaction.isActive()) {
-					// Solo crear nueva transacción si realmente no hay ninguna
 					transaction = session.getSession().beginTransaction();
 					weStartedTransaction = true;
 				} else {
-					// Usar transacción existente
 					weStartedTransaction = false;
 				}
 				if (!txtSemana.getText().equals(""))
@@ -648,7 +643,6 @@ public class FrmEntrada extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(entrada);
 				session.getSession().flush();
 
-				// Verificar que hay datos válidos en la tabla antes de borrar
 				boolean hasValidLines = false;
 				for (Integer k = 0; k < ((DefaultTableModel) tblDetalle
 						.getModel()).getRowCount(); k++) {
@@ -659,7 +653,6 @@ public class FrmEntrada extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar líneas si hay datos válidos para reemplazar
 				if (hasValidLines) {
 					String deletelinesquery = "Delete From Entradaslineas "
 							+ "Where id.idEntrada = "
@@ -699,7 +692,6 @@ public class FrmEntrada extends javax.swing.JPanel {
 						session.getSession().flush();
 					}
 				}
-				// Hacer commit solo si nosotros iniciamos la transacción
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.commit();
 				}
@@ -713,28 +705,23 @@ public class FrmEntrada extends javax.swing.JPanel {
 			} else
 				return false;
 		} catch (RuntimeException he) {
-			// En caso de error, hacer rollback solo si nosotros iniciamos la transacción
 			try {
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.rollback();
 				}
 			} catch (Exception rollbackError) {
-				// Log rollback error but don't mask original error
 				System.err.println("Error during rollback: " + rollbackError.getMessage());
 			}
 			Message.ShowRuntimeError(parentFrame, "FrmEntrada.saveData()", he);
 			return false;
 		} catch (ParseException e) {
-			// En caso de error de parseo, hacer rollback solo si nosotros iniciamos la transacción
 			try {
 				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.rollback();
 				}
 			} catch (Exception rollbackError) {
-				// Log rollback error but don't mask original error
 				System.err.println("Error during rollback: " + rollbackError.getMessage());
 			}
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -806,7 +793,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 			}
 			if (txtNumPinas.getText().equals("")) {
 				Message.ShowValidateMessage(pnlData,
-						"Debe indicar un Nï¿½mero de racimos.");
+						"Debe indicar un Número de racimos.");
 				txtNumPinas.requestFocus();
 				return (false);
 			} else {
@@ -869,7 +856,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					int respuestavalue = JOptionPane
 							.showOptionDialog(
 									null,
-									"Ya hay una entrada para el cosechero y semana seleccionados, ¿Desea crear otra?",
+									"Ya hay una entrada para el cosechero y semana seleccionados, ï¿½Desea crear otra?",
 									"", JOptionPane.DEFAULT_OPTION,
 									JOptionPane.WARNING_MESSAGE, null, botones,
 									botones[0]);
@@ -913,7 +900,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 					if (tblDetalle.getValueAt(actualrow,
 							DetalleTableModel.columnNumKilos).equals("")) {
 						Message.ShowValidateMessage(tblDetalle,
-								"Debe indicar un Nï¿½mero de kilos.");
+								"Debe indicar un Número de kilos.");
 						tblDetalle.changeSelection(actualrow,
 								DetalleTableModel.columnNumKilos, false, false);
 						tblDetalle.editCellAt(actualrow,
@@ -1054,8 +1041,6 @@ public class FrmEntrada extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		pnlData = new javax.swing.JPanel();
@@ -1104,7 +1089,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 		pnlData.setPreferredSize(new java.awt.Dimension(1024, 768));
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1115,7 +1100,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 		});
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cancel.png"))); // NOI18N
+				"/imagesPackage/cancel.png")));
 		btnCancel.setToolTipText("Cancelar");
 		btnCancel.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1157,7 +1142,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 		});
 
 		cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeselectAll.setText("Quitar selecciï¿½n");
+		cmdDeselectAll.setText("Quitar selección");
 		cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
 		cmdDeselectAll.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1168,8 +1153,8 @@ public class FrmEntrada extends javax.swing.JPanel {
 		});
 
 		cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14));
-		cmdDeleteLinea.setText("Eliminar lï¿½nea");
-		cmdDeleteLinea.setToolTipText("Eliminar las lï¿½neas seleccionados");
+		cmdDeleteLinea.setText("Eliminar línea");
+		cmdDeleteLinea.setToolTipText("Eliminar las líneas seleccionados");
 		cmdDeleteLinea.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		cmdDeleteLinea.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1224,7 +1209,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 		lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblAno.setForeground(new java.awt.Color(255, 0, 0));
 		lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblAno.setText("Aï¿½o");
+		lblAno.setText("Año");
 
 		txtAno.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1324,7 +1309,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 		lblNumPinas.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblNumPinas.setForeground(new java.awt.Color(255, 0, 0));
 		lblNumPinas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		lblNumPinas.setText("Nï¿½mero de racimos");
+		lblNumPinas.setText("Número de racimos");
 
 		txtNumPinas.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -2024,8 +2009,7 @@ public class FrmEntrada extends javax.swing.JPanel {
 				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
 				pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 533,
 				Short.MAX_VALUE));
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void txtImporteBonificacionFocusLost(java.awt.event.FocusEvent evt) {
 		try {
@@ -2073,7 +2057,6 @@ public class FrmEntrada extends javax.swing.JPanel {
 	}
 
 	private void txtKilosBonificacionKeyTyped(java.awt.event.KeyEvent evt) {
-		// TODO add your handling code here:
 	}
 
 	private void txtIdCosecheroKeyReleased(java.awt.event.KeyEvent evt) {
@@ -2244,8 +2227,6 @@ public class FrmEntrada extends javax.swing.JPanel {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnCancel;
 	private javax.swing.JButton btnOk;
 	private static javax.swing.JComboBox cboCategoriaDesc;
@@ -2285,7 +2266,6 @@ public class FrmEntrada extends javax.swing.JPanel {
 	private javax.swing.JFormattedTextField txtSemana;
 	private javax.swing.JFormattedTextField txtSemanaEntrada;
 	private javax.swing.JFormattedTextField txtTotalNumKilos;
-	// End of variables declaration//GEN-END:variables
 
 }
 

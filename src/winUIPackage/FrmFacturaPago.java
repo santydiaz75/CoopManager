@@ -326,11 +326,11 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -343,11 +343,11 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -360,11 +360,11 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -728,7 +728,6 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(facturapago);
 				session.getSession().flush();
 
-				// Verificar que hay datos válidos en la tabla antes de borrar
 				boolean hasValidLines = false;
 				for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
 					if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
@@ -738,7 +737,6 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					}
 				}
 
-				// Solo borrar y reinsertar líneas si hay datos válidos para reemplazar
 				if (hasValidLines) {
 					String deletelinesquery = "Delete From Facturaspagolineas "
 							+ "Where id.idFactura = "
@@ -813,7 +811,6 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 					he);
 			return false;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -1168,7 +1165,6 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 		}
 	}
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlData = new javax.swing.JPanel();
@@ -1225,10 +1221,10 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         cboTiposCostes = new javax.swing.JComboBox();
 
         pnlData.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnlData.setName("pnlData"); // NOI18N
+        pnlData.setName("pnlData");
         pnlData.setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png"))); // NOI18N
+        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ok.png")));
         btnOk.setToolTipText("Aceptar");
         btnOk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1237,7 +1233,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
             }
         });
 
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png"))); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/cancel.png")));
         btnCancel.setToolTipText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1248,7 +1244,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblDetalle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblDetalle.setFont(new java.awt.Font("Segoe UI", 0, 14));
         tblDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1273,7 +1269,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         txtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtPrecio.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        lblIdFactura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdFactura.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdFactura.setForeground(new java.awt.Color(255, 0, 0));
         lblIdFactura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdFactura.setText("Id factura");
@@ -1281,19 +1277,19 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         txtIdFactura.setEditable(false);
         txtIdFactura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdFactura.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIdFactura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdFactura.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
-        lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAno.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblAno.setForeground(new java.awt.Color(255, 0, 0));
         lblAno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAno.setText("Aï¿½o");
+        lblAno.setText("Año");
 
         txtAno.setEditable(false);
         txtAno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtAno.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtAno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAno.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
-        lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblFecha.setForeground(new java.awt.Color(255, 0, 0));
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFecha.setText("Fecha");
@@ -1305,9 +1301,9 @@ public class FrmFacturaPago extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         txtFecha.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
-        lblTotalFactura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalFactura.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTotalFactura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalFactura.setText("Total factura");
 
@@ -1315,113 +1311,113 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         txtTotalFactura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTotalFactura.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtTotalFactura.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTotalFactura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTotalFactura.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblNIF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNIF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNIF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNIF.setText("NIF");
         lblNIF.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtNIF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNIF.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNIF.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNIF.setAutoscrolls(false);
         txtNIF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNIF.setName("nif"); // NOI18N
+        txtNIF.setName("nif");
         txtNIF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNIFKeyTyped(evt);
             }
         });
 
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombre.setText("Nombre");
 
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombre.setAutoscrolls(false);
         txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtNombre.setName("nombre"); // NOI18N
+        txtNombre.setName("nombre");
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
 
-        lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDireccion.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDireccion.setText("Dirección");
         lblDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDireccion.setAutoscrolls(false);
         txtDireccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtDireccion.setName("poblacion"); // NOI18N
+        txtDireccion.setName("poblacion");
         txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionKeyTyped(evt);
             }
         });
 
-        lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPoblacion.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblPoblacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPoblacion.setText("Población");
         lblPoblacion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPoblacion.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtPoblacion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtPoblacion.setAutoscrolls(false);
         txtPoblacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtPoblacion.setName("poblacion"); // NOI18N
+        txtPoblacion.setName("poblacion");
         txtPoblacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPoblacionKeyTyped(evt);
             }
         });
 
-        lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCodigoPostal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCodigoPostal.setText("Código postal");
         lblCodigoPostal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCodigoPostal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCodigoPostal.setAutoscrolls(false);
         txtCodigoPostal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCodigoPostal.setName("codigoPostal"); // NOI18N
+        txtCodigoPostal.setName("codigoPostal");
         txtCodigoPostal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoPostalKeyTyped(evt);
             }
         });
 
-        lblProvincia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblProvincia.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblProvincia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblProvincia.setText("Provincia");
         lblProvincia.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtProvincia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtProvincia.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtProvincia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtProvincia.setAutoscrolls(false);
         txtProvincia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtProvincia.setName("poblacion"); // NOI18N
+        txtProvincia.setName("poblacion");
         txtProvincia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtProvinciaKeyTyped(evt);
             }
         });
 
-        lblCuenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCuenta.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblCuenta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCuenta.setText("Cuenta");
         lblCuenta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtCuenta.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCuenta.setAutoscrolls(false);
         txtCuenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtCuenta.setName("nif"); // NOI18N
+        txtCuenta.setName("nif");
         txtCuenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCuentaKeyTyped(evt);
@@ -1432,27 +1428,27 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         txtBaseImponible.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtBaseImponible.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtBaseImponible.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtBaseImponible.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtBaseImponible.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblBaseImponible.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBaseImponible.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblBaseImponible.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBaseImponible.setText("Base imponible");
 
-        lblTipoImpuesto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoImpuesto.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTipoImpuesto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipoImpuesto.setText("% I.G.I.C.");
 
         txtTipoImpuesto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTipoImpuesto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtTipoImpuesto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTipoImpuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTipoImpuesto.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTipoImpuesto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTipoImpuestoKeyReleased(evt);
             }
         });
 
-        lblImporteImpuesto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblImporteImpuesto.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblImporteImpuesto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblImporteImpuesto.setText("Impuestos");
 
@@ -1460,23 +1456,23 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         txtImporteImpuesto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtImporteImpuesto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtImporteImpuesto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtImporteImpuesto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtImporteImpuesto.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        lblTipoIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTipoIRPF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipoIRPF.setText("% I.R.P.F.");
 
         txtTipoIRPF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTipoIRPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtTipoIRPF.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTipoIRPF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTipoIRPF.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTipoIRPF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTipoIRPFKeyReleased(evt);
             }
         });
 
-        lblImporteIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblImporteIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblImporteIRPF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblImporteIRPF.setText("Retenciï¿½n");
 
@@ -1484,9 +1480,9 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         txtImporteIRPF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtImporteIRPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         txtImporteIRPF.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtImporteIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtImporteIRPF.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-        cmdSelectAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSelectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
         cmdSelectAll.setText("Seleccionar todo");
         cmdSelectAll.setToolTipText("Seleccionar todas las filas");
         cmdSelectAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1496,8 +1492,8 @@ public class FrmFacturaPago extends javax.swing.JPanel {
             }
         });
 
-        cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeselectAll.setText("Quitar selecciï¿½n");
+        cmdDeselectAll.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        cmdDeselectAll.setText("Quitar selección");
         cmdDeselectAll.setToolTipText("Quitar la seleccionar todas las filas");
         cmdDeselectAll.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeselectAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1506,9 +1502,9 @@ public class FrmFacturaPago extends javax.swing.JPanel {
             }
         });
 
-        cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmdDeleteLinea.setText("Eliminar lï¿½nea");
-        cmdDeleteLinea.setToolTipText("Eliminar las lï¿½neas seleccionados");
+        cmdDeleteLinea.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        cmdDeleteLinea.setText("Eliminar línea");
+        cmdDeleteLinea.setToolTipText("Eliminar las líneas seleccionados");
         cmdDeleteLinea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cmdDeleteLinea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -1516,7 +1512,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
             }
         });
 
-        lblIdentidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdentidad.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblIdentidad.setForeground(new java.awt.Color(255, 0, 0));
         lblIdentidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIdentidad.setText("Proveedor");
@@ -1524,7 +1520,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         txtIdentidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdentidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIdentidad.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        txtIdentidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIdentidad.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtIdentidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIdentidadKeyReleased(evt);
@@ -1532,23 +1528,23 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         });
 
         cboIdentidades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboIdentidades.setName("Id subcategoria"); // NOI18N
+        cboIdentidades.setName("Id subcategoria");
         cboIdentidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboIdentidadesActionPerformed(evt);
             }
         });
 
-        lblReferencia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblReferencia.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblReferencia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblReferencia.setText("Referencia");
         lblReferencia.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        txtReferencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtReferencia.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtReferencia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtReferencia.setAutoscrolls(false);
         txtReferencia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtReferencia.setName("nif"); // NOI18N
+        txtReferencia.setName("nif");
         txtReferencia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtReferenciaKeyTyped(evt);
@@ -1567,7 +1563,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
             }
         });
 
-        lblTipoCoste.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoCoste.setFont(new java.awt.Font("Segoe UI", 1, 14));
         lblTipoCoste.setForeground(new java.awt.Color(255, 0, 0));
         lblTipoCoste.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipoCoste.setText("Tipo gasto");
@@ -1575,7 +1571,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         txtTipoCoste.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTipoCoste.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTipoCoste.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        txtTipoCoste.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTipoCoste.setFont(new java.awt.Font("Segoe UI", 0, 14));
         txtTipoCoste.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTipoCosteKeyReleased(evt);
@@ -1583,7 +1579,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
         });
 
         cboTiposCostes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cboTiposCostes.setName("Id subcategoria"); // NOI18N
+        cboTiposCostes.setName("Id subcategoria");
         cboTiposCostes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboTiposCostesActionPerformed(evt);
@@ -1852,7 +1848,7 @@ public class FrmFacturaPago extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
 	private void cboConceptosActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
@@ -2152,7 +2148,6 @@ public class FrmFacturaPago extends javax.swing.JPanel {
 		}
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOk;
     private static javax.swing.JComboBox cboConceptos;
@@ -2205,7 +2200,6 @@ public class FrmFacturaPago extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField txtTipoImpuesto;
     private javax.swing.JFormattedTextField txtTotalFactura;
     private static javax.swing.JFormattedTextField txtUnidades;
-    // End of variables declaration//GEN-END:variables
 
 }
 

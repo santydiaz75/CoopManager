@@ -605,20 +605,17 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 
 				for (int i = 0; i < filterfields.length; i++) {
 
-					// Excluir campos de fecha de la busqueda para evitar errores de conversion
 					if (EntityType.DateType.equals(fieldtypes[i])) {
-						continue; // Saltar campos de fecha
+						continue;
 					}
 					
 					if (EntityType.TextType.equals(fieldtypes[i])) {
-						// Para campos de texto, usar LIKE con escape de comillas simples
 						String escapedSearch = mSearch.replace("'", "''");
 						resultwhere = resultwhere + "(" + filterfields[i]
 								+ " like '%" + escapedSearch + "%') or ";
 						hasSearchConditions = true;
 					}
 					else if (EntityType.NumberType.equals(fieldtypes[i])) {
-						// Para campos numericos, usar LIKE para que encuentre numeros que contengan la cadena
 						if (isNumeric(mSearch)) {
 							resultwhere = resultwhere + "(" + filterfields[i]
 									+ " like '%" + mSearch + "%') or ";
@@ -626,13 +623,11 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 						}
 					}
 					else {
-						// Para otros tipos no definidos, intentar busqueda numerica o texto seguro
 						if (isNumeric(mSearch)) {
 							resultwhere = resultwhere + "(" + filterfields[i]
 									+ " like '%" + mSearch + "%') or ";
 							hasSearchConditions = true;
 						} else {
-							// Para campos no-numericos, usar busqueda de texto con escape
 							String escapedSearch = mSearch.replace("'", "''");
 							resultwhere = resultwhere + "(" + filterfields[i]
 									+ " like '%" + escapedSearch + "%') or ";
@@ -642,12 +637,10 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 				}
 				
 				if (hasSearchConditions) {
-					// Quitar ultimo " or "
 					resultwhere = (String) resultwhere.subSequence(0, resultwhere
 							.length() - 4);
 					resultwhere = resultwhere + ")";
 				} else {
-					// Si no hay condiciones de busqueda validas, quitar " and ("
 					resultwhere = resultwhere.substring(0, resultwhere.length() - 6);
 				}
 			}
@@ -661,12 +654,10 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 
 	private static boolean isNumeric(String cadena) {
 		try {
-			// Comprobar si es un entero
 			Integer.parseInt(cadena);
 			return true;
 		} catch (NumberFormatException nfe) {
 			try {
-				// Comprobar si es un decimal
 				Double.parseDouble(cadena);
 				return true;
 			} catch (NumberFormatException nfe2) {
@@ -1838,8 +1829,6 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		lblTitle = new javax.swing.JLabel();
@@ -1866,7 +1855,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 				javax.swing.border.BevelBorder.RAISED));
 
 		btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/New.png"))); // NOI18N
+				"/imagesPackage/New.png")));
 		btnAdd.setToolTipText("A�adir");
 		btnAdd.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1877,7 +1866,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		});
 
 		btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/Edit.png"))); // NOI18N
+				"/imagesPackage/Edit.png")));
 		btnEdit.setToolTipText("Editar");
 		btnEdit.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1888,7 +1877,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		});
 
 		btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/Delete.png"))); // NOI18N
+				"/imagesPackage/Delete.png")));
 		btnDelete.setToolTipText("Borrar");
 		btnDelete.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1899,7 +1888,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		});
 
 		btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/Print.png"))); // NOI18N
+				"/imagesPackage/Print.png")));
 		btnPrint.setToolTipText("Imprimir");
 		btnPrint.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2251,8 +2240,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		tabEntity.getAccessibleContext().setAccessibleName("tabEntity");
 
 		pack();
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void btnPrintMousePressed(java.awt.event.MouseEvent evt) {
 		try {
@@ -2470,8 +2458,6 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnAdd;
 	private javax.swing.JButton btnDelete;
 	private javax.swing.JButton btnEdit;
@@ -2487,6 +2473,5 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 	private javax.swing.JTabbedPane tabEntity;
 	private static javax.swing.JTable tblResult;
 	private static javax.swing.JTextField txtSearch;
-	// End of variables declaration//GEN-END:variables
 
 }

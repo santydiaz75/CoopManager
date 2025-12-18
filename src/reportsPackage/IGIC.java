@@ -43,11 +43,11 @@ public class IGIC
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -116,8 +116,6 @@ public class IGIC
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -126,9 +124,6 @@ public class IGIC
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 	            
-	            // === SOLUCION: Usar tabla liquidaciones en lugar de igic ===
-	            // La tabla 'igic' no existe - los datos estan en 'liquidaciones'
-	            // Creamos una consulta que obtiene los datos de IGIC desde liquidaciones
 	            
 	            String sqlQuery = """
 	                SELECT 
@@ -166,25 +161,17 @@ public class IGIC
 	            pstmt.setDate(4, new java.sql.Date(FechaHasta.getTime()));
 	            ResultSet rs = pstmt.executeQuery();
 	            
-	            // Crear data source from ResultSet
 	            JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha corregido para usar la tabla 'liquidaciones' en lugar de 'igic'
-	            // La tabla 'igic' no existia en la base de datos
-	            // Los datos de IGIC se obtienen desde liquidaciones con JOIN a cosecheros
 	            System.out.println("INFO: IGIC - usando consulta corregida desde tabla liquidaciones");
 
 	            System.out.println("DEBUG: Filling report with data from liquidaciones table...");
-	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - IGIC (Datos desde Liquidaciones)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

@@ -8,14 +8,14 @@ import javax.swing.SwingUtilities;
  * perform GUI-related work in a dedicated thread.  For
  * instructions on using this class, see:
  * 
- * http://java.sun.com/docs/books/tutorial/uiswing/misc/threads.html
+ * http:
  *
  * Note that the API changed slightly in the 3rd version:
  * You must now invoke start() on the SwingWorker after
  * creating it.
  */
 public abstract class SwingWorker {
-    private Object value;  // see getValue(), setValue()
+    private Object value;
 
 
     /** 
@@ -87,7 +87,7 @@ public abstract class SwingWorker {
                 t.join();
             }
             catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // propagate
+                Thread.currentThread().interrupt();
                 return null;
             }
         }

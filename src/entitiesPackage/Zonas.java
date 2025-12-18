@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Zonas implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -20,7 +19,6 @@ public class Zonas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Zonas() {
@@ -41,7 +39,6 @@ public class Zonas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public ZonasId getId() {
 		return this.id;

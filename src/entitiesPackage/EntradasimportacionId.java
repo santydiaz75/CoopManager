@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class EntradasimportacionId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -24,7 +23,6 @@ public class EntradasimportacionId implements java.io.Serializable {
 	private Float numKilos;
 	private String vale;
 
-	// Constructors
 
 	/** default constructor */
 	public EntradasimportacionId() {
@@ -51,7 +49,6 @@ public class EntradasimportacionId implements java.io.Serializable {
 		this.vale = vale;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

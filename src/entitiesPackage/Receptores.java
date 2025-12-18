@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Receptores implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -29,7 +28,6 @@ public class Receptores implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Receptores() {
@@ -61,7 +59,6 @@ public class Receptores implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public ReceptoresId getId() {
 		return this.id;

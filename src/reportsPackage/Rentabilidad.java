@@ -45,7 +45,7 @@ public class Rentabilidad
             String password = HibernateSessionFactory.getConfiguration().getProperty("hibernate.connection.password");
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(url, login, password);
         } 
         catch (ClassNotFoundException ex) 
@@ -108,11 +108,8 @@ public class Rentabilidad
             else {
             
             	JasperReport masterReport = null;
-                // Compilar directamente desde JRXML
                 masterReport = JasperCompileManager.compileReport(masterJrxml);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -124,10 +121,8 @@ public class Rentabilidad
 	            parameters.put("GastosFinancieros", gastosfinancieros);
 	            parameters.put("CuotaAgriten", cuotaAgriten);
 	
-	            //Informe diseñado y compilado con iReport
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,conn);
 	
-	            //Se lanza el Viewer de Jasper, no termina aplicaciÃ³n al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop");
 	            jviewer.setVisible(true);

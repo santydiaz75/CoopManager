@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class ViewcontabonificacionesId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -21,7 +20,6 @@ public class ViewcontabonificacionesId implements java.io.Serializable {
 	private Float importeBonificacion;
 	private String nombre;
 
-	// Constructors
 
 	/** default constructor */
 	public ViewcontabonificacionesId() {
@@ -51,7 +49,6 @@ public class ViewcontabonificacionesId implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	// Property accessors
 
 	public Integer getEmpresa() {
 		return this.empresa;

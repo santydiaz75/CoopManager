@@ -12,7 +12,6 @@ public class Ventascabecera implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private VentascabeceraId id;
 	private Date fecha;
@@ -28,7 +27,6 @@ public class Ventascabecera implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Ventascabecera() {
@@ -60,7 +58,6 @@ public class Ventascabecera implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public VentascabeceraId getId() {
 		return this.id;

@@ -43,10 +43,10 @@ public class CartaCosecheros
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -102,8 +102,6 @@ public class CartaCosecheros
     
     public void runReporte(int empresa, int ejercicio, String Saludo, String Cuerpo, String Despedida)
     {
-        //this.id_contact="";
-        //this.id_contact = id;
         
         try
         {   
@@ -118,8 +116,6 @@ public class CartaCosecheros
 	            JasperReport masterReport = null;
 	            masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);              
 	            
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -129,9 +125,6 @@ public class CartaCosecheros
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 
-                // === SOLUCION: Usar consulta SQL corregida ===
-                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
                 
                 String sqlQuery = "SELECT * FROM cosecheros co WHERE co.Empresa = ? AND co.Ejercicio = ?";
                 
@@ -141,24 +134,17 @@ public class CartaCosecheros
                 pstmt.setInt(2, ejercicio);
                 ResultSet rs = pstmt.executeQuery();
                 
-                // Crear data source from ResultSet
                 JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
-	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
 	            System.out.println("INFO: CartaCosecheros - usando consulta SQL corregida");
 
                 System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - CartaCosecheros (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

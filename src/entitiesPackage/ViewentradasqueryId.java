@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 
 public class ViewentradasqueryId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -25,7 +24,6 @@ public class ViewentradasqueryId implements java.io.Serializable {
 	private Float numPinas;
 	private Double numKilos;
 
-	// Constructors
 
 	/** default constructor */
 	public ViewentradasqueryId() {
@@ -56,7 +54,6 @@ public class ViewentradasqueryId implements java.io.Serializable {
 		this.numKilos = numKilos;
 	}
 
-	// Property accessors
 
 	public Integer getIdEntrada() {
 		return this.idEntrada;

@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class VehiculosgastosId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -17,7 +16,6 @@ public class VehiculosgastosId implements java.io.Serializable {
 	private Integer idGasto;
 	private Integer idVehiculo;
 
-	// Constructors
 
 	/** default constructor */
 	public VehiculosgastosId() {
@@ -32,7 +30,6 @@ public class VehiculosgastosId implements java.io.Serializable {
 		this.idVehiculo = idVehiculo;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

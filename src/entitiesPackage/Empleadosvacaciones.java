@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Empleadosvacaciones implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -21,7 +20,6 @@ public class Empleadosvacaciones implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Empleadosvacaciones() {
@@ -44,7 +42,6 @@ public class Empleadosvacaciones implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public EmpleadosvacacionesId getId() {
 		return this.id;

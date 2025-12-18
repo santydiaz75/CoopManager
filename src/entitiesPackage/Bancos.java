@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Bancos implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -22,7 +21,6 @@ public class Bancos implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Bancos() {
@@ -45,7 +43,6 @@ public class Bancos implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public BancosId getId() {
 		return this.id;

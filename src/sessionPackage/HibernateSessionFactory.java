@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 /**
  * Configures and provides access to Hibernate sessions, tied to the
  * current thread of execution.  Follows the Thread Local Session
- * pattern, see {@link http://hibernate.org/42.html }.
+ * pattern, see {@link http:
  */
 public class HibernateSessionFactory {
 
@@ -26,14 +26,12 @@ public class HibernateSessionFactory {
     private static String configFile = CONFIG_FILE_LOCATION;
 
 	public static String getConnectionURL() {
-		// Usar directamente la configuración de SQL Server sin consultar el registro
 		return "jdbc:sqlserver://SQL6032.site4now.net;databaseName=db_aa764d_coopmanagerdb;trustServerCertificate=true";
 	}
 	
 	static {
     	try {
 			configuration.configure(configFile);
-			// configuration.setProperty("hibernate.connection.url", getConnectionURL());
 			
 			sessionFactory = configuration.buildSessionFactory();
 		} catch (Exception e) {

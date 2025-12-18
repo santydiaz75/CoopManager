@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Entradaslineas implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -20,7 +19,6 @@ public class Entradaslineas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Entradaslineas() {
@@ -42,7 +40,6 @@ public class Entradaslineas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public EntradaslineasId getId() {
 		return this.id;

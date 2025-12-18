@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Ayudas implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -33,7 +32,6 @@ public class Ayudas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Ayudas() {
@@ -80,7 +78,6 @@ public class Ayudas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public AyudasId getId() {
 		return this.id;

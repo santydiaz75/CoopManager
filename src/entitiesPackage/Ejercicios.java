@@ -10,7 +10,6 @@ import java.util.Set;
 
 public class Ejercicios implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -50,7 +49,6 @@ public class Ejercicios implements java.io.Serializable {
 	private Set<Object> barcoses = new HashSet<Object>(0);
 	private Set<Object> puertoses = new HashSet<Object>(0);
 
-	// Constructors
 
 	/** default constructor */
 	public Ejercicios() {
@@ -108,7 +106,6 @@ public class Ejercicios implements java.io.Serializable {
 		this.puertoses = puertoses;
 	}
 
-	// Property accessors
 
 	public Integer getEjercicio() {
 		return this.ejercicio;

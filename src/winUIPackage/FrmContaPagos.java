@@ -104,7 +104,7 @@ public class FrmContaPagos extends javax.swing.JInternalFrame {
 			headerData.add("Concepto");
 			headerData.add("Debe=1;Haber=2");
 			headerData.add("Importe");
-			headerData.add("Nï¿½mero diario");
+			headerData.add("Número diario");
 
 			Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
 
@@ -142,7 +142,7 @@ public class FrmContaPagos extends javax.swing.JInternalFrame {
 					concepto = "";
 					if (((Viewcontapagos) linea).getId().getConcepto().equals(
 							""))
-						concepto = "FRA Nï¿½"
+						concepto = "FRA Nº"
 								+ ((Viewcontapagos) linea).getId()
 										.getIdFactura()
 								+ " "
@@ -314,7 +314,7 @@ public class FrmContaPagos extends javax.swing.JInternalFrame {
 						EntityType.ShortTextWidth);
 				tblResult.getColumn("Importe").setPreferredWidth(
 						EntityType.NumberWidth);
-				tblResult.getColumn("Nï¿½mero diario").setPreferredWidth(
+				tblResult.getColumn("Número diario").setPreferredWidth(
 						EntityType.ShortTextWidth);
 
 				txtTotalDebe.setValue(totalDebe);
@@ -375,8 +375,6 @@ public class FrmContaPagos extends javax.swing.JInternalFrame {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		pnlData = new javax.swing.JPanel();
@@ -418,7 +416,7 @@ public class FrmContaPagos extends javax.swing.JInternalFrame {
 		pnlData.setPreferredSize(new java.awt.Dimension(1024, 768));
 
 		btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cerrar.png"))); // NOI18N
+				"/imagesPackage/cerrar.png")));
 		btnClose.setToolTipText("Cancelar");
 		btnClose.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1101,8 +1099,7 @@ public class FrmContaPagos extends javax.swing.JInternalFrame {
 				Short.MAX_VALUE));
 
 		pack();
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void txtCuentaIRPFKeyTyped(java.awt.event.KeyEvent evt) {
 		try {
@@ -1204,8 +1201,6 @@ public class FrmContaPagos extends javax.swing.JInternalFrame {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnClose;
 	private javax.swing.JButton cmdCopy;
 	private javax.swing.JButton cmdSearch;
@@ -1236,6 +1231,5 @@ public class FrmContaPagos extends javax.swing.JInternalFrame {
 	private static javax.swing.JFormattedTextField txtPrecio;
 	private javax.swing.JFormattedTextField txtTotalDebe;
 	private javax.swing.JFormattedTextField txtTotalHaber;
-	// End of variables declaration//GEN-END:variables
 
 }

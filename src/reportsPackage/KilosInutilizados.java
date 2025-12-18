@@ -42,11 +42,11 @@ public class KilosInutilizados
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -115,8 +115,6 @@ public class KilosInutilizados
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("Ejercicio", ejercicio);
@@ -125,9 +123,6 @@ public class KilosInutilizados
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 
-                // === SOLUCION: Usar consulta SQL corregida ===
-                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
                 
                 String sqlQuery = "SELECT co.Empresa, co.Ejercicio, co.NIF, " +
                                  "dbo.CosecheroGetNombreByNif(?, ?, co.NIF) as NombreApellidos, " +
@@ -139,38 +134,31 @@ public class KilosInutilizados
                 
                 System.out.println("DEBUG: Executing corrected SQL query...");
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-                pstmt.setInt(1, empresa);     // CosecheroGetNombreByNif empresa
-                pstmt.setInt(2, ejercicio);   // CosecheroGetNombreByNif ejercicio
-                pstmt.setInt(3, empresa);     // EntradasKilosNifCosechero empresa
-                pstmt.setInt(4, ejercicio);   // EntradasKilosNifCosechero ejercicio
-                pstmt.setInt(5, SemanaDesde); // EntradasKilosNifCosechero semana desde
-                pstmt.setInt(6, SemanaHasta); // EntradasKilosNifCosechero semana hasta
-                pstmt.setInt(7, empresa);     // EntradasKilosInutilizadosNifCosechero empresa
-                pstmt.setInt(8, ejercicio);   // EntradasKilosInutilizadosNifCosechero ejercicio
-                pstmt.setInt(9, SemanaDesde); // EntradasKilosInutilizadosNifCosechero semana desde
-                pstmt.setInt(10, SemanaHasta); // EntradasKilosInutilizadosNifCosechero semana hasta
-                pstmt.setInt(11, empresa);    // WHERE empresa
-                pstmt.setInt(12, ejercicio);  // WHERE ejercicio
+                pstmt.setInt(1, empresa);
+                pstmt.setInt(2, ejercicio);
+                pstmt.setInt(3, empresa);
+                pstmt.setInt(4, ejercicio);
+                pstmt.setInt(5, SemanaDesde);
+                pstmt.setInt(6, SemanaHasta);
+                pstmt.setInt(7, empresa);
+                pstmt.setInt(8, ejercicio);
+                pstmt.setInt(9, SemanaDesde);
+                pstmt.setInt(10, SemanaHasta);
+                pstmt.setInt(11, empresa);
+                pstmt.setInt(12, ejercicio);
                 ResultSet rs = pstmt.executeQuery();
                 
-                // Crear data source from ResultSet
                 JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
-	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
 	            System.out.println("INFO: KilosInutilizados - usando consulta SQL corregida");
 
                 System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - KilosInutilizados (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

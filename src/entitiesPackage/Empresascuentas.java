@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Empresascuentas implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -21,7 +20,6 @@ public class Empresascuentas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Empresascuentas() {
@@ -43,7 +41,6 @@ public class Empresascuentas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public EmpresascuentasId getId() {
 		return this.id;

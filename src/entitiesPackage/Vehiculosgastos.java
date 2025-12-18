@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Vehiculosgastos implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -23,7 +22,6 @@ public class Vehiculosgastos implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Vehiculosgastos() {
@@ -49,7 +47,6 @@ public class Vehiculosgastos implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public VehiculosgastosId getId() {
 		return this.id;

@@ -12,7 +12,6 @@ public class Facturaslineas implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private FacturaslineasId id;
 	private Float unidades;
@@ -25,7 +24,6 @@ public class Facturaslineas implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Facturaslineas() {
@@ -52,7 +50,6 @@ public class Facturaslineas implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public FacturaslineasId getId() {
 		return this.id;

@@ -6,7 +6,6 @@ package entitiesPackage;
 
 public class ReceptoresId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -16,7 +15,6 @@ public class ReceptoresId implements java.io.Serializable {
 	private Ejercicios ejercicios;
 	private Integer idReceptor;
 
-	// Constructors
 
 	/** default constructor */
 	public ReceptoresId() {
@@ -30,7 +28,6 @@ public class ReceptoresId implements java.io.Serializable {
 		this.idReceptor = idReceptor;
 	}
 
-	// Property accessors
 
 	public Empresas getEmpresas() {
 		return this.empresas;

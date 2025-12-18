@@ -109,9 +109,7 @@ public final class Util {
    *
    */
   public static void keyTyped(JTextField textObject, KeyEvent evt, int length) {
-		//Compruebo que no hayamos llegado ya al máximo de caracteres y que no tengamos nada seleccionado 
 		if (textObject.getText().length() >= length && textObject.getSelectedText() == null) {
-			//			Máximo de caracteres impido la acción 
 			evt.consume();
 		}
   }

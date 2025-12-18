@@ -239,9 +239,9 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+	        	final String login = "db_aa764d_coopmanagerdb_admin";
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
 	            String paswworddecrypt = "salmadh2010";
@@ -286,9 +286,9 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+	        	final String login = "db_aa764d_coopmanagerdb_admin";
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
 	            String paswworddecrypt = "salmadh2010";
@@ -332,9 +332,9 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+	        	final String login = "db_aa764d_coopmanagerdb_admin";
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
 	            String paswworddecrypt = "salmadh2010";
@@ -373,9 +373,9 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+	        	final String login = "db_aa764d_coopmanagerdb_admin";
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
 	            String paswworddecrypt = "salmadh2010";
@@ -416,9 +416,9 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+	        	final String login = "db_aa764d_coopmanagerdb_admin";
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
 	            String paswworddecrypt = "salmadh2010";
@@ -467,9 +467,9 @@ public class Entity {
 	   {
 		   try 
 	       {
-	        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+	        	final String login = "db_aa764d_coopmanagerdb_admin";
 	            String url = HibernateSessionFactory.getConnectionURL();
-	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	            BasicTextEncryptor bte = new BasicTextEncryptor();
 	            bte.setPassword("santi");
 	            String paswworddecrypt = "salmadh2010";

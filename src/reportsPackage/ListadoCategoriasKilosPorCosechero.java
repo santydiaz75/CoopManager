@@ -43,11 +43,11 @@ public class ListadoCategoriasKilosPorCosechero
     {        
         try 
         {
-        	final String login = "db_aa764d_coopmanagerdb_admin"; //usuario de acceso a SQL Server
+        	final String login = "db_aa764d_coopmanagerdb_admin";
             String url = HibernateSessionFactory.getConnectionURL();
             
         	this.parent = parent;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //se carga el driver
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             BasicTextEncryptor bte = new BasicTextEncryptor();
             bte.setPassword("santi");
             String paswworddecrypt = "salmadh2010";
@@ -116,8 +116,6 @@ public class ListadoCategoriasKilosPorCosechero
             	JasperReport masterReport = null;
                 masterReport = (JasperReport) JRLoader.loadObjectFromFile(master);       
             
-	            //este es el parámetro, se pueden agregar más parámetros
-	            //basta con poner mas parametro.put
 	            Map<String, Object> parameters = new HashMap<String, Object>();
 	            parameters.put("Empresa", empresa);
 	            parameters.put("FechaDesde", fechadesde);
@@ -125,9 +123,6 @@ public class ListadoCategoriasKilosPorCosechero
 	            parameters.put("LOGO_DIR", workDirectory +  
 	            		"\\reportsPackage\\Anagrama" + empresa + ".jpg");
 
-                // === SOLUCION: Usar consulta SQL corregida ===
-                // En lugar de usar la consulta del .jasper (que tiene referencias hardcodeadas),
-                // ejecutamos una consulta corregida y pasamos los datos como JRResultSetDataSource
                 
                 String sqlQuery = "SELECT v.empresa, v.nif, v.apellidos, v.nombre, v.numkilosreferencia, " +
                                  "e.Lopd, c.NombreCategoria, sum(el.numkilos) as KilosCategorias " +
@@ -143,29 +138,22 @@ public class ListadoCategoriasKilosPorCosechero
                 
                 System.out.println("DEBUG: Executing corrected SQL query...");
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-                pstmt.setDate(1, new java.sql.Date(fechadesde.getTime())); // fecha desde
-                pstmt.setDate(2, new java.sql.Date(fechahasta.getTime())); // fecha hasta
-                pstmt.setInt(3, empresa);                                  // empresa
+                pstmt.setDate(1, new java.sql.Date(fechadesde.getTime()));
+                pstmt.setDate(2, new java.sql.Date(fechahasta.getTime()));
+                pstmt.setInt(3, empresa);
                 ResultSet rs = pstmt.executeQuery();
                 
-                // Crear data source from ResultSet
                 JRResultSetDataSource dataSource = new JRResultSetDataSource(rs);
 
-	            // === ADVERTENCIA: CONSULTA SQL CORREGIDA ===
-	            // Se ha eliminado las referencias hardcodeadas a [db_aa764d_coopmanagerdb].[dbo]
-	            // y se utiliza PreparedStatement con JRResultSetDataSource para evitar errores SQL
 	            System.out.println("INFO: ListadoCategoriasKilosPorCosechero - usando consulta SQL corregida");
 
                 System.out.println("DEBUG: Filling report with corrected data source...");
-	            //Informe diseñado y compilado con iReport - usando el dataSource corregido
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parameters,dataSource);
 
-	            //Se lanza el Viewer de Jasper, no termina aplicación al salir
 	            JasperViewer jviewer = new JasperViewer(jasperPrint,false);
 	            jviewer.setTitle("GestCoop - ListadoCategoriasKilosPorCosechero (Version Corregida)");
 	            jviewer.setVisible(true);
 	            
-	            // Cerrar recursos
 	            rs.close();
 	            pstmt.close();
             }

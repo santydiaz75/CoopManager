@@ -347,11 +347,11 @@ public class FrmPago extends javax.swing.JDialog {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -366,11 +366,11 @@ public class FrmPago extends javax.swing.JDialog {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -383,11 +383,11 @@ public class FrmPago extends javax.swing.JDialog {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -400,11 +400,11 @@ public class FrmPago extends javax.swing.JDialog {
 					editor.setClickCountToStart(1);
 					field.addFocusListener(new FocusAdapter() {
 						public void focusGained(FocusEvent e) {
-							field.selectAll();//Con esto al solicitar el editor, el texto queda seleccionado
+							field.selectAll();
 						}
 
 						public void focusLost(FocusEvent e) {
-							field.select(0, 0);//De-selecciono el texto al perder el foco.
+							field.select(0, 0);
 						}
 					});
 					break;
@@ -619,7 +619,6 @@ public class FrmPago extends javax.swing.JDialog {
 				Transaction transaction = session.getSession()
 						.beginTransaction();
 
-				// Verificar que hay datos válidos en la tabla antes de borrar
 				boolean hasValidLines = false;
 				for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
 					if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
@@ -629,7 +628,6 @@ public class FrmPago extends javax.swing.JDialog {
 					}
 				}
 
-				// Solo borrar y reinsertar líneas si hay datos válidos para reemplazar
 				if (hasValidLines) {
 					String deletelinesquery = "Delete From Pagos "
 							+ "Where id.idProveedor = " + idProveedor
@@ -805,8 +803,6 @@ public class FrmPago extends javax.swing.JDialog {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		pnlData = new javax.swing.JPanel();
@@ -836,7 +832,7 @@ public class FrmPago extends javax.swing.JDialog {
 		pnlData.setPreferredSize(new java.awt.Dimension(1024, 768));
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -847,7 +843,7 @@ public class FrmPago extends javax.swing.JDialog {
 		});
 
 		btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cancel.png"))); // NOI18N
+				"/imagesPackage/cancel.png")));
 		btnCancel.setToolTipText("Cancelar");
 		btnCancel.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -933,7 +929,7 @@ public class FrmPago extends javax.swing.JDialog {
 		cboCuentaBancaria.setName("Id subcategoria");
 
 		btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/cerrar.png"))); // NOI18N
+				"/imagesPackage/cerrar.png")));
 		btnClose.setToolTipText("Cancelar");
 		btnClose.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1233,8 +1229,7 @@ public class FrmPago extends javax.swing.JDialog {
 				javax.swing.GroupLayout.PREFERRED_SIZE));
 
 		pack();
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void btnCloseMousePressed(java.awt.event.MouseEvent evt) {
 		try {
@@ -1344,8 +1339,6 @@ public class FrmPago extends javax.swing.JDialog {
 		}
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnCancel;
 	private javax.swing.JButton btnClose;
 	private javax.swing.JButton btnOk;
@@ -1362,6 +1355,5 @@ public class FrmPago extends javax.swing.JDialog {
 	private static javax.swing.JFormattedTextField txtImporte;
 	private static javax.swing.JFormattedTextField txtImporte1;
 	private javax.swing.JFormattedTextField txtTotalpago;
-	// End of variables declaration//GEN-END:variables
 
 }

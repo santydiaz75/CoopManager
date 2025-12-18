@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class Liquidaciones implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -28,7 +27,6 @@ public class Liquidaciones implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Liquidaciones() {
@@ -64,7 +62,6 @@ public class Liquidaciones implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public LiquidacionesId getId() {
 		return this.id;

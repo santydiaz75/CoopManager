@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class ViewcontapagosId implements java.io.Serializable {
 
-	// Fields
 
 	/**
 	 * 
@@ -36,7 +35,6 @@ public class ViewcontapagosId implements java.io.Serializable {
 	private Double baseImponible;
 	private Double importeFactura;
 
-	// Constructors
 
 	/** default constructor */
 	public ViewcontapagosId() {
@@ -81,7 +79,6 @@ public class ViewcontapagosId implements java.io.Serializable {
 		this.importeFactura = importeFactura;
 	}
 
-	// Property accessors
 
 	public Integer getEmpresa() {
 		return this.empresa;

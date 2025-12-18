@@ -12,7 +12,6 @@ public class Empleadoshorasextras implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// Fields
 
 	private EmpleadoshorasextrasId id;
 	private Float horasExtras;
@@ -25,7 +24,6 @@ public class Empleadoshorasextras implements java.io.Serializable {
 	private Date lmd;
 	private Integer version;
 
-	// Constructors
 
 	/** default constructor */
 	public Empleadoshorasextras() {
@@ -58,7 +56,6 @@ public class Empleadoshorasextras implements java.io.Serializable {
 		this.version = version;
 	}
 
-	// Property accessors
 
 	public EmpleadoshorasextrasId getId() {
 		return this.id;

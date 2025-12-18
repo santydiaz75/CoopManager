@@ -68,8 +68,6 @@ public class FrmImportarVales extends javax.swing.JDialog {
 		}
 	}
 
-	//GEN-BEGIN:initComponents
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		btnOk = new javax.swing.JButton();
@@ -79,11 +77,11 @@ public class FrmImportarVales extends javax.swing.JDialog {
 		txtFile = new javax.swing.JTextField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Importación de vales");
+		setTitle("Importaciï¿½n de vales");
 		setResizable(false);
 
 		btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/imagesPackage/ok.png"))); // NOI18N
+				"/imagesPackage/ok.png")));
 		btnOk.setToolTipText("Aceptar");
 		btnOk.setBorder(javax.swing.BorderFactory
 				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -99,7 +97,7 @@ public class FrmImportarVales extends javax.swing.JDialog {
 		lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 14));
 		lblApellidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 		lblApellidos
-				.setText("A continuación se importarán los vales del fichero especificado");
+				.setText("A continuaciï¿½n se importarï¿½n los vales del fichero especificado");
 		lblApellidos
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -221,8 +219,7 @@ public class FrmImportarVales extends javax.swing.JDialog {
 										.addComponent(btnOk).addContainerGap()));
 
 		pack();
-	}// </editor-fold>
-	//GEN-END:initComponents
+	}
 
 	private void cmdFileMousePressed(java.awt.event.MouseEvent evt) {
 		try {
@@ -245,7 +242,6 @@ public class FrmImportarVales extends javax.swing.JDialog {
 	}
 
 	private Object DoImport() {
-		//Le pasamos la URL del archivo CSV a leer.
 		try {
 			String sCadena;
 			String sAnio;
@@ -407,7 +403,7 @@ public class FrmImportarVales extends javax.swing.JDialog {
 			session.getSession().close();
 			bf.close();
 			Message.ShowInformationMessage(this,
-					"Importación realizada con éxito");
+					"Importaciï¿½n realizada con ï¿½xito");
 			return "Completado";
 
 		} catch (RuntimeException he) {
@@ -461,13 +457,10 @@ public class FrmImportarVales extends javax.swing.JDialog {
 		SwingUtilities.invokeLater(doSetProgressBarValue);
 	}
 
-	//GEN-BEGIN:variables
-	// Variables declaration - do not modify
 	private javax.swing.JButton btnOk;
 	private javax.swing.JButton cmdFile;
 	private javax.swing.JLabel lblApellidos;
 	private javax.swing.JProgressBar progressbar;
 	private javax.swing.JTextField txtFile;
-	// End of variables declaration//GEN-END:variables
 
 }
