@@ -587,7 +587,7 @@ public class FrmGeneraLiquidacion extends javax.swing.JDialog {
 				int respuestavalue = JOptionPane
 						.showOptionDialog(
 								null,
-								"La liquidación para el mes indicado ya ha sido generada, ï¿½estï¿½seguro de volver a generarla?",
+								"La liquidación para el mes indicado ya ha sido generada, ¿está seguro? de volver a generarla?",
 								"", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.WARNING_MESSAGE, null, botones,
 								botones[0]);

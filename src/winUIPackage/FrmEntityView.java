@@ -1548,7 +1548,7 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 		try {
 			Object[] botones = { "Si", "No" };
 			int respuestavalue = JOptionPane.showOptionDialog(null,
-					"Se va a eliminar el registro seleccionado, ï¿½estï¿½seguro?",
+					"Se va a eliminar el registro seleccionado, ¿está seguro??",
 					"", JOptionPane.DEFAULT_OPTION,
 					JOptionPane.WARNING_MESSAGE, null, botones, botones[0]);
 
