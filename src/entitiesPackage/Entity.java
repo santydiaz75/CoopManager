@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 import org.jasypt.util.text.BasicTextEncryptor;
 
 import java.sql.CallableStatement;
@@ -1728,13 +1729,23 @@ public class Entity {
 	
 	public  Integer CosecheroGetZona(Object parentFrame, Integer idCosechero) {
 		try {
-			getSession().getSession().beginTransaction();
+			Transaction transaction = getSession().getSession().getTransaction();
+			boolean weStartedTransaction = false;
+			
+			if (transaction == null || !transaction.isActive()) {
+				transaction = getSession().getSession().beginTransaction();
+				weStartedTransaction = true;
+			}
+			
 			Query q = getSession().getSession().createQuery("Select idZona From Cosecheros WHERE id.empresas.idEmpresa="
 			+ session.getEmpresa().getIdEmpresa()
 			+ " and id.ejercicios.ejercicio="
 			+ session.getEjercicio().getEjercicio() + " and idCosechero=" + idCosechero);
 			
-			getSession().getSession().getTransaction().commit();
+			if (weStartedTransaction) {
+				getSession().getSession().getTransaction().commit();
+			}
+			
 			if (q.list().size() > 0) 
 				return (Integer) q.list().get(0);
 			else
@@ -1808,9 +1819,20 @@ public class Entity {
 	
 	public  Ejercicios EjercicioFindById(Object parentFrame, Integer id) {
 		try {
-			getSession().getSession().beginTransaction();
+			Transaction transaction = getSession().getSession().getTransaction();
+			boolean weStartedTransaction = false;
+			
+			if (transaction == null || !transaction.isActive()) {
+				transaction = getSession().getSession().beginTransaction();
+				weStartedTransaction = true;
+			}
+			
 			Query q = getSession().getSession().createQuery("From Ejercicios where ejercicio=" + id);
-			getSession().getSession().getTransaction().commit();
+			
+			if (weStartedTransaction) {
+				getSession().getSession().getTransaction().commit();
+			}
+			
 			if (q.list().size() > 0) 
 				return (Ejercicios) q.list().get(0);
 			else
@@ -2687,13 +2709,23 @@ public class Entity {
 	
 	public  Integer ReceptorGetZona(Object parentFrame, Integer idReceptor) {
 		try {
-			getSession().getSession().beginTransaction();
+			Transaction transaction = getSession().getSession().getTransaction();
+			boolean weStartedTransaction = false;
+			
+			if (transaction == null || !transaction.isActive()) {
+				transaction = getSession().getSession().beginTransaction();
+				weStartedTransaction = true;
+			}
+			
 			Query q = getSession().getSession().createQuery("Select idZona From Receptores WHERE id.empresas.idEmpresa="
 			+ session.getEmpresa().getIdEmpresa()
 			+ " and id.ejercicios.ejercicio="
 			+ session.getEjercicio().getEjercicio() + " and idReceptor=" + idReceptor);
 			
-			getSession().getSession().getTransaction().commit();
+			if (weStartedTransaction) {
+				getSession().getSession().getTransaction().commit();
+			}
+			
 			if (q.list().size() > 0) 
 				return (Integer) q.list().get(0);
 			else

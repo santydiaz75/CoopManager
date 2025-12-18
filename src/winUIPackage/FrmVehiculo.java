@@ -597,17 +597,30 @@ public class FrmVehiculo extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(vehiculo);
 				session.getSession().flush();
 
-				String deletelinesquery = "Delete From Vehiculosgastos "
-						+ "Where id.idVehiculo = "
-						+ ((Number) txtIdVehiculo.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Verificar que hay datos válidos en la tabla antes de borrar
+				boolean hasValidGastos = false;
+				for (Integer k = 0; k < tblGastos.getRowCount(); k++) {
+					if (tblGastos.getValueAt(k, GastosTableModel.columnState)
+							.equals(GastosTableModel.EditLine)) {
+						hasValidGastos = true;
+						break;
+					}
+				}
 
-				Query q = getSession().getSession().createQuery(
-						deletelinesquery);
-				q.executeUpdate();
+				// Solo borrar y reinsertar gastos si hay datos válidos para reemplazar
+				if (hasValidGastos) {
+					String deletelinesquery = "Delete From Vehiculosgastos "
+							+ "Where id.idVehiculo = "
+							+ ((Number) txtIdVehiculo.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					Query q = getSession().getSession().createQuery(
+							deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < tblGastos.getRowCount(); k++) {
 					if (tblGastos.getValueAt(k, GastosTableModel.columnState)

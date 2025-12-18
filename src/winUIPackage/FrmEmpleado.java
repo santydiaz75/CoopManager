@@ -2161,10 +2161,13 @@ public class FrmEmpleado extends javax.swing.JPanel {
 
 	public boolean saveData(Boolean showmessage) throws ParseException {
 
+		Transaction transaction = null;
+		boolean weStartedTransaction = false;
+		
 		try {
 			if (validateData()) {
-				Transaction transaction = session.getSession()
-						.beginTransaction();
+				
+				// Primero generar el ID si es un nuevo registro, antes de la transacción
 				if (OnNew) {
 					txtIdEmpleado.setValue(entity.newId(this, "Empleados",
 							"id.idEmpleado"));
@@ -2174,6 +2177,18 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					empleadoid
 							.setIdEmpleado((Integer) txtIdEmpleado.getValue());
 					empleado.setId(empleadoid);
+				}
+				
+				// Manejo minimalista de transacciones para Hibernate 3.x
+				// Usar lo que esté disponible sin manipulaciones complejas
+				transaction = session.getSession().getTransaction();
+				if (transaction == null || !transaction.isActive()) {
+					// Solo crear nueva transacción si realmente no hay ninguna
+					transaction = session.getSession().beginTransaction();
+					weStartedTransaction = true;
+				} else {
+					// Usar transacción existente
+					weStartedTransaction = false;
 				}
 				if (!txtNIF.getText().equals(""))
 					empleado.setNif(txtNIF.getText());
@@ -2263,17 +2278,35 @@ public class FrmEmpleado extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(empleado);
 				session.getSession().flush();
 
-				String deletelinesquery = "Delete From Empleadoscontratos "
-						+ "Where id.idEmpleado = "
-						+ ((Number) txtIdEmpleado.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Declarar variables para reutilizar en las operaciones de borrado
+				String deletelinesquery;
+				Query q;
 
-				Query q = getSession().getSession().createQuery(
-						deletelinesquery);
-				q.executeUpdate();
+				// Verificar que hay datos válidos en la tabla de contratos antes de borrar
+				boolean hasValidContratos = false;
+				for (Integer k = 0; k < tblContratos.getRowCount(); k++) {
+					if (tblContratos.getValueAt(k,
+							ContratosTableModel.columnState).equals(
+							ContratosTableModel.EditLine)) {
+						hasValidContratos = true;
+						break;
+					}
+				}
+
+				// Solo borrar y reinsertar contratos si hay datos válidos para reemplazar
+				if (hasValidContratos) {
+					deletelinesquery = "Delete From Empleadoscontratos "
+							+ "Where id.idEmpleado = "
+							+ ((Number) txtIdEmpleado.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					q = getSession().getSession().createQuery(
+							deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < tblContratos.getRowCount(); k++) {
 					if (tblContratos.getValueAt(k,
@@ -2373,16 +2406,30 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				deletelinesquery = "Delete From Empleadosnominas "
-						+ "Where id.idEmpleado = "
-						+ ((Number) txtIdEmpleado.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Verificar que hay datos válidos en la tabla de nóminas antes de borrar
+				boolean hasValidNominas = false;
+				for (Integer k = 0; k < tblNominas.getRowCount(); k++) {
+					if (tblNominas.getValueAt(k,
+							NominasTableModel.columnState).equals(
+							NominasTableModel.EditLine)) {
+						hasValidNominas = true;
+						break;
+					}
+				}
 
-				q = getSession().getSession().createQuery(deletelinesquery);
-				q.executeUpdate();
+				// Solo borrar y reinsertar nóminas si hay datos válidos para reemplazar
+				if (hasValidNominas) {
+					deletelinesquery = "Delete From Empleadosnominas "
+							+ "Where id.idEmpleado = "
+							+ ((Number) txtIdEmpleado.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					q = getSession().getSession().createQuery(deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < tblNominas.getRowCount(); k++) {
 					if (tblNominas.getValueAt(k, NominasTableModel.columnState)
@@ -2392,14 +2439,18 @@ public class FrmEmpleado extends javax.swing.JPanel {
 						empleadonominaId.setIdEmpleado((Integer) txtIdEmpleado
 								.getValue());
 						empleadonominaId.setEmpresas(session.getEmpresa());
-						empleadonominaId
-								.setEjercicios(entity
-										.EjercicioFindById(
-												this,
-												(Integer) tblNominas
-														.getValueAt(
-																k,
-																NominasTableModel.columnEjercicio)));
+						// Verificar si hay un ejercicio específico en la tabla, sino usar el actual
+						Object ejercicioValue = tblNominas.getValueAt(k, NominasTableModel.columnEjercicio);
+						if (ejercicioValue != null && !ejercicioValue.equals("")) {
+							empleadonominaId
+									.setEjercicios(entity
+											.EjercicioFindById(
+													this,
+													(Integer) ejercicioValue));
+						} else {
+							// Si no hay ejercicio específico, usar el ejercicio actual de la sesión
+							empleadonominaId.setEjercicios(session.getEjercicio());
+						}
 						if (!tblNominas.getValueAt(k,
 								NominasTableModel.columnMes).equals(""))
 							empleadonominaId
@@ -2517,16 +2568,30 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				deletelinesquery = "Delete From Empleadoshorasextras "
-						+ "Where id.idEmpleado = "
-						+ ((Number) txtIdEmpleado.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Verificar que hay datos válidos en la tabla de horas extras antes de borrar
+				boolean hasValidHorasExtras = false;
+				for (Integer k = 0; k < tblHorasExtras.getRowCount(); k++) {
+					if (tblHorasExtras.getValueAt(k,
+							HorasExtrasTableModel.columnState).equals(
+							HorasExtrasTableModel.EditLine)) {
+						hasValidHorasExtras = true;
+						break;
+					}
+				}
 
-				q = getSession().getSession().createQuery(deletelinesquery);
-				q.executeUpdate();
+				// Solo borrar y reinsertar horas extras si hay datos válidos para reemplazar
+				if (hasValidHorasExtras) {
+					deletelinesquery = "Delete From Empleadoshorasextras "
+							+ "Where id.idEmpleado = "
+							+ ((Number) txtIdEmpleado.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					q = getSession().getSession().createQuery(deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < tblHorasExtras.getRowCount(); k++) {
 					if (tblHorasExtras.getValueAt(k,
@@ -2538,14 +2603,18 @@ public class FrmEmpleado extends javax.swing.JPanel {
 								.setIdEmpleado((Integer) txtIdEmpleado
 										.getValue());
 						empleadohoraextraId.setEmpresas(session.getEmpresa());
-						empleadohoraextraId
-								.setEjercicios(entity
-										.EjercicioFindById(
-												this,
-												(Integer) tblHorasExtras
-														.getValueAt(
-																k,
-																HorasExtrasTableModel.columnEjercicio)));
+						// Verificar si hay un ejercicio específico en la tabla, sino usar el actual
+						Object ejercicioValue = tblHorasExtras.getValueAt(k, HorasExtrasTableModel.columnEjercicio);
+						if (ejercicioValue != null && !ejercicioValue.equals("")) {
+							empleadohoraextraId
+									.setEjercicios(entity
+											.EjercicioFindById(
+													this,
+													(Integer) ejercicioValue));
+						} else {
+							// Si no hay ejercicio específico, usar el ejercicio actual de la sesión
+							empleadohoraextraId.setEjercicios(session.getEjercicio());
+						}
 						if (!tblHorasExtras.getValueAt(k,
 								HorasExtrasTableModel.columnSemana).equals(""))
 							empleadohoraextraId
@@ -2627,16 +2696,30 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				deletelinesquery = "Delete From Empleadosvacaciones "
-						+ "Where id.idEmpleado = "
-						+ ((Number) txtIdEmpleado.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Verificar que hay datos válidos en la tabla de vacaciones antes de borrar
+				boolean hasValidVacaciones = false;
+				for (Integer k = 0; k < tblVacaciones.getRowCount(); k++) {
+					if (tblVacaciones.getValueAt(k,
+							VacacionesTableModel.columnState).equals(
+							VacacionesTableModel.EditLine)) {
+						hasValidVacaciones = true;
+						break;
+					}
+				}
 
-				q = getSession().getSession().createQuery(deletelinesquery);
-				q.executeUpdate();
+				// Solo borrar y reinsertar vacaciones si hay datos válidos para reemplazar
+				if (hasValidVacaciones) {
+					deletelinesquery = "Delete From Empleadosvacaciones "
+							+ "Where id.idEmpleado = "
+							+ ((Number) txtIdEmpleado.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					q = getSession().getSession().createQuery(deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < tblVacaciones.getRowCount(); k++) {
 					if (tblVacaciones.getValueAt(k,
@@ -2648,14 +2731,18 @@ public class FrmEmpleado extends javax.swing.JPanel {
 								.setIdEmpleado((Integer) txtIdEmpleado
 										.getValue());
 						empleadovacacionesId.setEmpresas(session.getEmpresa());
-						empleadovacacionesId
-								.setEjercicios(entity
-										.EjercicioFindById(
-												this,
-												(Integer) tblVacaciones
-														.getValueAt(
-																k,
-																VacacionesTableModel.columnEjercicio)));
+						// Verificar si hay un ejercicio específico en la tabla, sino usar el actual
+						Object ejercicioValue = tblVacaciones.getValueAt(k, VacacionesTableModel.columnEjercicio);
+						if (ejercicioValue != null && !ejercicioValue.equals("")) {
+							empleadovacacionesId
+									.setEjercicios(entity
+											.EjercicioFindById(
+													this,
+													(Integer) ejercicioValue));
+						} else {
+							// Si no hay ejercicio específico, usar el ejercicio actual de la sesión
+							empleadovacacionesId.setEjercicios(session.getEjercicio());
+						}
 						empleadovacacionesId.setLinea(k + 1);
 						empleadovacaciones.setId(empleadovacacionesId);
 						if (!tblVacaciones.getValueAt(k,
@@ -2688,7 +2775,8 @@ public class FrmEmpleado extends javax.swing.JPanel {
 					}
 				}
 
-				if (transaction.isActive()) {
+				// Hacer commit solo si nosotros iniciamos la transacción
+				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -2702,8 +2790,30 @@ public class FrmEmpleado extends javax.swing.JPanel {
 			} else
 				return false;
 		} catch (RuntimeException he) {
+			// En caso de error, hacer rollback solo si nosotros iniciamos la transacción
+			try {
+				if (weStartedTransaction && transaction != null && transaction.isActive()) {
+					transaction.rollback();
+				}
+			} catch (Exception rollbackError) {
+				// Log rollback error but don't mask original error
+				System.err.println("Error during rollback: " + rollbackError.getMessage());
+			}
 			Message.ShowRuntimeError(getParentFrame(),
 					"FrmEmpleado.saveData()", he);
+			return false;
+		} catch (ParseException e) {
+			// En caso de error de parseo, hacer rollback solo si nosotros iniciamos la transacción
+			try {
+				if (weStartedTransaction && transaction != null && transaction.isActive()) {
+					transaction.rollback();
+				}
+			} catch (Exception rollbackError) {
+				// Log rollback error but don't mask original error
+				System.err.println("Error during rollback: " + rollbackError.getMessage());
+			}
+			Message.ShowParseError(getParentFrame(),
+					"FrmEmpleado.saveData()", e);
 			return false;
 		}
 	}

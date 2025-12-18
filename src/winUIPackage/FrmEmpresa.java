@@ -580,48 +580,61 @@ public class FrmEmpresa extends javax.swing.JPanel {
                 session.getSession().saveOrUpdate(empresa);
                 session.getSession().flush();
 
-                String deletelinesquery = "Delete From Empresascuentas "
-                        + "Where id.empresas.idEmpresa = " + ((Number) txtIdEmpresa
-                        .getValue()).intValue();
+				// Verificar que hay datos válidos en la tabla antes de borrar
+				boolean hasValidCuentas = false;
+				for (Integer k = 0; k < tblCuentas.getRowCount(); k++) {
+					if (tblCuentas.getValueAt(k, CuentasTableModel.columnState)
+							.equals(CuentasTableModel.EditLine)) {
+						hasValidCuentas = true;
+						break;
+					}
+				}
 
-                Query q = getSession().getSession().createQuery(deletelinesquery);
-                q.executeUpdate();
+				// Solo borrar y reinsertar cuentas si hay datos válidos para reemplazar
+				if (hasValidCuentas) {
+					String deletelinesquery = "Delete From Empresascuentas "
+							+ "Where id.empresas.idEmpresa = " + ((Number) txtIdEmpresa
+									.getValue()).intValue();
 
-                for (Integer k = 0; k < tblCuentas.getRowCount(); k++) {
-                    if (tblCuentas.getValueAt(k, CuentasTableModel.columnState)
-                            .equals(CuentasTableModel.EditLine)) {
-                        Empresascuentas empresacuenta = new Empresascuentas();
-                        EmpresascuentasId empresacuentaId = new EmpresascuentasId();
-                        empresacuentaId.setEmpresas(empresa);
-                        empresacuentaId
-                                .setCuentaBancaria((String) tblCuentas
-                                        .getValueAt(
-                                                k,
-                                                CuentasTableModel.columnCuentaBancaria));
-                        empresacuenta.setId(empresacuentaId);
-                        empresacuenta.setNombreBanco((String) tblCuentas
-                                .getValueAt(k,
-                                        CuentasTableModel.columnNombreBanco));
-                        if (!tblCuentas.getValueAt(k,
-                                CuentasTableModel.columnCuentaContable).equals(
-                                        "")) {
-                            empresacuenta
-                                    .setCuentaContable((String) tblCuentas
-                                            .getValueAt(
-                                                    k,
-                                                    CuentasTableModel.columnCuentaContable));
-                        } else {
-                            empresacuenta.setCuentaContable(null);
-                        }
-                        empresacuenta.setLmd(new Date());
-                        empresacuenta.setSid("Santi");
-                        empresacuenta.setVersion(1);
-                        session.getSession().replicate(empresacuenta,
-                                ReplicationMode.OVERWRITE);
-                        session.getSession().saveOrUpdate(empresacuenta);
-                        session.getSession().flush();
-                    }
-                }
+					Query q = getSession().getSession().createQuery(deletelinesquery);
+					q.executeUpdate();
+
+					for (Integer k = 0; k < tblCuentas.getRowCount(); k++) {
+						if (tblCuentas.getValueAt(k, CuentasTableModel.columnState)
+								.equals(CuentasTableModel.EditLine)) {
+							Empresascuentas empresacuenta = new Empresascuentas();
+							EmpresascuentasId empresacuentaId = new EmpresascuentasId();
+							empresacuentaId.setEmpresas(empresa);
+							empresacuentaId
+									.setCuentaBancaria((String) tblCuentas
+											.getValueAt(
+													k,
+													CuentasTableModel.columnCuentaBancaria));
+							empresacuenta.setId(empresacuentaId);
+							empresacuenta.setNombreBanco((String) tblCuentas
+									.getValueAt(k,
+											CuentasTableModel.columnNombreBanco));
+							if (!tblCuentas.getValueAt(k,
+									CuentasTableModel.columnCuentaContable).equals(
+											"")) {
+								empresacuenta
+										.setCuentaContable((String) tblCuentas
+												.getValueAt(
+														k,
+														CuentasTableModel.columnCuentaContable));
+							} else {
+								empresacuenta.setCuentaContable(null);
+							}
+							empresacuenta.setLmd(new Date());
+							empresacuenta.setSid("Santi");
+							empresacuenta.setVersion(1);
+							session.getSession().replicate(empresacuenta,
+									ReplicationMode.OVERWRITE);
+							session.getSession().saveOrUpdate(empresacuenta);
+							session.getSession().flush();
+						}
+					}
+				}
 
                 if (transaction.isActive()) {
                     transaction.commit();

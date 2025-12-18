@@ -601,25 +601,55 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 			if ((mSearch != null) && (!mSearch.equals(""))) {
 
 				resultwhere = resultwhere + " and (";
+				boolean hasSearchConditions = false;
 
 				for (int i = 0; i < filterfields.length; i++) {
 
-					if (fieldtypes[i] == EntityType.TextType)
+					// Excluir campos de fecha de la busqueda para evitar errores de conversion
+					if (EntityType.DateType.equals(fieldtypes[i])) {
+						continue; // Saltar campos de fecha
+					}
+					
+					if (EntityType.TextType.equals(fieldtypes[i])) {
+						// Para campos de texto, usar LIKE con escape de comillas simples
+						String escapedSearch = mSearch.replace("'", "''");
 						resultwhere = resultwhere + "(" + filterfields[i]
-								+ " like '%" + mSearch + "%') or ";
+								+ " like '%" + escapedSearch + "%') or ";
+						hasSearchConditions = true;
+					}
+					else if (EntityType.NumberType.equals(fieldtypes[i])) {
+						// Para campos numericos, usar LIKE para que encuentre numeros que contengan la cadena
+						if (isNumeric(mSearch)) {
+							resultwhere = resultwhere + "(" + filterfields[i]
+									+ " like '%" + mSearch + "%') or ";
+							hasSearchConditions = true;
+						}
+					}
 					else {
-						if ((fieldtypes[i] == EntityType.NumberType)
-								&& isNumeric(mSearch))
+						// Para otros tipos no definidos, intentar busqueda numerica o texto seguro
+						if (isNumeric(mSearch)) {
 							resultwhere = resultwhere + "(" + filterfields[i]
-									+ " = " + mSearch + ") or ";
-						else
+									+ " like '%" + mSearch + "%') or ";
+							hasSearchConditions = true;
+						} else {
+							// Para campos no-numericos, usar busqueda de texto con escape
+							String escapedSearch = mSearch.replace("'", "''");
 							resultwhere = resultwhere + "(" + filterfields[i]
-									+ " = '" + mSearch + "') or ";
+									+ " like '%" + escapedSearch + "%') or ";
+							hasSearchConditions = true;
+						}
 					}
 				}
-				resultwhere = (String) resultwhere.subSequence(0, resultwhere
-						.length() - 3);
-				resultwhere = resultwhere + ")";
+				
+				if (hasSearchConditions) {
+					// Quitar ultimo " or "
+					resultwhere = (String) resultwhere.subSequence(0, resultwhere
+							.length() - 4);
+					resultwhere = resultwhere + ")";
+				} else {
+					// Si no hay condiciones de busqueda validas, quitar " and ("
+					resultwhere = resultwhere.substring(0, resultwhere.length() - 6);
+				}
 			}
 			return resultwhere;
 		} catch (RuntimeException he) {
@@ -631,10 +661,17 @@ public class FrmEntityView extends javax.swing.JInternalFrame {
 
 	private static boolean isNumeric(String cadena) {
 		try {
+			// Comprobar si es un entero
 			Integer.parseInt(cadena);
 			return true;
 		} catch (NumberFormatException nfe) {
-			return false;
+			try {
+				// Comprobar si es un decimal
+				Double.parseDouble(cadena);
+				return true;
+			} catch (NumberFormatException nfe2) {
+				return false;
+			}
 		}
 	}
 

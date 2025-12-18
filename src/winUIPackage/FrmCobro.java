@@ -538,67 +538,80 @@ public class FrmCobro extends javax.swing.JDialog {
 				Transaction transaction = session.getSession()
 						.beginTransaction();
 
-				String deletelinesquery = "Delete From Cobros "
-						+ "Where id.idCliente = " + idCliente
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
-
-				Query q = getSession().getSession().createQuery(
-						deletelinesquery);
-				q.executeUpdate();
-
+				// Verificar que hay datos válidos en la tabla antes de borrar
+				boolean hasValidLines = false;
 				for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
 					if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
 							.equals(DetalleTableModel.EditLine)) {
-						Cobros cobro = new Cobros();
-						CobrosId cobroId = new CobrosId();
-						cobroId.setEjercicios(session.getEjercicio());
-						cobroId.setEmpresas(session.getEmpresa());
-						cobroId.setIdCliente(idCliente);
-						cobroId.setCobro(k + 1);
-						cobro.setId(cobroId);
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnFecha).equals("")) {
-							SimpleDateFormat formatoDeFecha = new SimpleDateFormat(
-									PreferencesUI.DateFormat);
-							Date value = formatoDeFecha.parse(tblDetalle
-									.getValueAt(k,
-											DetalleTableModel.columnFecha)
-									.toString());
-							cobro.setFechaCobro(value);
-						} else
-							cobro.setFechaCobro(null);
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnConcepto).equals(""))
-							cobro.setConcepto((String) tblDetalle.getValueAt(k,
-									DetalleTableModel.columnConcepto));
-						else
-							cobro.setConcepto(null);
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnCuentaBancaria).equals(
-								""))
-							cobro
-									.setCuentaBancaria((String) tblDetalle
-											.getValueAt(
-													k,
-													DetalleTableModel.columnCuentaBancaria));
-						else
-							cobro.setCuentaBancaria(null);
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnImporte).equals(""))
-							cobro.setImporte((Float) tblDetalle.getValueAt(k,
-									DetalleTableModel.columnImporte));
-						else
-							cobro.setImporte(((Number) 0).floatValue());
-						cobro.setLmd(new Date());
-						cobro.setSid("Santi");
-						cobro.setVersion(1);
-						session.getSession().replicate(cobro,
-								ReplicationMode.OVERWRITE);
-						session.getSession().saveOrUpdate(cobro);
-						session.getSession().flush();
+						hasValidLines = true;
+						break;
+					}
+				}
+
+				// Solo borrar y reinsertar líneas si hay datos válidos para reemplazar
+				if (hasValidLines) {
+					String deletelinesquery = "Delete From Cobros "
+							+ "Where id.idCliente = " + idCliente
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					Query q = getSession().getSession().createQuery(
+							deletelinesquery);
+					q.executeUpdate();
+
+					for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
+						if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
+								.equals(DetalleTableModel.EditLine)) {
+							Cobros cobro = new Cobros();
+							CobrosId cobroId = new CobrosId();
+							cobroId.setEjercicios(session.getEjercicio());
+							cobroId.setEmpresas(session.getEmpresa());
+							cobroId.setIdCliente(idCliente);
+							cobroId.setCobro(k + 1);
+							cobro.setId(cobroId);
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnFecha).equals("")) {
+								SimpleDateFormat formatoDeFecha = new SimpleDateFormat(
+										PreferencesUI.DateFormat);
+								Date value = formatoDeFecha.parse(tblDetalle
+										.getValueAt(k,
+												DetalleTableModel.columnFecha)
+										.toString());
+								cobro.setFechaCobro(value);
+							} else
+								cobro.setFechaCobro(null);
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnConcepto).equals(""))
+								cobro.setConcepto((String) tblDetalle.getValueAt(k,
+										DetalleTableModel.columnConcepto));
+							else
+								cobro.setConcepto(null);
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnCuentaBancaria).equals(
+									""))
+								cobro
+										.setCuentaBancaria((String) tblDetalle
+												.getValueAt(
+														k,
+														DetalleTableModel.columnCuentaBancaria));
+							else
+								cobro.setCuentaBancaria(null);
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnImporte).equals(""))
+								cobro.setImporte((Float) tblDetalle.getValueAt(k,
+										DetalleTableModel.columnImporte));
+							else
+								cobro.setImporte(((Number) 0).floatValue());
+							cobro.setLmd(new Date());
+							cobro.setSid("Santi");
+							cobro.setVersion(1);
+							session.getSession().replicate(cobro,
+									ReplicationMode.OVERWRITE);
+							session.getSession().saveOrUpdate(cobro);
+							session.getSession().flush();
+						}
 					}
 				}
 				if (transaction.isActive()) {

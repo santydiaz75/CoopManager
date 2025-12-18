@@ -570,22 +570,35 @@ public class FrmSemana extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(calendario);
 				session.getSession().flush();
 
-				String deletelinesquery = "Delete From Precios "
-						+ "Where id.semana = "
-						+ ((Number) txtSemana.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Verificar que hay datos válidos en la tabla antes de borrar
+				boolean hasValidPrecios = false;
+				for (Integer k = 0; k < tblPrecios.getRowCount(); k++) {
+					if (tblPrecios.getValueAt(k, PreciosTableModel.columnState)
+							.equals(PreciosTableModel.EditLine)) {
+						hasValidPrecios = true;
+						break;
+					}
+				}
 
-				Query q = getSession().getSession().createQuery(
-						deletelinesquery);
-				q.executeUpdate();
+				// Solo borrar y reinsertar precios si hay datos válidos para reemplazar
+				if (hasValidPrecios) {
+					String deletelinesquery = "Delete From Precios "
+							+ "Where id.semana = "
+							+ ((Number) txtSemana.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					Query q = getSession().getSession().createQuery(
+							deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < tblPrecios.getRowCount(); k++) {
 					if (tblPrecios.getValueAt(k, PreciosTableModel.columnState)
 							.equals(PreciosTableModel.EditLine)) {
-						transaction = session.getSession().beginTransaction();
+						// No iniciar nueva transaccion, usar la existente
 						Precios precio = new Precios();
 						PreciosId precioId = new PreciosId();
 						precioId.setEjercicios(session.getEjercicio());

@@ -561,11 +561,13 @@ public class FrmEntrada extends javax.swing.JPanel {
 
 	public boolean saveData(Boolean showmessage) {
 
+		Transaction transaction = null;
+		boolean weStartedTransaction = false;
+		
 		try {
 			if (validateData()) {
-
-				Transaction transaction = session.getSession()
-						.beginTransaction();
+				
+				// Primero generar el ID si es un nuevo registro, antes de la transacción
 				if (OnNew) {
 					txtIdEntrada.setValue(entity.newId(this,
 							"Entradascabecera", "id.idEntrada"));
@@ -575,6 +577,18 @@ public class FrmEntrada extends javax.swing.JPanel {
 					entradaid.setEjercicios(session.getEjercicio());
 					entradaid.setEmpresas(session.getEmpresa());
 					entrada.setId(entradaid);
+				}
+				
+				// Manejo minimalista de transacciones para Hibernate 3.x
+				// Usar lo que esté disponible sin manipulaciones complejas
+				transaction = session.getSession().getTransaction();
+				if (transaction == null || !transaction.isActive()) {
+					// Solo crear nueva transacción si realmente no hay ninguna
+					transaction = session.getSession().beginTransaction();
+					weStartedTransaction = true;
+				} else {
+					// Usar transacción existente
+					weStartedTransaction = false;
 				}
 				if (!txtSemana.getText().equals(""))
 					entrada.setSemana(((Number) txtSemana.getValue())
@@ -634,17 +648,31 @@ public class FrmEntrada extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(entrada);
 				session.getSession().flush();
 
-				String deletelinesquery = "Delete From Entradaslineas "
-						+ "Where id.idEntrada = "
-						+ ((Number) txtIdEntrada.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Verificar que hay datos válidos en la tabla antes de borrar
+				boolean hasValidLines = false;
+				for (Integer k = 0; k < ((DefaultTableModel) tblDetalle
+						.getModel()).getRowCount(); k++) {
+					if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
+							.equals(DetalleTableModel.EditLine)) {
+						hasValidLines = true;
+						break;
+					}
+				}
 
-				Query q = getSession().getSession().createQuery(
-						deletelinesquery);
-				q.executeUpdate();
+				// Solo borrar y reinsertar líneas si hay datos válidos para reemplazar
+				if (hasValidLines) {
+					String deletelinesquery = "Delete From Entradaslineas "
+							+ "Where id.idEntrada = "
+							+ ((Number) txtIdEntrada.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					Query q = getSession().getSession().createQuery(
+							deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < ((DefaultTableModel) tblDetalle
 						.getModel()).getRowCount(); k++) {
@@ -671,7 +699,8 @@ public class FrmEntrada extends javax.swing.JPanel {
 						session.getSession().flush();
 					}
 				}
-				if (transaction.isActive()) {
+				// Hacer commit solo si nosotros iniciamos la transacción
+				if (weStartedTransaction && transaction != null && transaction.isActive()) {
 					transaction.commit();
 				}
 				session.getSession().close();
@@ -684,9 +713,27 @@ public class FrmEntrada extends javax.swing.JPanel {
 			} else
 				return false;
 		} catch (RuntimeException he) {
+			// En caso de error, hacer rollback solo si nosotros iniciamos la transacción
+			try {
+				if (weStartedTransaction && transaction != null && transaction.isActive()) {
+					transaction.rollback();
+				}
+			} catch (Exception rollbackError) {
+				// Log rollback error but don't mask original error
+				System.err.println("Error during rollback: " + rollbackError.getMessage());
+			}
 			Message.ShowRuntimeError(parentFrame, "FrmEntrada.saveData()", he);
 			return false;
 		} catch (ParseException e) {
+			// En caso de error de parseo, hacer rollback solo si nosotros iniciamos la transacción
+			try {
+				if (weStartedTransaction && transaction != null && transaction.isActive()) {
+					transaction.rollback();
+				}
+			} catch (Exception rollbackError) {
+				// Log rollback error but don't mask original error
+				System.err.println("Error during rollback: " + rollbackError.getMessage());
+			}
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;

@@ -763,17 +763,31 @@ public class FrmCosechero extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(cosechero);
 				session.getSession().flush();
 
-				String deletelinesquery = "Delete From Cosecherosparcelas "
-						+ "Where id.idCosechero = "
-						+ ((Number) txtIdCosechero.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Verificar que hay datos válidos en la tabla antes de borrar
+				boolean hasValidParcelas = false;
+				for (Integer k = 0; k < tblParcelas.getRowCount(); k++) {
+					if (tblParcelas.getValueAt(k,
+							ParcelasTableModel.columnState).equals(
+							ParcelasTableModel.EditLine)) {
+						hasValidParcelas = true;
+						break;
+					}
+				}
 
-				Query q = getSession().getSession().createQuery(
-						deletelinesquery);
-				q.executeUpdate();
+				// Solo borrar y reinsertar parcelas si hay datos válidos para reemplazar
+				if (hasValidParcelas) {
+					String deletelinesquery = "Delete From Cosecherosparcelas "
+							+ "Where id.idCosechero = "
+							+ ((Number) txtIdCosechero.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					Query q = getSession().getSession().createQuery(
+							deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < tblParcelas.getRowCount(); k++) {
 					if (tblParcelas.getValueAt(k,

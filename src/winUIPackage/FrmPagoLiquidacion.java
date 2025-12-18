@@ -568,75 +568,88 @@ public class FrmPagoLiquidacion extends javax.swing.JDialog {
 				Transaction transaction = session.getSession()
 						.beginTransaction();
 
-				String deletelinesquery = "Delete From Liquidacionespagos "
-						+ "Where id.idCosechero = " + idCosechero
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
-
-				Query q = getSession().getSession().createQuery(
-						deletelinesquery);
-				q.executeUpdate();
-
+				// Verificar que hay datos válidos en la tabla antes de borrar
+				boolean hasValidLines = false;
 				for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
 					if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
 							.equals(DetalleTableModel.EditLine)) {
-						Liquidacionespagos pago = new Liquidacionespagos();
-						LiquidacionespagosId pagoId = new LiquidacionespagosId();
-						pagoId.setEjercicios(session.getEjercicio());
-						pagoId.setEmpresas(session.getEmpresa());
-						pagoId.setIdCosechero(idCosechero);
-						pagoId.setPago(k + 1);
-						pago.setId(pagoId);
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnFecha).equals("")) {
-							SimpleDateFormat formatoDeFecha = new SimpleDateFormat(
-									PreferencesUI.DateFormat);
-							Date value = formatoDeFecha.parse(tblDetalle
-									.getValueAt(k,
-											DetalleTableModel.columnFecha)
-									.toString());
-							pago.setFechaPago(value);
-						} else
-							pago.setFechaPago(null);
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnConcepto).equals(""))
-							pago.setConcepto((String) tblDetalle.getValueAt(k,
-									DetalleTableModel.columnConcepto));
-						else
-							pago.setConcepto(null);
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnCuentaBancaria).equals(
-								""))
-							pago
-									.setCuentaBancaria((String) tblDetalle
-											.getValueAt(
-													k,
-													DetalleTableModel.columnCuentaBancaria));
-						else
-							pago.setCuentaBancaria(null);
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnImporte).equals(""))
-							pago.setImporte(((Number) tblDetalle.getValueAt(k,
-									DetalleTableModel.columnImporte))
-									.floatValue());
-						else
-							pago.setImporte(((Number) 0).floatValue());
-						if (!tblDetalle.getValueAt(k,
-								DetalleTableModel.columnComision).equals(""))
-							pago.setComision(((Number) tblDetalle.getValueAt(k,
-									DetalleTableModel.columnComision))
-									.floatValue());
-						else
-							pago.setComision(((Number) 0).floatValue());
-						pago.setLmd(new Date());
-						pago.setSid("Santi");
-						pago.setVersion(1);
-						session.getSession().replicate(pago,
-								ReplicationMode.OVERWRITE);
-						session.getSession().saveOrUpdate(pago);
-						session.getSession().flush();
+						hasValidLines = true;
+						break;
+					}
+				}
+
+				// Solo borrar y reinsertar líneas si hay datos válidos para reemplazar
+				if (hasValidLines) {
+					String deletelinesquery = "Delete From Liquidacionespagos "
+							+ "Where id.idCosechero = " + idCosechero
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					Query q = getSession().getSession().createQuery(
+							deletelinesquery);
+					q.executeUpdate();
+
+					for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
+						if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
+								.equals(DetalleTableModel.EditLine)) {
+							Liquidacionespagos pago = new Liquidacionespagos();
+							LiquidacionespagosId pagoId = new LiquidacionespagosId();
+							pagoId.setEjercicios(session.getEjercicio());
+							pagoId.setEmpresas(session.getEmpresa());
+							pagoId.setIdCosechero(idCosechero);
+							pagoId.setPago(k + 1);
+							pago.setId(pagoId);
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnFecha).equals("")) {
+								SimpleDateFormat formatoDeFecha = new SimpleDateFormat(
+										PreferencesUI.DateFormat);
+								Date value = formatoDeFecha.parse(tblDetalle
+										.getValueAt(k,
+												DetalleTableModel.columnFecha)
+										.toString());
+								pago.setFechaPago(value);
+							} else
+								pago.setFechaPago(null);
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnConcepto).equals(""))
+								pago.setConcepto((String) tblDetalle.getValueAt(k,
+										DetalleTableModel.columnConcepto));
+							else
+								pago.setConcepto(null);
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnCuentaBancaria).equals(
+									""))
+								pago
+										.setCuentaBancaria((String) tblDetalle
+												.getValueAt(
+														k,
+														DetalleTableModel.columnCuentaBancaria));
+							else
+								pago.setCuentaBancaria(null);
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnImporte).equals(""))
+								pago.setImporte(((Number) tblDetalle.getValueAt(k,
+										DetalleTableModel.columnImporte))
+										.floatValue());
+							else
+								pago.setImporte(((Number) 0).floatValue());
+							if (!tblDetalle.getValueAt(k,
+									DetalleTableModel.columnComision).equals(""))
+								pago.setComision(((Number) tblDetalle.getValueAt(k,
+										DetalleTableModel.columnComision))
+										.floatValue());
+							else
+								pago.setComision(((Number) 0).floatValue());
+							pago.setLmd(new Date());
+							pago.setSid("Santi");
+							pago.setVersion(1);
+							session.getSession().replicate(pago,
+									ReplicationMode.OVERWRITE);
+							session.getSession().saveOrUpdate(pago);
+							session.getSession().flush();
+						}
 					}
 				}
 				if (transaction.isActive()) {

@@ -727,17 +727,30 @@ public class FrmFactura extends javax.swing.JPanel {
 				session.getSession().saveOrUpdate(factura);
 				session.getSession().flush();
 
-				String deletelinesquery = "Delete From Facturaslineas "
-						+ "Where id.idFactura = "
-						+ ((Number) txtIdFactura.getValue()).intValue()
-						+ " and id.empresas.idEmpresa="
-						+ session.getEmpresa().getIdEmpresa()
-						+ " and id.ejercicios.ejercicio="
-						+ session.getEjercicio().getEjercicio();
+				// Verificar que hay datos válidos en la tabla antes de borrar
+				boolean hasValidLines = false;
+				for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
+					if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
+							.equals(DetalleTableModel.EditLine)) {
+						hasValidLines = true;
+						break;
+					}
+				}
 
-				Query q = getSession().getSession().createQuery(
-						deletelinesquery);
-				q.executeUpdate();
+				// Solo borrar y reinsertar líneas si hay datos válidos para reemplazar
+				if (hasValidLines) {
+					String deletelinesquery = "Delete From Facturaslineas "
+							+ "Where id.idFactura = "
+							+ ((Number) txtIdFactura.getValue()).intValue()
+							+ " and id.empresas.idEmpresa="
+							+ session.getEmpresa().getIdEmpresa()
+							+ " and id.ejercicios.ejercicio="
+							+ session.getEjercicio().getEjercicio();
+
+					Query q = getSession().getSession().createQuery(
+							deletelinesquery);
+					q.executeUpdate();
+				}
 
 				for (Integer k = 0; k < tblDetalle.getRowCount(); k++) {
 					if (tblDetalle.getValueAt(k, DetalleTableModel.columnState)
