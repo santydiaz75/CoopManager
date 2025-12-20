@@ -502,7 +502,7 @@
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="A&#xf1;o"/>
+            <Property name="text" type="java.lang.String" value="Año"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtAno">
