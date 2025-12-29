@@ -73,7 +73,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	private FrmListadoCategoriasKilosPorCosechero fListadoCategoriasKilosPorCosechero;
 	private FrmInformeRentabilidad fInformeRentabilidad;
 	private FrmBackup fBackup;
-	private FrmImportarVales fImportarVales;
 	private FrmContaLiquidaciones fContaLiquidaciones;
 	private FrmContaNominas fContaNominas;
 	private FrmContaFacturas fContaFacturas;
@@ -1868,15 +1867,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fBackup = new FrmBackup(this, true);
 		fBackup.setLocationRelativeTo(null);
 		fBackup.setVisible(true);
-	}
-
-	private void openFormImportarVales() {
-		if (fImportarVales != null) {
-			fImportarVales.dispose();
-		}
-		fImportarVales = new FrmImportarVales(this, session, true);
-		fImportarVales.setLocationRelativeTo(null);
-		fImportarVales.setVisible(true);
 	}
 
 	private void openFormContaLiquidaciones() {
