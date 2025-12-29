@@ -219,7 +219,6 @@ public class FrmMDI extends javax.swing.JFrame {
         PrintCartaCosecherosItem = new javax.swing.JMenuItem();
         ToolsMenuItem = new javax.swing.JMenu();
         BackupManuItem = new javax.swing.JMenuItem();
-        ImportarValesMenuItem = new javax.swing.JMenuItem();
         ContabilizarMenuItem = new javax.swing.JMenu();
         ContaLiquidacionesMenuItem = new javax.swing.JMenuItem();
         ContaLiquidacionesPagosItem = new javax.swing.JMenuItem();
@@ -729,14 +728,6 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         ToolsMenuItem.add(BackupManuItem);
 
-        ImportarValesMenuItem.setText("Importación de vales");
-        ImportarValesMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ImportarValesMenuItemActionPerformed(evt);
-            }
-        });
-        ToolsMenuItem.add(ImportarValesMenuItem);
-
         ContabilizarMenuItem.setText("Contabilización");
 
         ContaLiquidacionesMenuItem.setText("Liquidaciones");
@@ -955,15 +946,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormContaLiquidaciones();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void ImportarValesMenuItemActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormImportarVales();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
 	}
@@ -1970,7 +1952,6 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem GenerarLiquidacionRetornoMenuItem;
     private javax.swing.JMenuItem GenerarLiquidacionRetornoPorCosecheroMenuItem;
     private javax.swing.JMenu IdentidadesMenuItem;
-    private javax.swing.JMenuItem ImportarValesMenuItem;
     private javax.swing.JMenu InformesMenu;
     private javax.swing.JMenu LiquidacionesMenuItem;
     private javax.swing.JMenuItem PrintAyudasOCMItem;
