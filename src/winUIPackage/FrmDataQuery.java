@@ -838,7 +838,6 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		txtTotalPinasEntradas = new javax.swing.JFormattedTextField();
 		lblKilosvsPinas = new javax.swing.JLabel();
 		txtKilosvsPinas = new javax.swing.JFormattedTextField();
-		btnPrintEntradas = new javax.swing.JButton();
 		pnlVentas = new javax.swing.JPanel();
 		lblSemanaVenDesde = new javax.swing.JLabel();
 		txtSemanaVenDesde = new javax.swing.JFormattedTextField();
@@ -860,7 +859,6 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		txtImporteVentas = new javax.swing.JFormattedTextField();
 		cboTiposMercado = new javax.swing.JComboBox();
 		lblTipoMercado = new javax.swing.JLabel();
-		btnPrintVentas = new javax.swing.JButton();
 		cmdClose = new javax.swing.JButton();
 
 		lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18));
@@ -1014,16 +1012,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		txtKilosvsPinas.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 		txtKilosvsPinas.setFont(new java.awt.Font("Segoe UI", 1, 14));
 
-		btnPrintEntradas.setIcon(new javax.swing.ImageIcon(getClass()
-				.getResource("/imagesPackage/Print.png")));
-		btnPrintEntradas.setToolTipText("Imprimir");
-		btnPrintEntradas.setBorder(javax.swing.BorderFactory
-				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-		btnPrintEntradas.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mousePressed(java.awt.event.MouseEvent evt) {
-				btnPrintEntradasMousePressed(evt);
-			}
-		});
+		
 
 		javax.swing.GroupLayout pnlEntradasLayout = new javax.swing.GroupLayout(
 				pnlEntradas);
@@ -1156,8 +1145,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
 																				142,
 																				Short.MAX_VALUE)
-																		.addComponent(
-																				btnPrintEntradas)))
+																		))
 										.addContainerGap()));
 		pnlEntradasLayout
 				.setVerticalGroup(pnlEntradasLayout
@@ -1248,8 +1236,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 																				javax.swing.GroupLayout.PREFERRED_SIZE,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
 																				javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																btnPrintEntradas))
+														)
 										.addContainerGap()));
 
 		tabQuery.addTab("Entradas", pnlEntradas);
@@ -1407,16 +1394,6 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		lblTipoMercado
 				.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-		btnPrintVentas.setIcon(new javax.swing.ImageIcon(getClass()
-				.getResource("/imagesPackage/Print.png")));
-		btnPrintVentas.setToolTipText("Imprimir");
-		btnPrintVentas.setBorder(javax.swing.BorderFactory
-				.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-		btnPrintVentas.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mousePressed(java.awt.event.MouseEvent evt) {
-				btnPrintVentasMousePressed(evt);
-			}
-		});
 
 		javax.swing.GroupLayout pnlVentasLayout = new javax.swing.GroupLayout(
 				pnlVentas);
@@ -1485,8 +1462,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
 																				146,
 																				Short.MAX_VALUE)
-																		.addComponent(
-																				btnPrintVentas))
+																		)
 														.addComponent(
 																jScrollPane3,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -1674,8 +1650,7 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 																				javax.swing.GroupLayout.PREFERRED_SIZE,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
 																				javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																btnPrintVentas))
+														)
 										.addContainerGap()));
 
 		tabQuery.addTab("Ventas", pnlVentas);
@@ -1761,61 +1736,6 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		pack();
 	}
 
-	private void btnPrintEntradasMousePressed(java.awt.event.MouseEvent evt) {
-		try {
-			Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-			setCursor(hourglassCursor);
-			InformeVale report = new InformeVale(parentFrame);
-			if (!(txtIdCosechero.getText().equals(""))) {
-				report.runReporte(session.getEmpresa().getIdEmpresa(), session
-						.getEjercicio().getEjercicio(), ((Number) txtIdCosechero
-						.getValue()).intValue(), ((Number) txtSemanaEntDesde.getValue())
-						.intValue(), ((Number) txtSemanaEntHasta.getValue())
-						.intValue());
-			}
-			else {
-				report.runReporte(session.getEmpresa().getIdEmpresa(), session
-						.getEjercicio().getEjercicio(), ((Number) 0).intValue(), ((Number) txtSemanaEntDesde.getValue())
-						.intValue(), ((Number) txtSemanaEntHasta.getValue())
-						.intValue());	
-			}		
-			Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-			setCursor(normalCursor);
-		} catch (RuntimeException he) {
-			Message.ShowRuntimeError(parentFrame,
-					"FrmDataQuery.btnPrintEntradasMousePressed()", he);
-		}
-	}
-	
-	private void btnPrintVentasMousePressed(java.awt.event.MouseEvent evt) {
-		try {
-			
-			Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-			setCursor(hourglassCursor);
-			InformeValeVentas report = new InformeValeVentas(parentFrame);
-			if (!(txtIdReceptor.getText().equals(""))) {
-				report.runReporte(session.getEmpresa().getIdEmpresa(), session
-						.getEjercicio().getEjercicio(), ((Number) txtIdReceptor
-						.getValue()).intValue(), ((Number) txtSemanaVenDesde.getValue())
-						.intValue(), ((Number) txtSemanaVenHasta.getValue())
-						.intValue(), cboTiposMercado
-						.getSelectedIndex());
-			}
-			else {
-				report.runReporte(session.getEmpresa().getIdEmpresa(), session
-						.getEjercicio().getEjercicio(), ((Number) 0).intValue(), ((Number) txtSemanaVenDesde.getValue())
-						.intValue(), ((Number) txtSemanaVenHasta.getValue())
-						.intValue(), cboTiposMercado
-						.getSelectedIndex());	
-			}
-			Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-			setCursor(normalCursor);
-		} catch (RuntimeException he) {
-			Message.ShowRuntimeError(parentFrame,
-					"FrmDataQuery.btnPrintVentasMousePressed()", he);
-		}
-	}
-	
 	private void tblVentasMousePressed(java.awt.event.MouseEvent evt) {
 		try {
 			if (evt.getClickCount() == 2) {
@@ -2013,8 +1933,6 @@ public class FrmDataQuery extends javax.swing.JInternalFrame {
 		}
 	}
 
-	private javax.swing.JButton btnPrintEntradas;
-	private javax.swing.JButton btnPrintVentas;
 	private static javax.swing.JComboBox cboCosecheros;
 	private static javax.swing.JComboBox cboReceptores;
 	private static javax.swing.JComboBox cboTiposMercado;
