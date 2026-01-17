@@ -285,22 +285,6 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="VentasMenuItemMousePressed"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="QueryMenuItem">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagesPackage/Consulta.png"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Consultas"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="QueryMenuItemMousePressed"/>
-          </Events>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="LiquidacionesMenuItem">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -394,39 +378,7 @@
             <Property name="borderPainted" type="boolean" value="true"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="PrintListadoCosecheros">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listado de cosecheros"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintListadoCosecherosActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator6">
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="PrintValeEntradaItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Vale de entrada"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintValeEntradaItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="PrintRelacionCosecherosKilos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Relación de cosecheros y kilos"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintRelacionCosecherosKilosActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="PrintKilosInutilizadosItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Relación de kilos inutilizados"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintKilosInutilizadosItemActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator1">
             </MenuItem>
@@ -452,22 +404,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintResumenLiquidacionActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="PrintIGICItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Relación de I.G.I.C."/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintIGICItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="PrintIRPFItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Relación de I.R.P.F."/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrintIRPFItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PrintFacturaLiquidacionRetornoItem">

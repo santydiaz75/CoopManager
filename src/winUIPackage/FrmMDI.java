@@ -180,7 +180,6 @@ public class FrmMDI extends javax.swing.JFrame {
         EmpleadosMenuItem = new javax.swing.JMenu();
         EntradasMenuItem = new javax.swing.JMenu();
         VentasMenuItem = new javax.swing.JMenu();
-        QueryMenuItem = new javax.swing.JMenu();
         LiquidacionesMenuItem = new javax.swing.JMenu();
         GeneraLiquidacionMenuiItem = new javax.swing.JMenuItem();
         ConsultarLiquidacionesMenuItem = new javax.swing.JMenuItem();
@@ -189,18 +188,11 @@ public class FrmMDI extends javax.swing.JFrame {
         FacturasMenuItem = new javax.swing.JMenu();
         FacturasPagoMenuItem = new javax.swing.JMenu();
         InformesMenu = new javax.swing.JMenu();
-        PrintListadoCosecheros = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JSeparator();
-        PrintValeEntradaItem = new javax.swing.JMenuItem();
-        PrintRelacionCosecherosKilos = new javax.swing.JMenuItem();
-        PrintListadoCategoriasKilosPorCosechero = new javax.swing.JMenuItem();
-        PrintKilosInutilizadosItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         PrintPreliquidacionItem = new javax.swing.JMenuItem();
         PrintFacturaLiquidacionItem = new javax.swing.JMenuItem();
         PrintResumenLiquidacion = new javax.swing.JMenuItem();
-        PrintIGICItem = new javax.swing.JMenuItem();
-        PrintIRPFItem = new javax.swing.JMenuItem();
         PrintFacturaLiquidacionRetornoItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
         PrintFacturaItem = new javax.swing.JMenuItem();
@@ -456,16 +448,6 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         menuBar.add(VentasMenuItem);
 
-        QueryMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        QueryMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Consulta.png")));
-        QueryMenuItem.setToolTipText("Consultas");
-        QueryMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                QueryMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(QueryMenuItem);
-
         LiquidacionesMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LiquidacionesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/liquidacion.png")));
         LiquidacionesMenuItem.setToolTipText("Liquidaciones");
@@ -529,46 +511,7 @@ public class FrmMDI extends javax.swing.JFrame {
         InformesMenu.setToolTipText("Informes");
         InformesMenu.setBorderPainted(true);
 
-        PrintListadoCosecheros.setText("Listado de cosecheros");
-        PrintListadoCosecheros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintListadoCosecherosActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintListadoCosecheros);
-        InformesMenu.add(jSeparator6);
 
-        PrintValeEntradaItem.setText("Vale de entrada");
-        PrintValeEntradaItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintValeEntradaItemActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintValeEntradaItem);
-
-        PrintRelacionCosecherosKilos.setText("Relación de cosecheros y kilos");
-        PrintRelacionCosecherosKilos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintRelacionCosecherosKilosActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintRelacionCosecherosKilos);
-        
-        PrintListadoCategoriasKilosPorCosechero.setText("Relación de kilos por campaña");
-        PrintListadoCategoriasKilosPorCosechero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	PrintListadoCategoriasKilosPorCosecheroActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintListadoCategoriasKilosPorCosechero);
-
-        PrintKilosInutilizadosItem.setText("Relación de kilos inutilizados");
-        PrintKilosInutilizadosItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintKilosInutilizadosItemActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintKilosInutilizadosItem);
         InformesMenu.add(jSeparator1);
 
         PrintPreliquidacionItem.setText("Preliquidación");
@@ -594,22 +537,6 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
         InformesMenu.add(PrintResumenLiquidacion);
-
-        PrintIGICItem.setText("Relación de I.G.I.C.");
-        PrintIGICItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintIGICItemActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintIGICItem);
-
-        PrintIRPFItem.setText("Relación de I.R.P.F.");
-        PrintIRPFItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintIRPFItemActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintIRPFItem);
 
         PrintFacturaLiquidacionRetornoItem.setText("Facturas de liquidación Retorno");
         PrintFacturaLiquidacionRetornoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1006,14 +933,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		}
 	}
 
-	private void QueryMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormDataQuery();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
 	private void ConsultarLiquidacionesMenuItemActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -1186,49 +1105,13 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
 	}
 
-	private void PrintRelacionCosecherosKilosActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openListadoCosecherosKilos();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-	
-	private void PrintListadoCategoriasKilosPorCosecheroActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openListadoCategoriasKilosPorCosechero();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
 
-	private void PrintListadoCosecherosActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		ListadoCosecheros report = new ListadoCosecheros(this);
-		report.runReporte(session.getEmpresa().getIdEmpresa(), session
-				.getEjercicio().getEjercicio());
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
 
 	private void PrintListadoNominasActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openListadoNominas();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void PrintValeEntradaItemActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openInformeVale();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
 	}
@@ -1268,30 +1151,7 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
 	}
 
-	private void PrintKilosInutilizadosItemActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openInformeKilosInutilizados();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
 
-	private void PrintIRPFItemActionPerformed(java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openInformeIRPF();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void PrintIGICItemActionPerformed(java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openInformeIGIC();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
 
 	private void PrintAyudasOCMItemActionPerformed(
 			java.awt.event.ActionEvent evt) {
@@ -1660,25 +1520,7 @@ public class FrmMDI extends javax.swing.JFrame {
 		fGeneraLiquidacionRetornoPorCosechero.setVisible(true);
 	}
 
-	private void openListadoCosecherosKilos() {
-		if (fListadoCosecherosKilos != null) {
-			fListadoCosecherosKilos.dispose();
-		}
-		fListadoCosecherosKilos = new FrmListadoCosecherosKilos(this, session,
-				false);
-		fListadoCosecherosKilos.setLocationRelativeTo(null);
-		fListadoCosecherosKilos.setVisible(true);
-	}
-	
-	private void openListadoCategoriasKilosPorCosechero() {
-		if (fListadoCategoriasKilosPorCosechero != null) {
-			fListadoCategoriasKilosPorCosechero.dispose();
-		}
-		fListadoCategoriasKilosPorCosechero = new FrmListadoCategoriasKilosPorCosechero(this, session,
-				false);
-		fListadoCategoriasKilosPorCosechero.setLocationRelativeTo(null);
-		fListadoCategoriasKilosPorCosechero.setVisible(true);
-	}
+
 
 	private void openListadoNominas() {
 		if (fListadoNominas != null) {
@@ -1757,33 +1599,7 @@ public class FrmMDI extends javax.swing.JFrame {
 		fInformeResumenLiquidacion.setVisible(true);
 	}
 
-	private void openInformeKilosInutilizados() {
-		if (fInformeKilosInutilizados != null) {
-			fInformeKilosInutilizados.dispose();
-		}
-		fInformeKilosInutilizados = new FrmInformeKilosInutilizados(this,
-				session, false);
-		fInformeKilosInutilizados.setLocationRelativeTo(null);
-		fInformeKilosInutilizados.setVisible(true);
-	}
 
-	private void openInformeIGIC() {
-		if (fInformeIGIC != null) {
-			fInformeIGIC.dispose();
-		}
-		fInformeIGIC = new FrmInformeIGIC(this, session, false);
-		fInformeIGIC.setLocationRelativeTo(null);
-		fInformeIGIC.setVisible(true);
-	}
-
-	private void openInformeIRPF() {
-		if (fInformeIRPF != null) {
-			fInformeIRPF.dispose();
-		}
-		fInformeIRPF = new FrmInformeIRPF(this, session, false);
-		fInformeIRPF.setLocationRelativeTo(null);
-		fInformeIRPF.setVisible(true);
-	}
 
 	private void openInformeAyudasOCM() {
 		if (fInformeAyudasOCM != null) {
@@ -1962,21 +1778,13 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem PrintFacturaItem;
     private javax.swing.JMenuItem PrintFacturaLiquidacionItem;
     private javax.swing.JMenuItem PrintFacturaLiquidacionRetornoItem;
-    private javax.swing.JMenuItem PrintIGICItem;
-    private javax.swing.JMenuItem PrintIRPFItem;
-    private javax.swing.JMenuItem PrintKilosInutilizadosItem;
-    private javax.swing.JMenuItem PrintListadoCosecheros;
     private javax.swing.JMenuItem PrintListadoNominas;
     private javax.swing.JMenuItem PrintListadoPersonal;
     private javax.swing.JMenuItem PrintListadoPersonalBanco;
     private javax.swing.JMenuItem PrintListadoPersonalSalarioMedio;
     private javax.swing.JMenuItem PrintPreliquidacionItem;
-    private javax.swing.JMenuItem PrintRelacionCosecherosKilos;
-    private javax.swing.JMenuItem PrintListadoCategoriasKilosPorCosechero;
     private javax.swing.JMenuItem PrintRentabilidadItem;
     private javax.swing.JMenuItem PrintResumenLiquidacion;
-    private javax.swing.JMenuItem PrintValeEntradaItem;
-    private javax.swing.JMenu QueryMenuItem;
     private javax.swing.JMenu ReceptoresMenuItem;
     private javax.swing.JMenuItem TipoGastoMenuItem;
     private javax.swing.JMenu ToolsMenuItem;
