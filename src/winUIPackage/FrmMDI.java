@@ -49,6 +49,7 @@ public class FrmMDI extends javax.swing.JFrame {
 	private FrmTiposGasto fTipogasto;
 	private FrmFacturasPago fFacturaPago;
 	private FrmLiquidaciones fLiquidacion;
+	private FrmDataQuery fDataQuery;
 	private FrmGeneraLiquidacion fGeneraLiquidacion;
     private FrmGeneraLiquidacionRetorno fGeneraLiquidacionRetorno;
     private FrmGeneraLiquidacionRetornoPorCosechero fGeneraLiquidacionRetornoPorCosechero;
@@ -179,6 +180,7 @@ public class FrmMDI extends javax.swing.JFrame {
         EmpleadosMenuItem = new javax.swing.JMenu();
         EntradasMenuItem = new javax.swing.JMenu();
         VentasMenuItem = new javax.swing.JMenu();
+        QueryMenuItem = new javax.swing.JMenu();
         LiquidacionesMenuItem = new javax.swing.JMenu();
         GeneraLiquidacionMenuiItem = new javax.swing.JMenuItem();
         ConsultarLiquidacionesMenuItem = new javax.swing.JMenuItem();
@@ -453,6 +455,16 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
         menuBar.add(VentasMenuItem);
+
+        QueryMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        QueryMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Consulta.png")));
+        QueryMenuItem.setToolTipText("Consultas");
+        QueryMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                QueryMenuItemMousePressed(evt);
+            }
+        });
+        menuBar.add(QueryMenuItem);
 
         LiquidacionesMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LiquidacionesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/liquidacion.png")));
@@ -992,6 +1004,14 @@ public class FrmMDI extends javax.swing.JFrame {
 			Message.ShowRuntimeError(desktopPane,
 					"FrmMDI.cboEmpresasActionPerformed()", he);
 		}
+	}
+
+	private void QueryMenuItemMousePressed(java.awt.event.MouseEvent evt) {
+		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
+		setCursor(hourglassCursor);
+		openFormDataQuery();
+		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+		setCursor(normalCursor);
 	}
 
 	private void ConsultarLiquidacionesMenuItemActionPerformed(
@@ -1601,7 +1621,17 @@ public class FrmMDI extends javax.swing.JFrame {
 		fLiquidacion.setVisible(true);
 	}
 
-
+	private void openFormDataQuery() {
+		if (fDataQuery != null) {
+			fDataQuery.dispose();
+		}
+		fDataQuery = new FrmDataQuery(this, session);
+		desktopPane.removeAll();
+		desktopPane.add(fDataQuery, BorderLayout.CENTER);
+		fDataQuery.setSize(desktopPane.getWidth(), desktopPane.getHeight());
+		fDataQuery.setBackground(PreferencesUI.DesktopBackgroundColor);
+		fDataQuery.setVisible(true);
+	}
 
 	private void openFormGeneraLiquidacion() {
 		if (fGeneraLiquidacion != null) {
@@ -1946,6 +1976,7 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem PrintRentabilidadItem;
     private javax.swing.JMenuItem PrintResumenLiquidacion;
     private javax.swing.JMenuItem PrintValeEntradaItem;
+    private javax.swing.JMenu QueryMenuItem;
     private javax.swing.JMenu ReceptoresMenuItem;
     private javax.swing.JMenuItem TipoGastoMenuItem;
     private javax.swing.JMenu ToolsMenuItem;
