@@ -36,32 +36,23 @@ public class FrmMDI extends javax.swing.JFrame {
 	private FrmConceptos fConcepto;
 	private FrmCosecheros fCosechero;
 	private FrmConductores fConductor;
-	private FrmEmpresas fEmpresa;
-	private FrmEjercicios fEjercicio;
 	private FrmZonas fZonas;
 	private FrmVehiculos fVehiculos;
 	private FrmEntradas fEntradas;
 	private FrmVentas fVentas;
 	private FrmEmpleados fEmpleado;
-	private FrmFacturas fFactura;
 	private FrmTiposGasto fTipogasto;
-	private FrmFacturasPago fFacturaPago;
 	private FrmLiquidaciones fLiquidacion;
 	private FrmDataQuery fDataQuery;
 	private FrmGeneraLiquidacion fGeneraLiquidacion;
     private FrmGeneraLiquidacionRetorno fGeneraLiquidacionRetorno;
     private FrmGeneraLiquidacionRetornoPorCosechero fGeneraLiquidacionRetornoPorCosechero;
 	private FrmInformeVale fInformeVale;
-	private FrmInformeFacturas fInformeFactura;
 	private FrmInformePreLiquidacion fInformePreLiquidacion;
 	private FrmInformeFacturasLiquidacion fInformeFacturaLiquidacion;
     private FrmInformeFacturasLiquidacionRetorno fInformeFacturaLiquidacionRetorno;
 	private FrmInformeResumenLiquidacion fInformeResumenLiquidacion;
 	private FrmInformeKilosInutilizados fInformeKilosInutilizados;
-	private FrmInformeIGIC fInformeIGIC;
-	private FrmInformeIRPF fInformeIRPF;
-	private FrmInformeAyudasOCM fInformeAyudasOCM;
-	private FrmControlCalidad fControlCalidad;
 	private FrmInformeControlESAlmacen fControlESAlmacen;
 	private FrmInformeControlProduccionZonas fControlProduccionZonas;
 	private FrmInformeListadoPersonalBanco fListadoPersonalBanco;
@@ -73,7 +64,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	private FrmBackup fBackup;
 	private FrmContaLiquidaciones fContaLiquidaciones;
 	private FrmContaNominas fContaNominas;
-	private FrmContaFacturas fContaFacturas;
 	private FrmContaPagos fContaPagos;
 	private FrmContaCobros fContaCobros;
 	private FrmContaLiquidacionesPagos fContaLiquidacionesPagos;
@@ -159,8 +149,6 @@ public class FrmMDI extends javax.swing.JFrame {
         lnlEmpresa1 = new javax.swing.JLabel();
         cboEjercicios = new javax.swing.JComboBox();
         menuBar = new javax.swing.JMenuBar();
-        EmpresasMenuItem = new javax.swing.JMenu();
-        EjercicioMenuItem = new javax.swing.JMenu();
         CalendarioMenuItem = new javax.swing.JMenu();
         BimestresMenuItem = new javax.swing.JMenu();
         CategoriasMenuItem = new javax.swing.JMenu();
@@ -179,8 +167,6 @@ public class FrmMDI extends javax.swing.JFrame {
         ConsultarLiquidacionesMenuItem = new javax.swing.JMenuItem();
         GenerarLiquidacionRetornoMenuItem = new javax.swing.JMenuItem();
         GenerarLiquidacionRetornoPorCosecheroMenuItem = new javax.swing.JMenuItem();
-        FacturasMenuItem = new javax.swing.JMenu();
-        FacturasPagoMenuItem = new javax.swing.JMenu();
         InformesMenu = new javax.swing.JMenu();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
@@ -189,18 +175,15 @@ public class FrmMDI extends javax.swing.JFrame {
         PrintResumenLiquidacion = new javax.swing.JMenuItem();
         PrintFacturaLiquidacionRetornoItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
-        PrintFacturaItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JSeparator();
         PrintControlESAlmacenMenuItem = new javax.swing.JMenuItem();
         PrintControlProduccionZonasMenuItem = new javax.swing.JMenuItem();
-        PrintControlCalidadItem = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JSeparator();
         PrintListadoPersonal = new javax.swing.JMenuItem();
         PrintListadoPersonalBanco = new javax.swing.JMenuItem();
         PrintListadoPersonalSalarioMedio = new javax.swing.JMenuItem();
         PrintListadoNominas = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JSeparator();
-        PrintAyudasOCMItem = new javax.swing.JMenuItem();
         PrintRentabilidadItem = new javax.swing.JMenuItem();
         PrintCartaCosecherosItem = new javax.swing.JMenuItem();
         ToolsMenuItem = new javax.swing.JMenu();
@@ -209,7 +192,6 @@ public class FrmMDI extends javax.swing.JFrame {
         ContaLiquidacionesMenuItem = new javax.swing.JMenuItem();
         ContaLiquidacionesPagosItem = new javax.swing.JMenuItem();
         ContaNominasMenuItem = new javax.swing.JMenuItem();
-        ContaFacturasMenuItem = new javax.swing.JMenuItem();
         ContaPagosMenuItem = new javax.swing.JMenuItem();
         ContaCobrosMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
@@ -248,27 +230,6 @@ public class FrmMDI extends javax.swing.JFrame {
                 cboEjerciciosActionPerformed(evt);
             }
         });
-
-        EmpresasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        EmpresasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Empresas.png")));
-        EmpresasMenuItem.setToolTipText("Empresas");
-        EmpresasMenuItem.setBorderPainted(true);
-        EmpresasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                EmpresasMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(EmpresasMenuItem);
-
-        EjercicioMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        EjercicioMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/ejercicio.png")));
-        EjercicioMenuItem.setToolTipText("Ejercicios");
-        EjercicioMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                EjercicioMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(EjercicioMenuItem);
 
         CalendarioMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CalendarioMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/calendario.png")));
@@ -438,26 +399,6 @@ public class FrmMDI extends javax.swing.JFrame {
         
         menuBar.add(LiquidacionesMenuItem);
 
-        FacturasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        FacturasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Factura.png")));
-        FacturasMenuItem.setToolTipText("Facturas de ventas y servicios");
-        FacturasMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                FacturasMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(FacturasMenuItem);
-
-        FacturasPagoMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        FacturasPagoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/FacturaPago.png")));
-        FacturasPagoMenuItem.setToolTipText("Facturas de compras y gastos");
-        FacturasPagoMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                FacturasPagoMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(FacturasPagoMenuItem);
-
         InformesMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         InformesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Informes.png")));
         InformesMenu.setToolTipText("Informes");
@@ -498,14 +439,6 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintFacturaLiquidacionRetornoItem);
         InformesMenu.add(jSeparator2);
-
-        PrintFacturaItem.setText("Facturas de servicios");
-        PrintFacturaItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintFacturaItemActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintFacturaItem);
         InformesMenu.add(jSeparator3);
 
         PrintControlESAlmacenMenuItem.setText("Control de E/S del almacen");
@@ -523,14 +456,6 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
         InformesMenu.add(PrintControlProduccionZonasMenuItem);
-
-        PrintControlCalidadItem.setText("Control de calidad");
-        PrintControlCalidadItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintControlCalidadItemActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintControlCalidadItem);
         InformesMenu.add(jSeparator4);
 
         PrintListadoPersonal.setText("Listado de personal");
@@ -565,14 +490,6 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintListadoNominas);
         InformesMenu.add(jSeparator5);
-
-        PrintAyudasOCMItem.setText("Ayudas O.C.M.");
-        PrintAyudasOCMItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintAyudasOCMItemActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintAyudasOCMItem);
 
         PrintRentabilidadItem.setText("Rentabilidad");
         PrintRentabilidadItem.addActionListener(new java.awt.event.ActionListener() {
@@ -632,14 +549,6 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
         ContabilizarMenuItem.add(ContaNominasMenuItem);
-
-        ContaFacturasMenuItem.setText("Facturas de ventas y servicios");
-        ContaFacturasMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContaFacturasMenuItemActionPerformed(evt);
-            }
-        });
-        ContabilizarMenuItem.add(ContaFacturasMenuItem);
 
         ContaPagosMenuItem.setText("Pagos");
         ContaPagosMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -802,15 +711,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
 	}
 
-	private void ContaFacturasMenuItemActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormContaFacturas();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
 	private void ContaNominasMenuItemActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -904,42 +804,10 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
         
 
-	private void FacturasMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormFacturas();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void FacturasPagoMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormFacturasPago();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
 	private void BimestresMenuItemMousePressed(java.awt.event.MouseEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormBimestres();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void EjercicioMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormEjercicios();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void EmpresasMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormEmpresas();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
 	}
@@ -1016,30 +884,11 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
 	}
 
-	private void PrintControlCalidadItemActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openControlCalidad();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-
-
 	private void PrintListadoNominasActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openListadoNominas();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void PrintFacturaItemActionPerformed(java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openInformeFactura();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
 	}
@@ -1072,15 +921,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
 
-
-	private void PrintAyudasOCMItemActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openInformeAyudasOCM();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
 
 	private void PrintControlESAlmacenMenuItemActionPerformed(
 			java.awt.event.ActionEvent evt) {
@@ -1233,30 +1073,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fConductor.setVisible(true);
 	}
 
-	private void openFormEmpresas() {
-		if (fEmpresa != null) {
-			fEmpresa.dispose();
-		}
-		fEmpresa = new FrmEmpresas(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fEmpresa, BorderLayout.CENTER);
-		fEmpresa.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fEmpresa.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fEmpresa.setVisible(true);
-	}
-
-	private void openFormEjercicios() {
-		if (fEjercicio != null) {
-			fEjercicio.dispose();
-		}
-		fEjercicio = new FrmEjercicios(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fEjercicio, BorderLayout.CENTER);
-		fEjercicio.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fEjercicio.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fEjercicio.setVisible(true);
-	}
-
 	private void openFormZonas() {
 		if (fZonas != null) {
 			fZonas.dispose();
@@ -1305,18 +1121,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fVentas.setVisible(true);
 	}
 
-	private void openFormFacturas() {
-		if (fFactura != null) {
-			fFactura.dispose();
-		}
-		fFactura = new FrmFacturas(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fFactura, BorderLayout.CENTER);
-		fFactura.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fFactura.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fFactura.setVisible(true);
-	}
-
 	private void openFormTiposGastoVehiculo() {
 		if (fTipogasto != null) {
 			fTipogasto.dispose();
@@ -1327,18 +1131,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fTipogasto.setSize(desktopPane.getWidth(), desktopPane.getHeight());
 		fTipogasto.setBackground(PreferencesUI.DesktopBackgroundColor);
 		fTipogasto.setVisible(true);
-	}
-
-	private void openFormFacturasPago() {
-		if (fFacturaPago != null) {
-			fFacturaPago.dispose();
-		}
-		fFacturaPago = new FrmFacturasPago(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fFacturaPago, BorderLayout.CENTER);
-		fFacturaPago.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fFacturaPago.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fFacturaPago.setVisible(true);
 	}
 
 	private void openFormLiquidaciones() {
@@ -1412,15 +1204,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fInformeVale.setVisible(true);
 	}
 
-	private void openInformeFactura() {
-		if (fInformeFactura != null) {
-			fInformeFactura.dispose();
-		}
-		fInformeFactura = new FrmInformeFacturas(this, session, false);
-		fInformeFactura.setLocationRelativeTo(null);
-		fInformeFactura.setVisible(true);
-	}
-
 	private void openInformePreLiquidacion() {
 		if (fInformePreLiquidacion != null) {
 			fInformePreLiquidacion.dispose();
@@ -1469,26 +1252,6 @@ public class FrmMDI extends javax.swing.JFrame {
 				session, false);
 		fInformeResumenLiquidacion.setLocationRelativeTo(null);
 		fInformeResumenLiquidacion.setVisible(true);
-	}
-
-
-
-	private void openInformeAyudasOCM() {
-		if (fInformeAyudasOCM != null) {
-			fInformeAyudasOCM.dispose();
-		}
-		fInformeAyudasOCM = new FrmInformeAyudasOCM(this, session, false);
-		fInformeAyudasOCM.setLocationRelativeTo(null);
-		fInformeAyudasOCM.setVisible(true);
-	}
-
-	private void openControlCalidad() {
-		if (fControlCalidad != null) {
-			fControlCalidad.dispose();
-		}
-		fControlCalidad = new FrmControlCalidad(this, session, false);
-		fControlCalidad.setLocationRelativeTo(null);
-		fControlCalidad.setVisible(true);
 	}
 
 	private void openInformeControlESAlmacen() {
@@ -1564,18 +1327,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fContaNominas.setVisible(true);
 	}
 
-	private void openFormContaFacturas() {
-		if (fContaFacturas != null) {
-			fContaFacturas.dispose();
-		}
-		fContaFacturas = new FrmContaFacturas(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fContaFacturas, BorderLayout.CENTER);
-		fContaFacturas.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fContaFacturas.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fContaFacturas.setVisible(true);
-	}
-
 	private void openFormContaPagos() {
 		if (fContaPagos != null) {
 			fContaPagos.dispose();
@@ -1622,29 +1373,21 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenu ConductoresMenuItem;
     private javax.swing.JMenuItem ConsultarLiquidacionesMenuItem;
     private javax.swing.JMenuItem ContaCobrosMenuItem;
-    private javax.swing.JMenuItem ContaFacturasMenuItem;
     private javax.swing.JMenuItem ContaLiquidacionesMenuItem;
     private javax.swing.JMenuItem ContaLiquidacionesPagosItem;
     private javax.swing.JMenuItem ContaNominasMenuItem;
     private javax.swing.JMenuItem ContaPagosMenuItem;
     private javax.swing.JMenu ContabilizarMenuItem;
-    private javax.swing.JMenu EjercicioMenuItem;
-    private javax.swing.JMenu EmpresasMenuItem;
     private javax.swing.JMenu EntradasMenuItem;
     private javax.swing.JMenu ExitMenuItem;
-    private javax.swing.JMenu FacturasMenuItem;
-    private javax.swing.JMenu FacturasPagoMenuItem;
     private javax.swing.JMenuItem GeneraLiquidacionMenuiItem;
     private javax.swing.JMenuItem GenerarLiquidacionRetornoMenuItem;
     private javax.swing.JMenuItem GenerarLiquidacionRetornoPorCosecheroMenuItem;
     private javax.swing.JMenu InformesMenu;
     private javax.swing.JMenu LiquidacionesMenuItem;
-    private javax.swing.JMenuItem PrintAyudasOCMItem;
     private javax.swing.JMenuItem PrintCartaCosecherosItem;
-    private javax.swing.JMenuItem PrintControlCalidadItem;
     private javax.swing.JMenuItem PrintControlESAlmacenMenuItem;
     private javax.swing.JMenuItem PrintControlProduccionZonasMenuItem;
-    private javax.swing.JMenuItem PrintFacturaItem;
     private javax.swing.JMenuItem PrintFacturaLiquidacionItem;
     private javax.swing.JMenuItem PrintFacturaLiquidacionRetornoItem;
     private javax.swing.JMenuItem PrintListadoNominas;
