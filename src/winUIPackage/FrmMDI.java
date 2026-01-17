@@ -35,11 +35,9 @@ public class FrmMDI extends javax.swing.JFrame {
 	private FrmCategorias fCategoria;
 	private FrmConceptos fConcepto;
 	private FrmCosecheros fCosechero;
-	private FrmIdentidades fIdentidad;
 	private FrmConductores fConductor;
 	private FrmEmpresas fEmpresa;
 	private FrmEjercicios fEjercicio;
-	private FrmReceptores fReceptor;
 	private FrmZonas fZonas;
 	private FrmVehiculos fVehiculos;
 	private FrmEntradas fEntradas;
@@ -167,17 +165,13 @@ public class FrmMDI extends javax.swing.JFrame {
         BimestresMenuItem = new javax.swing.JMenu();
         CategoriasMenuItem = new javax.swing.JMenu();
         ConceptosMenuItem = new javax.swing.JMenu();
-        CosecherosMenuItem = new javax.swing.JMenu();
-        ReceptoresMenuItem = new javax.swing.JMenu();
         bancosMenuItem = new javax.swing.JMenu();
         barcosMenuItem = new javax.swing.JMenu();
         ConductoresMenuItem = new javax.swing.JMenu();
         VehiculosMenu = new javax.swing.JMenu();
         VehiculosMenuItem = new javax.swing.JMenuItem();
         TipoGastoMenuItem = new javax.swing.JMenuItem();
-        IdentidadesMenuItem = new javax.swing.JMenu();
         ZonasMenuItem = new javax.swing.JMenu();
-        EmpleadosMenuItem = new javax.swing.JMenu();
         EntradasMenuItem = new javax.swing.JMenu();
         VentasMenuItem = new javax.swing.JMenu();
         LiquidacionesMenuItem = new javax.swing.JMenu();
@@ -319,28 +313,6 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         menuBar.add(ConceptosMenuItem);
 
-        CosecherosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CosecherosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Cosecheros.png")));
-        CosecherosMenuItem.setToolTipText("Cosecheros");
-        CosecherosMenuItem.setBorderPainted(true);
-        CosecherosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CosecherosMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(CosecherosMenuItem);
-
-        ReceptoresMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ReceptoresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Receptores.png")));
-        ReceptoresMenuItem.setToolTipText("Receptores");
-        ReceptoresMenuItem.setBorderPainted(true);
-        ReceptoresMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ReceptoresMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(ReceptoresMenuItem);
-
         bancosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         bancosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Banco.png")));
         bancosMenuItem.setToolTipText("Bancos");
@@ -397,16 +369,6 @@ public class FrmMDI extends javax.swing.JFrame {
 
         menuBar.add(VehiculosMenu);
 
-        IdentidadesMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        IdentidadesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/identity.png")));
-        IdentidadesMenuItem.setToolTipText("Identidades");
-        IdentidadesMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                IdentidadesMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(IdentidadesMenuItem);
-
         ZonasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ZonasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Zonas.png")));
         ZonasMenuItem.setToolTipText("Zonas");
@@ -417,16 +379,6 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
         menuBar.add(ZonasMenuItem);
-
-        EmpleadosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        EmpleadosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/empleado.png")));
-        EmpleadosMenuItem.setToolTipText("Empleados");
-        EmpleadosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                EmpleadosMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(EmpleadosMenuItem);
 
         EntradasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EntradasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/entradas.png")));
@@ -968,14 +920,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
 	}
 
-	private void EmpleadosMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormEmpleados();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
 	private void BimestresMenuItemMousePressed(java.awt.event.MouseEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
@@ -988,14 +932,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormEjercicios();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void IdentidadesMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormIdentidades();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
 	}
@@ -1020,22 +956,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormEntradas();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void CosecherosMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormCosecheros();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void ReceptoresMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormReceptores();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
 	}
@@ -1313,30 +1233,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fConductor.setVisible(true);
 	}
 
-	private void openFormCosecheros() {
-		if (fCosechero != null) {
-			fCosechero.dispose();
-		}
-		fCosechero = new FrmCosecheros(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fCosechero, BorderLayout.CENTER);
-		fCosechero.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fCosechero.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fCosechero.setVisible(true);
-	}
-
-	private void openFormIdentidades() {
-		if (fIdentidad != null) {
-			fIdentidad.dispose();
-		}
-		fIdentidad = new FrmIdentidades(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fIdentidad, BorderLayout.CENTER);
-		fIdentidad.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fIdentidad.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fIdentidad.setVisible(true);
-	}
-
 	private void openFormEmpresas() {
 		if (fEmpresa != null) {
 			fEmpresa.dispose();
@@ -1359,18 +1255,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fEjercicio.setSize(desktopPane.getWidth(), desktopPane.getHeight());
 		fEjercicio.setBackground(PreferencesUI.DesktopBackgroundColor);
 		fEjercicio.setVisible(true);
-	}
-
-	private void openFormReceptores() {
-		if (fReceptor != null) {
-			fReceptor.dispose();
-		}
-		fReceptor = new FrmReceptores(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fReceptor, BorderLayout.CENTER);
-		fReceptor.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fReceptor.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fReceptor.setVisible(true);
 	}
 
 	private void openFormZonas() {
@@ -1419,18 +1303,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fVentas.setSize(desktopPane.getWidth(), desktopPane.getHeight());
 		fVentas.setBackground(PreferencesUI.DesktopBackgroundColor);
 		fVentas.setVisible(true);
-	}
-
-	private void openFormEmpleados() {
-		if (fEmpleado != null) {
-			fEmpleado.dispose();
-		}
-		fEmpleado = new FrmEmpleados(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fEmpleado, BorderLayout.CENTER);
-		fEmpleado.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fEmpleado.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fEmpleado.setVisible(true);
 	}
 
 	private void openFormFacturas() {
@@ -1756,9 +1628,7 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem ContaNominasMenuItem;
     private javax.swing.JMenuItem ContaPagosMenuItem;
     private javax.swing.JMenu ContabilizarMenuItem;
-    private javax.swing.JMenu CosecherosMenuItem;
     private javax.swing.JMenu EjercicioMenuItem;
-    private javax.swing.JMenu EmpleadosMenuItem;
     private javax.swing.JMenu EmpresasMenuItem;
     private javax.swing.JMenu EntradasMenuItem;
     private javax.swing.JMenu ExitMenuItem;
@@ -1767,7 +1637,6 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem GeneraLiquidacionMenuiItem;
     private javax.swing.JMenuItem GenerarLiquidacionRetornoMenuItem;
     private javax.swing.JMenuItem GenerarLiquidacionRetornoPorCosecheroMenuItem;
-    private javax.swing.JMenu IdentidadesMenuItem;
     private javax.swing.JMenu InformesMenu;
     private javax.swing.JMenu LiquidacionesMenuItem;
     private javax.swing.JMenuItem PrintAyudasOCMItem;
@@ -1785,7 +1654,6 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem PrintPreliquidacionItem;
     private javax.swing.JMenuItem PrintRentabilidadItem;
     private javax.swing.JMenuItem PrintResumenLiquidacion;
-    private javax.swing.JMenu ReceptoresMenuItem;
     private javax.swing.JMenuItem TipoGastoMenuItem;
     private javax.swing.JMenu ToolsMenuItem;
     private javax.swing.JMenu VehiculosMenu;
