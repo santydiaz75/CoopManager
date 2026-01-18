@@ -87,23 +87,6 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CategoriasMenuItemMousePressed"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="ConductoresMenuItem">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagesPackage/Conductores.png"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Conductores"/>
-            <Property name="borderPainted" type="boolean" value="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ConductoresMenuItemMousePressed"/>
-          </Events>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="VehiculosMenu">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

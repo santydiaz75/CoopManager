@@ -32,7 +32,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	private FrmBimestres fBimestre;
 	private FrmCategorias fCategoria;
 	private FrmCosecheros fCosechero;
-	private FrmConductores fConductor;
 	private FrmVehiculos fVehiculos;
 	private FrmEntradas fEntradas;
 	private FrmVentas fVentas;
@@ -148,7 +147,6 @@ public class FrmMDI extends javax.swing.JFrame {
         CalendarioMenuItem = new javax.swing.JMenu();
         BimestresMenuItem = new javax.swing.JMenu();
         CategoriasMenuItem = new javax.swing.JMenu();
-        ConductoresMenuItem = new javax.swing.JMenu();
         VehiculosMenu = new javax.swing.JMenu();
         VehiculosMenuItem = new javax.swing.JMenuItem();
         TipoGastoMenuItem = new javax.swing.JMenuItem();
@@ -254,17 +252,6 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
         menuBar.add(CategoriasMenuItem);
-        
-        ConductoresMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ConductoresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Conductores.png")));
-        ConductoresMenuItem.setToolTipText("Conductores");
-        ConductoresMenuItem.setBorderPainted(true);
-        ConductoresMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ConductoresMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(ConductoresMenuItem);
 
         VehiculosMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         VehiculosMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Vehiculos.png")));
@@ -792,14 +779,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
 	}
 	
-	private void ConductoresMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormConductores();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
 	private void PrintListadoNominasActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -941,18 +920,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fCategoria.setVisible(true);
 	}
 	
-	private void openFormConductores() {
-		if (fConductor != null) {
-			fConductor.dispose();
-		}
-		fConductor = new FrmConductores(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fConductor, BorderLayout.CENTER);
-		fConductor.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fConductor.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fConductor.setVisible(true);
-	}
-
 	private void openFormVehiculos() {
 		if (fVehiculos != null) {
 			fVehiculos.dispose();
@@ -1237,7 +1204,6 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenu BimestresMenuItem;
     private javax.swing.JMenu CalendarioMenuItem;
     private javax.swing.JMenu CategoriasMenuItem;
-    private javax.swing.JMenu ConductoresMenuItem;
     private javax.swing.JMenuItem ConsultarLiquidacionesMenuItem;
     private javax.swing.JMenuItem ContaCobrosMenuItem;
     private javax.swing.JMenuItem ContaLiquidacionesMenuItem;
