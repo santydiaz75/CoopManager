@@ -87,40 +87,6 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CategoriasMenuItemMousePressed"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="bancosMenuItem">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagesPackage/Banco.png"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Bancos"/>
-            <Property name="borderPainted" type="boolean" value="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bancosMenuItemMousePressed"/>
-          </Events>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="barcosMenuItem">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagesPackage/Barco.png"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Barcos"/>
-            <Property name="borderPainted" type="boolean" value="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="barcosMenuItemMousePressed"/>
-          </Events>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="ConductoresMenuItem">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -169,23 +135,6 @@
               </Events>
             </MenuItem>
           </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="ZonasMenuItem">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagesPackage/Zonas.png"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Zonas"/>
-            <Property name="borderPainted" type="boolean" value="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ZonasMenuItemMousePressed"/>
-          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="EntradasMenuItem">
           <Properties>
