@@ -32,7 +32,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	private FrmBimestres fBimestre;
 	private FrmCategorias fCategoria;
 	private FrmCosecheros fCosechero;
-	private FrmVehiculos fVehiculos;
 	private FrmEntradas fEntradas;
 	private FrmVentas fVentas;
 	private FrmEmpleados fEmpleado;
@@ -147,9 +146,6 @@ public class FrmMDI extends javax.swing.JFrame {
         CalendarioMenuItem = new javax.swing.JMenu();
         BimestresMenuItem = new javax.swing.JMenu();
         CategoriasMenuItem = new javax.swing.JMenu();
-        VehiculosMenu = new javax.swing.JMenu();
-        VehiculosMenuItem = new javax.swing.JMenuItem();
-        TipoGastoMenuItem = new javax.swing.JMenuItem();
         EntradasMenuItem = new javax.swing.JMenu();
         VentasMenuItem = new javax.swing.JMenu();
         LiquidacionesMenuItem = new javax.swing.JMenu();
@@ -252,29 +248,6 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
         menuBar.add(CategoriasMenuItem);
-
-        VehiculosMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        VehiculosMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/Vehiculos.png")));
-        VehiculosMenu.setToolTipText("Vehículos");
-        VehiculosMenu.setBorderPainted(true);
-
-        VehiculosMenuItem.setText("Vehículos");
-        VehiculosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                VehiculosMenuItemMousePressed(evt);
-            }
-        });
-        VehiculosMenu.add(VehiculosMenuItem);
-
-        TipoGastoMenuItem.setText("Tipos de gastos");
-        TipoGastoMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                TipoGastoMenuItemMousePressed(evt);
-            }
-        });
-        VehiculosMenu.add(TipoGastoMenuItem);
-
-        menuBar.add(VehiculosMenu);
 
         EntradasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EntradasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/entradas.png")));
@@ -603,22 +576,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
     }
 
-	private void VehiculosMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormVehiculos();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void TipoGastoMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormTiposGastoVehiculo();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
 	private void ContaLiquidacionesPagosItemActionPerformed(
 			java.awt.event.ActionEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -919,18 +876,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fCategoria.setBackground(PreferencesUI.DesktopBackgroundColor);
 		fCategoria.setVisible(true);
 	}
-	
-	private void openFormVehiculos() {
-		if (fVehiculos != null) {
-			fVehiculos.dispose();
-		}
-		fVehiculos = new FrmVehiculos(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fVehiculos, BorderLayout.CENTER);
-		fVehiculos.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fVehiculos.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fVehiculos.setVisible(true);
-	}
 
 	private void openFormEntradas() {
 		if (fEntradas != null) {
@@ -954,18 +899,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		fVentas.setSize(desktopPane.getWidth(), desktopPane.getHeight());
 		fVentas.setBackground(PreferencesUI.DesktopBackgroundColor);
 		fVentas.setVisible(true);
-	}
-
-	private void openFormTiposGastoVehiculo() {
-		if (fTipogasto != null) {
-			fTipogasto.dispose();
-		}
-		fTipogasto = new FrmTiposGasto(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fTipogasto, BorderLayout.CENTER);
-		fTipogasto.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fTipogasto.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fTipogasto.setVisible(true);
 	}
 
 	private void openFormLiquidaciones() {
@@ -1230,10 +1163,7 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem PrintPreliquidacionItem;
     private javax.swing.JMenuItem PrintRentabilidadItem;
     private javax.swing.JMenuItem PrintResumenLiquidacion;
-    private javax.swing.JMenuItem TipoGastoMenuItem;
     private javax.swing.JMenu ToolsMenuItem;
-    private javax.swing.JMenu VehiculosMenu;
-    private javax.swing.JMenuItem VehiculosMenuItem;
     private javax.swing.JMenu VentasMenuItem;
     private javax.swing.JMenuItem aboutMenuItem;
     private static javax.swing.JComboBox cboEjercicios;
