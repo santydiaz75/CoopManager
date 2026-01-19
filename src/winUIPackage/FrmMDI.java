@@ -28,8 +28,6 @@ public class FrmMDI extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private FrmCalendario fCalendario;
-	private FrmBimestres fBimestre;
 	private FrmCategorias fCategoria;
 	private FrmCosecheros fCosechero;
 	private FrmEntradas fEntradas;
@@ -45,7 +43,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	private FrmInformePreLiquidacion fInformePreLiquidacion;
 	private FrmInformeFacturasLiquidacion fInformeFacturaLiquidacion;
     private FrmInformeFacturasLiquidacionRetorno fInformeFacturaLiquidacionRetorno;
-	private FrmInformeResumenLiquidacion fInformeResumenLiquidacion;
 	private FrmInformeKilosInutilizados fInformeKilosInutilizados;
 	private FrmInformeControlESAlmacen fControlESAlmacen;
 	private FrmInformeControlProduccionZonas fControlProduccionZonas;
@@ -143,8 +140,6 @@ public class FrmMDI extends javax.swing.JFrame {
         lnlEmpresa1 = new javax.swing.JLabel();
         cboEjercicios = new javax.swing.JComboBox();
         menuBar = new javax.swing.JMenuBar();
-        CalendarioMenuItem = new javax.swing.JMenu();
-        BimestresMenuItem = new javax.swing.JMenu();
         CategoriasMenuItem = new javax.swing.JMenu();
         EntradasMenuItem = new javax.swing.JMenu();
         VentasMenuItem = new javax.swing.JMenu();
@@ -158,7 +153,6 @@ public class FrmMDI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         PrintPreliquidacionItem = new javax.swing.JMenuItem();
         PrintFacturaLiquidacionItem = new javax.swing.JMenuItem();
-        PrintResumenLiquidacion = new javax.swing.JMenuItem();
         PrintFacturaLiquidacionRetornoItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -217,26 +211,7 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
 
-        CalendarioMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CalendarioMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/calendario.png")));
-        CalendarioMenuItem.setToolTipText("Calendario y precios");
-        CalendarioMenuItem.setBorderPainted(true);
-        CalendarioMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CalendarioMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(CalendarioMenuItem);
 
-        BimestresMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        BimestresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/bimestre.png")));
-        BimestresMenuItem.setToolTipText("Bimestres");
-        BimestresMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BimestresMenuItemMousePressed(evt);
-            }
-        });
-        menuBar.add(BimestresMenuItem);
 
         CategoriasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CategoriasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/categoria.png")));
@@ -331,13 +306,7 @@ public class FrmMDI extends javax.swing.JFrame {
         });
         InformesMenu.add(PrintFacturaLiquidacionItem);
 
-        PrintResumenLiquidacion.setText("Resumen de liquidación");
-        PrintResumenLiquidacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintResumenLiquidacionActionPerformed(evt);
-            }
-        });
-        InformesMenu.add(PrintResumenLiquidacion);
+
 
         PrintFacturaLiquidacionRetornoItem.setText("Facturas de liquidación Retorno");
         PrintFacturaLiquidacionRetornoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -696,13 +665,7 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
         
 
-	private void BimestresMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormBimestres();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
+
 
 	private void VentasMenuItemMousePressed(java.awt.event.MouseEvent evt) {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -716,14 +679,6 @@ public class FrmMDI extends javax.swing.JFrame {
 		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
 		setCursor(hourglassCursor);
 		openFormEntradas();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
-
-	private void CalendarioMenuItemMousePressed(java.awt.event.MouseEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openFormCalendario();
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
 	}
@@ -763,14 +718,7 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
 	}
 
-	private void PrintResumenLiquidacionActionPerformed(
-			java.awt.event.ActionEvent evt) {
-		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
-		setCursor(hourglassCursor);
-		openInformeResumenLiquidacion();
-		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(normalCursor);
-	}
+
 
 
 
@@ -841,29 +789,7 @@ public class FrmMDI extends javax.swing.JFrame {
 		setCursor(normalCursor);
 	}
 
-	private void openFormCalendario() {
-		if (fCalendario != null) {
-			fCalendario.dispose();
-		}
-		fCalendario = new FrmCalendario(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fCalendario, BorderLayout.CENTER);
-		fCalendario.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fCalendario.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fCalendario.setVisible(true);
-	}
 
-	private void openFormBimestres() {
-		if (fBimestre != null) {
-			fBimestre.dispose();
-		}
-		fBimestre = new FrmBimestres(this, session);
-		desktopPane.removeAll();
-		desktopPane.add(fBimestre, BorderLayout.CENTER);
-		fBimestre.setSize(desktopPane.getWidth(), desktopPane.getHeight());
-		fBimestre.setBackground(PreferencesUI.DesktopBackgroundColor);
-		fBimestre.setVisible(true);
-	}
 
 	private void openFormCategorias() {
 		if (fCategoria != null) {
@@ -1012,15 +938,7 @@ public class FrmMDI extends javax.swing.JFrame {
 		fCartaCosecheros.setVisible(true);
 	}
         
-	private void openInformeResumenLiquidacion() {
-		if (fInformeResumenLiquidacion != null) {
-			fInformeResumenLiquidacion.dispose();
-		}
-		fInformeResumenLiquidacion = new FrmInformeResumenLiquidacion(this,
-				session, false);
-		fInformeResumenLiquidacion.setLocationRelativeTo(null);
-		fInformeResumenLiquidacion.setVisible(true);
-	}
+
 
 	private void openInformeControlESAlmacen() {
 		if (fControlESAlmacen != null) {
@@ -1134,8 +1052,6 @@ public class FrmMDI extends javax.swing.JFrame {
 	}
 
     private javax.swing.JMenuItem BackupManuItem;
-    private javax.swing.JMenu BimestresMenuItem;
-    private javax.swing.JMenu CalendarioMenuItem;
     private javax.swing.JMenu CategoriasMenuItem;
     private javax.swing.JMenuItem ConsultarLiquidacionesMenuItem;
     private javax.swing.JMenuItem ContaCobrosMenuItem;
@@ -1162,7 +1078,6 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem PrintListadoPersonalSalarioMedio;
     private javax.swing.JMenuItem PrintPreliquidacionItem;
     private javax.swing.JMenuItem PrintRentabilidadItem;
-    private javax.swing.JMenuItem PrintResumenLiquidacion;
     private javax.swing.JMenu ToolsMenuItem;
     private javax.swing.JMenu VentasMenuItem;
     private javax.swing.JMenuItem aboutMenuItem;
