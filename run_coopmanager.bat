@@ -1,0 +1,4 @@
+@echo off
+cd /d "c:\Development\CoopManager\CoopManager"
+java -cp "bin;lib/*;Java/hibernate-distribution-3.3.2.GA/hibernate3.jar;Java/hibernate-distribution-3.3.2.GA/lib/required/*;Java/hibernate-distribution-3.3.2.GA/lib/bytecode/cglib/*;Java/hibernate-annotations-3.4.0.GA/hibernate-annotations.jar;Java/hibernate-annotations-3.4.0.GA/lib/hibernate-commons-annotations.jar;Java/mysql-connector-java-5.1.13/mysql-connector-java-5.1.13-bin.jar;Java/jasperreports-3.7.6/jasperreports-3.7.6.jar;Java/jasypt-1.7/lib/jasypt-1.7.jar;Java/commons-logging-1.1.1/commons-logging-1.1.1.jar;Java/commons-digester-1.8.1/commons-digester-1.8.1.jar" -Dfile.encoding=ISO-8859-1 winUIPackage.Launcher
+pause

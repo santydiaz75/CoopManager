@@ -141,6 +141,7 @@ public class FrmMDI extends javax.swing.JFrame {
         cboEjercicios = new javax.swing.JComboBox();
         menuBar = new javax.swing.JMenuBar();
         CategoriasMenuItem = new javax.swing.JMenu();
+        EmpleadosMenuItem = new javax.swing.JMenu();
         EntradasMenuItem = new javax.swing.JMenu();
         VentasMenuItem = new javax.swing.JMenu();
         LiquidacionesMenuItem = new javax.swing.JMenu();
@@ -223,6 +224,16 @@ public class FrmMDI extends javax.swing.JFrame {
             }
         });
         menuBar.add(CategoriasMenuItem);
+
+        EmpleadosMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        EmpleadosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/empleado.png")));
+        EmpleadosMenuItem.setToolTipText("Empleados");
+        EmpleadosMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                EmpleadosMenuItemMousePressed(evt);
+            }
+        });
+        menuBar.add(EmpleadosMenuItem);
 
         EntradasMenuItem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EntradasMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesPackage/entradas.png")));
@@ -690,6 +701,14 @@ public class FrmMDI extends javax.swing.JFrame {
 		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(normalCursor);
 	}
+
+	private void EmpleadosMenuItemMousePressed(java.awt.event.MouseEvent evt) {
+		Cursor hourglassCursor = new Cursor(Cursor.WAIT_CURSOR);
+		setCursor(hourglassCursor);
+		openFormEmpleados();
+		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+		setCursor(normalCursor);
+	}
 	
 	private void PrintListadoNominasActionPerformed(
 			java.awt.event.ActionEvent evt) {
@@ -801,6 +820,18 @@ public class FrmMDI extends javax.swing.JFrame {
 		fCategoria.setSize(desktopPane.getWidth(), desktopPane.getHeight());
 		fCategoria.setBackground(PreferencesUI.DesktopBackgroundColor);
 		fCategoria.setVisible(true);
+	}
+
+	private void openFormEmpleados() {
+		if (fEmpleado != null) {
+			fEmpleado.dispose();
+		}
+		fEmpleado = new FrmEmpleados(this, session);
+		desktopPane.removeAll();
+		desktopPane.add(fEmpleado, BorderLayout.CENTER);
+		fEmpleado.setSize(desktopPane.getWidth(), desktopPane.getHeight());
+		fEmpleado.setBackground(PreferencesUI.DesktopBackgroundColor);
+		fEmpleado.setVisible(true);
 	}
 
 	private void openFormEntradas() {
@@ -1060,6 +1091,7 @@ public class FrmMDI extends javax.swing.JFrame {
     private javax.swing.JMenuItem ContaNominasMenuItem;
     private javax.swing.JMenuItem ContaPagosMenuItem;
     private javax.swing.JMenu ContabilizarMenuItem;
+    private javax.swing.JMenu EmpleadosMenuItem;
     private javax.swing.JMenu EntradasMenuItem;
     private javax.swing.JMenu ExitMenuItem;
     private javax.swing.JMenuItem GeneraLiquidacionMenuiItem;
